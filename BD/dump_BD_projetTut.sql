@@ -48,7 +48,7 @@ DROP TABLE IF EXISTS `enonce`;
 CREATE TABLE `enonce` (
   `idEnonce` int(11) NOT NULL,
   `titre` varchar(50) NOT NULL,
-  `semestre` text NOT NULL,
+  `consigne` text NOT NULL,
   `dateDebut` datetime NOT NULL,
   `dateDepot` datetime NOT NULL,
   PRIMARY KEY (`idEnonce`)
@@ -301,4 +301,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-01 15:34:20
+-- Dump completed on 2018-11-01 18:50:38
