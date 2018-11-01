@@ -225,12 +225,12 @@ DROP TABLE IF EXISTS `resultatsattendus`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
-  `idPoint` int(11) NOT NULL,
-  `valeur` decimal(5,1) NOT NULL,
-  PRIMARY KEY (`idSujet`,`idPoint`),
-  KEY `idPoint` (`idPoint`),
+  `idValeur` int(11) NOT NULL,
+  `resultat` decimal(5,1) NOT NULL,
+  PRIMARY KEY (`idSujet`,`idValeur`),
+  KEY `idValeur` (`idValeur`),
   CONSTRAINT `resultatsattendus_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`),
-  CONSTRAINT `resultatsattendus_ibfk_2` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
+  CONSTRAINT `resultatsattendus_ibfk_2` FOREIGN KEY (`idValeur`) REFERENCES `valeurs` (`idValeur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -255,7 +255,7 @@ CREATE TABLE `resultatseleves` (
   `idEleve` int(11) NOT NULL,
   `idSujet` int(11) NOT NULL,
   `idPoint` int(11) NOT NULL,
-  `valeur` decimal(5,1) NOT NULL,
+  `resultat` decimal(5,1) NOT NULL,
   PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`),
   KEY `idEleve` (`idEleve`),
   KEY `idSujet` (`idSujet`),
@@ -361,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-01 19:31:08
+-- Dump completed on 2018-11-01 20:17:23
