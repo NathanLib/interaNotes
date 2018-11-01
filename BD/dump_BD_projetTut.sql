@@ -217,6 +217,65 @@ LOCK TABLES `points` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `resultatsattendus`
+--
+
+DROP TABLE IF EXISTS `resultatsattendus`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `resultatsattendus` (
+  `idSujet` int(11) NOT NULL,
+  `idPoint` int(11) NOT NULL,
+  `valeur` decimal(5,1) NOT NULL,
+  PRIMARY KEY (`idSujet`,`idPoint`),
+  KEY `idPoint` (`idPoint`),
+  CONSTRAINT `resultatsattendus_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`),
+  CONSTRAINT `resultatsattendus_ibfk_2` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `resultatsattendus`
+--
+
+LOCK TABLES `resultatsattendus` WRITE;
+/*!40000 ALTER TABLE `resultatsattendus` DISABLE KEYS */;
+/*!40000 ALTER TABLE `resultatsattendus` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `resultatseleves`
+--
+
+DROP TABLE IF EXISTS `resultatseleves`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `resultatseleves` (
+  `dateResult` datetime NOT NULL,
+  `idEleve` int(11) NOT NULL,
+  `idSujet` int(11) NOT NULL,
+  `idPoint` int(11) NOT NULL,
+  `valeur` decimal(5,1) NOT NULL,
+  PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`),
+  KEY `idEleve` (`idEleve`),
+  KEY `idSujet` (`idSujet`),
+  KEY `idPoint` (`idPoint`),
+  CONSTRAINT `resultatseleves_ibfk_1` FOREIGN KEY (`idEleve`) REFERENCES `eleve` (`idEleve`),
+  CONSTRAINT `resultatseleves_ibfk_2` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`),
+  CONSTRAINT `resultatseleves_ibfk_3` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `resultatseleves`
+--
+
+LOCK TABLES `resultatseleves` WRITE;
+/*!40000 ALTER TABLE `resultatseleves` DISABLE KEYS */;
+/*!40000 ALTER TABLE `resultatseleves` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `schemasujet`
 --
 
@@ -277,6 +336,7 @@ DROP TABLE IF EXISTS `valeurs`;
 CREATE TABLE `valeurs` (
   `idValeur` int(11) NOT NULL,
   `idPoint` int(11) NOT NULL,
+  `valeur` decimal(5,1) NOT NULL,
   PRIMARY KEY (`idValeur`),
   KEY `idPoint` (`idPoint`),
   CONSTRAINT `valeurs_ibfk_1` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
@@ -301,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-01 18:50:38
+-- Dump completed on 2018-11-01 19:31:08
