@@ -49,8 +49,6 @@ CREATE TABLE `enonce` (
   `idEnonce` int(11) NOT NULL,
   `titre` varchar(50) NOT NULL,
   `consigne` text NOT NULL,
-  `dateDebut` datetime NOT NULL,
-  `dateDepot` datetime NOT NULL,
   PRIMARY KEY (`idEnonce`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -85,6 +83,30 @@ CREATE TABLE `enseignant` (
 LOCK TABLES `enseignant` WRITE;
 /*!40000 ALTER TABLE `enseignant` DISABLE KEYS */;
 /*!40000 ALTER TABLE `enseignant` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `examen`
+--
+
+DROP TABLE IF EXISTS `examen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `examen` (
+  `idExamen` int(11) NOT NULL,
+  `dateDebut` datetime NOT NULL,
+  `dateDepot` datetime NOT NULL,
+  PRIMARY KEY (`idExamen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `examen`
+--
+
+LOCK TABLES `examen` WRITE;
+/*!40000 ALTER TABLE `examen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `examen` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -311,9 +333,12 @@ CREATE TABLE `sujet` (
   `idSujet` int(11) NOT NULL,
   `idEnonce` int(11) NOT NULL,
   `semestre` tinyint(1) NOT NULL,
+  `idExamen` int(11) NOT NULL,
   PRIMARY KEY (`idSujet`,`idEnonce`),
   KEY `idEnonce` (`idEnonce`),
-  CONSTRAINT `sujet_ibfk_1` FOREIGN KEY (`idEnonce`) REFERENCES `enonce` (`idEnonce`)
+  KEY `idExamen` (`idExamen`),
+  CONSTRAINT `sujet_ibfk_1` FOREIGN KEY (`idEnonce`) REFERENCES `enonce` (`idEnonce`),
+  CONSTRAINT `sujet_ibfk_2` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -361,4 +386,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-01 20:17:23
+-- Dump completed on 2018-11-03 19:04:37
