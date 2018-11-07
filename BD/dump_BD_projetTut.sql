@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `eleve`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `eleve` (
   `idEleve` int(11) NOT NULL,
+  `annee` int(4) NOT NULL,
   PRIMARY KEY (`idEleve`),
   CONSTRAINT `eleve_ibfk_1` FOREIGN KEY (`idEleve`) REFERENCES `personne` (`idPersonne`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -94,7 +95,6 @@ DROP TABLE IF EXISTS `examen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `examen` (
   `idExamen` int(11) NOT NULL,
-  `dateDebut` datetime NOT NULL,
   `dateDepot` datetime NOT NULL,
   PRIMARY KEY (`idExamen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -247,12 +247,11 @@ DROP TABLE IF EXISTS `resultatsattendus`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
-  `idValeur` int(11) NOT NULL,
+  `idReponse` int(11) NOT NULL,
   `resultat` decimal(5,1) NOT NULL,
-  PRIMARY KEY (`idSujet`,`idValeur`),
-  KEY `idValeur` (`idValeur`),
-  CONSTRAINT `resultatsattendus_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`),
-  CONSTRAINT `resultatsattendus_ibfk_2` FOREIGN KEY (`idValeur`) REFERENCES `valeurs` (`idValeur`)
+  PRIMARY KEY (`idReponse`,`idSujet`),
+  KEY `idSujet` (`idSujet`),
+  CONSTRAINT `resultatsattendus_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -276,15 +275,15 @@ CREATE TABLE `resultatseleves` (
   `dateResult` datetime NOT NULL,
   `idEleve` int(11) NOT NULL,
   `idSujet` int(11) NOT NULL,
-  `idPoint` int(11) NOT NULL,
+  `idReponse` int(11) NOT NULL,
   `resultat` decimal(5,1) NOT NULL,
   PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`),
   KEY `idEleve` (`idEleve`),
   KEY `idSujet` (`idSujet`),
-  KEY `idPoint` (`idPoint`),
+  KEY `idReponse` (`idReponse`),
   CONSTRAINT `resultatseleves_ibfk_1` FOREIGN KEY (`idEleve`) REFERENCES `eleve` (`idEleve`),
   CONSTRAINT `resultatseleves_ibfk_2` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`),
-  CONSTRAINT `resultatseleves_ibfk_3` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
+  CONSTRAINT `resultatseleves_ibfk_3` FOREIGN KEY (`idReponse`) REFERENCES `resultatsattendus` (`idReponse`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -386,4 +385,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-03 19:04:37
+-- Dump completed on 2018-11-07 19:54:24
