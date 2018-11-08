@@ -9,5 +9,5 @@ INSERT INTO `eleve` (`idEleve`, `annee`) VALUES (1,2018);
 INSERT INTO `enseignant` (`idEnseignant`) VALUES (2);
 INSERT INTO `note` (`idEleve`, `idSujet`, `note`) VALUES (1, 1, '12.50');
 INSERT INTO `exerciceattribue` (`idEleve`, `idSujet`) VALUES (1, 1);
-INSERT INTO resultatsattendus VALUES (1,1,500); /*premier résultat : 500 k carburant*/
-INSERT INTO resultatseleves VALUES ('2018-11-04 00:00:00',1,1,1,499) /*a répondu 499*/
+INSERT INTO resultatsattendus VALUES (1,1,500, 2.0); /*premier résultat : 500 k carburant*/
+INSERT INTO resultatseleves VALUES ('2018-11-04 00:00:00',1,1,1,499,99.8) /*a répondu 499*/

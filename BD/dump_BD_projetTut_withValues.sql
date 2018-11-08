@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.19, for Win64 (x86_64)
 --
--- Host: localhost    Database: projet_tut
+-- Host: localhost    Database: intera_notes
 -- ------------------------------------------------------
 -- Server version	5.7.19
 
@@ -258,6 +258,7 @@ CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
   `resultat` decimal(5,1) NOT NULL,
+  `bareme` decimal(4,2) NOT NULL,
   PRIMARY KEY (`idReponse`,`idSujet`),
   KEY `idSujet` (`idSujet`),
   CONSTRAINT `resultatsattendus_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`)
@@ -270,7 +271,7 @@ CREATE TABLE `resultatsattendus` (
 
 LOCK TABLES `resultatsattendus` WRITE;
 /*!40000 ALTER TABLE `resultatsattendus` DISABLE KEYS */;
-INSERT INTO `resultatsattendus` VALUES (1,1,500.0);
+INSERT INTO `resultatsattendus` VALUES (1,1,500.0,2.00);
 /*!40000 ALTER TABLE `resultatsattendus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,6 +288,7 @@ CREATE TABLE `resultatseleves` (
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
   `resultat` decimal(5,1) NOT NULL,
+  `precisionReponse` decimal(4,2) NOT NULL,
   PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`),
   KEY `idEleve` (`idEleve`),
   KEY `idSujet` (`idSujet`),
@@ -303,7 +305,7 @@ CREATE TABLE `resultatseleves` (
 
 LOCK TABLES `resultatseleves` WRITE;
 /*!40000 ALTER TABLE `resultatseleves` DISABLE KEYS */;
-INSERT INTO `resultatseleves` VALUES ('2018-11-04 00:00:00',1,1,1,499.0);
+INSERT INTO `resultatseleves` VALUES ('2018-11-04 00:00:00',1,1,1,499.0,99.80);
 /*!40000 ALTER TABLE `resultatseleves` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,4 +400,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-07 20:04:53
+-- Dump completed on 2018-11-08 13:07:45
