@@ -13,8 +13,10 @@
         <?php echo $title ?>
     </title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Icons CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Own CSS -->
@@ -22,6 +24,40 @@
 </head>
 
 <body>
-    <nav class="navbar fixed-top">
+    <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark justify-content-bewteen">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+            <img src="image/board.png" width="75" height="auto" alt="logo">
+        </a>
 
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#.html">Link 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#.html">Link 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#.html">Link 3</a>
+                </li>
+
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        More
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="about.html">Link 4</a>
+                        <a class="dropdown-item" href="contact.html">Link 5</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </nav>
