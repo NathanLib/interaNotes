@@ -6,12 +6,10 @@
 		{$page=0;
 		}
 		switch ($page) {
-			//
-			// ...
-			//
 
 			case 0:
-			// inclure ici ...
+			// inclure ici la page accueil
+			include_once('pages/accueil.inc.php');
 			break;
 
 			//
@@ -77,7 +75,7 @@
 			include_once('pages/Deconnexion.inc.php');
 			break;
 
-			default : 	include_once('pages/accueil.inc.php');
+			default : include_once('pages/accueil.inc.php');
 		}
 
 		?>
