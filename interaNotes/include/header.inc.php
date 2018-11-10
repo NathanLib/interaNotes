@@ -54,8 +54,8 @@
                         More
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="about.html">Link 4</a>
-                        <a class="dropdown-item" href="contact.html">Link 5</a>
+                        <a class="dropdown-item" href="#.html">Link 4</a>
+                        <a class="dropdown-item" href="#.html">Link 5</a>
                     </div>
                 </li>
             </ul>

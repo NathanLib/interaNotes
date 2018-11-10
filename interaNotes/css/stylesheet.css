@@ -5,6 +5,10 @@ body {
     padding-top: 84px;
 }
 
+.container-fluid {
+    background-color: #ededed;
+}
+
 /* Header */
 .navbar {
     background-color: #333333 !important;
@@ -66,5 +70,3 @@ footer .footer-contact {
 footer .text-uppercase {
     color: #ededed;
 }
-
-/* Index */

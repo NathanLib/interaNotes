@@ -21,7 +21,7 @@
             <div class="col-md-3 footer-link">
 
                 <!-- Links -->
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-uppercase">Liens</h5>
 
                 <ul class="list-unstyled">
                     <li>
@@ -41,11 +41,11 @@
             </div>
 
             <div class="col-md-3 footer-contact">
-                <h5 class="text-uppercase">Contact</h5>
+                <h5 class="text-uppercase">Assistance</h5>
 
-                <p id="contact-mail-text">Our mail : <a href="interanote@unilim.fr">interanote@unilim.fr</a></p>
+                <p id="contact-mail-text">Notre mail : <a href="interanote@unilim.fr">interanote@unilim.fr</a></p>
 
-                <p id="contact-phone-text">Our phone number : <a href="tel+0666666666">06 66 66 66 66</a> </p>
+                <p id="contact-phone-text">Notre téléphone : <a href="tel+0666666666">06 66 66 66 66</a> </p>
             </div>
             <!-- Grid column -->
         </div>
@@ -54,7 +54,7 @@
     <!-- Footer Links -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <div class="footer-copyright text-center py-3">© 2018 Copyright :
         <a href="#.html" style="color:white !important;"> Intera Note.com</a>
     </div>
     <!-- Copyright -->
