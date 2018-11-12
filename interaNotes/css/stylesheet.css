@@ -7,6 +7,7 @@ body {
 
 .container-fluid {
     background-color: #ededed;
+    overflow: hidden;
 }
 
 /* Header */
