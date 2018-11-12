@@ -9,11 +9,6 @@
                 <!-- Content -->
                 <h4 class="text-uppercase">Intera Note</h4>
 
-                <i class="fa fa-facebook" style="font-size:32px ; color:#ededed"></i>
-                <i class="fa fa-twitter" style="font-size: 32px ; color:#ededed"></i>
-                <i class="fa fa-instagram" style="font-size:32px ; color:#ededed"></i>
-                <i class="fa fa-google-plus" style="font-size:32px ; color:#ededed"></i>
-
             </div>
 
             <hr class="d-md-none">

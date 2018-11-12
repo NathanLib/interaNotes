@@ -8,8 +8,8 @@
 		switch ($page) {
 
 			case 0:
-			// inclure ici la page accueil
-			include_once('pages/accueil.inc.php');
+			// inclure ici la page de connexion
+			include_once('pages/Connexion.inc.php');
 			break;
 
 			//
