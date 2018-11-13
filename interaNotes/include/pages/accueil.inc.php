@@ -1,9 +1,9 @@
 <div class="tictac">
     <div class="tictacHaut">
-        <p>coucou</p>
+        <img class="iconTictac" src="image/exam.png" alt="exam" title="exam">
     </div>
 
     <div class="tictacBas">
-        <button type="button" name="button">Coucou</button>
+        <a href="index.php?page=11">Créer un examen</a>
     </div>
 </div>

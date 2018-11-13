@@ -21,6 +21,12 @@
             </div>
         </form>
 
+        <div class="row buttonConnexion">
+            <div class="col-7">
+                <input type="submit" name="" value="Connexion">
+            </div>
+        </div>
+
     </div>
 
 </div>

@@ -96,21 +96,63 @@ footer .text-uppercase {
     display: flex;
     justify-content: center;
 }
+.buttonConnexion {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+.buttonConnexion input {
+    border: 0;
+    border-radius: 50px;
+    background-color: #333;
+    color: #ededed;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 1px;
+    padding-left: 1px;
+    width: 100%;
+}
 
+
+/* TicTac button */
 .tictac {
-    width:100px;
-    height:175px;
+    width:105px;
+    height:165px;
     background-color:white;
     border: solid #333 6px;
     border-radius: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.tictacBas button {
+.tictacHaut {
+    width: 100%;
+    height: 65%;
+    border: 0;
+    border-radius: 35px 35px 0 0;
+
+    display: flex;
+}
+.tictacHaut img {
+    width: 80%;
+    margin: auto;
+    padding-top: 10%;
+}
+.tictacBas  {
     width: 100%;
     background-color: #333;
     border: 0;
-    color: white;
-    height: 50px;
-    border-radius: 0 0 40px 40px;
+    height: 35%;
+    border-radius: 0 0 35px 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.tictacBas a, a:visited {
+    color: #ededed !important;
 }
 
 
@@ -128,4 +170,8 @@ footer .text-uppercase {
         font-size: 2.75rem;
     }
 
+    .buttonConnexion input {
+        padding-top: 9px;
+        padding-bottom: 9px;
+    }
 }
