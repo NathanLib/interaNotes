@@ -36,7 +36,6 @@ CREATE TABLE `eleve` (
 
 LOCK TABLES `eleve` WRITE;
 /*!40000 ALTER TABLE `eleve` DISABLE KEYS */;
-INSERT INTO `eleve` VALUES (1,2018);
 /*!40000 ALTER TABLE `eleve` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +60,6 @@ CREATE TABLE `enonce` (
 
 LOCK TABLES `enonce` WRITE;
 /*!40000 ALTER TABLE `enonce` DISABLE KEYS */;
-INSERT INTO `enonce` VALUES (1,'Décollage de fusée','Le but est de faire décoller la fusée !!');
 /*!40000 ALTER TABLE `enonce` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +83,6 @@ CREATE TABLE `enseignant` (
 
 LOCK TABLES `enseignant` WRITE;
 /*!40000 ALTER TABLE `enseignant` DISABLE KEYS */;
-INSERT INTO `enseignant` VALUES (2);
 /*!40000 ALTER TABLE `enseignant` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,8 +94,9 @@ DROP TABLE IF EXISTS `examen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `examen` (
-  `idExamen` int(11) NOT NULL,
+  `idExamen` int(11) NOT NULL AUTO_INCREMENT,
   `dateDepot` datetime NOT NULL,
+  `anneeScolaire` int(4) NOT NULL,
   PRIMARY KEY (`idExamen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -109,7 +107,6 @@ CREATE TABLE `examen` (
 
 LOCK TABLES `examen` WRITE;
 /*!40000 ALTER TABLE `examen` DISABLE KEYS */;
-INSERT INTO `examen` VALUES (1,'2018-11-30 00:00:00');
 /*!40000 ALTER TABLE `examen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +133,6 @@ CREATE TABLE `exerciceattribue` (
 
 LOCK TABLES `exerciceattribue` WRITE;
 /*!40000 ALTER TABLE `exerciceattribue` DISABLE KEYS */;
-INSERT INTO `exerciceattribue` VALUES (1,1);
 /*!40000 ALTER TABLE `exerciceattribue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +159,6 @@ CREATE TABLE `exercicegenere` (
 
 LOCK TABLES `exercicegenere` WRITE;
 /*!40000 ALTER TABLE `exercicegenere` DISABLE KEYS */;
-INSERT INTO `exercicegenere` VALUES (1,2),(2,3),(2,4),(1,5);
 /*!40000 ALTER TABLE `exercicegenere` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +186,6 @@ CREATE TABLE `note` (
 
 LOCK TABLES `note` WRITE;
 /*!40000 ALTER TABLE `note` DISABLE KEYS */;
-INSERT INTO `note` VALUES (1,1,12.50);
 /*!40000 ALTER TABLE `note` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,7 +203,7 @@ CREATE TABLE `personne` (
   `login` varchar(30) NOT NULL,
   `mdp` varchar(30) NOT NULL,
   PRIMARY KEY (`idPersonne`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +212,6 @@ CREATE TABLE `personne` (
 
 LOCK TABLES `personne` WRITE;
 /*!40000 ALTER TABLE `personne` DISABLE KEYS */;
-INSERT INTO `personne` VALUES (1,'Dupont','Jean','Dupont.Jean','tintin'),(2,'Poitou','Nicolas','Poitou.Nicolas','charente');
 /*!40000 ALTER TABLE `personne` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,9 +224,12 @@ DROP TABLE IF EXISTS `points`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `points` (
   `idPoint` int(11) NOT NULL,
+  `idExamen` int(11) NOT NULL,
   `nomPoint` varchar(30) NOT NULL,
   `unitePoint` varchar(30) NOT NULL,
-  PRIMARY KEY (`idPoint`)
+  PRIMARY KEY (`idPoint`,`idExamen`),
+  KEY `idExamen` (`idExamen`),
+  CONSTRAINT `points_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -243,7 +239,6 @@ CREATE TABLE `points` (
 
 LOCK TABLES `points` WRITE;
 /*!40000 ALTER TABLE `points` DISABLE KEYS */;
-INSERT INTO `points` VALUES (1,'Nombre de moteur','moteur(s)'),(2,'Consommation d\'O² par personne','L/jour');
 /*!40000 ALTER TABLE `points` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +266,6 @@ CREATE TABLE `resultatsattendus` (
 
 LOCK TABLES `resultatsattendus` WRITE;
 /*!40000 ALTER TABLE `resultatsattendus` DISABLE KEYS */;
-INSERT INTO `resultatsattendus` VALUES (1,1,500.0,2.00);
 /*!40000 ALTER TABLE `resultatsattendus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,7 +299,6 @@ CREATE TABLE `resultatseleves` (
 
 LOCK TABLES `resultatseleves` WRITE;
 /*!40000 ALTER TABLE `resultatseleves` DISABLE KEYS */;
-INSERT INTO `resultatseleves` VALUES ('2018-11-04 00:00:00',1,1,1,499.0,99.80);
 /*!40000 ALTER TABLE `resultatseleves` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -342,7 +335,7 @@ DROP TABLE IF EXISTS `sujet`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sujet` (
-  `idSujet` int(11) NOT NULL,
+  `idSujet` int(11) NOT NULL AUTO_INCREMENT,
   `idEnonce` int(11) NOT NULL,
   `semestre` tinyint(1) NOT NULL,
   `idExamen` int(11) NOT NULL,
@@ -360,7 +353,6 @@ CREATE TABLE `sujet` (
 
 LOCK TABLES `sujet` WRITE;
 /*!40000 ALTER TABLE `sujet` DISABLE KEYS */;
-INSERT INTO `sujet` VALUES (1,1,1,1),(2,1,1,1);
 /*!40000 ALTER TABLE `sujet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,7 +366,7 @@ DROP TABLE IF EXISTS `valeurs`;
 CREATE TABLE `valeurs` (
   `idValeur` int(11) NOT NULL,
   `idPoint` int(11) NOT NULL,
-  `valeur` decimal(5,1) NOT NULL,
+  `valeur` varchar(50) NOT NULL,
   PRIMARY KEY (`idValeur`),
   KEY `idPoint` (`idPoint`),
   CONSTRAINT `valeurs_ibfk_1` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
@@ -387,7 +379,6 @@ CREATE TABLE `valeurs` (
 
 LOCK TABLES `valeurs` WRITE;
 /*!40000 ALTER TABLE `valeurs` DISABLE KEYS */;
-INSERT INTO `valeurs` VALUES (1,1,1.0),(2,1,2.0),(3,1,4.0),(4,2,1.0),(5,2,1.5),(6,2,2.0);
 /*!40000 ALTER TABLE `valeurs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -400,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-08 13:07:45
+-- Dump completed on 2018-11-13 21:35:37
