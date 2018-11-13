@@ -5,7 +5,7 @@
 // WARNING: A MODIFIER
 
 define('DBHOST', "localhost");
-define('DBNAME', "cocovoit");
+define('DBNAME', "intera_notes");
 define('DBUSER', "bd");
 define('DBPASSWD', "bede");
 define('ENV','dev');

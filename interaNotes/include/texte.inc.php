@@ -9,16 +9,15 @@
 
 			case 0:
 			// inclure ici la page de connexion
-			include_once('pages/accueil.inc.php');
+			include_once('pages/connexion.inc.php');
 			break;
 
-			//
-			// ...
-			//
+			// inclure ici la page d'accueil de l'enseignant
 			case 1:
-			// inclure ici ...
+			include_once('pages/accueilEnseignant.inc.php');
 			break;
 
+			// inclure ici la page d'accueil de l'élève
 			case 2:
 			// inclure ici ...
 			break;
@@ -71,8 +70,8 @@
 			break;
 
 			case 12:
-			// inclure ici la page de déconnexion
-			include_once('pages/Deconnexion.inc.php');
+			// inclure ici la page de test de generation des sujets
+			include_once('pages/test_generationSujets.inc.php');
 			break;
 
 			default : include_once('pages/accueil.inc.php');
