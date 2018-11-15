@@ -21,7 +21,7 @@ class ExamenManager{
 		return $listeExamens;
 	}
 
-	public function genererSujetsDeExamen($numVille){
+	/*public function genererSujetsDeExamen($numVille){
 
 		$sql = 'SELECT vil_num, vil_nom FROM ville WHERE vil_num = :num';
 
@@ -35,5 +35,5 @@ class ExamenManager{
 
 		$newVille = new Ville($ville);
 		return $newVille;
-	}
+	}*/
 }
