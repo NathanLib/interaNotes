@@ -33,8 +33,8 @@ class Valeur{
 		return $this->idValeur;
 	}
 
-	public function setIdValeur($id){
-		if(is_numeric($id)){
+	public function setIdValeur($idValeur){
+		if(is_numeric($idValeur)){
 			$this->idValeur = $idValeur;
 		}
 	}

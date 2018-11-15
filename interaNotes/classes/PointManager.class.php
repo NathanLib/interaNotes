@@ -6,19 +6,19 @@ class PointManager{
 		$this->db = $db;
 	}
 
-	public function getAllValeursOfPoints($idPoint){
+	public function getAllPointsOfExamens($idExamen){
 
-		$sql = 'SELECT idValeur, idPoint, valeur FROM valeurs WHERE idPoint=:idPoint';
+		$sql = 'SELECT idPoint, idExamen, nomPoint, unitePoint FROM points WHERE idExamen=:idExamen';
 
     $requete = $this->db->prepare($sql);
-		$requete->bindValue(':idPoint', $idPoint);
+		$requete->bindValue(':idExamen', $idExamen);
 		$requete->execute();
 
-		while($valeur = $requete->fetch(PDO::FETCH_OBJ)){
-			$listeValeurs[] = new Valeur($valeur);
+		while($point = $requete->fetch(PDO::FETCH_OBJ)){
+			$listePoints[] = new Point($point);
 		}
 
 		$requete->closeCursor();
-		return $listeValeurs;
+		return $listePoints;
 	}
 }

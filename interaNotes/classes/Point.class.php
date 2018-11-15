@@ -52,7 +52,7 @@ class Point{
 		$this->idExamen = $idExamen;
 	}
 
-  public function setNomPoint(){
+  public function getNomPoint(){
 		return $this->nomPoint;
 	}
 
@@ -60,7 +60,7 @@ class Point{
 		$this->nomPoint = $nomPoint;
 	}
 
-  public function setUnitePoint(){
+  public function getUnitePoint(){
 		return $this->unitePoint;
 	}
 
