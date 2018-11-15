@@ -61,7 +61,7 @@
 
 			case 10:
 			// inclure ici ...
-
+			include_once('pages/prof_listeSujet.inc.php');
 			break;
 
 			case 11:
