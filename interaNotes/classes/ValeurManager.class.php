@@ -11,7 +11,7 @@ class ValeurManager{
 		$sql = 'SELECT idValeur, idPoint, valeur FROM valeurs WHERE idPoint=:idPoint';
 
     $requete = $this->db->prepare($sql);
-		$requete->bindValue(':idPoint', $idPoint);
+		$requete->bindValue(':idPoint', $idPoint->getIdPoint());
 		$requete->execute();
 
 		while($valeur = $requete->fetch(PDO::FETCH_OBJ)){

@@ -28,7 +28,25 @@ $listeExamens = $examenManager->getAllExamens(); ?>
 
   <div class="genererSujet">
     <?php
-    $retour = $examenManager->genererSujetsDeExamen(1);
+    $pointManager = new PointManager($pdo);
+    $listePoints = $pointManager->getAllPointsOfExamens(1);
+
+    $valeurManager = new ValeurManager($pdo);
+
+    foreach($listePoints as $point) {
+      $listeValeurs = $valeurManager->getAllValeursOfPoints($point);
+
+      foreach ($listeValeurs as $valeur) {
+        $listeSujets[] = array('idValeur' => $valeur->getIdValeur(), 'idPoint' => $point->getIdPoint());
+        $tab[] = "IDvaleur : ".$valeur->getIdValeur()." pour IDpoint : ".$point->getIdPoint();
+      }
+    }
+
+    $retour = false;
+
+    echo "<pre>";
+    print_r($listeSujets);
+    echo "</pre>";
 
     if($retour){
       echo "<p><img class='icone' src='image/valid.png' alt='Validation génération'>Génération complète";
