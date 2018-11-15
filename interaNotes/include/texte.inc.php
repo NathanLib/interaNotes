@@ -19,11 +19,11 @@
 
 			// inclure ici la page d'accueil de l'élève
 			case 2:
-			include_once('pages/accueilEleve.inc.php');
+			include_once('pages/eleve_accueil.inc.php');
 			break;
 
 			case 3:
-			// inclure ici ...
+			include_once('pages/test_afficherUnSujetComplet.inc.php');
 			break;
 
 			case 4:

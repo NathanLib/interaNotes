@@ -36,4 +36,18 @@ class SujetManager{
 
 		return $sujet;
 	}
+
+	public function getValeurSujet($idSujet){
+
+		$sql = 'SELECT idValeur FROM exercicegenere e WHERE e.idSujet=:idSujet';
+
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+
+		$valeur = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+
+		return $valeur;
+	}
 }

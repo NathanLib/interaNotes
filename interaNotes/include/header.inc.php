@@ -45,7 +45,7 @@
                     <a class="nav-link" href="index.php?page=2">Link 1</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#.html">Link 2</a>
+                    <a class="nav-link" href="index.php?page=3.html">Afficher Sujets</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#.html">Link 3</a>
