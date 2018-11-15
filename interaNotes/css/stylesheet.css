@@ -116,11 +116,11 @@ footer .text-uppercase {
 
 /* TicTac button */
 .tictac {
-    width:105px;
+    width:115px;
     height:165px;
     background-color:white;
-    border: solid #333 6px;
-    border-radius: 40px;
+    border: solid #333 2px;
+    border-radius: 30px;
 
     display: flex;
     flex-direction: column;
@@ -130,7 +130,7 @@ footer .text-uppercase {
     width: 100%;
     height: 65%;
     border: 0;
-    border-radius: 35px 35px 0 0;
+    border-radius: 27px 27px 0 0;
 
     display: flex;
 }
@@ -142,9 +142,9 @@ footer .text-uppercase {
 .tictacBas  {
     width: 100%;
     background-color: #333;
-    border: 0;
+    border: solid #333 2px;;
     height: 35%;
-    border-radius: 0 0 35px 35px;
+    border-radius: 0 0 27px 27px;
 
     display: flex;
     align-items: center;
@@ -153,6 +153,11 @@ footer .text-uppercase {
 }
 .tictacBas a, a:visited {
     color: #ededed !important;
+}
+
+/* Accueil élève */
+.rowTopMenuStudent .tictac{
+    margin: 5%;
 }
 
 

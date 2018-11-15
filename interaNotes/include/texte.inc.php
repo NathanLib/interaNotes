@@ -19,7 +19,7 @@
 
 			// inclure ici la page d'accueil de l'élève
 			case 2:
-			// inclure ici ...
+			include_once('pages/accueilEleve.inc.php');
 			break;
 
 			case 3:

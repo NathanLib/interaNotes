@@ -37,7 +37,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#.html">Link 1</a>
+                    <a class="nav-link" href="index.php?page=2">Link 1</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#.html">Link 2</a>
