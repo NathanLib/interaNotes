@@ -119,7 +119,6 @@ footer .text-uppercase {
     width:115px;
     height:165px;
     background-color:white;
-    border: solid #333 2px;
     border-radius: 30px;
 
     display: flex;
@@ -142,7 +141,6 @@ footer .text-uppercase {
 .tictacBas  {
     width: 100%;
     background-color: #333;
-    border: solid #333 2px;;
     height: 35%;
     border-radius: 0 0 27px 27px;
 
@@ -156,8 +154,11 @@ footer .text-uppercase {
 }
 
 /* Accueil élève */
-.rowTopMenuStudent .tictac{
-    margin: 5%;
+.TicTacAccueil {
+    display: flex;
+    justify-content: center;
+
+    margin: 3% 0;
 }
 
 
@@ -170,7 +171,7 @@ footer .text-uppercase {
 
 }
 
-@media screen and (min-width: 972px) {
+@media screen and (min-width: 992px) {
     .interaNoteConnexion h2 {
         font-size: 2.75rem;
     }
@@ -178,5 +179,9 @@ footer .text-uppercase {
     .buttonConnexion input {
         padding-top: 9px;
         padding-bottom: 9px;
+    }
+
+    .TicTacAccueil {
+        margin: 8% 0;
     }
 }
