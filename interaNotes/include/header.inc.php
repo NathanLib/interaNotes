@@ -30,7 +30,7 @@
 
         <!-- Navbar text-->
         <span class="navbar-text">
-            Il faudra echo ici le nom de la page
+            Accueil
         </span>
 
         <!-- Toggler/collapsibe Button -->
