@@ -3,7 +3,7 @@
 <?php $db = new Mypdo();
 	$manager = new SujetManager($db);
 	$valeurManager = new ValeurManager($db);
-	$sujet = $manager->afficherSujet(1);
+	$sujet = $manager->recupererSujet(1);
 	?>
 
 <div id="sujet">

@@ -22,7 +22,7 @@ class SujetManager{
 		return $listeSujet;
 	}
 
-	public function afficherSujet($idSujet){
+	public function recupererSujet($idSujet){
 
 		$sql = 'SELECT titre,consigne,dateDepot FROM sujet s JOIN enonce en JOIN examen ex WHERE s.idEnonce = en.idEnonce AND ex.idExamen=s.idExamen AND s.idSujet=:idSujet';
 
