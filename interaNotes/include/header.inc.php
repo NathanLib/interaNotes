@@ -45,10 +45,10 @@
                     <a class="nav-link" href="index.php?page=2">Link 1</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=3.html">Afficher Sujets</a>
+                    <a class="nav-link" href="index.php?page=3">Afficher Sujets</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#.html">Link 3</a>
+                    <a class="nav-link" href="index.php?page=10">Lister sujets prof</a>
                 </li>
 
                 <!-- Dropdown -->
