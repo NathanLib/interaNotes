@@ -28,6 +28,11 @@
             <img src="image/board.png" width="75" height="auto" alt="logo" title="logo">
         </a>
 
+        <!-- Navbar text-->
+        <span class="navbar-text">
+            Il faudra echo ici le nom de la page
+        </span>
+
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>

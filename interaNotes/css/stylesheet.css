@@ -21,11 +21,15 @@ body {
     padding-right: 22px !important;
     border-right: 1px solid #ededed !important;
 }
+nav .navbar-text {
+    color: #ededed !important;
+    font-size: larger;
+}
 
 
 /* Footer */
 footer {
-    padding-top: 5px;
+    padding-top: 10px;
 }
 
 .page-footer {

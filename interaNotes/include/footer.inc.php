@@ -40,7 +40,7 @@
 
                 <p id="contact-mail-text">Notre mail : <a href="interanote@unilim.fr">interanote@unilim.fr</a></p>
 
-                <p id="contact-phone-text">Notre téléphone : <a href="tel+0666666666">06 66 66 66 66</a> </p>
+                <p id="contact-phone-text">Notre téléphone : <a href="tel+0666666666">06&nbsp66&nbsp66&nbsp66&nbsp66</a> </p>
             </div>
             <!-- Grid column -->
         </div>
