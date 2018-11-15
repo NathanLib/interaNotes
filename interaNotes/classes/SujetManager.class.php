@@ -11,7 +11,7 @@ class SujetManager{
 		$sql = 'SELECT * FROM sujet WHERE idExamen=:idExamen ';
 
 		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idExamen',$idExamen)
+		$requete->bindValue(':idExamen',$idExamen);
 		$requete->execute();
 
 		while($sujet = $requete->fetch(PDO::FETCH_OBJ)){
@@ -29,25 +29,12 @@ class SujetManager{
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
 		$requete->execute();
-
+		
 		$sujet = $requete->fetch(PDO::FETCH_OBJ);
-
+		
 		$requete->closeCursor();
 
 		return $sujet;
 	}
 
-	public function getValeurSujet($idSujet){
-
-		$sql = 'SELECT idValeur FROM exercicegenere e WHERE e.idSujet=:idSujet';
-
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
-
-		$valeur = $requete->fetch(PDO::FETCH_OBJ);
-
-		$requete->closeCursor();
-
-		return $valeur;
-	}
 }
