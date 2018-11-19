@@ -24,14 +24,17 @@ class SujetManager{
 
 	public function recupererSujet($idSujet){
 
-		$sql = 'SELECT titre,consigne,dateDepot FROM sujet s JOIN enonce en JOIN examen ex WHERE s.idEnonce = en.idEnonce AND ex.idExamen=s.idExamen AND s.idSujet=:idSujet';
+		$sql = 'SELECT titre,consigne,dateDepot FROM sujet s
+						INNER JOIN enonce en ON (en.idEnonce = s.idEnonce)
+						INNER JOIN examen ex ON (ex.idExamen = s.idExamen)
+						WHERE s.idSujet=:idSujet';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
 		$requete->execute();
-		
+
 		$sujet = $requete->fetch(PDO::FETCH_OBJ);
-		
+
 		$requete->closeCursor();
 
 		return $sujet;
