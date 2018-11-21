@@ -67,7 +67,7 @@ $listeExamens = $examenManager->getAllExamens(); ?>
                       echo "</br>Points consoNourritures : ".$consoNourritures->getValeur();
                       echo "</br>Points consoO2 : ".$consoO2->getValeur();
                       echo "</p></br>";
-
+                                            
                       $compteurSujet = $compteurSujet +1;
                     }
                   }

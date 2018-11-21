@@ -1,8 +1,10 @@
 <!--Remplacer chaque valeur par des données provenant de la bd (jeu d'essai)-->
 
-<?php $db = new Mypdo();
+<?php
+	$db = new Mypdo();
 	$sujetManager = new SujetManager($db);
 	$valeurManager = new ValeurManager($db);
+	$pointManager = new PointManager($db);
 
 	$sujet = $sujetManager->recupererSujet(1);
 	?>
@@ -17,6 +19,6 @@
 
 		foreach ($valeurs as $attribut => $value) {
 			$point = $valeurManager->getPointFromValeur($value->getIdValeur());?>
-			<p> <?php echo $valeurManager->getPoint($point)->nomPoint." = ".$valeurManager->getValeur($value->getIdValeur())." ".$valeurManager->getPoint($point)->unitePoint; ?> </p>
+			<p> <?php echo $pointManager->getPoint($point)->nomPoint." = ".$valeurManager->getValeur($value->getIdValeur())." ".$pointManager->getPoint($point)->unitePoint; ?> </p>
 		<?php } ?>
 </div>

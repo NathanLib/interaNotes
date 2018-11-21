@@ -21,4 +21,18 @@ class PointManager{
 		$requete->closeCursor();
 		return $listePoints;
 	}
+
+	public function getPoint($idPoint){
+		$sql = 'SELECT * FROM points WHERE idPoint=:idPoint';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idPoint', $idPoint);
+		$requete->execute();
+
+		$point = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+
+		return $point;
+	}
 }

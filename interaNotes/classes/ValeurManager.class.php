@@ -23,23 +23,6 @@ class ValeurManager{
 		return $listeValeurs;
 	}
 
-	public function getValeurSujet($idSujet){
-
-		$sql = 'SELECT idValeur FROM exercicegenere e WHERE e.idSujet=:idSujet';
-
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idSujet', $idSujet);
-		$requete->execute();
-
-		while($valeur = $requete->fetch(PDO::FETCH_OBJ)){
-			$listeValeur[] = new Valeur($valeur);
-		}
-
-		$requete->closeCursor();
-
-		return $listeValeur;
-	}
-
 	public function getPointFromValeur($idValeur){
 
 		$sql = 'SELECT idPoint FROM valeurs WHERE idValeur=:idValeur';
@@ -55,18 +38,16 @@ class ValeurManager{
 		return $idPoint->idPoint;
 	}
 
-	public function getPoint($idPoint){
-		$sql = 'SELECT * FROM points WHERE idPoint=:idPoint';
-
+	public function getValeurSujet($idSujet){
+		$sql = 'SELECT idValeur FROM exercicegenere e WHERE e.idSujet=:idSujet';
 		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idPoint', $idPoint);
+		$requete->bindValue(':idSujet', $idSujet);
 		$requete->execute();
-
-		$point = $requete->fetch(PDO::FETCH_OBJ);
-
+		while($valeur = $requete->fetch(PDO::FETCH_OBJ)){
+			$listeValeur[] = new Valeur($valeur);
+		}
 		$requete->closeCursor();
-
-		return $point;
+		return $listeValeur;
 	}
 
 	public function getValeur($idValeur){
