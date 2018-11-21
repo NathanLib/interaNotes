@@ -6,9 +6,9 @@ class SujetManager{
 		$this->db = $db;
 	}
 
-	public function getAllSujet($idExamen){
+	public function getAllSujetsOfExamen($idExamen){
 
-		$sql = 'SELECT titre,consigne,dateDepot FROM sujet WHERE idExamen=:idExamen ';
+		$sql = 'SELECT idSujet, idEnonce, semestre, idExamen FROM sujet WHERE idExamen=:idExamen ';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idExamen',$idExamen);
