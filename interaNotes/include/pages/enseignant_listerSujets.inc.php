@@ -35,30 +35,4 @@ $listeSujets = $sujetManager->getAllSujetsOfExamen(1);
     <?php
     } ?>
 
-    <?php // WARNING: FIN DU BLOC / SUPPRIMER CEUX EN DESSUS ?>
-
-    <div class="row justify-content-center text-center contenuListeSujet">
-        <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
-            <p>Sujet n° 2</p>
-        </div>
-        <div class="col-6 col-lg-4 textListeSujet">
-            <p>Tom JEDUSOR</p>
-        </div>
-        <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-            <input type="submit" name="" value="Consulter">
-        </div>
-    </div>
-
-    <div class="row justify-content-center text-center contenuListeSujet">
-        <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
-            <p>Sujet n° 3</p>
-        </div>
-        <div class="col-6 col-lg-4 textListeSujet">
-            <p>Hermione WEASLEY</p>
-        </div>
-        <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-            <input type="submit" name="" value="Consulter">
-        </div>
-    </div>
-
 </div>

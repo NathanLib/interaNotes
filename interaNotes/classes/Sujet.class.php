@@ -69,7 +69,7 @@ class Sujet {
 	}
 
 	public function setIdExamen($idExamen){
-		if(is_numeric($id)){
+		if(is_numeric($idExamen)){
 			$this->idExamen = $idExamen;
 		}
 	}
