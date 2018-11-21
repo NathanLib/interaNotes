@@ -57,6 +57,7 @@
 			//
 			case 9:
 			// inclure ici ...
+			include_once('pages/prof_creerClasse.inc.php');
 			break;
 
 			case 10:
