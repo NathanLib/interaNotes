@@ -1,3 +1,11 @@
+<?php
+$pdo = new Mypdo();
+$examenManager = new ExamenManager($pdo);
+
+$numExamen = 1; //WARNING : utiliser GET (avec listerExamen)
+$_SESSION['examen'] = $examenManager->getExamen($numExamen);
+?>
+
 <div class="tictac">
     <div class="tictacHaut">
         <img class="iconTictac" src="image/exam.png" alt="exam" title="exam">

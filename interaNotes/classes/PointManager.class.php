@@ -23,7 +23,7 @@ class PointManager{
 	}
 
 	public function getPoint($idPoint){
-		$sql = 'SELECT idPoint,idExamen,nomPoint,unitePoint FROM points WHERE idPoint=:idPoint';
+		$sql = 'SELECT idPoint, idExamen, nomPoint, unitePoint FROM points WHERE idPoint=:idPoint';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idPoint', $idPoint);

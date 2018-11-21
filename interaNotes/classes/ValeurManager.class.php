@@ -23,31 +23,22 @@ class ValeurManager{
 		return $listeValeurs;
 	}
 
-	public function getIdPointFromValeur($idValeur){
+	public function getValeursSujet($idSujet){
+		$sql = 'SELECT v.idValeur, v.idPoint, v.valeur FROM valeurs v
+						INNER JOIN exercicegenere e ON(e.idValeur = v.idValeur)
+						WHERE e.idSujet = :idSujet';
 
-		$sql = 'SELECT idPoint FROM valeurs WHERE idValeur=:idValeur';
-
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idValeur', $idValeur);
-		$requete->execute();
-
-		$idPoint = $requete->fetch(PDO::FETCH_OBJ);
-
-		$requete->closeCursor();
-
-		return $idPoint->idPoint;
-	}
-
-	public function getValeurSujet($idSujet){
-		$sql = 'SELECT idValeur FROM exercicegenere e WHERE e.idSujet=:idSujet';
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
 		$requete->execute();
+
 		while($valeur = $requete->fetch(PDO::FETCH_OBJ)){
-			$listeValeur[] = new Valeur($valeur);
+			$listeValeurs[] = new Valeur($valeur);
 		}
+
 		$requete->closeCursor();
-		return $listeValeur;
+
+		return $listeValeurs;
 	}
 
 	public function getValeur($idValeur){

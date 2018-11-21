@@ -2,8 +2,7 @@
 $pdo = new Mypdo();
 $sujetManager = new SujetManager($pdo);
 
-//WARNING : modifier le '1'
-$listeSujets = $sujetManager->getAllSujetsOfExamen(1);
+$listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExamen());
 ?>
 
 <div class="listerSujet">
