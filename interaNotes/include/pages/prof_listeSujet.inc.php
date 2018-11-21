@@ -30,7 +30,7 @@
             <p>Sujet n° 2</p>
         </div>
         <div class="col-6 col-lg-4 textListeSujet">
-            <p>Tom JEDUSOR</p>
+            <p>Tom JEDUSOR</p> 
         </div>
         <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
             <input type="submit" name="" value="Consulter">
