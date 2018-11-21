@@ -42,10 +42,10 @@
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=2">Link 1</a>
+                    <a class="nav-link" href="index.php?page=2">Eleve accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=3">Afficher Sujets</a>
+                    <a class="nav-link" href="#">Aucun lien</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=10">Lister sujets prof</a>
