@@ -6,7 +6,7 @@
 	$valeurManager = new ValeurManager($db);
 	$pointManager = new PointManager($db);
 
-	$sujet = $sujetManager->recupererSujet(1);
+	$sujet = $sujetManager->recupererSujetComplet(1); //WARNING RENDRE DYNAMIQUE VIA GET
 	?>
 
 <div id="sujet">
@@ -15,10 +15,11 @@
   <p>Consignes : <?php echo $sujet->consigne; ?> </p>
   <p>Valeurs du sujets : </p>
   <?php
-  	$valeurs = $valeurManager->getValeurSujet(1);
-
+  	$valeurs = $valeurManager->getValeurSujet(1); //WARNING RENDRE DYNAMIQUE VIA GET
 		foreach ($valeurs as $attribut => $value) {
-			$point = $valeurManager->getPointFromValeur($value->getIdValeur());?>
-			<p> <?php echo $pointManager->getPoint($point)->nomPoint." = ".$valeurManager->getValeur($value->getIdValeur())." ".$pointManager->getPoint($point)->unitePoint; ?> </p>
+			$idPoint = $valeurManager->getIdPointFromValeur($value->getIdValeur());
+			$point = $pointManager->getPoint($idPoint);
+		?>
+			<p> <?php echo $point->getNomPoint()." = ".$valeurManager->getValeur($value->getIdValeur())." ".$point->getUnitePoint(); ?> </p>
 		<?php } ?>
 </div>

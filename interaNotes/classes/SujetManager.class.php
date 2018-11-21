@@ -8,7 +8,7 @@ class SujetManager{
 
 	public function getAllSujet($idExamen){
 
-		$sql = 'SELECT * FROM sujet WHERE idExamen=:idExamen ';
+		$sql = 'SELECT titre,consigne,dateDepot FROM sujet WHERE idExamen=:idExamen ';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idExamen',$idExamen);
@@ -22,7 +22,7 @@ class SujetManager{
 		return $listeSujet;
 	}
 
-	public function recupererSujet($idSujet){
+	public function recupererSujetComplet($idSujet){
 
 		$sql = 'SELECT titre,consigne,dateDepot FROM sujet s
 						INNER JOIN enonce en ON (en.idEnonce = s.idEnonce)

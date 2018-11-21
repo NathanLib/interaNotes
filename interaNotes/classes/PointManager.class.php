@@ -23,7 +23,7 @@ class PointManager{
 	}
 
 	public function getPoint($idPoint){
-		$sql = 'SELECT * FROM points WHERE idPoint=:idPoint';
+		$sql = 'SELECT idPoint,idExamen,nomPoint,unitePoint FROM points WHERE idPoint=:idPoint';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idPoint', $idPoint);
@@ -33,6 +33,6 @@ class PointManager{
 
 		$requete->closeCursor();
 
-		return $point;
+		return new Point($point);
 	}
 }

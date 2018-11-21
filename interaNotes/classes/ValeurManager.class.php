@@ -23,7 +23,7 @@ class ValeurManager{
 		return $listeValeurs;
 	}
 
-	public function getPointFromValeur($idValeur){
+	public function getIdPointFromValeur($idValeur){
 
 		$sql = 'SELECT idPoint FROM valeurs WHERE idValeur=:idValeur';
 
