@@ -8,10 +8,11 @@ class ValeurManager{
 
 	public function getAllValeursOfPoints($idPoint){
 
-		$sql = 'SELECT idValeur, idPoint, valeur FROM valeurs WHERE idPoint=:idPoint';
+		$sql = 'SELECT idValeur, idPoint, valeur FROM valeurs WHERE idPoint=:id';
 
     $requete = $this->db->prepare($sql);
-		$requete->bindValue(':idPoint', $idPoint->getIdPoint());
+		$requete->bindValue(':id', $idPoint);
+		/*$requete->bindValue(':id', $idPoint->getIdPoint());*/
 		$requete->execute();
 
 		while($valeur = $requete->fetch(PDO::FETCH_OBJ)){

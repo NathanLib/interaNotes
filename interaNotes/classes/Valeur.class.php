@@ -54,9 +54,7 @@ class Valeur{
 	}
 
 	public function setValeur($valeur){
-    if(is_numeric($valeur)){
-			$this->valeur = $valeur;
-		}
+		$this->valeur = $valeur;
 	}
 
 }

@@ -28,25 +28,59 @@ $listeExamens = $examenManager->getAllExamens(); ?>
 
   <div class="genererSujet">
     <?php
+    /*-------------DEBUT-------------------------------*/
     $pointManager = new PointManager($pdo);
     $listePoints = $pointManager->getAllPointsOfExamens(1);
 
     $valeurManager = new ValeurManager($pdo);
 
-    foreach($listePoints as $point) {
-      $listeValeurs = $valeurManager->getAllValeursOfPoints($point);
+    $compteurSujet = 0;
 
-      foreach ($listeValeurs as $valeur) {
-        $listeSujets[] = array('idValeur' => $valeur->getIdValeur(), 'idPoint' => $point->getIdPoint());
-        $tab[] = "IDvaleur : ".$valeur->getIdValeur()." pour IDpoint : ".$point->getIdPoint();
+    $listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
+    $listeValeurs_points_vitesse = $valeurManager->getAllValeursOfPoints(2);
+    $listeValeurs_points_nbPersonnes = $valeurManager->getAllValeursOfPoints(3);
+    $listeValeurs_points_destinationPlanete = $valeurManager->getAllValeursOfPoints(4);
+    $listeValeurs_points_distanceDestination = $valeurManager->getAllValeursOfPoints(5);
+    $listeValeurs_points_consoCarbu = $valeurManager->getAllValeursOfPoints(6);
+    $listeValeurs_points_consoEau = $valeurManager->getAllValeursOfPoints(7);
+    $listeValeurs_points_consoNourritures = $valeurManager->getAllValeursOfPoints(8);
+    $listeValeurs_points_consoO2 = $valeurManager->getAllValeursOfPoints(9);
+
+
+    foreach ($listeValeurs_points_nbMoteurs as $nbMoteurs) {
+      foreach ($listeValeurs_points_vitesse as $vitesse){
+        foreach ($listeValeurs_points_nbPersonnes as $personnes){
+          foreach ($listeValeurs_points_destinationPlanete as $planete){
+            foreach ($listeValeurs_points_distanceDestination as $distance){
+              foreach ($listeValeurs_points_consoCarbu as $consoCarbu){
+                foreach ($listeValeurs_points_consoEau as $consoEau){
+                  foreach ($listeValeurs_points_consoNourritures as $consoNourritures){
+                    foreach ($listeValeurs_points_consoO2 as $consoO2){
+                      echo "<p>Sujet n°".$compteurSujet;
+                      echo "</br>Points nb moteurs : ".$nbMoteurs->getValeur();
+                      echo "</br>Points vitesse : ".$vitesse->getValeur();
+                      echo "</br>Points nb personnes : ".$personnes->getValeur();
+                      echo "</br>Points planete : ".$planete->getValeur();
+                      echo "</br>Points distance : ".$distance->getValeur();
+                      echo "</br>Points consoCarbu : ".$consoCarbu->getValeur();
+                      echo "</br>Points consoEau : ".$consoEau->getValeur();
+                      echo "</br>Points consoNourritures : ".$consoNourritures->getValeur();
+                      echo "</br>Points consoO2 : ".$consoO2->getValeur();
+                      echo "</p></br>";
+
+                      $compteurSujet = $compteurSujet +1;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
 
+    /*--------------------------FIN-------------------------------*/
     $retour = false;
-
-    echo "<pre>";
-    print_r($listeSujets);
-    echo "</pre>";
 
     if($retour){
       echo "<p><img class='icone' src='image/valid.png' alt='Validation génération'>Génération complète";
