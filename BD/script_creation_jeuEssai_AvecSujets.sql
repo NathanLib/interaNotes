@@ -137,6 +137,7 @@ CREATE TABLE `exerciceattribue` (
 
 LOCK TABLES `exerciceattribue` WRITE;
 /*!40000 ALTER TABLE `exerciceattribue` DISABLE KEYS */;
+INSERT INTO `exerciceattribue` VALUES (3,1),(5,2);
 /*!40000 ALTER TABLE `exerciceattribue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,4 +401,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-21 14:05:43
+-- Dump completed on 2018-11-21 17:34:08
