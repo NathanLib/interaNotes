@@ -24,11 +24,13 @@ $listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExa
           <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
               <p>Sujet n°<?php echo $sujet->getIdSujet() ?></p>
           </div>
+
           <div class="col-6 col-lg-4 textListeSujet">
               <p>Ginny POTTER</p>
           </div>
+
           <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-              <input type="submit" name="" value="Consulter">
+            <a href="index.php?page=3&amp;id=<?php echo $sujet->getIdSujet();?>"><input type="button" name="" value="Consulter"></a>          
           </div>
       </div>
     <?php

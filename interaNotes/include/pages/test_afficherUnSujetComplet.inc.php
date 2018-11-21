@@ -1,27 +1,36 @@
 <?php
-$pdo = new Mypdo();
-$sujetManager = new SujetManager($pdo);
-$enonceManager = new EnonceManager($pdo);
+if(isset($_GET['id'])){
 
-$valeurManager = new ValeurManager($pdo);
-$pointManager = new PointManager($pdo);
+  $idSujet = $_GET['id'];
 
-$sujet = $sujetManager->getSujet(1); //WARNING RENDRE DYNAMIQUE VIA GET
-$enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
-?>
+  $pdo = new Mypdo();
+  $sujetManager = new SujetManager($pdo);
+  $enonceManager = new EnonceManager($pdo);
 
-<div id="sujet">
-  <p>Titre : <?php echo $enonceSujet->getTitreEnonce(); ?> </p>
-  <p>Date de fin : <?php echo $_SESSION['examen']->getDateDepotExamen(); ?> </p>
-  <p>Consignes : <?php echo $enonceSujet->getConsigneEnonce(); ?> </p>
-  <p>Valeurs du sujets : </p>
+  $valeurManager = new ValeurManager($pdo);
+  $pointManager = new PointManager($pdo);
 
-	<?php
-	$valeurs = $valeurManager->getValeursSujet(1); //WARNING RENDRE DYNAMIQUE VIA GET
+  $sujet = $sujetManager->getSujet($idSujet);
+  $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
+  ?>
 
-	foreach ($valeurs as $valeur) {
-		$point = $pointManager->getPoint($valeur->getIdPointOfValeur());?>
+  <div id="sujet">
+    <p>Titre : <?php echo $enonceSujet->getTitreEnonce(); ?> </p>
+    <p>Date de fin : <?php echo $_SESSION['examen']->getDateDepotExamen(); ?> </p>
+    <p>Consignes : <?php echo $enonceSujet->getConsigneEnonce(); ?> </p>
+    <p>Valeurs du sujets : </p>
 
-		<p><?php echo $point->getNomPoint()." = ".$valeur->getValeur()." ".$point->getUnitePoint(); ?></p>
-	<?php } ?>
-</div>
+  	<?php
+  	$valeurs = $valeurManager->getValeursSujet($idSujet);
+
+  	foreach ($valeurs as $valeur) {
+  		$point = $pointManager->getPoint($valeur->getIdPointOfValeur());?>
+
+  		<p><?php echo $point->getNomPoint()." = ".$valeur->getValeur()." ".$point->getUnitePoint(); ?></p>
+  	<?php } ?>
+  </div>
+
+<?php
+}else{
+  header('Location: index.php?page=10');
+} ?>
