@@ -1,6 +1,7 @@
 <?php
 $pdo = new Mypdo();
 $sujetManager = new SujetManager($pdo);
+$personneManager = new PersonneManager($pdo);
 
 $listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExamen());
 ?>
@@ -25,8 +26,10 @@ $listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExa
               <p>Sujet n°<?php echo $sujet->getIdSujet() ?></p>
           </div>
 
+          <?php $eleve = $personneManager->getNomPrenomParSujet($sujet->getIdSujet()); ?>
+
           <div class="col-6 col-lg-4 textListeSujet">
-              <p>Ginny POTTER</p>
+              <p> <?php echo $eleve->getPrenomPersonne()." ".$eleve->getNomPersonne() ?></p>
           </div>
 
           <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
