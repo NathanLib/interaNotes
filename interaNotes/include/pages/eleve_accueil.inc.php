@@ -7,7 +7,7 @@
             </div>
 
             <div class="tictacBas">
-                <a href="index.php?page=11">Mon sujet</a>
+                <a href="#">Mon sujet</a>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
             </div>
 
             <div class="tictacBas">
-                <a href="index.php?page=11">Mes sujets terminés</a>
+                <a href="#">Mes sujets terminés</a>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="tictacBas">
-                <a href="index.php?page=11">Mon sujet</a>
+                <a href="#">Mon sujet</a>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             </div>
 
             <div class="tictacBas">
-                <a href="index.php?page=11">Mes sujets terminés</a>
+                <a href="#">Mes sujets terminés</a>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
             </div>
 
             <div class="tictacBas">
-                <a href="index.php?page=11">Mes sujets terminés</a>
+                <a href="#">Mes sujets terminés</a>
             </div>
         </div>
     </div>

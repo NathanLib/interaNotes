@@ -24,7 +24,7 @@
 <body>
     <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark justify-content-bewteen">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php?page=1">
             <img src="image/board.png" width="75" height="auto" alt="logo" title="logo">
         </a>
 
@@ -42,10 +42,10 @@
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=2">Link 1</a>
+                    <a class="nav-link" href="index.php?page=2">Eleve accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=3">Afficher Sujets</a>
+                    <a class="nav-link" href="#">Aucun lien</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=10">Lister sujets prof</a>

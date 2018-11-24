@@ -35,13 +35,13 @@ class Sujet {
 		}
 	}
 
-	public function getIdExamenOfSujet(){
-		return $this->idExamen;
+	public function getIdSujet(){
+		return $this->idSujet;
 	}
 
-	public function setIdExamen($idExamen){
-		if(is_numeric($id)){
-			$this->idExamen = $idExamen;
+	public function setIdSujet($idSujet){
+		if(is_numeric($idSujet)){
+			$this->idSujet = $idSujet;
 		}
 	}
 
@@ -64,13 +64,13 @@ class Sujet {
 		}
 	}
 
-	public function getIdSujet(){
-		return $this->idSujet;
+	public function getIdExamenOfSujet(){
+		return $this->idExamen;
 	}
 
-	public function setIdSujet($idSujet){
-		if(is_numeric($idSujet)){
-			$this->idSujet = $idSujet;
+	public function setIdExamen($idExamen){
+		if(is_numeric($idExamen)){
+			$this->idExamen = $idExamen;
 		}
 	}
 }

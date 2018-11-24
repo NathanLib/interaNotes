@@ -6,9 +6,9 @@ class SujetManager{
 		$this->db = $db;
 	}
 
-	public function getAllSujet($idExamen){
+	public function getAllSujetsOfExamen($idExamen){
 
-		$sql = 'SELECT * FROM sujet WHERE idExamen=:idExamen ';
+		$sql = 'SELECT idSujet, idEnonce, semestre, idExamen FROM sujet WHERE idExamen=:idExamen ';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idExamen',$idExamen);
@@ -22,7 +22,23 @@ class SujetManager{
 		return $listeSujet;
 	}
 
-	public function recupererSujet($idSujet){
+	public function getSujet($idSujet){
+
+		$sql = 'SELECT idSujet, idEnonce, semestre, idExamen FROM sujet s
+						WHERE s.idSujet=:idSujet';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idSujet', $idSujet);
+		$requete->execute();
+
+		$sujet = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+
+		return new Sujet($sujet);
+	}
+
+	/*public function recupererSujetComplet($idSujet){
 
 		$sql = 'SELECT titre,consigne,dateDepot FROM sujet s
 						INNER JOIN enonce en ON (en.idEnonce = s.idEnonce)
@@ -38,6 +54,6 @@ class SujetManager{
 		$requete->closeCursor();
 
 		return $sujet;
-	}
+	}*/
 
 }

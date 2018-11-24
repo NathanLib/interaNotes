@@ -1,22 +1,36 @@
-<!--Remplacer chaque valeur par des données provenant de la bd (jeu d'essai)-->
+<?php
+if(isset($_GET['id'])){
 
-<?php $db = new Mypdo();
-	$sujetManager = new SujetManager($db);
-	$valeurManager = new ValeurManager($db);
+  $idSujet = $_GET['id'];
 
-	$sujet = $sujetManager->recupererSujet(1);
-	?>
+  $pdo = new Mypdo();
+  $sujetManager = new SujetManager($pdo);
+  $enonceManager = new EnonceManager($pdo);
 
-<div id="sujet">
-  <p>Titre : <?php echo $sujet->titre; ?> </p>
-  <p>Date de fin : <?php echo $sujet->dateDepot; ?> </p>
-  <p>Consignes : <?php echo $sujet->consigne; ?> </p>
-  <p>Valeurs du sujets : </p>
-  <?php
-  	$valeurs = $valeurManager->getValeurSujet(1);
+  $valeurManager = new ValeurManager($pdo);
+  $pointManager = new PointManager($pdo);
 
-		foreach ($valeurs as $attribut => $value) {
-			$point = $valeurManager->getPointFromValeur($value->getIdValeur());?>
-			<p> <?php echo $valeurManager->getPoint($point)->nomPoint." = ".$valeurManager->getValeur($value->getIdValeur())." ".$valeurManager->getPoint($point)->unitePoint; ?> </p>
-		<?php } ?>
-</div>
+  $sujet = $sujetManager->getSujet($idSujet);
+  $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
+  ?>
+
+  <div id="sujet">
+    <p>Titre : <?php echo $enonceSujet->getTitreEnonce(); ?> </p>
+    <p>Date de fin : <?php echo $_SESSION['examen']->getDateDepotExamen(); ?> </p>
+    <p>Consignes : <?php echo $enonceSujet->getConsigneEnonce(); ?> </p>
+    <p>Valeurs du sujets : </p>
+
+  	<?php
+  	$valeurs = $valeurManager->getValeursSujet($idSujet);
+
+  	foreach ($valeurs as $valeur) {
+  		$point = $pointManager->getPoint($valeur->getIdPointOfValeur());?>
+
+  		<p><?php echo $point->getNomPoint()." = ".$valeur->getValeur()." ".$point->getUnitePoint(); ?></p>
+  	<?php } ?>
+  </div>
+
+<?php
+}else{
+  header('Location: index.php?page=10');
+} ?>

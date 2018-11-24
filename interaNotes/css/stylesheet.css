@@ -187,6 +187,7 @@ footer .text-uppercase {
     padding-left: 1px;
     width: 80%;
     margin-top: 3%;
+    cursor: pointer;
 }
 .contenuListeSujet p {
     margin: 0;

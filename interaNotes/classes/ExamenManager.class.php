@@ -21,6 +21,21 @@ class ExamenManager{
 		return $listeExamens;
 	}
 
+	public function getExamen($idExamen){
+
+		$sql = 'SELECT idExamen, dateDepot, anneeScolaire FROM examen e
+						WHERE e.idExamen=:idExamen';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idExamen', $idExamen);
+		$requete->execute();
+
+		$examen = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+		return new Examen($examen);
+	}
+
 	/*public function genererSujetsDeExamen($numVille){
 
 		$sql = 'SELECT vil_num, vil_nom FROM ville WHERE vil_num = :num';
