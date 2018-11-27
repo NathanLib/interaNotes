@@ -1,7 +1,7 @@
 $(document).ready(function() {
   function setHeight() {
     windowHeight = $(window).innerHeight();
-    $('.container-fluid').css('min-height', windowHeight-($('footer').height() + $('nav').height() + 21));
+    $('.container-fluid').css('min-height', windowHeight-($('footer').height() + $('nav').height() + 26));
   };
   setHeight();
 
