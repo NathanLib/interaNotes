@@ -15,8 +15,6 @@ nbConso = [[distancedestination]] / 1000km (vient de l'unité de consommation car
 
 qtéCarburant = nbConso*100*[[nbMoteur]]
 
--qté  O² : 
-
 jours = [[destinationPlanète]]/[[vitesse]]
 
 qté O² =[[nbPersonnes]]*60*jours
