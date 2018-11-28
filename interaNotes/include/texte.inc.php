@@ -27,7 +27,7 @@
 			break;
 
 			case 4:
-			// inclure ici ...
+			// mange tes morts charlie
 			break;
 
 			//
@@ -49,8 +49,12 @@
 			break;
 
 			case 8:
+<<<<<<< HEAD
 			// inclure ici ...
 			include_once('pages/eleve_afficherSujet.inc.php');
+=======
+			include_once('pages/test_afficherUnSujetCorrige.inc.php');
+>>>>>>> 719a63c209099424e968531600a26534ddae0752
 			break;
 
 			//

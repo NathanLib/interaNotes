@@ -36,19 +36,22 @@ class ExamenManager{
 		return new Examen($examen);
 	}
 
-	/*public function genererSujetsDeExamen($numVille){
+	/*Pas encore terminée*/
+	public function genererSujetOfExamen2($idExamen){
+		$pdo = new Mypdo();
+		$pointManager = new PointManager($pdo);
+    $valeurManager = new ValeurManager($pdo);
 
-		$sql = 'SELECT vil_num, vil_nom FROM ville WHERE vil_num = :num';
+		$listePoints = $pointManager->getAllPointsOfExamens(1);
 
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':num', $numVille);
-		$requete->execute();
+		foreach($listePoints as $point){
+			$listeValeurs = $valeurManager->getAllValeursOfPoints($point->getIdPoint());
 
-		$ville = $requete->fetch(PDO::FETCH_OBJ);
+			foreach($listeValeurs as $valeur){
+				$listeValeursDePoints[] = array('idPoint'=>$point->getIdPoint(), 'idValeur'=>$valeur->getIdValeur());
+			}
+		}
 
-		$requete->closeCursor();
-
-		$newVille = new Ville($ville);
-		return $newVille;
-	}*/
+		return $listeValeursDePoints;
+	}
 }
