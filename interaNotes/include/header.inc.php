@@ -56,7 +56,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="index.php?page=9">Créer une classe</a>
-                        <a class="dropdown-item" href="#.html">Link 5</a>
+                        <a class="dropdown-item" href="index.php?page=8">afficher un sujet</a>
                     </div>
                 </li>
             </ul>

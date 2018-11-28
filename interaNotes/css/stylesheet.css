@@ -36,8 +36,8 @@ footer {
     background-color: #333333 !important;
 }
 
-.page-footer > li > a, a:visited, a:active, a::before, a::after, a:default, a:link {
-    color: #a5a5a5 !important;
+.page-footer a {
+    color: #bdbdbd !important;
     text-decoration: none;
 }
 
@@ -239,7 +239,20 @@ footer .text-uppercase {
     padding-left: 20px !important;
 }
 
-
+/* Page eleve afficherSujet */
+.mySubject {
+    margin: 5%;
+}
+.mySubject span {
+    font-weight: bold;
+}
+#subjectTitle {
+    text-decoration: underline;
+}
+.textSubject {
+    margin: 2% 5%;
+    text-align: justify;
+}
 
 @media screen and (min-width: 576px) {
     /* Page Connexion */
@@ -257,7 +270,6 @@ footer .text-uppercase {
     .contenuListeSujet {
         margin: 2% 0;
     }
-
 }
 
 @media screen and (min-width: 992px) {

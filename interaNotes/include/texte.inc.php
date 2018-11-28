@@ -50,6 +50,7 @@
 
 			case 8:
 			// inclure ici ...
+			include_once('pages/eleve_afficherSujet.inc.php');
 			break;
 
 			//
