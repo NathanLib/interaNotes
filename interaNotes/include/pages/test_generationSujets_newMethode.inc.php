@@ -29,14 +29,34 @@ $listeExamens = $examenManager->getAllExamens(); ?>
   <div class="genererSujet">
     <?php
     /*-------------DEBUT-------------------------------*/
-    /*$pointManager = new PointManager($pdo);
-    $listePoints = $pointManager->getAllPointsOfExamens(1);*/
+    $pointManager = new PointManager($pdo);
+    $listePoints = $pointManager->getAllPointsOfExamens(1);
 
     $valeurManager = new ValeurManager($pdo);
 
     $compteurSujet = 0;
 
-    $listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
+    for($i=0; $i<count($listePoints); $i++){
+      $listeValeur[$i] = $valeurManager->getAllValeursOfPoints($listePoints[$i]->getIdPoint());
+    }
+
+    echo "<pre>";
+    var_dump($listeValeur);
+    echo "</pre>";
+    //tableau avec param 'nbMoteur' etc...
+    for($i=0; $i<count($listeValeur); $i++){ //parcours des points
+      for($j=0; $j<count($listeValeur[$i]); $j++){ //parcours des valeurs de point
+        echo "<p>Sujet n°".$compteurSujet;
+        echo "</br>test : ".$listeValeur[$i][$j]->getValeur();
+
+        echo "</p></br>";
+
+        $compteurSujet = $compteurSujet +1;
+      }
+
+    }
+
+    /*$listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
     $listeValeurs_points_vitesse = $valeurManager->getAllValeursOfPoints(2);
     $listeValeurs_points_nbPersonnes = $valeurManager->getAllValeursOfPoints(3);
     $listeValeurs_points_destinationPlanete = $valeurManager->getAllValeursOfPoints(4);
@@ -77,7 +97,7 @@ $listeExamens = $examenManager->getAllExamens(); ?>
           }
         }
       }
-    }
+    }*/
 
     /*--------------------------FIN-------------------------------*/
     $retour = false;
