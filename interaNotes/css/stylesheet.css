@@ -233,6 +233,7 @@ footer .text-uppercase {
 }
 .table .thead-dark th {
     border : none !important;
+    background-color: #333333 !important;
 }
 .table td , .table th{
     padding-left: 20px !important;

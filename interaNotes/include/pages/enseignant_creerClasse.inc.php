@@ -51,7 +51,7 @@
                 <tr>
                     <th scope="row">3</th>
                     <td>Dobby</td>
-                    <td>LeShlag</td>
+                    <td>Chaussette</td>
                 </tr>
             </tbody>
         </table>
