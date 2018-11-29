@@ -43,7 +43,7 @@
                     <a class="nav-link" href="index.php?page=2">Eleve accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Aucun lien</a>
+                    <a class="nav-link" href="index.php?page=5">Aucun lien</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=10">Lister sujets prof</a>
