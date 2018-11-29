@@ -9,7 +9,7 @@ define('DBNAME', "intera_notes");
 define('DBUSER', "bd");
 define('DBPASSWD', "bede");
 define('ENV','dev');
-define('SALT','48@!alsd');
+define('SALT','27#!@mgfe');
 define('DBPORT',3306);
 // pour un environememnt de production remplacer 'dev' (développement) par 'prod' (production)
 // les messages d'erreur du SGBD s'affichent dans l'environememnt dev mais pas en prod

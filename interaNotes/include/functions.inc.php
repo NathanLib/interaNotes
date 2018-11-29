@@ -6,7 +6,7 @@
 	}
 
 	function createProtectedPassword($pwd){
-    $protectedPassword = sha1(sha1($pwd).SALT);
+    	$protectedPassword = sha1(sha1($pwd).SALT);
 
 		return $protectedPassword;
 	}

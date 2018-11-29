@@ -27,21 +27,44 @@ class CorrigeManager{
 	}
 
 	public function calculerCorrection($idSujet){
+		
 		$valeursSujet = $this->getSujetValeur($idSujet);
 
-		$nbConso = $valeursSujet[4]['valeur']*1000000 / $valeursSujet[5]['valeur']*10; // nombre de consommation (1000km) = [[distanceDestination]]/ [[nbMoteur]] (vient de l'unité de consommation carburant)
+		//cLARIFICATION DES VALEURS
 
-		$qteCarburant = $nbConso*100*$valeursSujet[0]['valeur']; //qtéCarburant tous moteurs = nbConso*100*[[nbMoteur]]
+		$nbMoteur = $valeursSujet[0]['valeur'];
 
-		$jours = $valeursSujet[4]['valeur'] / $valeursSujet[1]['valeur']; // jours = [[distanceDestination]]/[[vitesse]]
+		$vitesse = $valeursSujet[1]['valeur'];
 
-		$qteO2 =$valeursSujet[2]['valeur']*$valeursSujet[8]['valeur']*$jours; // [[nbPersonnes]]*60*jours
+		$nbPersonne = $valeursSujet[2]['valeur'];
 
-		$qtenourriture = $valeursSujet[2]['valeur']*$valeursSujet[7]['valeur']*$jours; //[[nbPersonne]]*2kg*jours
+		$distanceDestination = $valeursSujet[4]['valeur']*1000000; //pb conversion WARNING
 
-		$qteeau = $valeursSujet[2]['valeur']*$valeursSujet[6]['valeur']*$jours; //[[nbPersonne]]*1.5*jours
+		$consommationCarburantDistance = $valeursSujet[5]['valeur']*10; //pb conversion WARNING
 
-		return array('qteCarburant' => $qteCarburant." T", 'jours' => $jours." jours", 'qteO2' => $qteO2." L", 'qtenourriture' => $qtenourriture." Kg", 'qteeau' => $qteeau." L" );
+		$consommationCarburantQuantité = $valeursSujet[5]['valeur'];
+
+		$consoEau = $valeursSujet[6]['valeur'];		
+
+		$consoNourriture = $valeursSujet[7]['valeur'];
+
+		$consoO2 = $valeursSujet[8]['valeur'];
+
+		//opérations
+
+		$nbConso = $distanceDestination / $consommationCarburantDistance; // nombre de consommation (1000km) = [[distanceDestination]]/ [[nbMoteur]] (vient de l'unité de consommation carburant)
+
+		$qteCarburant = $nbConso*$consommationCarburantQuantité*$nbMoteur; //qtéCarburant tous moteurs = nbConso*consommationMoteur*[[nbMoteur]]
+
+		$jours = $distanceDestination / $vitesse; // jours = [[distanceDestination]]/[[vitesse]]
+
+		$qteO2 =$nbPersonne*$consoO2*$jours; // [[nbPersonnes]]*60*jours
+
+		$qteNourriture = $nbPersonne*$consoNourriture*$jours; //[[nbPersonne]]*2kg*jours
+
+		$qteEau = $nbPersonne*$consoEau*$jours; //[[nbPersonne]]*1.5*jours
+
+		return array('qteCarburant' => $qteCarburant." T", 'jours' => $jours." jours", 'qteO2' => $qteO2." L", 'qtenourriture' => $qteNourriture." Kg", 'qteeau' => $qteEau." L" );
 	}
 }
 

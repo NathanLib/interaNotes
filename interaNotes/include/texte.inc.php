@@ -39,7 +39,7 @@
 			break;
 
 			case 6:
-			// inclure ici ...
+			// inclure ici...
 			break;
 
 			//
