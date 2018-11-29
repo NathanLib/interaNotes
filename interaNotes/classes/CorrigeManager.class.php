@@ -6,12 +6,12 @@ class CorrigeManager{
 		$this->db = $db;
 	}
 
-	public function getSujetValeur($idSujet){
+	private function getSujetValeur($idSujet){
 
 		$sql = 'SELECT T.idSujet, T.idValeur, v.valeur FROM(
-					SELECT idSujet, idValeur FROM exercicegenere
-					WHERE idSujet=:idSujet)T
-				INNER JOIN valeurs v ON (T.idValeur = v.idValeur)';
+						SELECT idSujet, idValeur FROM exercicegenere
+						WHERE idSujet=:idSujet)T
+						INNER JOIN valeurs v ON (T.idValeur = v.idValeur)';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
