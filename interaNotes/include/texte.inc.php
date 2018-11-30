@@ -27,7 +27,8 @@
 			include_once('pages/enseignant_listerSujets.inc.php');
 			break;
 
-		case 4:
+			case 4:
+			include_once('pages/enseignant_creerExamen.inc.php');
 			break;
 
 		case 5:

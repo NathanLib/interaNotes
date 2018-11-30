@@ -15,7 +15,7 @@ $_SESSION['examen'] = $examenManager->getExamen($numExamen);
             </div>
 
             <div class="tictacBas">
-                <a href="#">Créer un examen</a>
+                <a href="index.php?page=4">Créer un examen</a>
             </div>
         </div>
     </div>
