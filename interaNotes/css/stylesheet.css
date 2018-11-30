@@ -305,6 +305,15 @@ footer .text-uppercase {
     text-align: justify;
 }
 
+/* Page enseignant_creerExamen */
+.form-control {
+    color: #848484;
+    opacity: 1;
+}
+.createExam {
+    margin: 5% 0;
+}
+
 @media screen and (min-width: 576px) {
     /* Page Connexion */
     .logoConnexion {
