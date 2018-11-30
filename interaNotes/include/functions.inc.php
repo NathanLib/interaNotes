@@ -11,4 +11,8 @@
 		return $protectedPassword;
 	}
 
+	function createRandomPassword(){
+		return substr(str_shuffle(strtolower(sha1(rand() . time() . SALT))),0, PASSWORD_LENGTH);
+	}
+
 ?>
