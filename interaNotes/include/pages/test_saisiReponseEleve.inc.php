@@ -1,51 +1,142 @@
-<?php
-$pdo = new Mypdo();
-$examenManager = new ExamenManager($pdo);
-$listeExamens = $examenManager->getAllExamens(); ?>
+<div class="row answerSubject">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 form-group">
+                <span>Titre de l'examen :</span>
+                <p>Simumation de fusée</p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 form-group">
+                <span>Date de fin :</span>
+                <p>28/12/2019</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-10">
+                <span>Question 1 :</span>
+                <p>Combien de jour la fusée a-t-elle besoins pour atteindre sa destination&nbsp?</p>
+            </div>
 
-<div class="generationSujets">
+            <div class="col-2 percentAnswer">
+                <p>100%</p>
+            </div>
 
-  <div class="listerExamens">
-    <table>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-lg-7 form-group">
+                        <label for="detailAnswer">Détail calcul :</label>
+                        <textarea class="form-control" id="detailAnswer"  onkeyup="adjustHeightTextAreaLittle(this)" name="" placeholder='Veuillez écire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...'></textarea>
+                    </div>
 
-      <tr>
-        <th>IdExamen</th>
-        <th>DateDepot</th>
-        <th>AnneeScolaire</th>
-      <tr>
+                    <div class="col-12 col-lg-5 form-group">
+                        <label for="resultAnswer">Résultat :</label>
+                        <input class="form-control" id="resultAnswer" type="text" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <?php foreach($listeExamens as $examen) { ?>
-      <tr>
-        <td><?php echo $examen->getIdExamen()?></td>
-        <td><?php echo $examen->getDateDepotExamen()?></td>
-        <td><?php echo $examen->getAnneeScolaireExamen()?></td>
-      </tr>
-    <?php } ?>
+        <div class="row">
+            <div class="col-10">
+                <span>Question 2 :</span>
+                <p>Quelle est la quantité de carburant consommée lors de ce voyage&nbsp?</p>
+            </div>
 
-    </table>
+            <div class="col-2 percentAnswer">
+                <p>100%</p>
+            </div>
 
-  </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-lg-7 form-group">
+                        <label for="detailAnswer">Détail calcul :</label>
+                        <textarea class="form-control" id="detailAnswer"  onkeyup="adjustHeightTextAreaLittle(this)" name="" placeholder='Veuillez écire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...'></textarea>
+                    </div>
 
-  <div class="genererSujet">
-    <?php
-    /*-------------DEBUT-------------------------------*/
-    $generationManager = new GenerationManager($pdo);
-    $listeExerciceGenere = $generationManager->genererExercice();
-    
-    echo "<pre>";
-    var_dump($listeExerciceGenere);
-    echo "</pre>";
+                    <div class="col-12 col-lg-5 form-group">
+                        <label for="resultAnswer">Résultat :</label>
+                        <input class="form-control" id="resultAnswer" type="text" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    /*--------------------------FIN-------------------------------*/
-    $retour = false;
+        <div class="row">
+            <div class="col-10">
+                <span>Question 3 :</span>
+                <p>Quelle est la quantité de nourriture consommée par l'équipage&nbsp?</p>
+            </div>
 
-    if($retour){
-      echo "<p><img class='icone' src='image/valid.png' alt='Validation génération'>Génération complète";
+            <div class="col-2 percentAnswer">
+                <p>100%</p>
+            </div>
 
-    }else{
-      echo "<p><img class='icone' src='image/erreur.png' alt='Erreur génération'>Erreur lors de la génération";
-    }
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-lg-7 form-group">
+                        <label for="detailAnswer">Détail calcul :</label>
+                        <textarea class="form-control" id="detailAnswer"  onkeyup="adjustHeightTextAreaLittle(this)" name="" placeholder='Veuillez écire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...'></textarea>
+                    </div>
 
-     ?>
-  </div>
+                    <div class="col-12 col-lg-5 form-group">
+                        <label for="resultAnswer">Résultat :</label>
+                        <input class="form-control" id="resultAnswer" type="text" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <span>Question 4 :</span>
+                <p>Quelle est la quantité d'eau bu par l'équipage pendant le voyage&nbsp?</p>
+            </div>
+
+            <div class="col-2 percentAnswer">
+                <p>100%</p>
+            </div>
+
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-lg-7 form-group">
+                        <label for="detailAnswer">Détail calcul :</label>
+                        <textarea class="form-control" id="detailAnswer"  onkeyup="adjustHeightTextAreaLittle(this)" name="" placeholder='Veuillez écire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...'></textarea>
+                    </div>
+
+                    <div class="col-12 col-lg-5 form-group">
+                        <label for="resultAnswer">Résultat :</label>
+                        <input class="form-control" id="resultAnswer" type="text" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <span>Question 5 :</span>
+                <p>Quelle est la quantité totale d'oxygène (O²) consommée par l'équipage&nbsp?</p>
+            </div>
+
+            <div class="col-2 percentAnswer">
+                <p>100%</p>
+            </div>
+
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-lg-7 form-group">
+                        <label for="detailAnswer">Détail calcul :</label>
+                        <textarea class="form-control" id="detailAnswer"  onkeyup="adjustHeightTextAreaLittle(this)" name="" placeholder='Veuillez écire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...'></textarea>
+                    </div>
+
+                    <div class="col-12 col-lg-5 form-group">
+                        <label for="resultAnswer">Résultat :</label>
+                        <input class="form-control" id="resultAnswer" type="text" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
