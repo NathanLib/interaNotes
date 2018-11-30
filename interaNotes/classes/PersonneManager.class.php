@@ -36,9 +36,9 @@ class PersonneManager{
 					$login = $personne[0].random_int(0,99);
 				}
 
-				$mdp="IUT";
+				$mdp=createRandomPassword();
 
-				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'login'=>$login,'mdp'=>$mdp)); //FAIRE TABLEAU ELEVE
+				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'login'=>$login,'mdp'=>$mdp)); 
 				
 			}
 		}
