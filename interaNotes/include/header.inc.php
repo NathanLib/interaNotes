@@ -23,7 +23,7 @@
     <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark justify-content-bewteen">
         <!-- Brand -->
         <a class="navbar-brand" href="index.php?page=1">
-            <img src="image/board.png" width="75" height="auto" alt="logo" title="logo">
+            <img src="image/board.png" width="75" alt="logo" title="logo">
         </a>
 
         <!-- Navbar text-->
