@@ -52,7 +52,7 @@
                         <a class="nav-link" href="index.php?page=16">Déconnexion</a>
                     </li>
                 <?php } ?>
-                
+
                     <!-- Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -62,6 +62,7 @@
                             <a class="dropdown-item" href="index.php?page=12">t_ListerSujets</a>
                             <a class="dropdown-item" href="index.php?page=8">t_afficherSujetPro</a>
                             <a class="dropdown-item" href="index.php?page=14">t_genSujet</a>
+                            <a class="dropdown-item" href="index.php?page=15">t_saisiReponseEleve</a>
                         </div>
                     </li>
                 </ul>
