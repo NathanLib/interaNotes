@@ -22,7 +22,7 @@
 <body>
     <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark justify-content-bewteen">
         <!-- Brand -->
-        <a class="navbar-brand" href="index.php?page=1">
+        <a class="navbar-brand" href="index.php?page=0">
             <img src="image/board.png" width="75" alt="logo" title="logo">
         </a>
 
@@ -39,27 +39,31 @@
         <!-- Navbar links -->
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=1">Accueil enseignant</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=7">Accueil élève</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">nope</a>
-                </li>
-
-                <!-- Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        More
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.php?page=12">t_ListerSujets</a>
-                        <a class="dropdown-item" href="index.php?page=8">t_afficherSujetPro</a>
-                        <a class="dropdown-item" href="index.php?page=14">t_genSujet</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                <?php if (isset($_SESSION['prof'])) {?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?page=1">Accueil enseignant</a>
+                    </li>
+                <?php } elseif (isset($_SESSION['eleve'])) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?page=7">Accueil élève</a>
+                    </li>
+                <?php } if(isset($_SESSION['prof']) || isset($_SESSION['eleve'])) {?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?page=16">Déconnexion</a>
+                    </li>
+                <?php } ?>
+                
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            More
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="index.php?page=12">t_ListerSujets</a>
+                            <a class="dropdown-item" href="index.php?page=8">t_afficherSujetPro</a>
+                            <a class="dropdown-item" href="index.php?page=14">t_genSujet</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>

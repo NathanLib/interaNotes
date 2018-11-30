@@ -1,3 +1,4 @@
+<?php require_once("include/verifProf.inc.php"); ?>
 
 <?php if (empty($_POST['annee'])) { ?>
     <div class="row createClass">

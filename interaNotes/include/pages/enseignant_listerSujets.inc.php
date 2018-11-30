@@ -1,3 +1,5 @@
+<?php require_once("include/verifProf.inc.php"); ?>
+
 <?php
 $pdo = new Mypdo();
 $sujetManager = new SujetManager($pdo);

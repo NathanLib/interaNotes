@@ -36,9 +36,9 @@ class PersonneManager{
 					$login = $personne[0].random_int(0,99);
 				}
 
-				$mdp="IUT";
+				$mdp=createRandomPassword();
 
-				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'login'=>$login,'mdp'=>$mdp)); //FAIRE TABLEAU ELEVE
+				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'login'=>$login,'mdp'=>$mdp)); 
 				
 			}
 		}
@@ -125,5 +125,47 @@ class PersonneManager{
 		}
 
 			fputcsv($csv, $data);
+	}
+
+	public function connexion($login,$mdp){
+		
+		//$mdp = (sha1(sha1($mdp->getPerPwd()).SALT));
+		
+		$req = $this->db->prepare('SELECT login,mdp FROM personne WHERE login=:login;');
+		
+		$req->bindValue(':login',$login,PDO::PARAM_STR);
+		
+		$req->execute();
+		
+		$res = $req->fetch(PDO::FETCH_ASSOC);	
+			
+		if($res['login'] === $login && $res['mdp'] === $mdp ) {
+			if($this->isEleve($login)){
+				return 1;
+			}
+			return 2;
+		}
+		
+		return 0;
+
+	}
+
+	public function isEleve($login){
+
+		$req = $this->db->prepare('SELECT idEleve FROM eleve e JOIN personne p WHERE p.idPersonne=e.idEleve AND p.login=:login;');
+		
+		$req->bindValue(':login',$login,PDO::PARAM_STR);
+		
+		$req->execute();
+		
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		
+		$req->closeCursor();
+
+		if($res!=false){
+			return true;
+		}
+		return $res;
+	
 	}
 }

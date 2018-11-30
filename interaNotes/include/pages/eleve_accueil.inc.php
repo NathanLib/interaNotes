@@ -1,3 +1,5 @@
+<?php require_once("include/verifEleve.inc.php"); ?>
+
 <div class="row justify-content-center justify-content-around">
 
     <div class="col-6 col-lg-2 TicTacAccueil">
