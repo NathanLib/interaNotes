@@ -40,13 +40,13 @@
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=2">Eleve accueil</a>
+                    <a class="nav-link" href="index.php?page=1">Accueil enseignant</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=5">Aucun lien</a>
+                    <a class="nav-link" href="index.php?page=7">Accueil élève</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=10">Lister sujets prof</a>
+                    <a class="nav-link" href="">nope</a>
                 </li>
 
                 <!-- Dropdown -->
@@ -55,8 +55,10 @@
                         More
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.php?page=9">Créer une classe</a>
-                        <a class="dropdown-item" href="index.php?page=7">afficher un sujet</a>
+                        <a class="dropdown-item" href="index.php?page=12">t_affSujetComplet</a>
+                        <a class="dropdown-item" href="index.php?page=13">t_affSujetCorrige</a>
+                        <a class="dropdown-item" href="index.php?page=14">t_genSujet_newM</a>
+                        <a class="dropdown-item" href="index.php?page=15">t_getSujet_oldM</a>
                     </div>
                 </li>
             </ul>

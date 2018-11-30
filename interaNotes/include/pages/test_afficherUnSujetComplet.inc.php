@@ -29,10 +29,10 @@ if(isset($_GET['id'])){
   		<p><?php echo $point->getNomPoint()." = ".$valeur->getValeur()." ".$point->getUnitePoint(); ?></p>
   	<?php } ?>
 
-    <a href="index.php?page=8&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
+    <a href="index.php?page=13&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
   </div>
 
 <?php
-}else{ 
-  header('Location: index.php?page=10');
+}else{
+  header('Location: index.php?page=3');
 } ?>
