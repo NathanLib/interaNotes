@@ -73,6 +73,12 @@
 		case 15:
 			break;
 
+		// WARNING : DECONNEXION
+
+		case 16:
+			include_once('pages/deconnexion.inc.php');
+			break;
+
 	}
 
 		?>

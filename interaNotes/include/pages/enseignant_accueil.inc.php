@@ -1,3 +1,6 @@
+<?php require_once("include/verifProf.inc.php"); ?>
+
+
 <?php
 $pdo = new Mypdo();
 $examenManager = new ExamenManager($pdo);
@@ -5,7 +8,6 @@ $examenManager = new ExamenManager($pdo);
 $numExamen = 1; //WARNING : utiliser GET (avec listerExamen)
 $_SESSION['examen'] = $examenManager->getExamen($numExamen);
 ?>
-
 <div class="row justify-content-around">
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
