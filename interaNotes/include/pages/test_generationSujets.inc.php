@@ -31,7 +31,7 @@ $listeExamens = $examenManager->getAllExamens(); ?>
     /*-------------DEBUT-------------------------------*/
     $generationManager = new GenerationManager($pdo);
     $listeExerciceGenere = $generationManager->genererExercice();
-
+    
     echo "<pre>";
     var_dump($listeExerciceGenere);
     echo "</pre>";

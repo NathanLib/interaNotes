@@ -55,10 +55,9 @@
                         More
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.php?page=12">t_affSujetComplet</a>
-                        <a class="dropdown-item" href="index.php?page=13">t_affSujetCorrige</a>
-                        <a class="dropdown-item" href="index.php?page=14">t_genSujet_newM</a>
-                        <a class="dropdown-item" href="index.php?page=15">t_getSujet_oldM</a>
+                        <a class="dropdown-item" href="index.php?page=12">t_ListerSujets</a>
+                        <a class="dropdown-item" href="index.php?page=8">t_afficherSujetPro</a>
+                        <a class="dropdown-item" href="index.php?page=14">t_genSujet</a>
                     </div>
                 </li>
             </ul>

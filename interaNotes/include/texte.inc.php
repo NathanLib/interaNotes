@@ -1,79 +1,78 @@
 <div id="texte">
 	<?php
 	if (!empty($_GET["page"])){
-		$page=$_GET["page"];}
-		else
-		{$page=0;
-		}
-		switch ($page) {
+		$page=$_GET["page"];
+	}else{
+		$page=0;
+	}
 
-			// WARNING: CONNEXION
-			case 0:
-			// inclure ici la page de connexion
+	switch ($page) {
+
+		// WARNING: CONNEXION
+		case 0:
 			include_once('pages/connexion.inc.php');
 			break;
 
-			// WARNING: PARTIE ENSEIGNANT
+		// WARNING: PARTIE ENSEIGNANT
 
-			case 1:
+		case 1:
 			include_once('pages/enseignant_accueil.inc.php');
 			break;
 
-			case 2:
+		case 2:
 			include_once('pages/enseignant_creerClasse.inc.php');
 			break;
 
-			case 3:
+		case 3:
 			include_once('pages/enseignant_listerSujets.inc.php');
 			break;
 
-			case 4:
+		case 4:
 			break;
 
-			case 5:
+		case 5:
 			break;
 
-			case 6:
+		case 6:
 			break;
 
-			// WARNING: PARTIE ELEVE
-			case 7:
+		// WARNING: PARTIE ELEVE
+		case 7:
 			include_once('pages/eleve_accueil.inc.php');
 			break;
 
-			case 8:
+		case 8:
 			include_once('pages/eleve_afficherSujet.inc.php');
 			break;
 
-			case 9:
+		case 9:
 			break;
 
-			case 10:
+		case 10:
 			break;
 
 
-			case 11:
+		case 11:
 			break;
 
-			// WARNING: PARTIE TEST
+		// WARNING: PARTIE TEST
 
-			case 12:
+		case 12:
 			include_once('pages/test_afficherUnSujetComplet.inc.php');
 			break;
 
-			case 13:
+		case 13:
 			include_once('pages/test_afficherUnSujetCorrige.inc.php');
 			break;
 
-			case 14:
-			include_once('pages/test_generationSujets_newMethode.inc.php');
-			break;
-
-			case 15:
+		case 14:
 			include_once('pages/test_generationSujets.inc.php');
 			break;
 
-		}
+		case 15:
+			break;
+
+	}
 
 		?>
 	</div>
