@@ -81,6 +81,11 @@
 		include_once('pages/deconnexion.inc.php');
 		break;
 
+		// WARNING: Suite PARTIE TEST
+		case 17:
+		include_once('pages/test_publipostage.inc.php');
+		break;
+
 	}
 
 	?>

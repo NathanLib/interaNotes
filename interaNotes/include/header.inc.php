@@ -63,6 +63,7 @@
                             <a class="dropdown-item" href="index.php?page=8">t_afficherSujetPro</a>
                             <a class="dropdown-item" href="index.php?page=14">t_genSujet</a>
                             <a class="dropdown-item" href="index.php?page=15">t_saisiReponseEleve</a>
+                            <a class="dropdown-item" href="index.php?page=17">t_publipostage</a>
                         </div>
                     </li>
                 </ul>
