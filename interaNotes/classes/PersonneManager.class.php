@@ -55,7 +55,7 @@ class PersonneManager{
 			$requete->bindValue(':nom', $value->getNomPersonne());
 			$requete->bindValue(':prenom', $value->getPrenomPersonne());
 			$requete->bindValue(':login', $value->getLoginPersonne());
-			$requete->bindValue(':mdp', $value->getPasswdPersonne());
+			$requete->bindValue(':mdp', createEncryptedPassword($value->getPasswdPersonne());
 			//$requete->bindValue(':email', $email);
 			$requete->execute();
 
@@ -129,7 +129,7 @@ class PersonneManager{
 
 	public function connexion($login,$mdp){
 		
-		//$mdp = (sha1(sha1($mdp->getPerPwd()).SALT));
+		$mdp = createEncryptedPassword($mdp);
 		
 		$req = $this->db->prepare('SELECT login,mdp FROM personne WHERE login=:login;');
 		
