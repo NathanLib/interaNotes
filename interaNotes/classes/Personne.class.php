@@ -3,6 +3,7 @@ class Personne{
 	private $id;
 	private $nom;
 	private $prenom;
+	private $mail;
 	private $login;
 	private $passwd;
 
@@ -27,6 +28,8 @@ class Personne{
 				case 'prenom' :
 					$this->setPrenomPersonne($valeur);
 					break;
+				case 'mail' :
+					$this->setMailPersonne($valeur);
 
 				case 'login' :
 					$this->setLoginPersonne($valeur);
@@ -63,6 +66,14 @@ class Personne{
 
 	public function setPrenomPersonne($prenom){
 		$this->prenom = $prenom;
+	}
+
+	public function getMailPersonne(){
+		return $this->mail;
+	}
+
+	public function setMailPersonne($mail){
+		$this->mail = $mail;
 	}
 
 	public function getLoginPersonne(){

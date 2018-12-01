@@ -31,10 +31,10 @@
 		include_once('pages/enseignant_creerExamen.inc.php');
 		break;
 
-		case 5:
+		case 5:  header('Location: index.php?page=0');
 		break;
 
-		case 6:
+		case 6:  header('Location: index.php?page=0');
 		break;
 
 		// WARNING: PARTIE ELEVE
@@ -46,14 +46,14 @@
 		include_once('pages/eleve_afficherSujet.inc.php');
 		break;
 
-		case 9:
+		case 9:  header('Location: index.php?page=0');
 		break;
 
-		case 10:
+		case 10:  header('Location: index.php?page=0');
 		break;
 
 
-		case 11:
+		case 11: header('Location: index.php?page=0');
 		break;
 
 		// WARNING: PARTIE TEST

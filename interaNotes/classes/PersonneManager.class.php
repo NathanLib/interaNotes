@@ -23,7 +23,7 @@ class PersonneManager{
 
 	}
 
-	public function creerEleves($eleves,$annee) {
+	public function creerEleves($eleves,$annee,$nomPromo) {
 		foreach ($eleves as $attribut => $value) {
 			if($attribut!=0){
 				
@@ -38,34 +38,35 @@ class PersonneManager{
 
 				$mdp=createRandomPassword();
 
-				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'login'=>$login,'mdp'=>$mdp)); 
+				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'login'=>$login,'mdp'=>$mdp,'mail'=>$personne[2])); 
 				
 			}
 		}
 
-		$this->importEleves($listeEleves,$annee);
+		$this->importEleves($listeEleves,$annee,$nomPromo);
 		//$this->getCSVEleves($listeEleves); // WARNING
 	}
 
-	public function importEleves($eleves,$annee) {
+	public function importEleves($eleves,$annee,$nomPromo) {
 		foreach ($eleves as $attribut => $value) {
-			$sql = 'INSERT INTO personne(nom,prenom,login,mdp) VALUES (:nom,:prenom,:login,:mdp) ';
+			$sql = 'INSERT INTO personne(nom,prenom,mail,login,mdp) VALUES (:nom,:prenom,:mail,:login,:mdp) ';
 
 			$requete = $this->db->prepare($sql);
 			$requete->bindValue(':nom', $value->getNomPersonne());
 			$requete->bindValue(':prenom', $value->getPrenomPersonne());
 			$requete->bindValue(':login', $value->getLoginPersonne());
-			$requete->bindValue(':mdp', createEncryptedPassword($value->getPasswdPersonne());
-			//$requete->bindValue(':email', $email);
+			$requete->bindValue(':mdp', createProtectedPassword($value->getPasswdPersonne()));
+			$requete->bindValue(':mail', $value->getMailPersonne());
 			$requete->execute();
 
 			$id = $this->db->lastInsertId();
 
-			$sql = 'INSERT INTO eleve(idEleve,annee) VALUES (:id,:annee)';
+			$sql = 'INSERT INTO eleve(idEleve,annee,nomPromo) VALUES (:id,:annee,:nomPromo)';
 
 			$requete = $this->db->prepare($sql);
 			$requete->bindValue(':id', $id);
 			$requete->bindValue(':annee', $annee);
+			$requete->bindValue(':nomPromo',$nomPromo);
 
 			$requete->execute();
 
@@ -129,7 +130,7 @@ class PersonneManager{
 
 	public function connexion($login,$mdp){
 		
-		$mdp = createEncryptedPassword($mdp);
+		$mdp = createProtectedPassword($mdp);
 		
 		$req = $this->db->prepare('SELECT login,mdp FROM personne WHERE login=:login;');
 		
