@@ -1,3 +1,6 @@
+<?php require_once("include/verifEleve.inc.php"); ?>
+
+
 <div class="row answerSubject">
     <div class="col-12">
         <div class="row">

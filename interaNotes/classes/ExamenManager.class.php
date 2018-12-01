@@ -40,7 +40,7 @@ class ExamenManager{
 	public function genererSujetOfExamen2($idExamen){
 		$pdo = new Mypdo();
 		$pointManager = new PointManager($pdo);
-    $valeurManager = new ValeurManager($pdo);
+    	$valeurManager = new ValeurManager($pdo);
 
 		$listePoints = $pointManager->getAllPointsOfExamens(1);
 
@@ -53,5 +53,19 @@ class ExamenManager{
 		}
 
 		return $listeValeursDePoints;
+	}
+
+	public function getDateLimitebySujet($idSujet){
+		$sql = 'SELECT dateDepot FROM examen e JOIN sujet s ON e.idExamen=s.idExamen AND s.idSujet=:idSujet ';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idSujet',$idSujet);
+		$requete->execute();
+
+		$date = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+
+		return $date->dateDepot;
 	}
 }
