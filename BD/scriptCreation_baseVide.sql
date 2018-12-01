@@ -23,14 +23,12 @@ DROP TABLE IF EXISTS `dependances`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dependances` (
-  `idPoint` int(11) NOT NULL,
-  `idPointDependant` int(11) NOT NULL,
-  `valeurDependance` int(11) NOT NULL,
-  `operateurDependance` int(11) NOT NULL,
-  PRIMARY KEY (`idPoint`,`idPointDependant`),
-  KEY `idPointDependant` (`idPointDependant`),
-  CONSTRAINT `dependances_ibfk_1` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`),
-  CONSTRAINT `dependances_ibfk_2` FOREIGN KEY (`idPointDependant`) REFERENCES `points` (`idPoint`)
+  `idValeur` int(11) NOT NULL,
+  `idValeurDependante` int(11) NOT NULL,
+  PRIMARY KEY (`idValeur`,`idValeurDependante`),
+  KEY `idValeurDependante` (`idValeurDependante`),
+  CONSTRAINT `dependances_ibfk_1` FOREIGN KEY (`idValeur`) REFERENCES `valeurs` (`idValeur`),
+  CONSTRAINT `dependances_ibfk_2` FOREIGN KEY (`idValeurDependante`) REFERENCES `valeurs` (`idValeur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -255,7 +253,7 @@ DROP TABLE IF EXISTS `points`;
 CREATE TABLE `points` (
   `idPoint` int(11) NOT NULL,
   `idExamen` int(11) NOT NULL,
-  `nomPoint` varchar(30) NOT NULL,
+  `nomPoint` varchar(50) NOT NULL,
   `unitePoint` varchar(30) NOT NULL,
   PRIMARY KEY (`idPoint`,`idExamen`),
   KEY `idExamen` (`idExamen`),
@@ -283,8 +281,9 @@ CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
   `intituleQuestion` text NOT NULL,
-  `resultat` decimal(5,1) NOT NULL,
-  `uniteResultat` varchar(30) NOT NULL,
+  `resultat` decimal(15,2) NOT NULL,
+  `exposantUnite` int(11) NOT NULL,
+  `resultatUnite` varchar(30) NOT NULL,
   `bareme` decimal(4,2) NOT NULL,
   PRIMARY KEY (`idReponse`,`idSujet`),
   KEY `idSujet` (`idSujet`),
@@ -313,8 +312,9 @@ CREATE TABLE `resultatseleves` (
   `idEleve` int(11) NOT NULL,
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
-  `resultat` decimal(5,1) NOT NULL,
-  `uniteResultat` varchar(30) NOT NULL,
+  `resultat` decimal(15,2) NOT NULL,
+  `exposantUnite` int(11) NOT NULL,
+  `resultatUnite` varchar(30) NOT NULL,
   `justification` text NOT NULL,
   `precisionReponse` decimal(4,2) NOT NULL,
   PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`),
@@ -425,4 +425,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-01 15:28:22
+-- Dump completed on 2018-12-01 22:50:01
