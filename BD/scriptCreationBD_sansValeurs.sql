@@ -16,6 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `dependances`
+--
+
+DROP TABLE IF EXISTS `dependances`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dependances` (
+  `idPoint` int(11) NOT NULL,
+  `idPointDependant` int(11) NOT NULL,
+  `valeurDependance` int(11) NOT NULL,
+  `operateurDependance` int(11) NOT NULL,
+  PRIMARY KEY (`idPoint`,`idPointDependant`),
+  KEY `idPointDependant` (`idPointDependant`),
+  CONSTRAINT `dependances_ibfk_1` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`),
+  CONSTRAINT `dependances_ibfk_2` FOREIGN KEY (`idPointDependant`) REFERENCES `points` (`idPoint`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dependances`
+--
+
+LOCK TABLES `dependances` WRITE;
+/*!40000 ALTER TABLE `dependances` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dependances` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `eleve`
 --
 
@@ -25,6 +53,7 @@ DROP TABLE IF EXISTS `eleve`;
 CREATE TABLE `eleve` (
   `idEleve` int(11) NOT NULL,
   `annee` int(4) NOT NULL,
+  `nomPromo` varchar(30) NOT NULL,
   PRIMARY KEY (`idEleve`),
   CONSTRAINT `eleve_ibfk_1` FOREIGN KEY (`idEleve`) REFERENCES `personne` (`idPersonne`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -36,7 +65,6 @@ CREATE TABLE `eleve` (
 
 LOCK TABLES `eleve` WRITE;
 /*!40000 ALTER TABLE `eleve` DISABLE KEYS */;
-INSERT INTO `eleve` VALUES (1,2018),(3,2018),(4,2018),(5,2018);
 /*!40000 ALTER TABLE `eleve` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +89,6 @@ CREATE TABLE `enonce` (
 
 LOCK TABLES `enonce` WRITE;
 /*!40000 ALTER TABLE `enonce` DISABLE KEYS */;
-INSERT INTO `enonce` VALUES (1,'Simulation de fusée','Selon les paramètres suivants, indiquez les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre [[planète]] :\r\n-nombre de moteurs : [[nbMoteur]]\r\n-vitesse : [[vitesseMoteur]]\r\n-Consommation de carburant par moteur : 100T/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : [[nbPersonne]]\r\n-Destination : [[destinationPlanete]]\r\n-Distance Terre/[[destinationPlanete]] : [[distanceDestination]]');
 /*!40000 ALTER TABLE `enonce` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +112,6 @@ CREATE TABLE `enseignant` (
 
 LOCK TABLES `enseignant` WRITE;
 /*!40000 ALTER TABLE `enseignant` DISABLE KEYS */;
-INSERT INTO `enseignant` VALUES (2);
 /*!40000 ALTER TABLE `enseignant` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +127,7 @@ CREATE TABLE `examen` (
   `dateDepot` datetime NOT NULL,
   `anneeScolaire` int(4) NOT NULL,
   PRIMARY KEY (`idExamen`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +136,6 @@ CREATE TABLE `examen` (
 
 LOCK TABLES `examen` WRITE;
 /*!40000 ALTER TABLE `examen` DISABLE KEYS */;
-INSERT INTO `examen` VALUES (1,'2018-11-30 00:00:00',2018);
 /*!40000 ALTER TABLE `examen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,10 +229,11 @@ CREATE TABLE `personne` (
   `idPersonne` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL,
   `prenom` varchar(30) NOT NULL,
+  `mail` varchar(30) NOT NULL,
   `login` varchar(30) NOT NULL,
-  `mdp` varchar(30) NOT NULL,
+  `mdp` varchar(50) NOT NULL,
   PRIMARY KEY (`idPersonne`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,7 +242,6 @@ CREATE TABLE `personne` (
 
 LOCK TABLES `personne` WRITE;
 /*!40000 ALTER TABLE `personne` DISABLE KEYS */;
-INSERT INTO `personne` VALUES (1,'Dupont','Jean','Dupont.Jean','tintin'),(2,'Poitou','Nicolas','Poitou.Nicolas','charente'),(3,'Potter','Harry','Potter.Harry','dumbledore'),(4,'McQueen','Flash','McQueen.Flash','vitesse'),(5,'Sparrow','Jack','Sparrow.Jack','pirate');
 /*!40000 ALTER TABLE `personne` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +255,7 @@ DROP TABLE IF EXISTS `points`;
 CREATE TABLE `points` (
   `idPoint` int(11) NOT NULL,
   `idExamen` int(11) NOT NULL,
-  `nomPoint` varchar(50) NOT NULL,
+  `nomPoint` varchar(30) NOT NULL,
   `unitePoint` varchar(30) NOT NULL,
   PRIMARY KEY (`idPoint`,`idExamen`),
   KEY `idExamen` (`idExamen`),
@@ -244,7 +269,6 @@ CREATE TABLE `points` (
 
 LOCK TABLES `points` WRITE;
 /*!40000 ALTER TABLE `points` DISABLE KEYS */;
-INSERT INTO `points` VALUES (1,1,'nbMoteur','unité'),(2,1,'vitesseMoteur','Km/H'),(3,1,'nbPersonne','unité'),(4,1,'destinationPlanète',''),(5,1,'distanceDestination','milllions de Km'),(6,1,'consoCarburantParMoteurs','tonnes/1000km'),(7,1,'consoEauParPersonnesParJour','L'),(8,1,'consoNourrituresParPersonneParJour','KG'),(9,1,'consoO2ParPersonnesParJour','L');
 /*!40000 ALTER TABLE `points` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,7 +282,9 @@ DROP TABLE IF EXISTS `resultatsattendus`;
 CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
+  `intituleQuestion` text NOT NULL,
   `resultat` decimal(5,1) NOT NULL,
+  `uniteResultat` varchar(30) NOT NULL,
   `bareme` decimal(4,2) NOT NULL,
   PRIMARY KEY (`idReponse`,`idSujet`),
   KEY `idSujet` (`idSujet`),
@@ -288,6 +314,8 @@ CREATE TABLE `resultatseleves` (
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
   `resultat` decimal(5,1) NOT NULL,
+  `uniteResultat` varchar(30) NOT NULL,
+  `justification` text NOT NULL,
   `precisionReponse` decimal(4,2) NOT NULL,
   PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`),
   KEY `idEleve` (`idEleve`),
@@ -385,7 +413,6 @@ CREATE TABLE `valeurs` (
 
 LOCK TABLES `valeurs` WRITE;
 /*!40000 ALTER TABLE `valeurs` DISABLE KEYS */;
-INSERT INTO `valeurs` VALUES (1,1,'1'),(2,1,'2'),(3,1,'3'),(4,1,'4'),(5,1,'5'),(6,2,'1000'),(7,2,'2000'),(8,2,'3000'),(9,2,'4000'),(10,2,'5000'),(11,3,'3'),(12,3,'4'),(13,3,'5'),(14,3,'6'),(15,3,'7'),(16,3,'8'),(17,3,'9'),(18,3,'10'),(19,3,'11'),(20,3,'12'),(21,4,'Lune'),(22,4,'Mars'),(23,5,'340000'),(24,5,'350000'),(25,5,'360000'),(26,5,'370000'),(27,5,'380000'),(28,5,'390000'),(29,5,'400000'),(30,5,'410000'),(31,5,'50000000'),(32,5,'100000000'),(33,5,'150000000'),(34,5,'200000000'),(35,5,'250000000'),(36,5,'300000000'),(37,5,'350000000'),(38,5,'400000000'),(39,6,'100'),(40,7,'1.5'),(41,8,'2'),(42,9,'60');
 /*!40000 ALTER TABLE `valeurs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -398,4 +425,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-19 23:27:43
+-- Dump completed on 2018-12-01 15:28:22
