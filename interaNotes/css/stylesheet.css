@@ -153,8 +153,8 @@ footer .text-uppercase {
     justify-content: center;
     text-align: center;
 }
-.tictacBas a, .tictacBas a:visited {
-    color: #ededed !important;
+.TicTacAccueil a, .TicTacAccueil a:visited {
+    color: white !important;
 }
 
 /* Accueil élève */
@@ -240,12 +240,12 @@ footer .text-uppercase {
 }
 
 .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
 .inputfile + label {
@@ -305,6 +305,62 @@ footer .text-uppercase {
     text-align: justify;
 }
 
+/* Page enseignant_creerExamen */
+.form-control {
+    color: #848484;
+    opacity: 1;
+}
+.createExam {
+    margin: 5% 0;
+}
+#classExam , #endExam, #nameExam {
+    border-radius: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#ennonceExam {
+    border-radius: 25px;
+    padding-left: 15px;
+    min-height: 215px;
+    overflow:hidden;
+    word-wrap:break-word
+}
+
+
+/* page eleve saisie réponse */
+.percentAnswer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.percentAnswer p {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.answerSubject {
+    margin-top: 5%;
+}
+
+.answerSubject span {
+    font-weight: bold;
+}
+
+#detailAnswer {
+    border-radius: 25px;
+    padding-left: 15px;
+    min-height: 100px;
+    overflow:hidden;
+    word-wrap:break-word
+}
+
+#resultAnswer {
+    border-radius: 25px;
+    padding-left: 15px;
+    margin-bottom: 3%;
+}
+
 @media screen and (min-width: 576px) {
     /* Page Connexion */
     .logoConnexion {
@@ -326,6 +382,11 @@ footer .text-uppercase {
 @media screen and (min-width: 768px) {
     .navbar-expand-md .navbar-nav .dropdown-menu {
         margin-left: -100px;
+    }
+
+    /* page eleve saisie réponse */
+    .answerSubject {
+        margin-top: 2%;
     }
 }
 
@@ -356,5 +417,15 @@ footer .text-uppercase {
     .importStudent {
         margin-bottom: 2%;
         margin-top: 5%;
+    }
+
+    /* Page enseignant_creerExamen */
+    .createExam {
+        margin: 2% 0;
+    }
+
+    /* page eleve saisie réponse */
+    #resultAnswer {
+        min-height: 100px;
     }
 }

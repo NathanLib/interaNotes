@@ -78,7 +78,7 @@ class Personne{
 	}
 
 	public function setPasswdPersonne($passwd){
-		$this->passwd = createProtectedPassword($passwd);
+		$this->passwd = $passwd; //createProtectedPassword($passwd);
 	}
 
 }

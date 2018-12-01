@@ -39,3 +39,12 @@ $(document).ready(function() {
         input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
     });
 }( document, window, 0 ));
+
+
+function adjustHeightTextArea(el){
+    el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight)+"px" : "215px";
+}
+
+function adjustHeightTextAreaLittle(el){
+    el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight)+"px" : "100px";
+}

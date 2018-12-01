@@ -10,70 +10,78 @@
 
 		// WARNING: CONNEXION
 		case 0:
-			include_once('pages/connexion.inc.php');
-			break;
+		include_once('pages/connexion.inc.php');
+		break;
 
 		// WARNING: PARTIE ENSEIGNANT
 
 		case 1:
-			include_once('pages/enseignant_accueil.inc.php');
-			break;
+		include_once('pages/enseignant_accueil.inc.php');
+		break;
 
 		case 2:
-			include_once('pages/enseignant_creerClasse.inc.php');
-			break;
+		include_once('pages/enseignant_creerClasse.inc.php');
+		break;
 
 		case 3:
-			include_once('pages/enseignant_listerSujets.inc.php');
-			break;
+		include_once('pages/enseignant_listerSujets.inc.php');
+		break;
 
-			case 4:
-			include_once('pages/enseignant_creerExamen.inc.php');
-			break;
+		case 4:
+		include_once('pages/enseignant_creerExamen.inc.php');
+		break;
 
 		case 5:
-			break;
+		break;
 
 		case 6:
-			break;
+		break;
 
 		// WARNING: PARTIE ELEVE
 		case 7:
-			include_once('pages/eleve_accueil.inc.php');
-			break;
+		include_once('pages/eleve_accueil.inc.php');
+		break;
 
 		case 8:
-			include_once('pages/eleve_afficherSujet.inc.php');
-			break;
+		include_once('pages/eleve_afficherSujet.inc.php');
+		break;
 
 		case 9:
-			break;
+		break;
 
 		case 10:
-			break;
+		break;
 
 
 		case 11:
-			break;
+		break;
 
 		// WARNING: PARTIE TEST
 
 		case 12:
-			include_once('pages/test_afficherUnSujetComplet.inc.php');
-			break;
+		include_once('pages/test_afficherUnSujetComplet.inc.php');
+		break;
 
 		case 13:
-			include_once('pages/test_afficherUnSujetCorrige.inc.php');
-			break;
+		include_once('pages/test_afficherUnSujetCorrige.inc.php');
+		break;
 
 		case 14:
-			include_once('pages/test_generationSujets.inc.php');
-			break;
+		include_once('pages/test_generationSujets.inc.php');
+		break;
 
 		case 15:
-			break;
+		include_once('pages/test_saisiReponseEleve.inc.php');
+		break;
+
+
+		// WARNING : DECONNEXION
+
+		case 16:
+		include_once('pages/deconnexion.inc.php');
+		break;
 
 	}
 
-		?>
-	</div>
+	?>
+</div>

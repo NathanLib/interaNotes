@@ -56,4 +56,21 @@ class SujetManager{
 		return $sujet;
 	}*/
 
+	public function getIdSujetByLogin($login) {
+		$sql = 'SELECT s.idSujet FROM sujet s 
+					JOIN exerciceattribue e 
+					JOIN personne p 
+					ON s.idSujet=e.idSujet AND e.idEleve=p.idPersonne AND p.login=:login';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':login', $login);
+		$requete->execute();
+
+		$sujet = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+
+		return $sujet->idSujet;
+	}
+
 }

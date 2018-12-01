@@ -1,42 +1,33 @@
-<?php
-$pdo = new Mypdo();
-$sujetManager = new SujetManager($pdo);
-$personneManager = new PersonneManager($pdo);
+<?php require_once("include/verifProf.inc.php"); ?>
 
-$listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExamen());
-?>
+<div class="row createExam">
+    <div class="col-12 col-sm-6 col-md-4">
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="classExam">Promotion :</label>
+                <select class="form-control" id="classExam">
+                    <option>Première année</option>
+                </select>
+            </div>
 
-<div class="listerSujet">
-    <?php // WARNING: BLOC A LAISSER ?>
-    <div class="row justify-content-around text-center teteListeSujet">
-        <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
-            <p> </p>
-        </div>
-        <div class="col-6 col-lg-4">
-            <span id="attributeTo">Attribué à : </span>
-        </div>
-        <div class="col-3 col-lg-2">
+            <div class="col-12 form-group">
+                <label for="endExam">Date de fin :</label>
+                <input class="form-control" id="endExam" type="date" name="" placeholder="DD/MM/YYYY"/>
+            </div>
+
+            <div class="col-12 form-group">
+                <label for="nameExam">Titre de l'examen :</label>
+                <input class="form-control" id="nameExam" type="text" placeholder="">
+            </div>
         </div>
     </div>
 
-    <?php // WARNING: BLOC A GENERER EN PHP
-    foreach ($listeSujets as $sujet) { ?>
-      <div class="row justify-content-center text-center contenuListeSujet">
-          <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
-              <p>Sujet n°<?php echo $sujet->getIdSujet() ?></p>
-          </div>
-
-          <?php $eleve = $personneManager->getNomPrenomParSujet($sujet->getIdSujet()); ?>
-
-          <div class="col-6 col-lg-4 textListeSujet">
-              <p> <?php echo $eleve->getPrenomPersonne()." ".$eleve->getNomPersonne() ?></p>
-          </div>
-
-          <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-            <a href="index.php?page=12&amp;id=<?php echo $sujet->getIdSujet();?>"><input type="button" name="" value="Consulter"></a>          
-          </div>
-      </div>
-    <?php
-    } ?>
-
+    <div class="col-12 col-md-8">
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="enonceExam">Enoncé :</label>
+                <textarea class="form-control" id="ennonceExam"  onkeyup="adjustHeightTextArea(this)" name="" placeholder='Veuillez écire vos variables de la manière suivante : [["maVariable"]]'></textarea>
+            </div>
+        </div>
+    </div>
 </div>

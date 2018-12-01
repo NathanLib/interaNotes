@@ -1,63 +1,75 @@
+<?php require_once("include/verifEleve.inc.php"); ?>
+
 <div class="row justify-content-center justify-content-around">
 
     <div class="col-6 col-lg-2 TicTacAccueil">
-        <div class="tictac">
-            <div class="tictacHaut">
-                <img class="iconTictac" src="image/subject.png" alt="exam" title="exam">
-            </div>
+        <a href="index.php?page=8">
+            <div class="tictac">
+                <div class="tictacHaut">
+                    <img class="iconTictac" src="image/subject.png" alt="exam" title="exam">
+                </div>
 
-            <div class="tictacBas">
-                <a href="#">Mon sujet</a>
+                <div class="tictacBas">
+                    Mon sujet
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-6 col-lg-2 TicTacAccueil">
-        <div class="tictac">
-            <div class="tictacHaut">
-                <img class="iconTictac" src="image/liste.png" alt="exam" title="exam">
-            </div>
+        <a href="#">
+            <div class="tictac">
+                <div class="tictacHaut">
+                    <img class="iconTictac" src="image/liste.png" alt="exam" title="exam">
+                </div>
 
-            <div class="tictacBas">
-                <a href="#">Mes sujets terminés</a>
+                <div class="tictacBas">
+                    Mes sujets terminés
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
-        <div class="tictac">
-            <div class="tictacHaut">
-                <img class="iconTictac" src="image/grade.png" alt="exam" title="exam">
-            </div>
+        <a href="#">
+            <div class="tictac">
+                <div class="tictacHaut">
+                    <img class="iconTictac" src="image/grade.png" alt="exam" title="exam">
+                </div>
 
-            <div class="tictacBas">
-                <a href="#">Mes notes</a>
+                <div class="tictacBas">
+                    Mes notes
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
-        <div class="tictac">
-            <div class="tictacHaut">
-                <img class="iconTictac" src="image/questions.png" alt="exam" title="exam">
-            </div>
+        <a href="#">
+            <div class="tictac">
+                <div class="tictacHaut">
+                    <img class="iconTictac" src="image/questions.png" alt="exam" title="exam">
+                </div>
 
-            <div class="tictacBas">
-                <a href="#">Poser une question</a>
+                <div class="tictacBas">
+                    Poser une question
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
-        <div class="tictac">
-            <div class="tictacHaut">
-                <img class="iconTictac" src="image/parameter.png" alt="exam" title="exam">
-            </div>
+        <a href="#">
+            <div class="tictac">
+                <div class="tictacHaut">
+                    <img class="iconTictac" src="image/parameter.png" alt="exam" title="exam">
+                </div>
 
-            <div class="tictacBas">
-                <a href="#">Paramètres</a>
+                <div class="tictacBas">
+                    Paramètres
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
 </div>
