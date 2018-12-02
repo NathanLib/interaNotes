@@ -53,8 +53,9 @@ $valeurs = $valeurManager->getValeursSujet($idSujet);
             </div>
         </div>
     </div>
-
+    <a href="index.php?page=15"><button>Saisir les réponses</button></a>
 </div>
+
 
 <?php /*  En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de <span>[["destinationPlanete"]]</span> qui se situe à <span>[["distanceDestination"]] Kms</span> de notre chère Terre !
                     <br><br>

@@ -56,7 +56,7 @@ class CorrigeManager{
 
 		$qteCarburant = $nbConso*$consommationCarburantQuantité*$nbMoteur; //qtéCarburant tous moteurs = nbConso*consommationMoteur*[[nbMoteur]]
 
-		$jours = $distanceDestination / $vitesse; // jours = [[distanceDestination]]/[[vitesse]]
+		$jours = ($distanceDestination / $vitesse)/24; // jours = ([[distanceDestination]]/[[vitesse]])/24 (nb heures)
 
 		$qteO2 =$nbPersonne*$consoO2*$jours; // [[nbPersonnes]]*60*jours
 

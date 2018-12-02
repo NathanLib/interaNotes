@@ -65,7 +65,7 @@
         $personneManager = new personneManager($db);
 
         
-        $personneManager->creerEleves($eleves,$_POST['annee']);
+        $personneManager->creerEleves($eleves,$_POST['annee'],$_POST['nom']);
     } ?>
     <div class="col-12 col-md-6 listImportStudent">
         <table class="table table-hover">
