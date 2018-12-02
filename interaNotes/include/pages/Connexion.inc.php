@@ -25,12 +25,12 @@ if(empty($_POST['mdp'])) { ?>
                 <form action="index.php?page=0" method="post">
                     <div class="row">
                         <div class="col-12">
-                            <input class="inputConnexion" type="text" name="login" placeholder="Identifiant">
+                            <input class="inputConnexion" type="text" name="login" placeholder="Identifiant" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <input class="inputConnexion" type="password" name="mdp" placeholder="Mot de passe">
+                            <input class="inputConnexion" type="password" name="mdp" placeholder="Mot de passe" required>
                         </div>
                     </div>
 
@@ -68,12 +68,12 @@ if(empty($_POST['mdp'])) { ?>
                         <p><img src="image/erreur.png" alt="Erreur" title="Erreur" /> Login / Mot de passe incorrect</p>
                         <div class="row">
                             <div class="col-12">
-                                <input class="inputConnexion" type="text" name="login" placeholder="Identifiant">
+                                <input class="inputConnexion" type="text" name="login" placeholder="Identifiant" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <input class="inputConnexion" type="password" name="mdp" placeholder="Mot de passe">
+                                <input class="inputConnexion" type="password" name="mdp" placeholder="Mot de passe" required>
                             </div>
                         </div>
 
