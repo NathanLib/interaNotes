@@ -6,6 +6,7 @@ class Question{
 	private $resultat;
 	private $uniteResultat;
 	private $bareme;
+	private $exposantUnite;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -36,6 +37,9 @@ class Question{
 					break;
 				case 'bareme' :
 					$this->setBareme($valeur);
+					break;
+				case 'exposantUnite' :
+					$this->setExposantUnite($valeur);
 					break;
 			}
 		}
@@ -89,5 +93,13 @@ class Question{
 
 	public function setBareme($bareme){
 		$this->bareme = $bareme;
+	}
+
+	public function getExposantUnite(){
+		return $this->exposantUnite;
+	}
+
+	public function setExposantUnite($exposantUnite){
+		$this->exposantUnite = $exposantUnite;
 	}
 }
