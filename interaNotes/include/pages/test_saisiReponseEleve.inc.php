@@ -52,12 +52,33 @@ if (empty($_POST['reponse1'])) {
 
                             <div class="col-12 col-lg-5 form-group">
                                 <label for="resultAnswer">Unité du Résultat :</label>
-                                <input class="form-control" id="resultAnswer" name="unite<?php echo $value->getIdReponse() ?>" type="text" placeholder="" required>
+                                <select class="form-control" id="resultAnswer" name="unite<?php echo $value->getIdReponse() ?>" type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                    <option value="km/h">km/h</option>
+                                    <option value="m">m</option>
+                                    <option value="g">g</option>
+                                    <option value="jours">jours</option>
+                                    <option value="L">L</option>
+                                    <option value="Hz">Hz</option>
+                                    <option value="bar">bar</option>
+                                    <option value="Pa">pa</option>
+                                    <option value="J">J</option>
+                                    <option value="cal">cal</option>
+                                </select>
                             </div>
 
                             <div class="col-12 col-lg-5 form-group">
                                 <label for="resultAnswer">Exposant du Résultat :</label>
-                                <input class="form-control" id="resultAnswer" name="unite<?php echo $value->getIdReponse() ?>" type="text" placeholder="" required>
+                                <select class="form-control" id="resultAnswer" name="exposant<?php echo $value->getIdReponse() ?>" type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                    <option value="12">12</option>
+                                    <option value="9">9</option>
+                                    <option value="6">6</option>
+                                    <option value="3">3</option>
+                                    <option value="1">1</option>
+                                    <option value="-3">-3</option>
+                                    <option value="-6">-6</option>
+                                    <option value="-9">-9</option>
+                                    <option value="-12">-12</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -74,16 +95,16 @@ if (empty($_POST['reponse1'])) {
 $i=1;
 foreach ($_POST as $attribut => $value) {
     switch ($i) {
-        case 1:$question['justification']=$value[0];
+        case 1:$question['justification']=$value;
             $i++;
             break;
-        case 2:$question['reponse']=$value[0];
+        case 2:$question['reponse']=$value;
             $i++;
             break;
-        case 3:$question['unite']=$value[0];
+        case 3:$question['unite']=$value;
             $i++;
             break;
-        case 4:$question['exposant']=$value[0];
+        case 4:$question['exposant']=$value;
             $i=1;
             $listeReponse[]=$question;
             break;

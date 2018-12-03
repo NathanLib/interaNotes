@@ -32,8 +32,8 @@ class Question{
 				case 'resultat' :
 					$this->setResultat($valeur);
 					break;
-				case 'uniteResultat' :
-					$this->setUniteResultat($valeur);
+				case 'resultatUnite' :
+					$this->setResultatUnite($valeur);
 					break;
 				case 'bareme' :
 					$this->setBareme($valeur);
@@ -79,12 +79,12 @@ class Question{
 		$this->resultat = $resultat;
 	}
 
-	public function getUniteResultat(){
+	public function getResultatUnite(){
 		return $this->uniteResultat;
 	}
 
-	public function setUniteResultat($uniteResultat){
-		$this->uniteResultat = $uniteResultat;
+	public function setResultatUnite($uniteResultat){
+		$this->resultatUnite = $uniteResultat;
 	}
 
 	public function getBareme(){
