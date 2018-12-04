@@ -1,5 +1,5 @@
 <?php if(isset($_SESSION['eleve'])) {
     header('Location: index.php?page=7');
-} if(!isset($_SESSION['prof'])){
+} if(!isset($_SESSION['enseignant'])){
     header('Location: index.php?page=0');
 }?>

@@ -1,12 +1,12 @@
-<?php require_once("include/verifProf.inc.php"); ?>
+<?php require_once("include/verifEnseignant.inc.php"); ?>
 
 <?php if (empty($_POST['annee'])) { ?>
     <div class="row createClass">
-        <form action="index.php?page=2" method="post" enctype="multipart/form-data" name="form1"> 
+        <form action="index.php?page=2" method="post" enctype="multipart/form-data" name="form1">
             <div class="col-12 col-md-6">
                 <div class="row">
                     <div class="col-12">
-                        <label>Nom de la promotion :</label> 
+                        <label>Nom de la promotion :</label>
                     </div>
                     <div class="col-8 inputNameClass">
                         <input type="text" name="nom" value="" placeholder="Promo 1A" required>
@@ -35,25 +35,25 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" name="Submit" value="Importer"> 
+                <input type="submit" name="Submit" value="Importer">
             </div>
         </form>
     </div>
-    
 
-<?php } else { 
 
-    if (isset($_FILES['file'])) { 
+<?php } else {
 
-        $file = $_FILES['file']['tmp_name']; 
-        $handle = fopen($file,'r'); 
-        $row = 1; 
+    if (isset($_FILES['file'])) {
+        //Warning : externaliser Fonction
+        $file = $_FILES['file']['tmp_name'];
+        $handle = fopen($file,'r');
+        $row = 1;
         $handle = fopen("$file", "r");
 
-        while (($data = fgetcsv($handle, 4096, ",")) !== FALSE) { 
-            $num = count($data); 
+        while (($data = fgetcsv($handle, 4096, ",")) !== FALSE) {
+            $num = count($data);
             echo "<br/>";
-            $row++; 
+            $row++;
             for ($c=0; $c < $num; $c++) {
                 $eleves[] = $data[0];
             }
@@ -64,7 +64,7 @@
         $db = new Mypdo();
         $personneManager = new personneManager($db);
 
-        
+
         $personneManager->creerEleves($eleves,$_POST['annee'],$_POST['nom']);
     } ?>
     <div class="col-12 col-md-6 listImportStudent">
@@ -79,7 +79,7 @@
             </thead>
             <tbody>
                 <?php $listeEleves = $personneManager->getAllEleveAnnee($_POST['annee']);
-                foreach ($listeEleves as $attribut => $value) { 
+                foreach ($listeEleves as $attribut => $value) {
                    ?>
                    <tr>
                     <th scope="row"><?php echo $value->getIdPersonne() ?></th>
@@ -92,5 +92,5 @@
     </div>
 </div>
 <?php }
-  
+
  ?>

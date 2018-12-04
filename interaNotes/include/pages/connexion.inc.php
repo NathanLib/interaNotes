@@ -1,7 +1,7 @@
 <?php
 if (isset($_SESSION['eleve'])){
    header('Location: index.php?page=7');
-} elseif (isset($_SESSION['prof'])) {
+} elseif (isset($_SESSION['enseignant'])) {
   header('Location: index.php?page=1');
 }
 
@@ -47,10 +47,10 @@ if(empty($_POST['mdp'])) { ?>
      $db = new Mypdo();
      $personneManager = new PersonneManager($db);
 
-     $log = $personneManager->connexion($_POST['login'],$_POST['mdp']);
+     $log = $personneManager->connexion($_POST['login'],createProtectedPassword($_POST['mdp']));
 
      switch ($log) {
-         case 0:
+         case "erreurConnexion":
          ?>
          <div class="row justify-content-center contenuConnexion">
             <div class="col-9 col-md-6">
@@ -87,19 +87,19 @@ if(empty($_POST['mdp'])) { ?>
             </div>
 
 
-            <?php    
+            <?php
             break;
-            
-            case 1:
+
+            case "eleve":
             $_SESSION['eleve']=$_POST['login'];
             header('Location: index.php?page=7');
             break;
 
-            case 2:
-            $_SESSION['prof']=$_POST['login'];
+            case "enseignant":
+            $_SESSION['enseignant']=$_POST['login'];
             header('Location: index.php?page=1');
             break;
-            
+
             default:
             header('Location: index.php?page=0');
             break;

@@ -1,4 +1,4 @@
-<?php require_once("include/verifProf.inc.php"); ?>
+<?php require_once("include/verifEnseignant.inc.php"); ?>
 
 <div class="row createExam">
     <div class="col-12 col-sm-6 col-md-4">
