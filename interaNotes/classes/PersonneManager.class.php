@@ -15,31 +15,25 @@ class PersonneManager{
 		$requete->execute();
 
 		$personne = $requete->fetch(PDO::FETCH_OBJ);
-
 		$requete->closeCursor();
 
-		
 		return new Personne($personne);
-
 	}
 
 	public function creerEleves($eleves,$annee,$nomPromo) {
 		foreach ($eleves as $attribut => $value) {
 			if($attribut!=0){
-				
-				$personne=explode(";", $value);
 
-
+				$personne = explode(";", $value);
 				$login = $personne[0].random_int(0,99);
 
 				while($this->loginExiste($login)){
 					$login = $personne[0].random_int(0,99);
 				}
 
-				$mdp=createRandomPassword();
+				$mdp = createRandomPassword();
 
-				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'login'=>$login,'mdp'=>$mdp,'mail'=>$personne[2])); 
-				
+				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'login'=>$login,'mdp'=>$mdp,'mail'=>$personne[2]));
 			}
 		}
 
@@ -67,9 +61,7 @@ class PersonneManager{
 			$requete->bindValue(':id', $id);
 			$requete->bindValue(':annee', $annee);
 			$requete->bindValue(':nomPromo',$nomPromo);
-
 			$requete->execute();
-
 			$requete->closeCursor();
 		}
 	}
@@ -97,11 +89,10 @@ class PersonneManager{
 		$requete->execute();
 
 		$res = $requete->fetch(PDO::FETCH_OBJ);
-
 		$requete->closeCursor();
 
 		return is_null($res);
-		
+
 	}
 
 	//WARNING
@@ -128,45 +119,43 @@ class PersonneManager{
 			fputcsv($csv, $data);
 	}
 
-	public function connexion($login,$mdp){
-		
-		$mdp = createProtectedPassword($mdp);
-		
+	public function connexion($login,$protectedPassword){
+
 		$req = $this->db->prepare('SELECT login,mdp FROM personne WHERE login=:login;');
-		
+
 		$req->bindValue(':login',$login,PDO::PARAM_STR);
-		
+
 		$req->execute();
-		
-		$res = $req->fetch(PDO::FETCH_ASSOC);	
-			
-		if($res['login'] === $login && $res['mdp'] === $mdp ) {
+
+		$res = $req->fetch(PDO::FETCH_ASSOC);
+
+		if($res['login'] === $login && $res['mdp'] === $protectedPassword ) {
 			if($this->isEleve($login)){
-				return 1;
+				return "eleve";
 			}
-			return 2;
+			return "enseignant";
 		}
-		
-		return 0;
+
+		return "erreurConnexion";
 
 	}
 
 	public function isEleve($login){
 
 		$req = $this->db->prepare('SELECT idEleve FROM eleve e JOIN personne p WHERE p.idPersonne=e.idEleve AND p.login=:login;');
-		
+
 		$req->bindValue(':login',$login,PDO::PARAM_STR);
-		
+
 		$req->execute();
-		
+
 		$res = $req->fetch(PDO::FETCH_OBJ);
-		
+
 		$req->closeCursor();
 
 		if($res!=false){
 			return true;
 		}
 		return $res;
-	
+
 	}
 }

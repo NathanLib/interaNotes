@@ -39,7 +39,7 @@
         <!-- Navbar links -->
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
             <ul class="navbar-nav">
-                <?php if (isset($_SESSION['prof'])) {?>
+                <?php if (isset($_SESSION['enseignant'])) {?>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?page=1">Accueil enseignant</a>
                     </li>
@@ -47,7 +47,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?page=7">Accueil élève</a>
                     </li>
-                <?php } if(isset($_SESSION['prof']) || isset($_SESSION['eleve'])) {?>
+                <?php } if(isset($_SESSION['enseignant']) || isset($_SESSION['eleve'])) {?>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?page=16">Déconnexion</a>
                     </li>

@@ -1,4 +1,4 @@
-<?php require_once("include/verifProf.inc.php"); ?>
+<?php require_once("include/verifEnseignant.inc.php"); ?>
 
 
 <?php
@@ -53,7 +53,7 @@ $_SESSION['examen'] = $examenManager->getExamen($numExamen);
     </div>
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
-        <a href="#">
+        <a href="index.php?page=2">
             <div class="tictac">
                 <div class="tictacHaut">
                     <img class="iconTictac" src="image/student.png" alt="exam" title="exam">
