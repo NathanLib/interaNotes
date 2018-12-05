@@ -5,6 +5,8 @@ $sujetManager = new SujetManager($pdo);
 $enonceManager = new EnonceManager($pdo);
 $examenManager = new ExamenManager($pdo);
 $questionManager = new QuestionManager($pdo);
+$personneManager = new PersonneManager($pdo);
+$reponseEleveManager = new ReponseEleveManager($pdo);
 
 
 $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']);
@@ -30,8 +32,8 @@ if (empty($_POST['reponse1'])) {
                 </div>
             </div>
             <div class="col-12">
-               <?php $listeQuestion = $questionManager->getAllQuestion($idSujet); 
-               foreach ($listeQuestion as $attribut => $value) { ?>
+             <?php $listeQuestion = $questionManager->getAllQuestion($idSujet); 
+             foreach ($listeQuestion as $attribut => $value) { ?>
                 <div class="row">
                     <div class="col-10">
                         <span>Question <?php echo $value->getIdReponse() ?> :</span>
@@ -92,28 +94,44 @@ if (empty($_POST['reponse1'])) {
 
 <?php } else {
 
-$i=1;
-foreach ($_POST as $attribut => $value) {
-    switch ($i) {
-        case 1:$question['justification']=$value;
-            $i++;
-            break;
-        case 2:$question['reponse']=$value;
-            $i++;
-            break;
-        case 3:$question['unite']=$value;
-            $i++;
-            break;
-        case 4:$question['exposant']=$value;
-            $i=1;
-            $listeReponse[]=$question;
-            break;
+    $i=1;
+    foreach ($_POST as $attribut => $value) {
+     switch ($i) {
+        case 1:
+        $reponse['justification']=$value;
+        $i++;
+        break;
+        case 2:
+        $reponse['resultat']=$value;
+        $i++;
+        break;
+        case 3:
+        $reponse['resultatUnite']=$value;
+        $i++;
+        break;
+        case 4:
+        $reponse['exposantUnite']=$value;
+        $i=1;
+        $listeReponse[]=$reponse;
+        break;
         default:
-            exit();
-            break;
+        break;
     } 
 }
 
-var_dump($listeReponse);
+$idEleve =$personneManager->getIdEleveByLogin($_SESSION['eleve']);
+$date = date("Y-m-d H:i:s");
 
+foreach ($listeReponse as $attribut => $value) {
+    $reponseObj = new ReponseEleve($value);
+    $reponseObj->setDateResult($date);
+    $reponseObj->setIdReponse($attribut+1);
+    $reponseObj->setIdSujet($idSujet);
+    $reponseObj->setIdEleve($idEleve);
+    $reponseObj->setPrecisionReponse($reponseEleveManager->getPrecisionReponse($reponseObj));
+
+    $reponseEleveManager->importSaisie($reponseObj);
+
+    }
 } ?>
+<p>Vos réponses ont été envoyées au professeur ! <img src="image/valid.png"></p>

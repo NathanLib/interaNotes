@@ -158,4 +158,18 @@ class PersonneManager{
 		return $res;
 
 	}
+
+	public function getIdEleveByLogin($login){
+		$req = $this->db->prepare('SELECT idEleve FROM eleve e JOIN personne p WHERE p.idPersonne=e.idEleve AND p.login=:login;');
+
+		$req->bindValue(':login',$login,PDO::PARAM_STR);
+
+		$req->execute();
+
+		$res = $req->fetch(PDO::FETCH_OBJ);
+
+		$req->closeCursor();
+
+		return $res->idEleve;
+	}
 }
