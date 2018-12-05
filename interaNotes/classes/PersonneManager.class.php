@@ -130,19 +130,19 @@ class PersonneManager{
 		$res = $req->fetch(PDO::FETCH_ASSOC);
 
 		if($res['login'] === $login && $res['mdp'] === $protectedPassword ) {
-			if($this->isEleve($login)){
-				return "eleve";
+			if($this->isEnseignant($login)){
+				return "enseignant";
 			}
-			return "enseignant";
+			return "eleve";
 		}
 
 		return "erreurConnexion";
 
 	}
 
-	public function isEleve($login){
+	public function isEnseignant($login){
 
-		$req = $this->db->prepare('SELECT idEleve FROM eleve e JOIN personne p WHERE p.idPersonne=e.idEleve AND p.login=:login;');
+		$req = $this->db->prepare('SELECT idenseignant FROM enseignant e JOIN personne p WHERE p.idPersonne=e.idEnseignant AND p.login=:login;');
 
 		$req->bindValue(':login',$login,PDO::PARAM_STR);
 
