@@ -1,5 +1,5 @@
 <?php
-if(isset($_GET['id'])){
+if(isset($_GET['id'])){ //WARNING gérer quand l'id n'existe pas dans la base
 
   $idSujet = $_GET['id'];
 

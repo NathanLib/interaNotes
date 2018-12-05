@@ -30,6 +30,7 @@ class Personne{
 					break;
 				case 'mail' :
 					$this->setMailPersonne($valeur);
+					break;
 
 				case 'login' :
 					$this->setLoginPersonne($valeur);

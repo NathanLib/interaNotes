@@ -25,23 +25,23 @@ class PersonneManager{
 			if($attribut!=0){
 
 				$personne = explode(";", $value);
-				$login = $personne[0].random_int(0,99);
+				$login = $personne[0].random_int(1,99);
 
 				while($this->loginExiste($login)){
-					$login = $personne[0].random_int(0,99);
+					$login = $personne[0].random_int(1,99);
 				}
 
 				$mdp = createRandomPassword();
 
-				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'login'=>$login,'mdp'=>$mdp,'mail'=>$personne[2]));
+				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'mail'=>$personne[2],'login'=>$login,'mdp'=>$mdp));
 			}
 		}
 
 		$this->importEleves($listeEleves,$annee,$nomPromo);
-		//$this->getCSVEleves($listeEleves); // WARNING
+		$this->getCSVEleves($listeEleves); // WARNING
 	}
 
-	public function importEleves($eleves,$annee,$nomPromo) {
+	private function importEleves($eleves,$annee,$nomPromo) {
 		foreach ($eleves as $attribut => $value) {
 			$sql = 'INSERT INTO personne(nom,prenom,mail,login,mdp) VALUES (:nom,:prenom,:mail,:login,:mdp) ';
 
@@ -95,28 +95,15 @@ class PersonneManager{
 
 	}
 
-	//WARNING
-
-	public function getCSVEleves($eleves) {
-		// output headers so that the file is downloaded rather than displayed
-		header('Content-type: text/csv');
-		header('Content-Disposition: attachment; filename="demo.csv"');
-
-    // do not cache the file
-		header('Pragma: no-cache');
-		header('Expires: 0');
-    // create a file pointer connected to the output stream
-
-		$csv = fopen('php://output', 'w');
-
-    // send the column headers
-		fputcsv($csv, array('Nom', 'Prenom', 'Login', 'Mot de passe'));
-
-		foreach ($eleves as $attribut => $value) {
-			$data[]=$value->getNomPersonne().";".$value->getPrenomPersonne().";".$value->getLoginPersonne().";".$value->getPasswdPersonne();
+	private function getCSVEleves($listeEleves) {
+		foreach ($listeEleves as $personne) {
+		  $tableauEleves[] = array($personne->getNomPersonne(),$personne->getPrenomPersonne(),$personne->getMailPersonne(),$personne->getLoginPersonne(),$personne->getPasswdPersonne());
 		}
 
-			fputcsv($csv, $data);
+		$_SESSION['tableauEleves'] = $tableauEleves;
+		//header('Location: include/pages/test_exportCSV.inc.php');
+		echo "<script
+		language='javascript'>blank.location.href='include/pages/test_exportCSV.inc.php'</script>";
 	}
 
 	public function connexion($login,$protectedPassword){
@@ -142,7 +129,7 @@ class PersonneManager{
 
 	public function isEleve($login){
 
-		$req = $this->db->prepare('SELECT idEleve FROM eleve e JOIN personne p WHERE p.idPersonne=e.idEleve AND p.login=:login;');
+		$req = $this->db->prepare('SELECT idEleve FROM eleve e INNER JOIN personne p ON(p.idPersonne=e.idEleve) WHERE p.login=:login;');
 
 		$req->bindValue(':login',$login,PDO::PARAM_STR);
 
