@@ -7,7 +7,7 @@ if (isset($_SESSION['eleve'])){
 
 echo "dumbledore : ".createProtectedPassword("dumbledore");
 echo "<br>";
-echo "charente :".createProtectedPassword("charente");
+echo "charente : ".createProtectedPassword("charente");
 
 if(empty($_POST['mdp'])) { ?>
     <div class="row justify-content-center contenuConnexion">

@@ -65,6 +65,7 @@ date_default_timezone_set('Europe/Paris');?>
                             <a class="dropdown-item" href="index.php?page=14">t_genSujet</a>
                             <a class="dropdown-item" href="index.php?page=15">t_saisiReponseEleve</a>
                             <a class="dropdown-item" href="index.php?page=17">t_publipostage</a>
+                            <a class="dropdown-item" href="index.php?page=18">t_AffichagePourcentage</a>
                         </div>
                     </li>
                 </ul>

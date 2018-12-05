@@ -27,9 +27,11 @@ class ReponseEleve{
 				case 'idEleve' :
 					$this->setIdEleve($valeur);
 					break;
-
 				case 'idSujet' :
 					$this->setIdSujet($valeur);
+					break;
+				case 'idReponse' :
+					$this->setIdReponse($valeur);
 					break;
 				case 'resultat' :
 					$this->setResultat($valeur);

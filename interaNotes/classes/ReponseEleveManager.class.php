@@ -49,4 +49,20 @@ class ReponseEleveManager{
 		$requete->bindValue(':precisionReponse', $reponseObj->getPrecisionReponse());
 		$requete->execute();
 	}
+
+	public function getAllReponseEleve($idSujet){
+		$sql = 'SELECT dateResult,resultat,idReponse,exposantUnite,resultatUnite,precisionReponse,justification FROM resultatseleves WHERE idSujet=:idSujet';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idSujet', $idSujet);
+		$requete->execute();
+
+		while($res = $requete->fetch(PDO::FETCH_OBJ)){
+			$listeReponses[] = new ReponseEleve($res);
+		}
+		
+		$requete->closeCursor();
+
+		return $listeReponses;
+	}
 } 
