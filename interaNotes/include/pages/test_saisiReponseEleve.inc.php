@@ -133,5 +133,5 @@ foreach ($listeReponse as $attribut => $value) {
     $reponseEleveManager->importSaisie($reponseObj);
 
     }
+    ?> <p>Vos réponses ont été envoyées au professeur ! <img src="image/valid.png"></p><?php
 } ?>
-<p>Vos réponses ont été envoyées au professeur ! <img src="image/valid.png"></p>
