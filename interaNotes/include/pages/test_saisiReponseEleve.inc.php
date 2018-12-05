@@ -51,7 +51,7 @@ if (empty($_POST['reponse1'])) {
                             <div class="row">
                                 <div class="col-12 col-lg-7 form-group">
                                     <label for="detailAnswer">Détail calcul :</label>
-                                    <textarea class="form-control" id="detailAnswer" name="justification<?php  echo $value->getIdReponse() ?>" onkeyup="adjustHeightTextAreaLittle(this)" name="" placeholder='Veuillez écire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...' required></textarea>
+                                    <textarea class="form-control" id="detailAnswer" name="justification<?php  echo $value->getIdReponse() ?>" onkeyup="adjustHeightTextAreaLittle(this)" name="" placeholder='Veuillez écrire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...' required></textarea>
                                 </div>
 
                                 <div class="col-12 col-lg-5">
@@ -59,7 +59,7 @@ if (empty($_POST['reponse1'])) {
                                     <div class="row">
                                         <div class="col-12 form-group">
                                             <label for="resultAnswer">Résultat :</label>
-                                            <input class="form-control" id="resultAnswer" name="reponse<?php echo $value->getIdReponse() ?>" type="text" placeholder="" required>
+                                            <input class="form-control" id="resultAnswer" name="reponse<?php echo $value->getIdReponse() ?>" type="number" placeholder="" step="0.000000000001" required>
                                         </div>
 
                                         <div class="col-12 form-group">

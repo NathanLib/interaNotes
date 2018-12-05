@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-12 form-group">
                 <label for="enonceExam">Enoncé :</label>
-                <textarea class="form-control" id="ennonceExam"  onkeyup="adjustHeightTextArea(this)" name="" placeholder='Veuillez écire vos variables de la manière suivante : [["maVariable"]]'></textarea>
+                <textarea class="form-control" id="ennonceExam"  onkeyup="adjustHeightTextArea(this)" name="" placeholder='Veuillez écrire vos variables de la manière suivante : [["maVariable"]]'></textarea>
             </div>
         </div>
     </div>
