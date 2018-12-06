@@ -69,6 +69,25 @@
 
         $listeEleves = $personneManager->getAllEleveAnnee($_POST['annee']);?>
 
+        <!--Affichage caractéristiques de la classe importée-->
+        <div class="row createClass">
+            <div class="col-12 col-md-6">
+
+                <div class="row">
+                    <div class="col-12">
+                        <label>Nom de la promotion : <?php echo $_POST['nom'] ?></label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <label>Année de la promotion : <?php echo $_POST['annee'] ?></label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <!-- Affichage des élèves importés -->
         <div class="col-12 col-md-6 listImportStudent">
 
