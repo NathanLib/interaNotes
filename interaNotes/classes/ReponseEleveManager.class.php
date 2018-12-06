@@ -63,6 +63,9 @@ class ReponseEleveManager{
 		
 		$requete->closeCursor();
 
-		return $listeReponses;
+		if(isset($listeReponses)) {
+			return $listeReponses;
+		}
+		return false;
 	}
 } 

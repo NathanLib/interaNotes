@@ -72,7 +72,10 @@ if(!isset($_GET['id'])) {
 </div>
 <?php } else { 
 	$listeReponses = $reponseEleveManager->getAllReponseEleve($_GET['idSujet']);
-	?>
+	
+	if($listeReponses === false ){
+		?><p>L'élève n'a saisie aucune réponse</p><?php
+	} else { ?>
 	<table style="width:100%">
 		<tr>
 			<th>Date de saisie</th>
@@ -93,6 +96,7 @@ if(!isset($_GET['id'])) {
 				<td><?php echo $value->getJustification() ?></td>
 				<td><?php echo $value->getPrecisionReponse() ?></td>
 			</tr>
-		<?php } ?>
+		<?php }
+	} ?>
 	</table>
 <?php } ?>
