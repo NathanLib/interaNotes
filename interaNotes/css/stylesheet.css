@@ -302,6 +302,10 @@ footer .text-uppercase {
     text-align: center;
 }
 
+.affClassCreated caption{
+    caption-side: top;
+}
+
 
 /* Page eleve afficherSujet */
 .mySubject {
