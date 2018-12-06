@@ -289,6 +289,19 @@ footer .text-uppercase {
     color: #5b5b5b;
 }
 
+.affClassCreated {
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+}
+.affClassCreated label {
+    font-weight: bold;
+}
+
+.affClassCreated p {
+    text-align: center;
+}
+
 
 /* Page eleve afficherSujet */
 .mySubject {

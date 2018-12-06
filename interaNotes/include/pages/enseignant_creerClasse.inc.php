@@ -52,12 +52,11 @@
 
         while (($data = fgetcsv($handle, 4096, ",")) !== FALSE) {
             $num = count($data);
-            echo "<br/>";
             $row++;
             for ($c=0; $c < $num; $c++) {
                 $eleves[] = $data[0];
             }
-         }
+        }
 
         fclose($handle);
 
@@ -69,62 +68,61 @@
 
         $listeEleves = $personneManager->getAllEleveAnnee($_POST['annee']);?>
 
-        <!--Affichage caractéristiques de la classe importée-->
-        <div class="row createClass">
-            <div class="col-12 col-md-6">
+        <div class="row affClassCreated">
+            <div class="col-12 col-md-5 ">
+                <!--Affichage caractéristiques de la classe importée-->
 
                 <div class="row">
                     <div class="col-12">
-                        <label>Nom de la promotion : <?php echo $_POST['nom'] ?></label>
+                        <label>Nom de la promotion :</label>
+                        <p><?php echo $_POST['nom'] ?></p>
                     </div>
-                </div>
 
-                <div class="row">
                     <div class="col-12">
-                        <label>Année de la promotion : <?php echo $_POST['annee'] ?></label>
+                        <label>Année de la promotion :</label>
+                        <p><?php echo $_POST['annee'] ?></p>
                     </div>
                 </div>
+            </div>
 
+            <!-- Affichage des élèves importés -->
+            <div class="col-12 col-md-5 listImportStudent">
+
+                <table class="table table-hover">
+                    <caption>Liste des élèves importés</caption>
+
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" style="border-radius: 20px 0 0 0;">#</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col" style="border-radius: 0 20px 0 0;">Nom</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php
+                        foreach ($listeEleves as $eleve) { ?>
+                            <tr>
+                                <th scope="row"><?php echo $eleve->getIdPersonne() ?></th>
+                                <td><?php echo $eleve->getPrenomPersonne()?></td>
+                                <td><?php echo $eleve->getNomPersonne()?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!-- Affichage des élèves importés -->
-        <div class="col-12 col-md-6 listImportStudent">
+        <?php
+        //Préparation de la sauvegarde dans un CSV
+        $_SESSION['tableauEleves'] = $personneManager->getTableauElevesPourCSV($listeElevesImportes);?>
 
-            <table class="table table-hover">
-                <caption>Liste des élèves importés</caption>
+        <meta http-equiv="refresh" content="1;url=include/pages/enseignant_exportElevesCSV.inc.php">
 
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col" style="border-radius: 20px 0 0 0;">#</th>
-                        <th scope="col">Prénom</th>
-                        <th scope="col" style="border-radius: 0 20px 0 0;">Nom</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?php
-                    foreach ($listeEleves as $eleve) { ?>
-                      <tr>
-                        <th scope="row"><?php echo $eleve->getIdPersonne() ?></th>
-                        <td><?php echo $eleve->getPrenomPersonne()?></td>
-                        <td><?php echo $eleve->getNomPersonne()?></td>
-                      </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-        </div>
-
-    <?php
-    //Préparation de la sauvegarde dans un CSV
-		$_SESSION['tableauEleves'] = $personneManager->getTableauElevesPourCSV($listeElevesImportes);?>
-
-    <meta http-equiv="refresh" content="1;url=include/pages/enseignant_exportElevesCSV.inc.php">
-
-    <?php
+        <?php
     } ?>
 
 </div>
 <?php }
 
- ?>
+?>
