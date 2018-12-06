@@ -20,7 +20,7 @@ class PersonneManager{
 		return new Personne($personne);
 	}
 
-	public function creerEleves($eleves,$annee,$nomPromo) {
+	public function creerTableauEleves($eleves) {
 		foreach ($eleves as $attribut => $value) {
 			if($attribut!=0){
 
@@ -37,11 +37,10 @@ class PersonneManager{
 			}
 		}
 
-		$this->importEleves($listeEleves,$annee,$nomPromo);
-		$this->getCSVEleves($listeEleves); // WARNING
+		return $listeEleves;
 	}
 
-	private function importEleves($eleves,$annee,$nomPromo) {
+	public function insererTableauEleves($eleves,$annee,$nomPromo) {
 		foreach ($eleves as $attribut => $value) {
 			$sql = 'INSERT INTO personne(nom,prenom,mail,login,mdp) VALUES (:nom,:prenom,:mail,:login,:mdp) ';
 
@@ -95,15 +94,13 @@ class PersonneManager{
 
 	}
 
-	private function getCSVEleves($listeEleves) {
+	public function getCSVEleves($listeEleves) {
 		foreach ($listeEleves as $personne) {
 		  $tableauEleves[] = array($personne->getNomPersonne(),$personne->getPrenomPersonne(),$personne->getMailPersonne(),$personne->getLoginPersonne(),$personne->getPasswdPersonne());
 		}
 
 		$_SESSION['tableauEleves'] = $tableauEleves;
-		//header('Location: include/pages/test_exportCSV.inc.php');
-		echo "<script
-		language='javascript'>blank.location.href='include/pages/test_exportCSV.inc.php'</script>";
+		header('Location: include/pages/test_exportCSV.inc.php');
 	}
 
 	public function connexion($login,$protectedPassword){
@@ -117,19 +114,19 @@ class PersonneManager{
 		$res = $req->fetch(PDO::FETCH_ASSOC);
 
 		if($res['login'] === $login && $res['mdp'] === $protectedPassword ) {
-			if($this->isEnseignant($login)){
-				return "enseignant";
+			if($this->isEleve($login)){
+				return "eleve";
 			}
-			return "eleve";
+			return "enseignant";
 		}
 
 		return "erreurConnexion";
 
 	}
 
-	public function isEnseignant($login){
+	public function isEleve($login){
 
-		$req = $this->db->prepare('SELECT idenseignant FROM enseignant e JOIN personne p WHERE p.idPersonne=e.idEnseignant AND p.login=:login;');
+		$req = $this->db->prepare('SELECT idEleve FROM eleve e INNER JOIN personne p ON(p.idPersonne=e.idEleve) WHERE p.login=:login;');
 
 		$req->bindValue(':login',$login,PDO::PARAM_STR);
 
@@ -144,19 +141,5 @@ class PersonneManager{
 		}
 		return $res;
 
-	}
-
-	public function getIdEleveByLogin($login){
-		$req = $this->db->prepare('SELECT idEleve FROM eleve e JOIN personne p WHERE p.idPersonne=e.idEleve AND p.login=:login;');
-
-		$req->bindValue(':login',$login,PDO::PARAM_STR);
-
-		$req->execute();
-
-		$res = $req->fetch(PDO::FETCH_OBJ);
-
-		$req->closeCursor();
-
-		return $res->idEleve;
 	}
 }
