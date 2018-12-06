@@ -247,7 +247,7 @@ CREATE TABLE `personne` (
 
 LOCK TABLES `personne` WRITE;
 /*!40000 ALTER TABLE `personne` DISABLE KEYS */;
-INSERT INTO `personne` VALUES (1,'Dupont','Jean','jean.dupont@etu.unilim.fr','Dupont07','tintin'),(2,'Poitou','Nicolas','nicolas.poitou@etu.unilim.fr','Poitou13','charente'),(3,'Potter','Harry','harry.potter@etu.unilim.fr','Potter01','giny'),(4,'McQueen','Flash','flash.mcqueen@etu.unilim.fr','McQueen05','vitesse'),(5,'Sparrow','Jack','jack.sparrow@etu.unilim.fr','Sparrow54','pirate');
+INSERT INTO `personne` VALUES (1,'Dupont','Jean','jean.dupont@etu.unilim.fr','Dupont07','dd12a0be622525ca9c70087737495a20c41870f7'),(2,'Poitou','Nicolas','nicolas.poitou@etu.unilim.fr','Poitou13','d5abe173b1bf9ff8fe318c8744fe236c8a0614f8'),(3,'Potter','Harry','harry.potter@etu.unilim.fr','Potter01','4c0bc787843c7a78ffe1bccf9761b19c6cd3ec72'),(4,'McQueen','Flash','flash.mcqueen@etu.unilim.fr','McQueen05','391fbf9ce3238312c7d3f9c5e24e1b06d061de96'),(5,'Sparrow','Jack','jack.sparrow@etu.unilim.fr','Sparrow54','6e9dcda6d2f78b48a2724b629ddcc96fc9ae8710');
 /*!40000 ALTER TABLE `personne` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +290,7 @@ CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
   `intituleQuestion` text NOT NULL,
-  `resultat` decimal(15,2) NOT NULL,
+  `resultat` decimal(20,2) NOT NULL,
   `exposantUnite` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
   `bareme` decimal(4,2) NOT NULL,
@@ -306,7 +306,7 @@ CREATE TABLE `resultatsattendus` (
 
 LOCK TABLES `resultatsattendus` WRITE;
 /*!40000 ALTER TABLE `resultatsattendus` DISABLE KEYS */;
-INSERT INTO `resultatsattendus` VALUES (1,1,'Quantités nécessaires d\'oxygène',2550.00,1,'Litres',1.00),(2,1,'Quantités nécessaires d\'oxygène',750000.00,1,'Litres',1.00),(1,2,'Quantités nécessaires de carburant',34000000000.00,1,'Tonnes',1.00),(2,2,'Quantités nécessaires de carburant',2000000000000.00,1,'Tonnes',1.00),(1,3,'Quantités nécessaires de nourriture',85.00,1,'Kg',1.00),(2,3,'Quantités nécessaires de nourriture',25000.00,1,'Kg',1.00),(1,4,'Quantités nécessaires d\'eau',63.75,1,'Litres',1.00),(2,4,'Quantités nécessaires d\'eau',18750.00,1,'Litres',1.00);
+INSERT INTO `resultatsattendus` VALUES (1,1,'Quantités nécessaires d\'oxygène',2550.00,1,'L',1.00),(2,1,'Quantités nécessaires d\'oxygène',750000.00,1,'L',1.00),(1,2,'Quantités nécessaires de carburant',34000000000.00,6,'g',1.00),(2,2,'Quantités nécessaires de carburant',20000000000000.00,6,'g',1.00),(1,3,'Quantités nécessaires de nourriture',85.00,3,'g',1.00),(2,3,'Quantités nécessaires de nourriture',25000.00,3,'g',1.00),(1,4,'Quantités nécessaires d\'eau',63.75,1,'L',1.00),(2,4,'Quantités nécessaires d\'eau',18750.00,1,'L',1.00);
 /*!40000 ALTER TABLE `resultatsattendus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,12 +322,12 @@ CREATE TABLE `resultatseleves` (
   `idEleve` int(11) NOT NULL,
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
-  `resultat` decimal(15,2) NOT NULL,
+  `resultat` decimal(20,2) NOT NULL,
   `exposantUnite` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
   `justification` text NOT NULL,
-  `precisionReponse` decimal(4,2) NOT NULL,
-  PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`),
+  `precisionReponse` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`,`idReponse`),
   KEY `idEleve` (`idEleve`),
   KEY `idSujet` (`idSujet`),
   KEY `idReponse` (`idReponse`),
@@ -437,4 +437,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-01 23:01:00
+-- Dump completed on 2018-12-06 15:19:53

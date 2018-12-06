@@ -281,7 +281,7 @@ CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
   `intituleQuestion` text NOT NULL,
-  `resultat` decimal(15,2) NOT NULL,
+  `resultat` decimal(20,2) NOT NULL,
   `exposantUnite` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
   `bareme` decimal(4,2) NOT NULL,
@@ -312,12 +312,12 @@ CREATE TABLE `resultatseleves` (
   `idEleve` int(11) NOT NULL,
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
-  `resultat` decimal(15,2) NOT NULL,
+  `resultat` decimal(20,2) NOT NULL,
   `exposantUnite` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
   `justification` text NOT NULL,
-  `precisionReponse` decimal(4,2) NOT NULL,
-  PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`),
+  `precisionReponse` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`,`idReponse`),
   KEY `idEleve` (`idEleve`),
   KEY `idSujet` (`idSujet`),
   KEY `idReponse` (`idReponse`),
@@ -425,4 +425,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-01 22:50:01
+-- Dump completed on 2018-12-06 15:15:13
