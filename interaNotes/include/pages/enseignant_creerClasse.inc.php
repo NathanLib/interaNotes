@@ -44,24 +44,12 @@
 <?php } else {
 
     if (isset($_FILES['file'])) {
-        //Warning : externaliser Fonction
+
         $file = $_FILES['file']['tmp_name'];
-        $handle = fopen($file,'r');
-        $row = 1;
-        $handle = fopen("$file", "r");
-
-        while (($data = fgetcsv($handle, 4096, ",")) !== FALSE) {
-            $num = count($data);
-            $row++;
-            for ($c=0; $c < $num; $c++) {
-                $eleves[] = $data[0];
-            }
-        }
-
-        fclose($handle);
+        $eleves = GestionCSV::recupererDonneesDeCSV($file);
 
         $db = new Mypdo();
-        $personneManager = new personneManager($db);
+        $personneManager = new PersonneManager($db);
 
         $listeElevesImportes = $personneManager->creerTableauEleves($eleves);
         $personneManager->insererTableauEleves($listeElevesImportes,$_POST['annee'],$_POST['nom']);
@@ -69,9 +57,9 @@
         $listeEleves = $personneManager->getAllEleveAnnee($_POST['annee']);?>
 
         <div class="row affClassCreated">
-            <div class="col-12 col-md-5 ">
-                <!--Affichage caractéristiques de la classe importée-->
 
+            <!--Affichage caractéristiques de la classe importée-->
+            <div class="col-12 col-md-5 ">
                 <div class="row">
                     <div class="col-12">
                         <label>Nom de la promotion :</label>

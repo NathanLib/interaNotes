@@ -8,7 +8,10 @@ class PersonneManager{
 
 	public function getNomPrenomParSujet($idSujet){
 
-		$sql = 'SELECT nom, prenom FROM personne p JOIN exerciceattribue ex JOIN eleve e ON p.idPersonne=e.idEleve AND e.idEleve=ex.idEleve AND ex.idSujet=:idSujet ';
+		$sql = 'SELECT nom, prenom FROM personne p
+						INNER JOIN eleve e ON(p.idPersonne=e.idEleve)
+						INNER JOIN exerciceattribue ex ON(e.idEleve=ex.idEleve)
+						WHERE ex.idSujet=:idSujet ';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
@@ -21,12 +24,12 @@ class PersonneManager{
 	}
 
 	public function creerTableauEleves($eleves) {
-		foreach ($eleves as $attribut => $value) {
-			if($attribut!=0){
+		foreach ($eleves as $ligne => $value) {
+			if($ligne!=0){
 
 				$personne = explode(";", $value);
-				$login = $personne[0].random_int(1,99);
 
+				$login = $personne[0].random_int(1,99);
 				while($this->loginExiste($login)){
 					$login = $personne[0].random_int(1,99);
 				}
@@ -65,6 +68,14 @@ class PersonneManager{
 		}
 	}
 
+	public function getTableauElevesPourCSV($listeEleves) {
+		foreach ($listeEleves as $personne) {
+		  $tableauEleves[] = array($personne->getNomPersonne(),$personne->getPrenomPersonne(),$personne->getMailPersonne(),$personne->getLoginPersonne(),$personne->getPasswdPersonne());
+		}
+
+		return $tableauEleves;
+	}
+
 	public function getAllEleveAnnee($annee){
 		$sql = 'SELECT idPersonne,prenom,nom FROM personne p JOIN eleve e WHERE e.idEleve=p.idPersonne AND e.annee=:annee';
 
@@ -92,14 +103,6 @@ class PersonneManager{
 
 		return is_null($res);
 
-	}
-
-	public function getTableauElevesPourCSV($listeEleves) {
-		foreach ($listeEleves as $personne) {
-		  $tableauEleves[] = array($personne->getNomPersonne(),$personne->getPrenomPersonne(),$personne->getMailPersonne(),$personne->getLoginPersonne(),$personne->getPasswdPersonne());
-		}
-
-		return $tableauEleves;
 	}
 
 	public function connexion($login,$protectedPassword){
