@@ -90,6 +90,10 @@
 		include_once('pages/test_AffichagePourcentage.inc.php');
 		break;
 
+		case 19:
+		include_once('pages/test_detailMonCompte.inc.php');
+		break;
+
 	}
 
 	?>
