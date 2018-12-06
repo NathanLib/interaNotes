@@ -4,7 +4,7 @@ class Question{
 	private $idQuestion;
 	private $intituleQuestion;
 	private $resultat;
-	private $uniteResultat;
+	private $resultatUnite;
 	private $bareme;
 	private $exposantUnite;
 
@@ -80,7 +80,7 @@ class Question{
 	}
 
 	public function getResultatUnite(){
-		return $this->uniteResultat;
+		return $this->resultatUnite;
 	}
 
 	public function setResultatUnite($uniteResultat){

@@ -7,7 +7,7 @@ class ReponseEleve{
 	private $resultat;
 	private $exposantUnite;
 	private $resultatUnite;
-	private $justificationReponse;
+	private $justification;
 	private $precisionReponse;
 
 	public function __construct($valeurs){
@@ -27,9 +27,11 @@ class ReponseEleve{
 				case 'idEleve' :
 					$this->setIdEleve($valeur);
 					break;
-
 				case 'idSujet' :
 					$this->setIdSujet($valeur);
+					break;
+				case 'idReponse' :
+					$this->setIdReponse($valeur);
 					break;
 				case 'resultat' :
 					$this->setResultat($valeur);
@@ -40,8 +42,8 @@ class ReponseEleve{
 				case 'resultatUnite' :
 					$this->setResultatUnite($valeur);
 					break;
-				case 'justificationReponse' :
-					$this->setJustificationReponse($valeur);
+				case 'justification' :
+					$this->setJustification($valeur);
 					break;
 				case 'precisionReponse' :
 					$this->setPrecisionReponse($valeur);
@@ -62,7 +64,7 @@ class ReponseEleve{
 		return $this->idEleve;
 	}
 
-	public function setIdEleve($idReponse){
+	public function setIdEleve($idEleve){
 		$this->idEleve = $idEleve;
 	}
 
@@ -99,19 +101,19 @@ class ReponseEleve{
 	}
 
 	public function getResultatUnite(){
-		return $this->ResultatUnite;
+		return $this->resultatUnite;
 	}
 
 	public function setResultatUnite($resultatUnite){
 		$this->resultatUnite = $resultatUnite;
 	}
 
-	public function getJustificationReponse(){
-		return $this->justificationReponse;
+	public function getJustification(){
+		return $this->justification;
 	}
 
-	public function setJustificationReponse($justificationReponse){
-		$this->justificationReponse = $justificationReponse;
+	public function setJustification($justification){
+		$this->justification = $justification;
 	}
 
 	public function getPrecisionReponse(){

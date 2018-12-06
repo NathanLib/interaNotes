@@ -70,6 +70,9 @@ class SujetManager{
 
 		$requete->closeCursor();
 
+		if($sujet===false){
+			return $sujet;
+		}
 		return $sujet->idSujet;
 	}
 

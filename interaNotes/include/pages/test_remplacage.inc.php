@@ -15,7 +15,4 @@ else {
     preg_match_all( '#\$(\w++)\$#', $contenu, $extraction );
 
     var_dump($extraction);
-    $extraction=$extraction[1]; //destruction des variables $var$
-    echo " <br> Contenu du tableau : <br>";
-    echo $extraction[0];
 }?>

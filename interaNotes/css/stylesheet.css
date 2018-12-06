@@ -350,16 +350,38 @@ footer .text-uppercase {
 #detailAnswer {
     border-radius: 25px;
     padding-left: 15px;
-    min-height: 100px;
+    min-height: 150px;
     overflow:hidden;
     word-wrap:break-word
 }
 
-#resultAnswer {
+#resultAnswer, #uniteAnswer, #exposantAnswer {
     border-radius: 25px;
     padding-left: 15px;
+}
+
+#exposantAnswer {
     margin-bottom: 3%;
 }
+
+.headerSaisie {
+    text-align: center;
+}
+
+.sendSaisie {
+    margin: 5%;
+    margin-top: 0;
+    border: 0;
+    border-radius: 50px;
+    background-color: #333;
+    color: #ededed;
+    padding-right: 1px;
+    padding-left: 1px;
+    width: 80%;
+    cursor: pointer;
+}
+
+/************************************************/
 
 @media screen and (min-width: 576px) {
     /* Page Connexion */
@@ -387,6 +409,9 @@ footer .text-uppercase {
     /* page eleve saisie réponse */
     .answerSubject {
         margin-top: 2%;
+    }
+    #detailAnswer {
+        min-height: 100px;
     }
 }
 
@@ -425,7 +450,10 @@ footer .text-uppercase {
     }
 
     /* page eleve saisie réponse */
-    #resultAnswer {
-        min-height: 100px;
+    #detailAnswer {
+        min-height: 210px;
+    }
+    .sendSaisie {
+        margin-top: 3%;
     }
 }

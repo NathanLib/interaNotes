@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start();
+date_default_timezone_set('Europe/Paris');?>
 <!doctype html>
 <html lang="fr">
 
@@ -53,19 +54,21 @@
                     </li>
                 <?php } ?>
 
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            More
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="index.php?page=12">t_ListerSujets</a>
-                            <a class="dropdown-item" href="index.php?page=8">t_afficherSujetPro</a>
-                            <a class="dropdown-item" href="index.php?page=14">t_genSujet</a>
-                            <a class="dropdown-item" href="index.php?page=15">t_saisiReponseEleve</a>
-                            <a class="dropdown-item" href="index.php?page=17">t_publipostage</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        More
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="index.php?page=12">t_ListerSujets</a>
+                        <a class="dropdown-item" href="index.php?page=8">t_afficherSujetPro</a>
+                        <a class="dropdown-item" href="index.php?page=14">t_genSujet</a>
+                        <a class="dropdown-item" href="index.php?page=15">t_saisiReponseEleve</a>
+                        <a class="dropdown-item" href="index.php?page=17">t_publipostage</a>
+                        <a class="dropdown-item" href="index.php?page=18">t_AffichagePourcentage</a>
+                        <a class="dropdown-item" href="index.php?page=19">t_detailMonCompte</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
