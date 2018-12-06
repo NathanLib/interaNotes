@@ -12,7 +12,7 @@ $reponseEleveManager = new ReponseEleveManager($pdo);
 $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']);
 $sujet = $sujetManager->getSujet($idSujet);
 $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
-if($idSujet===false){
+if(!$idSujet){
     ?><p>Aucun sujet attribué !</p> <?php
 } else {
     if (empty($_POST['reponse1'])) {
@@ -148,5 +148,5 @@ if($idSujet===false){
 
         }
         ?> <p>Vos réponses ont été envoyées au professeur ! <img src="image/valid.png"></p><?php
-    } 
+    }
 } ?>

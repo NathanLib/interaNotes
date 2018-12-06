@@ -14,13 +14,13 @@ if(!isset($_GET['id'])) {
 	<table style="width:100%">
 		<tr>
 			<th>#</th>
-			<th>dateDepot</th> 
+			<th>dateDepot</th>
 			<th>Année</th>
 		</tr>
 		<?php foreach ($listeExamens as $attribut => $value) { ?>
 			<tr>
 				<td><?php echo $value->getIdExamen() ?></td>
-				<td><?php echo $value->getDateDepotExamen() ?></td> 
+				<td><?php echo $value->getDateDepotExamen() ?></td>
 				<td><?php echo $value->getAnneeScolaireExamen() ?></td>
 				<td><a href="index.php?page=18&amp;id=<?php echo $value->getIdExamen();?>"><button>Consulter</button></a></td>
 			</tr>
@@ -70,16 +70,16 @@ if(!isset($_GET['id'])) {
     } ?>
 
 </div>
-<?php } else { 
+<?php } else {
 	$listeReponses = $reponseEleveManager->getAllReponseEleve($_GET['idSujet']);
-	
-	if($listeReponses === false ){
-		?><p>L'élève n'a saisie aucune réponse</p><?php
+
+	if(!$listeReponses){
+		?><p>L'élève n'a saisi aucune réponse</p><?php
 	} else { ?>
 	<table style="width:100%">
 		<tr>
 			<th>Date de saisie</th>
-			<th>Question N°</th> 
+			<th>Question N°</th>
 			<th>Résultat saisi</th>
 			<th>Unité du résultat</th>
 			<th>Exposant du résultat</th>

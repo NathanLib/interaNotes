@@ -57,10 +57,10 @@ class SujetManager{
 	}*/
 
 	public function getIdSujetByLogin($login) {
-		$sql = 'SELECT s.idSujet FROM sujet s 
-					JOIN exerciceattribue e 
-					JOIN personne p 
-					ON s.idSujet=e.idSujet AND e.idEleve=p.idPersonne AND p.login=:login';
+		$sql = 'SELECT s.idSujet FROM sujet s
+						INNER JOIN exerciceattribue e ON(e.idSujet=s.idSujet)
+						INNER JOIN personne p ON(p.idPersonne=e.idEleve)
+						WHERE p.login=:login';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':login', $login);
@@ -70,8 +70,8 @@ class SujetManager{
 
 		$requete->closeCursor();
 
-		if($sujet===false){
-			return $sujet;
+		if(!$sujet){
+			return false;
 		}
 		return $sujet->idSujet;
 	}

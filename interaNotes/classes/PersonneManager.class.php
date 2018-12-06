@@ -77,7 +77,9 @@ class PersonneManager{
 	}
 
 	public function getAllEleveAnnee($annee){
-		$sql = 'SELECT idPersonne,prenom,nom FROM personne p JOIN eleve e WHERE e.idEleve=p.idPersonne AND e.annee=:annee';
+		$sql = 'SELECT idPersonne,prenom,nom FROM personne p
+						INNER JOIN eleve e ON(e.idEleve=p.idPersonne)
+						WHERE e.annee=:annee';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':annee', $annee);
@@ -107,7 +109,8 @@ class PersonneManager{
 
 	public function connexion($login,$protectedPassword){
 
-		$req = $this->db->prepare('SELECT login,mdp FROM personne WHERE login=:login;');
+		$sql = 'SELECT login,mdp FROM personne WHERE login=:login';
+		$req = $this->db->prepare($sql);
 
 		$req->bindValue(':login',$login,PDO::PARAM_STR);
 
@@ -126,22 +129,18 @@ class PersonneManager{
 
 	}
 
-	public function isEleve($login){
+	private function isEleve($login){
 
-		$req = $this->db->prepare('SELECT idEleve FROM eleve e INNER JOIN personne p ON(p.idPersonne=e.idEleve) WHERE p.login=:login;');
+		$sql = 'SELECT idEleve FROM eleve e INNER JOIN personne p ON(p.idPersonne=e.idEleve) WHERE p.login=:login';
+		$req = $this->db->prepare($sql);
 
 		$req->bindValue(':login',$login,PDO::PARAM_STR);
-
 		$req->execute();
-
 		$res = $req->fetch(PDO::FETCH_OBJ);
 
 		$req->closeCursor();
 
-		if($res!=false){
-			return true;
-		}
-		return $res;
+		return $res != null;
 
 	}
 }
