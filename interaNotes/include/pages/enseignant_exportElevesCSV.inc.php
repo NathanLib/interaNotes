@@ -1,5 +1,4 @@
 <?php
-//TODO : redirigez sur la bonne page
 session_start();
 
 $filename = "liste_eleves_".date("d_m_Y").".csv";

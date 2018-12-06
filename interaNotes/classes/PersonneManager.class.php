@@ -94,13 +94,12 @@ class PersonneManager{
 
 	}
 
-	public function getCSVEleves($listeEleves) {
+	public function getTableauElevesPourCSV($listeEleves) {
 		foreach ($listeEleves as $personne) {
 		  $tableauEleves[] = array($personne->getNomPersonne(),$personne->getPrenomPersonne(),$personne->getMailPersonne(),$personne->getLoginPersonne(),$personne->getPasswdPersonne());
 		}
 
-		$_SESSION['tableauEleves'] = $tableauEleves;
-		header('Location: include/pages/test_exportCSV.inc.php');
+		return $tableauEleves;
 	}
 
 	public function connexion($login,$protectedPassword){

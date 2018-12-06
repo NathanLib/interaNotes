@@ -67,8 +67,7 @@
         $listeElevesImportes = $personneManager->creerTableauEleves($eleves);
         $personneManager->insererTableauEleves($listeElevesImportes,$_POST['annee'],$_POST['nom']);
 
-        $listeEleves = $personneManager->getAllEleveAnnee($_POST['annee']);
-        $personneManager->getCSVEleves($listeElevesImportes);?>
+        $listeEleves = $personneManager->getAllEleveAnnee($_POST['annee']);?>
 
         <!-- Affichage des élèves importés -->
         <div class="col-12 col-md-6 listImportStudent">
@@ -89,7 +88,7 @@
                     foreach ($listeEleves as $eleve) { ?>
                       <tr>
                         <th scope="row"><?php echo $eleve->getIdPersonne() ?></th>
-                        <td><?php  echo $eleve->getPrenomPersonne()?></td>
+                        <td><?php echo $eleve->getPrenomPersonne()?></td>
                         <td><?php echo $eleve->getNomPersonne()?></td>
                       </tr>
                 <?php } ?>
@@ -98,13 +97,12 @@
         </div>
 
     <?php
-    //$personneManager->getCSVEleves($listeElevesImportes);
-    /*foreach ($listeElevesImportes as $personne) {
-		  $tableauEleves[] = array($personne->getNomPersonne(),$personne->getPrenomPersonne(),$personne->getMailPersonne(),$personne->getLoginPersonne(),$personne->getPasswdPersonne());
-		}
+    //Préparation de la sauvegarde dans un CSV
+		$_SESSION['tableauEleves'] = $personneManager->getTableauElevesPourCSV($listeElevesImportes);?>
 
-		$_SESSION['tableauEleves'] = $tableauEleves;
-		header('Location: include/pages/test_exportCSV.inc.php');*/
+    <meta http-equiv="refresh" content="1;url=include/pages/enseignant_exportElevesCSV.inc.php">
+
+    <?php
     } ?>
 
 </div>
