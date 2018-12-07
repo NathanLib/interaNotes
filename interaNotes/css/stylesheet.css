@@ -469,6 +469,20 @@ footer .text-uppercase {
     .contenuListeSujet {
         margin: 2% 0;
     }
+
+    /* Page détail compte */
+    .iconStudentDetailsCompte {
+        max-width: 65%;
+    }
+    .nameDetailsCompte {
+        align-self: center;
+    }
+    .headDetailCompte {
+        margin-top: 5%;
+    }
+    .changeMdp {
+        font-size: 1rem;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -482,6 +496,18 @@ footer .text-uppercase {
     }
     #detailAnswer {
         min-height: 100px;
+    }
+
+    /* Page détail compte */
+    .iconStudentDetailsCompte {
+        max-width: 45%;
+    }
+    .headDetailCompte {
+        margin-top: 2%;
+    }
+    .hr-DetailsCompte {
+        width: 80%;
+        margin: 2% 10%;
     }
 }
 
@@ -525,5 +551,13 @@ footer .text-uppercase {
     }
     .sendSaisie {
         margin-top: 3%;
+    }
+
+    /* Page détail compte */
+    .iconStudentDetailsCompte {
+        max-width: 25%;
+    }
+    .bodyDetailCompte {
+        margin-top: 5%;
     }
 }
