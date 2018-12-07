@@ -39,20 +39,6 @@ $_SESSION['examen'] = $examenManager->getExamen($numExamen);
     </div>
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
-        <a href="#">
-            <div class="tictac">
-                <div class="tictacHaut">
-                    <img class="iconTictac" src="image/subject.png" alt="exam" title="exam">
-                </div>
-
-                <div class="tictacBas">
-                    Mes sujets types
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
         <a href="index.php?page=2">
             <div class="tictac">
                 <div class="tictacHaut">
