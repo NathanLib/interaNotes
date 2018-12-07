@@ -206,6 +206,10 @@ footer .text-uppercase {
     border-radius: 50px;
     padding: 8px 15px;
 }
+.createClassSubmit {
+    color: white;
+    background-color: #333;
+}
 .importStudent p {
     margin: 0;
 }
@@ -304,6 +308,11 @@ footer .text-uppercase {
 
 .affClassCreated caption{
     caption-side: top;
+}
+
+.affClassCreated h4 {
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 
@@ -482,6 +491,11 @@ footer .text-uppercase {
     }
     .changeMdp {
         font-size: 1rem;
+    }
+
+    /* Page création compte */
+    .affClassCreated h4 {
+        font-size: 1.5rem;
     }
 }
 

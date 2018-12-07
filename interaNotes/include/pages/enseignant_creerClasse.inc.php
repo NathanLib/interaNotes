@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" name="Submit" value="Importer">
+                <input type="submit" class="createClassSubmit" name="Submit" value="Importer">
             </div>
         </form>
     </div>
@@ -57,6 +57,9 @@
         $listeEleves = $personneManager->getAllEleveAnnee($_POST['annee']);?>
 
         <div class="row affClassCreated">
+            <div class="col-12 d-flex justify-content-center" style="margin-bottom:5%">
+                <h4>Récapitulatif de la classe importée</h4>
+            </div>
 
             <!--Affichage caractéristiques de la classe importée-->
             <div class="col-12 col-md-5 ">
@@ -77,8 +80,6 @@
             <div class="col-12 col-md-5 listImportStudent">
 
                 <table class="table table-hover">
-                    <caption>Liste des élèves importés</caption>
-
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col" style="border-radius: 20px 0 0 0;">#</th>
