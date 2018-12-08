@@ -13,11 +13,9 @@ class DependanceManager{
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 
-    while($dependance = $requete->fetch(PDO::FETCH_OBJ)){
-			$listeDependances[] = new Dependance($dependance);
-		}
+    $dependance = $requete->fetchAll(PDO::FETCH_KEY_PAIR);
 
 		$requete->closeCursor();
-		return $listeDependances;
+		return $dependance;
 	}
 }

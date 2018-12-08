@@ -29,12 +29,20 @@ $listeExamens = $examenManager->getAllExamens(); ?>
   <div class="genererSujet">
     <?php
     /*-------------DEBUT-------------------------------*/
-    $generationManager = new GenerationManager($pdo);
+    $dependanceManager = new DependanceManager($pdo);
+    $listeDependances = $dependanceManager->getAllDependances();
+
+    //BLOC DE TEST
+    $key = array_keys($listeDependances,21);
+    var_dump($key);
+    //FIN BLOC DE TEST
+
+    /*$generationManager = new GenerationManager($pdo);
     $listeExerciceGenere = $generationManager->genererExercice();
-    
+
     echo "<pre>";
-    var_dump($listeExerciceGenere);
-    echo "</pre>";
+    var_dump($listeDependances);
+    echo "</pre>";*/
 
     /*--------------------------FIN-------------------------------*/
     $retour = false;
