@@ -19,5 +19,7 @@ foreach($_SESSION['tableauEleves'] as $personne)
 }
 fclose($csv);
 
+unset($_SESSION['tableauEleves']);
+
 
 ?>
