@@ -9,7 +9,7 @@
                         <label>Nom de la promotion :</label>
                     </div>
                     <div class="col-8 inputNameClass">
-                        <input type="text" name="nom" value="" placeholder="Promo 1A" required>
+                        <input type="text" name="nom" value="" placeholder="Promo 1A" maxlength="30" required>
                     </div>
                 </div>
 
