@@ -36,24 +36,24 @@ if(!$idSujet){
                 <hr class="hr" style="width:80%">
 
                 <div class="col-12">
-                    <?php $listeQuestion = $questionManager->getAllQuestion($idSujet);
-                    foreach ($listeQuestion as $attribut => $value) { ?>
+                    <?php $listeQuestions = $questionManager->getAllQuestion($idSujet);
+                    foreach ($listeQuestions as $question) { ?>
                         <div class="row">
                             <div class="col-9">
-                                <span>Question <?php echo $value->getIdReponse() ?> :</span>
+                                <span>Question <?php echo $question->getIdReponse() ?> :</span>
                             </div>
                             <div class="col-3">
-                                <p style="align-self:end; margin:0"><?php echo " /".$value->getBareme()."pts" ?></p>
+                                <p style="align-self:end; margin:0"><?php echo " /".$question->getBareme()."pts" ?></p>
                             </div>
                             <div class="col-12">
-                                <p><?php echo $value->getIntituleQuestion() ;?></p>
+                                <p><?php echo $question->getIntituleQuestion() ;?></p>
                             </div>
 
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-12 col-lg-7 form-group">
                                         <label for="detailAnswer">Détail calcul :</label>
-                                        <textarea class="form-control" id="detailAnswer" name="justification<?php  echo $value->getIdReponse() ?>" onkeyup="adjustHeightTextAreaLittle(this)" placeholder='Veuillez écrire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...' maxlength="65535" required></textarea>
+                                        <textarea class="form-control" id="detailAnswer" name="justification<?php echo $question->getIdReponse() ?>" onkeyup="adjustHeightTextAreaLittle(this)" placeholder='Veuillez écrire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...' maxlength="65535" required></textarea>
                                     </div>
 
                                     <div class="col-12 col-lg-5">
@@ -61,37 +61,34 @@ if(!$idSujet){
                                         <div class="row">
                                             <div class="col-12 form-group">
                                                 <label for="resultAnswer">Résultat :</label>
-                                                <input class="form-control" id="resultAnswer" name="reponse<?php echo $value->getIdReponse() ?>" type="number" placeholder="" step="0.001" required>
+                                                <input class="form-control" id="resultAnswer" name="reponse<?php echo $question->getIdReponse() ?>" type="number" placeholder="" step="0.001" required>
                                             </div>
 
                                             <div class="col-12 form-group">
                                                 <label for="uniteAnswer">Unité du Résultat :</label>
-                                                <select class="form-control" id="uniteAnswer" name="unite<?php echo $value->getIdReponse() ?>" type="text" placeholder="Sélectionnez l'unité du résultat" required>
-                                                    <option value="km/h">km/h</option>
-                                                    <option value="m">m</option>
-                                                    <option value="g">g</option>
-                                                    <option value="jours">jours</option>
-                                                    <option value="L">L</option>
-                                                    <option value="Hz">Hz</option>
-                                                    <option value="bar">bar</option>
-                                                    <option value="Pa">pa</option>
-                                                    <option value="J">J</option>
-                                                    <option value="cal">cal</option>
+                                                <select class="form-control" id="uniteAnswer" name="unite<?php echo $question->getIdReponse() ?>" type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                                    <?php
+                                                    $listeUnites = Unites::getConstants();
+
+                                                    foreach ($listeUnites as $unite => $abreviation) {?>
+                                                      <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
 
                                             <div class="col-12 form-group">
                                                 <label for="exposantAnswer">Exposant du Résultat :</label>
-                                                <select class="form-control" id="exposantAnswer" name="exposant<?php echo $value->getIdReponse() ?>" type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
-                                                    <option value="12">12</option>
-                                                    <option value="9">9</option>
-                                                    <option value="6">6</option>
-                                                    <option value="3">3</option>
-                                                    <option value="1" selected>1</option>
-                                                    <option value="-3">-3</option>
-                                                    <option value="-6">-6</option>
-                                                    <option value="-9">-9</option>
-                                                    <option value="-12">-12</option>
+                                                <select class="form-control" id="exposantAnswer" name="exposant<?php echo $question->getIdReponse() ?>" type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                                  <?php
+                                                  $listeExposants = Exposants::getConstants();
+
+                                                  foreach ($listeExposants as $exposant) {?>
+                                                    <option value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
+                                                  <?php
+                                                  }
+                                                  ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -136,10 +133,10 @@ if(!$idSujet){
         $idEleve =$personneManager->getIdEleveByLogin($_SESSION['eleve']);
         $date = date("Y-m-d H:i:s");
 
-        foreach ($listeReponse as $attribut => $value) {
-            $reponseObj = new ReponseEleve($value);
+        foreach ($listeReponse as $numeroReponse => $reponse) {
+            $reponseObj = new ReponseEleve($reponse);
             $reponseObj->setDateResult($date);
-            $reponseObj->setIdReponse($attribut+1);
+            $reponseObj->setIdReponse($numeroReponse+1);
             $reponseObj->setIdSujet($idSujet);
             $reponseObj->setIdEleve($idEleve);
             $reponseObj->setPrecisionReponse($reponseEleveManager->getPrecisionReponse($reponseObj));

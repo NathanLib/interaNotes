@@ -1,10 +1,13 @@
 <?php
 abstract class Unites extends BasicEnum {
-    const Sunday = 0;
-    const Monday = 1;
-    const Tuesday = 2;
-    const Wednesday = 3;
-    const Thursday = 4;
-    const Friday = 5;
-    const Saturday = 6;
+    const METRES = "m";
+    const GRAMMES = "g";
+    const LITRES = "L";
+    const BAR = "bar";
+    const PASCAL = "Pa";
+    const JOULES = "J";
+    const CALORIES = "cal";
+    const HERTZ = "Hz";
+    const JOURS = "jours";
+    const KILOMETRES_PAR_HEURE = "km/h";
 }
