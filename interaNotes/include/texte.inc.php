@@ -94,6 +94,10 @@
 		include_once('pages/test_detailMonCompte.inc.php');
 		break;
 
+		case 20:
+		include_once('pages/test_enum.inc.php');
+		break;
+
 	}
 
 	?>
