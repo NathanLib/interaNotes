@@ -1,5 +1,6 @@
 <?php
 abstract class Exposants extends BasicEnum {
+
     const DIX_PUISSANCE_12 = "12";
     const DIX_PUISSANCE_9 = "9";
     const DIX_PUISSANCE_6 = "6";
@@ -9,4 +10,8 @@ abstract class Exposants extends BasicEnum {
     const DIX_PUISSANCE_NEGATIVE_6 = "-6";
     const DIX_PUISSANCE_NEGATIVE_9 = "-9";
     const DIX_PUISSANCE_NEGATIVE_12 = "-12";
+
+    public static function getExposantParDefaut() {
+        return self::DIX_PUISSANCE_1;
+    }
 }

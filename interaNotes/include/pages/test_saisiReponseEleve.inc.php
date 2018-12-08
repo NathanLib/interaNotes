@@ -83,9 +83,10 @@ if(!$idSujet){
                                                 <select class="form-control" id="exposantAnswer" name="exposant<?php echo $question->getIdReponse() ?>" type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
                                                   <?php
                                                   $listeExposants = Exposants::getConstants();
+                                                  $defautExposant = Exposants::getExposantParDefaut();
 
                                                   foreach ($listeExposants as $exposant) {?>
-                                                    <option value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
+                                                    <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
                                                   <?php
                                                   }
                                                   ?>
