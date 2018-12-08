@@ -61,7 +61,7 @@ if(!$idSujet){
                                         <div class="row">
                                             <div class="col-12 form-group">
                                                 <label for="resultAnswer">Résultat :</label>
-                                                <input class="form-control" id="resultAnswer" name="reponse<?php echo $value->getIdReponse() ?>" type="number" placeholder="" step="0.01" required>
+                                                <input class="form-control" id="resultAnswer" name="reponse<?php echo $value->getIdReponse() ?>" type="number" placeholder="" step="0.001" required>
                                             </div>
 
                                             <div class="col-12 form-group">
