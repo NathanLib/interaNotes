@@ -5,11 +5,14 @@ if (isset($_SESSION['eleve'])){
   header('Location: index.php?page=1');
 }
 
-//echo "dumbledore : ".createProtectedPassword("dumbledore");
 //echo "<br>";
 //echo "charente : ".createProtectedPassword("charente");
 //echo "<br>";
 //echo "pirate : ".createProtectedPassword("pirate");
+//echo "<br>";
+//echo "vitesse : ".createProtectedPassword("vitesse");
+//echo "<br>";
+//echo "tintin : ".createProtectedPassword("tintin");
 
 if(empty($_POST['mdp'])) { ?>
     <div class="row justify-content-center contenuConnexion">

@@ -26,7 +26,7 @@ class CorrigeManager{
 		return $valeursSujet;
 	}
 
-	public function calculerCorrection($idSujet){
+	public function calculerCorrection($idSujet){ //WARNING REFACTOR CLAIREMENT ET SIMPLEMENT
 		
 		$valeursSujet = $this->getSujetValeur($idSujet);
 
