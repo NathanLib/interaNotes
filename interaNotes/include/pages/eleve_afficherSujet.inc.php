@@ -10,7 +10,11 @@ $pointManager = new PointManager($pdo);
 
 
 $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']);
-$sujet = $sujetManager->getSujet($idSujet);
+if (!$idSujet){
+    ?> <p><img src="image/erreur.png" alt="Erreur" title="erreur">Aucun sujet attribué actuellement !</p><?php
+    } else {
+
+    $sujet = $sujetManager->getSujet($idSujet);
 $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
 
 $valeurs = $valeurManager->getValeursSujet($idSujet);
@@ -57,8 +61,4 @@ $valeurs = $valeurManager->getValeursSujet($idSujet);
 </div>
 
 
-<?php /*  En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de <span>[["destinationPlanete"]]</span> qui se situe à <span>[["distanceDestination"]] Kms</span> de notre chère Terre !
-                    <br><br>
-                    Nous savons que la fusée possède <span>[["nbMoteur"]] moteur(s)</span> et que chaque moteur à une vitesse qui équivaut à <span>[["vitesseMoteur"]] Km/H</span> et a une consommation de carburant qui vaut <span>[["consoCarburantParMoteur"]] Tonnes/1000 Kms</span> !
-                    <br><br>
-                    A bord de cette fusée, l'équipage est constitué de <span>[["nbPersonne"]]</span> et chaque personne consonne <span>[["consoNourritureParPersonne"]] Kgs</span> de nourriture, <span>[["consoEauParPersonne"]] L</span> d'eau et <span>[["consoO2ParPersonne"]] L</span> d'O² par jour. */ ?>
+<?php } ?>
