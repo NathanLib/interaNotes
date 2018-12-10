@@ -33,16 +33,19 @@ $listeExamens = $examenManager->getAllExamens(); ?>
     $listeDependances = $dependanceManager->getAllDependances();
 
     //BLOC DE TEST
-    $key = array_keys($listeDependances,21);
-    var_dump($key);
+    /*$liste = array_keys($listeDependances,21);
+
+    foreach ($liste as $vitesse) {
+      echo $vitesse;
+    }*/
     //FIN BLOC DE TEST
 
-    /*$generationManager = new GenerationManager($pdo);
-    $listeExerciceGenere = $generationManager->genererExercice();
+    $generationManager = new GenerationManager($pdo);
+    $listeExerciceGenere = $generationManager->genererExercice($listeDependances);
 
     echo "<pre>";
-    var_dump($listeDependances);
-    echo "</pre>";*/
+    var_dump($listeExerciceGenere);
+    echo "</pre>";
 
     /*--------------------------FIN-------------------------------*/
     $retour = false;
