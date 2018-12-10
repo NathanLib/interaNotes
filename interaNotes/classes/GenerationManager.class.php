@@ -63,7 +63,10 @@ class GenerationManager{
       }
     }
 
-    return $listeValeurs;
+    $tableauSujets['enonces'] = $listeEnonces;
+    $tableauSujets['sujets'] = $listeSujets;
+    $tableauSujets['exerciceGenere'] = $listeValeurs;
+    return $tableauSujets;
   }
 
 }
