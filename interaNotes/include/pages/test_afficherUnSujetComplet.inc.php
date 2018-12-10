@@ -1,36 +1,40 @@
 <?php
 if(isset($_GET['id'])){ //WARNING gérer quand l'id n'existe pas dans la base
 
-  $idSujet = $_GET['id'];
+$idSujet = $_GET['id'];
 
-  $pdo = new Mypdo();
-  $sujetManager = new SujetManager($pdo);
-  $enonceManager = new EnonceManager($pdo);
+$pdo = new Mypdo();
+$sujetManager = new SujetManager($pdo);
+$enonceManager = new EnonceManager($pdo);
 
-  $valeurManager = new ValeurManager($pdo);
-  $pointManager = new PointManager($pdo);
+$valeurManager = new ValeurManager($pdo);
+$pointManager = new PointManager($pdo);
 
-  $sujet = $sujetManager->getSujet($idSujet);
-  $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
-  ?>
+$sujet = $sujetManager->getSujet($idSujet);
+$enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
 
-  <div id="sujet">
-    <p>Titre : <?php echo $enonceSujet->getTitreEnonce(); ?> </p>
-    <p>Date de fin : <?php echo $_SESSION['examen']->getDateDepotExamen(); ?> </p>
-    <p>Consignes : <?php echo $enonceSujet->getConsigneEnonce(); ?> </p>
-    <p>Valeurs du sujets : </p>
+$personneManager = new PersonneManager($pdo);
+$personne = $personneManager->getNomPrenomParSujet($idSujet);
+?>
+<h1>Sujet <?php echo $idSujet;?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
 
-  	<?php
-  	$valeurs = $valeurManager->getValeursSujet($idSujet);
+<div id="sujet">
+  <p>Titre : <?php echo $enonceSujet->getTitreEnonce(); ?> </p>
+  <p>Date de fin : <?php echo $_SESSION['examen']->getDateDepotExamen(); ?> </p>
+  <p>Consignes : <?php echo $enonceSujet->getConsigneEnonce(); ?> </p>
+  <p>Valeurs du sujets : </p>
 
-  	foreach ($valeurs as $valeur) {
-  		$point = $pointManager->getPoint($valeur->getIdPointOfValeur());?>
+  <?php
+  $valeurs = $valeurManager->getValeursSujet($idSujet);
 
-  		<p><?php echo $point->getNomPoint()." = ".$valeur->getValeur()." ".$point->getUnitePoint(); ?></p>
-  	<?php } ?>
+  foreach ($valeurs as $valeur) {
+    $point = $pointManager->getPoint($valeur->getIdPointOfValeur());?>
 
-    <a href="index.php?page=13&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
-  </div>
+    <p><?php echo $point->getNomPoint()." = ".$valeur->getValeur()." ".$point->getUnitePoint(); ?></p>
+  <?php } ?>
+
+  <a href="index.php?page=13&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
+</div>
 
 <?php
 }else{
