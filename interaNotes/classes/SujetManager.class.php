@@ -8,7 +8,7 @@ class SujetManager{
 
 	public function getAllSujetsOfExamen($idExamen){
 
-		$sql = 'SELECT idSujet, idEnonce, semestre, idExamen FROM sujet WHERE idExamen=:idExamen ';
+		$sql = 'SELECT e.idSujet, idEnonce, semestre, idExamen FROM sujet s INNER JOIN exerciceattribue e ON s.idSujet=e.idSujet WHERE idExamen=:idExamen ';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idExamen',$idExamen);
