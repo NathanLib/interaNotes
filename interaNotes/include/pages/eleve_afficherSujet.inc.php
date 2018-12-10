@@ -57,6 +57,7 @@ $valeurs = $valeurManager->getValeursSujet($idSujet);
             </div>
         </div>
     </div>
+    <img src="image/sujet/FuséeMoteur<?php echo $valeurs[0]->getValeur() ?>.jpg"><img src="image/sujet/Astronaute<?php echo $valeurs[2]->getValeur() ?>.jpg">
     <a href="index.php?page=15"><button>Saisir les réponses</button></a>
 </div>
 
