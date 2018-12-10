@@ -6,7 +6,11 @@ $sujetManager = new SujetManager($pdo);
 $personneManager = new PersonneManager($pdo);
 
 $listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExamen());
-?>
+
+
+if (!$listeSujets){ ?>
+  <p><img src="image/erreur.png"> Aucun sujet</p>
+<?php } else { ?>
 
 <div class="listerSujet">
     <?php // WARNING: BLOC A LAISSER ?>
@@ -39,6 +43,7 @@ $listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExa
           </div>
       </div>
     <?php
-    } ?>
+    } 
+  } ?>
 
 </div>
