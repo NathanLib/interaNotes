@@ -66,6 +66,16 @@ class CorrigeManager{
 
 		return array('qteCarburant' => $qteCarburant." T", 'jours' => $jours." jours", 'qteO2' => $qteO2." L", 'qtenourriture' => $qteNourriture." Kg", 'qteeau' => $qteEau." L" );
 	}
+
+	/*public function listeAllIntitulesQuestionsParSujet($idSujet){
+		$requete = $this->db->prepare('SELECT intituleQuestion FROM resultatsattendus WHERE idSujet=:idSujet');
+		$requete->bindValue(':idSujet', $idSujet);
+		$requete->execute();
+		$resultat = $requete->fetch(PDO::FETCH_OBJ);
+		$req->closeCursor();
+
+		return ;
+	}*/
 }
 
 //RENTRER AVEC UNITE DE BASE PUIS PRPOSER CONVERTIR puis rentrer dans la BD

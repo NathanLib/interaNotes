@@ -8,7 +8,7 @@ class QuestionManager{
 	}
 
   public function getAllQuestion($idSujet){
-    $sql = 'SELECT idReponse,intituleQuestion,bareme FROM resultatsattendus WHERE idSujet=:idSujet';
+    $sql = 'SELECT idReponse,intituleQuestion, resultat, exposantUnite, resultatUnite, bareme FROM resultatsattendus WHERE idSujet=:idSujet';
 
     $requete = $this->db->prepare($sql);
     $requete->bindValue(':idSujet', $idSujet);
