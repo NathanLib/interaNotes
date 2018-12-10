@@ -32,6 +32,9 @@ $listeExamens = $examenManager->getAllExamens(); ?>
     $dependanceManager = new DependanceManager($pdo);
     $listeDependances = $dependanceManager->getAllDependances();
 
+    $sujetManager = new SujetManager($pdo);
+    $idPremierSujet = $sujetManager->getIdSujetPossible();
+
     //BLOC DE TEST
     /*$liste = array_keys($listeDependances,21);
 
@@ -41,7 +44,7 @@ $listeExamens = $examenManager->getAllExamens(); ?>
     //FIN BLOC DE TEST
 
     $generationManager = new GenerationManager($pdo);
-    $listeExerciceGenere = $generationManager->genererExercice($listeDependances);
+    $listeExerciceGenere = $generationManager->genererExercice($listeDependances, $idPremierSujet);
 
     echo "<pre>";
     var_dump($listeExerciceGenere);

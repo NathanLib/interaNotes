@@ -38,24 +38,6 @@ class SujetManager{
 		return new Sujet($sujet);
 	}
 
-	/*public function recupererSujetComplet($idSujet){
-
-		$sql = 'SELECT titre,consigne,dateDepot FROM sujet s
-						INNER JOIN enonce en ON (en.idEnonce = s.idEnonce)
-						INNER JOIN examen ex ON (ex.idExamen = s.idExamen)
-						WHERE s.idSujet=:idSujet';
-
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idSujet', $idSujet);
-		$requete->execute();
-
-		$sujet = $requete->fetch(PDO::FETCH_OBJ);
-
-		$requete->closeCursor();
-
-		return $sujet;
-	}*/
-
 	public function getIdSujetByLogin($login) {
 		$sql = 'SELECT s.idSujet FROM sujet s
 						INNER JOIN exerciceattribue e ON(e.idSujet=s.idSujet)
@@ -74,6 +56,22 @@ class SujetManager{
 			return false;
 		}
 		return $sujet->idSujet;
+	}
+
+	public function getIdSujetPossible(){
+		$sql = 'SELECT max(idSujet) as maxId FROM sujet';
+
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+
+		$sujet = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+
+		if($sujet->maxId == null){
+			return 1;
+		}
+		return $sujet->maxId +1;
 	}
 
 }

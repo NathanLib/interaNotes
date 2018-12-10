@@ -7,10 +7,8 @@ class GenerationManager{
 		$this->db = $db;
 	}
 
-	public function genererExercice($listeDependances){
+	public function genererExercice($listeDependances, $idSujet){
     $valeurManager = new ValeurManager($this->db);
-
-    $compteurSujet = 0;
 
     $listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
     $listeValeurs_points_nbPersonnes = $valeurManager->getAllValeursOfPoints(3);
@@ -35,23 +33,23 @@ class GenerationManager{
                   foreach ($listeValeurs_points_vitesse as $vitesse) {
                     foreach ($listeValeurs_points_distanceDestination as $distance) {
 
-                      $listeValeurs[] = new ExerciceGenere($compteurSujet, $nbMoteurs->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($compteurSujet, $vitesse);
-                      $listeValeurs[] = new ExerciceGenere($compteurSujet, $personnes->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($compteurSujet, $planete->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($compteurSujet, $distance);
-                      $listeValeurs[] = new ExerciceGenere($compteurSujet, $consoCarbu->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($compteurSujet, $consoEau->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($compteurSujet, $consoNourritures->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($compteurSujet, $consoO2->getIdValeur());
+                      $listeValeurs[] = new ExerciceGenere($idSujet, $nbMoteurs->getIdValeur());
+                      $listeValeurs[] = new ExerciceGenere($idSujet, $vitesse);
+                      $listeValeurs[] = new ExerciceGenere($idSujet, $personnes->getIdValeur());
+                      $listeValeurs[] = new ExerciceGenere($idSujet, $planete->getIdValeur());
+                      $listeValeurs[] = new ExerciceGenere($idSujet, $distance);
+                      $listeValeurs[] = new ExerciceGenere($idSujet, $consoCarbu->getIdValeur());
+                      $listeValeurs[] = new ExerciceGenere($idSujet, $consoEau->getIdValeur());
+                      $listeValeurs[] = new ExerciceGenere($idSujet, $consoNourritures->getIdValeur());
+                      $listeValeurs[] = new ExerciceGenere($idSujet, $consoO2->getIdValeur());
 
                       //avec params accessible
-                      $listeEnonces[] = new Enonce(array('idEnonce'=>$compteurSujet,'titre'=>"Simulation d'une fusée",'consigne'=>"consigne du sujet n°".$compteurSujet));
+                      $listeEnonces[] = new Enonce(array('idEnonce'=>$idSujet,'titre'=>"Simulation d'une fusée",'consigne'=>"consigne du sujet n°".$idSujet));
 
                       //WARNING : comment savoir le bon numéro d'énoncé dans la base ?
-                      $listeSujets[] = new Sujet(array('idSujet'=>$compteurSujet,'idEnonce'=>$compteurSujet,'semestre'=>1, 'idExamen'=>1));
+                      $listeSujets[] = new Sujet(array('idSujet'=>$idSujet,'idEnonce'=>$idSujet,'semestre'=>1, 'idExamen'=>1));
 
-                      $compteurSujet = $compteurSujet +1;
+                      $idSujet++;
                     }
 
 
