@@ -71,8 +71,8 @@ if(!$idSujet){
                                                     $listeUnites = Unites::getConstants();
 
                                                     foreach ($listeUnites as $unite => $abreviation) {?>
-                                                      <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
-                                                    <?php
+                                                        <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
+                                                        <?php
                                                     }
                                                     ?>
                                                 </select>
@@ -81,15 +81,15 @@ if(!$idSujet){
                                             <div class="col-12 form-group">
                                                 <label for="exposantAnswer">Exposant du Résultat :</label>
                                                 <select class="form-control" id="exposantAnswer" name="exposant<?php echo $question->getIdReponse() ?>" type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
-                                                  <?php
-                                                  $listeExposants = Exposants::getConstants();
-                                                  $defautExposant = Exposants::getExposantParDefaut();
+                                                    <?php
+                                                    $listeExposants = Exposants::getConstants();
+                                                    $defautExposant = Exposants::getExposantParDefaut();
 
-                                                  foreach ($listeExposants as $exposant) {?>
-                                                    <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
-                                                  <?php
-                                                  }
-                                                  ?>
+                                                    foreach ($listeExposants as $exposant) {?>
+                                                        <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -145,6 +145,13 @@ if(!$idSujet){
             $reponseEleveManager->importSaisie($reponseObj);
 
         }
-        ?> <p>Vos réponses ont été envoyées au professeur ! <img src="image/valid.png"></p><?php
+        ?>
+        <div class="messageEnvoiValide">
+            <p>
+                <img src="image/valid.png">
+                Vos réponses ont été envoyées au professeur !
+            </p>
+        </div>
+        <?php
     }
 } ?>
