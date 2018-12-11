@@ -116,6 +116,9 @@ footer .text-uppercase {
     padding-left: 1px;
     width: 100%;
 }
+.messageErreurConnexion {
+    margin: 3% 0;
+}
 
 
 /* TicTac button */
@@ -460,6 +463,23 @@ footer .text-uppercase {
     margin-bottom: 5%;
 }
 
+/* Page élève afficher Sujet */
+.subjectPictureOne, .subjectPictureTwo {
+    margin: 3% 0;
+    height: 100%;
+}
+.boutonSaisieReponse {
+    color: white;
+    background-color: #333;
+    border: 0;
+    border-radius: 25px;
+    padding: 5px 10px;
+    margin-top: 3%;
+}
+.mySubject a, .mySubject a:visited {
+    color: white !important;
+}
+
 /************************************************/
 
 @media screen and (min-width: 576px) {
@@ -497,6 +517,7 @@ footer .text-uppercase {
     .affClassCreated h4 {
         font-size: 1.5rem;
     }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -523,6 +544,7 @@ footer .text-uppercase {
         width: 80%;
         margin: 2% 10%;
     }
+
 }
 
 @media screen and (min-width: 992px) {
@@ -574,4 +596,5 @@ footer .text-uppercase {
     .bodyDetailCompte {
         margin-top: 5%;
     }
+
 }

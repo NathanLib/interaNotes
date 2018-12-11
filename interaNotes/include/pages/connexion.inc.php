@@ -70,7 +70,10 @@ if(empty($_POST['mdp'])) { ?>
 
                 <!--<form action="#" method="post">-->
                     <form action="index.php?page=0" method="post">
-                        <p><img src="image/erreur.png" alt="Erreur" title="Erreur" /> Login / Mot de passe incorrect</p>
+                        <div class="messageErreurConnexion">
+                            <img src="image/erreur.png" alt="Erreur" title="Erreur" />
+                            <span style="font-weight:bold">Login / Mot de passe incorrect</span>
+                        </div>
                         <div class="row">
                             <div class="col-12">
                                 <input class="inputConnexion" type="text" name="login" placeholder="Identifiant" required>
