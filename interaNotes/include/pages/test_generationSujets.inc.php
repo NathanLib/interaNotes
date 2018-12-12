@@ -49,18 +49,18 @@ $listeExamens = $examenManager->getAllExamens(); ?>
     $exerciceGenereManager->insererTableauExercices($listeExerciceGenere['exerciceGenere']);*/
 
     //2ème méthode : avec optimisation
-    $enonceManager = new EnonceManager($pdo);
+    /*$enonceManager = new EnonceManager($pdo);
     $enonceManager->insererTableauEnonces2($listeExerciceGenere['enonces']);
 
     $sujetManager = new SujetManager($pdo);
     $sujetManager->insererTableauSujets2($listeExerciceGenere['sujets']);
 
     $exerciceGenereManager = new ExerciceGenereManager($pdo);
-    $exerciceGenereManager->insererTableauExercices2($listeExerciceGenere['exerciceGenere']);
+    $exerciceGenereManager->insererTableauExercices2($listeExerciceGenere['exerciceGenere']);*/
 
-    /*echo "<pre>";
+    echo "<pre>";
     var_dump($listeExerciceGenere['enonces']);
-    echo "</pre>";*/
+    echo "</pre>";
 
     echo "nbSujets Générés : ".count($listeExerciceGenere['sujets']);
     echo "nbexericieGénérés : ".count($listeExerciceGenere['exerciceGenere']);
