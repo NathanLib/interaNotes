@@ -35,20 +35,23 @@ $listeExamens = $examenManager->getAllExamens(); ?>
     $sujetManager = new SujetManager($pdo);
     $idPremierSujet = $sujetManager->getIdSujetPossible();
 
-    //BLOC DE TEST
-    /*$liste = array_keys($listeDependances,21);
-
-    foreach ($liste as $vitesse) {
-      echo $vitesse;
-    }*/
-    //FIN BLOC DE TEST
-
     $generationManager = new GenerationManager($pdo);
     $listeExerciceGenere = $generationManager->genererExercice($listeDependances, $idPremierSujet);
 
+    /*$enonceManager = new EnonceManager($pdo);
+    $enonceManager->insererTableauEnonces($listeExerciceGenere['enonces']);*/
+
+    /*$sujetManager = new SujetManager($pdo);
+    $sujetManager->insererTableauSujets($listeExerciceGenere['sujets']);
+
+    $exerciceGenereManager = new ExerciceGenereManager($pdo);
+    $exerciceGenereManager->insererTableauExercices($listeExerciceGenere['exerciceGenere']);*/
+
     echo "<pre>";
-    var_dump($listeExerciceGenere);
+    var_dump($listeExerciceGenere['sujets']);
     echo "</pre>";
+    echo "nbSujets Générés : ".count($listeExerciceGenere['sujets']);
+    echo "nbexericieGénérés : ".count($listeExerciceGenere['exerciceGenere']);
 
     /*--------------------------FIN-------------------------------*/
     $retour = false;

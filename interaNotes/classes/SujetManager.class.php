@@ -78,4 +78,19 @@ class SujetManager{
 		return $sujet->maxId +1;
 	}
 
+	public function insererTableauSujets($sujets) {
+		foreach ($sujets as $sujet) {
+			$sql = 'INSERT INTO sujet(idSujet, idEnonce, semestre, idExamen) VALUES (:idSujet,:idEnonce,:semestre,:idExamen) ';
+
+			$requete = $this->db->prepare($sql);
+			$requete->bindValue(':idSujet', $sujet->getIdSujet());
+			$requete->bindValue(':idEnonce', $sujet->getIdEnonce());
+			$requete->bindValue(':semestre', $sujet->getSemestreOfSujet());
+			$requete->bindValue(':idExamen', $sujet->getIdExamenOfSujet());
+			$requete->execute();
+
+			$requete->closeCursor();
+		}
+	}
+
 }
