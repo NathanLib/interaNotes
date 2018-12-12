@@ -38,18 +38,30 @@ $listeExamens = $examenManager->getAllExamens(); ?>
     $generationManager = new GenerationManager($pdo);
     $listeExerciceGenere = $generationManager->genererExercice($listeDependances, $idPremierSujet);
 
+    //1ere Méthode : sans opti
     /*$enonceManager = new EnonceManager($pdo);
-    $enonceManager->insererTableauEnonces($listeExerciceGenere['enonces']);*/
+    $enonceManager->insererTableauEnonces($listeExerciceGenere['enonces']);
 
-    /*$sujetManager = new SujetManager($pdo);
+    $sujetManager = new SujetManager($pdo);
     $sujetManager->insererTableauSujets($listeExerciceGenere['sujets']);
 
     $exerciceGenereManager = new ExerciceGenereManager($pdo);
     $exerciceGenereManager->insererTableauExercices($listeExerciceGenere['exerciceGenere']);*/
 
-    echo "<pre>";
-    var_dump($listeExerciceGenere['sujets']);
-    echo "</pre>";
+    //2ème méthode : avec optimisation
+    $enonceManager = new EnonceManager($pdo);
+    $enonceManager->insererTableauEnonces2($listeExerciceGenere['enonces']);
+
+    $sujetManager = new SujetManager($pdo);
+    $sujetManager->insererTableauSujets2($listeExerciceGenere['sujets']);
+
+    $exerciceGenereManager = new ExerciceGenereManager($pdo);
+    $exerciceGenereManager->insererTableauExercices2($listeExerciceGenere['exerciceGenere']);
+
+    /*echo "<pre>";
+    var_dump($listeExerciceGenere['enonces']);
+    echo "</pre>";*/
+
     echo "nbSujets Générés : ".count($listeExerciceGenere['sujets']);
     echo "nbexericieGénérés : ".count($listeExerciceGenere['exerciceGenere']);
 

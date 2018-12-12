@@ -93,4 +93,28 @@ class SujetManager{
 		}
 	}
 
+	public function insererTableauSujets2($sujets) {
+		$sujetsTableaux = $this->preparationRequeteTableauSujets($sujets);
+
+		$args = array_fill(0, count($sujetsTableaux[0]), '?');
+
+		$sql = "INSERT INTO sujet(idSujet, idEnonce, semestre, idExamen) VALUES (".implode(',', $args).")";
+		$requete = $this->db->prepare($sql);
+
+		foreach ($sujetsTableaux as $row)
+		{
+			$requete->execute($row);
+		}
+
+		$requete->closeCursor();
+	}
+
+	private function preparationRequeteTableauSujets($sujetsObjets){
+		foreach ($sujetsObjets as $sujet) {
+      $sujetsTableaux[] = array($sujet->getIdSujet(), $sujet->getIdEnonce(), $sujet->getSemestreOfSujet(), $sujet->getIdExamenOfSujet());
+    }
+
+		return $sujetsTableaux;
+	}
+
 }
