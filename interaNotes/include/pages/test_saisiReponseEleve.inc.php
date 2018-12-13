@@ -9,7 +9,7 @@ $personneManager = new PersonneManager($pdo);
 $reponseEleveManager = new ReponseEleveManager($pdo);
 
 
-$idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']);
+$idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']); // WARNING
 $sujet = $sujetManager->getSujet($idSujet);
 $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
 if(!$idSujet){

@@ -1,4 +1,7 @@
 <?php
+
+require_once("include/verifEnseignant.inc.php");
+
 $db = new Mypdo();
 $corrigeManager = new CorrigeManager($db);
 $questionManager = new QuestionManager($db);

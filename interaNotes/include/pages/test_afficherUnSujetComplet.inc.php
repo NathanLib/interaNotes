@@ -1,4 +1,7 @@
 <?php
+
+require_once("include/verifEnseignant.inc.php");
+
 if(isset($_GET['id'])){ //WARNING gérer quand l'id n'existe pas dans la base
 
 $idSujet = $_GET['id'];
@@ -15,25 +18,68 @@ $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
 
 $personneManager = new PersonneManager($pdo);
 $personne = $personneManager->getNomPrenomParSujet($idSujet);
+
+$valeurs = $valeurManager->getValeursSujet($idSujet);
+
 ?>
 <h1>Sujet <?php echo $idSujet;?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
 
-<div id="sujet">
-  <p>Titre : <?php echo $enonceSujet->getTitreEnonce(); ?> </p>
-  <p>Date de fin : <?php echo $_SESSION['examen']->getDateDepotExamen(); ?> </p>
-  <p>Consignes : <?php echo $enonceSujet->getConsigneEnonce(); ?> </p>
-  <p>Valeurs du sujets : </p>
 
-  <?php
-  $valeurs = $valeurManager->getValeursSujet($idSujet);
+<div class="row mySubject">
+        <div class="row">
+            <div class="col-12">
+                <p>
+                    <span>Titre de l'énoncé : </span>
+                    <?php echo $enonceSujet->getTitreEnonce(); ?>
+                </p>
+            </div>
+            <div class="col-12">
+                <p>
+                    <span>Date de fin : </span>
+                    <?php echo $_SESSION['examen']->getDateDepotExamen(); ?>
+                </p>
+            </div>
+        </div>
 
-  foreach ($valeurs as $valeur) {
-    $point = $pointManager->getPoint($valeur->getIdPointOfValeur());?>
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <span id="subjectTitle">Enoncé :</span>
+                    <br>
+                    <p class="textSubject">
+                        <?php echo $enonceSujet->getConsigneEnonce(); ?>
+                    </p>
+                </div>
+                <div>
+                    <span id="subjectTitle">Consigne :</span>
+                    <br>
+                    <p class="textSubject">
+                        Selon les paramètres énoncés précédemment, veuillez indiquer les quantités nécessaires d'O², de carburant, de nourriture et d'eau pour que la fusée Ariane 5 atteigne sa destination.
+                    </p>
+                </div>
+            </div>
+        </div>
 
-    <p><?php echo $point->getNomPoint()." = ".$valeur->getValeur()." ".$point->getUnitePoint(); ?></p>
-  <?php } ?>
+        <div class="row">
+            <div class="col-12">
+                <span id="subjectTitle">Images :</span>
+                <br>
 
-  <a href="index.php?page=13&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
+                <div class="row justify-content-around">
+                    <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureOne" src="image/sujet/FuséeMoteur<?php echo $valeurs[0]->getValeur() ?>.jpg">
+
+                    <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureTwo" src="image/sujet/Astronaute<?php echo $valeurs[2]->getValeur() ?>.jpg">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center">
+            <div class="boutonCorrection">
+                <a href="index.php?page=13&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php
