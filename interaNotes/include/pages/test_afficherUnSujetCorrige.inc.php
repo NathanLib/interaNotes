@@ -5,10 +5,16 @@ require_once("include/verifEnseignant.inc.php");
 $db = new Mypdo();
 $corrigeManager = new CorrigeManager($db);
 $questionManager = new QuestionManager($db);
+$sujetManager = new SujetManager($db);
+
+if(isset(($_GET['id']))) {
+
+if($sujetManager->exists($_GET['id'])){
 
 $personneManager = new PersonneManager($db);
-$personne = $personneManager->getNomPrenomParSujet($_GET['id']);
-//echo "<pre>";var_dump($corrigeManager->calculerCorrection($_GET['id']));echo "</pre>";
+$personne = $personneManager->getNomPrenomParSujet($_GET['id']); //WARNING
+
+
 ?>
 <h1 style="margin:3% 0; text-align:center">Sujet <?php echo $_GET['id'];?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
 <div class="correctionSujet">
@@ -117,3 +123,11 @@ $personne = $personneManager->getNomPrenomParSujet($_GET['id']);
 
 
 </div>
+
+
+<?php } else {
+	header('Location: index.php?page=3');
+}
+} else {
+	header('Location: index.php?page=3');
+} ?>
