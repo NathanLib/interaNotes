@@ -105,4 +105,21 @@ class SujetManager{
 		return $sujetsTableaux;
 	}
 
+	public function exists($idSujet){
+		$sql = 'SELECT idSujet FROM sujet WHERE idSujet=:idSujet';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idSujet', $idSujet);
+		$requete->execute();
+
+		$res = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+
+		if(isset($res->idSujet)){
+			return true;
+		}
+		return false;
+
+	}
+
 }
