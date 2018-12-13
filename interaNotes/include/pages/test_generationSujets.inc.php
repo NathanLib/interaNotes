@@ -1,7 +1,6 @@
 <?php
 $pdo = new Mypdo();
-$examenManager = new ExamenManager($pdo);
-$listeExamens = $examenManager->getAllExamens(); ?>
+?>
 
 <div class="generationSujets">
 
