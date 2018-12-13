@@ -22,7 +22,7 @@ $personne = $personneManager->getNomPrenomParSujet($idSujet);
 $valeurs = $valeurManager->getValeursSujet($idSujet);
 
 ?>
-<h1>Sujet <?php echo $idSujet;?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
+<h1 style="margin-top:5%; text-align:center">Sujet <?php echo $idSujet;?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
 
 
 <div class="row mySubject">
@@ -74,9 +74,11 @@ $valeurs = $valeurManager->getValeursSujet($idSujet);
             </div>
         </div>
 
-        <div class="col-12 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-around">
             <div class="boutonCorrection">
-                <a href="index.php?page=13&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
+                <a href="index.php?page=13&amp;id=<?php echo $sujet->getIdSujet();?>">
+                    <input class="boutonVoirCorrection" type=button value="Correction"></input>
+                </a>
             </div>
         </div>
     </div>

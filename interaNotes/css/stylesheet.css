@@ -486,6 +486,16 @@ footer .text-uppercase {
     color: white !important;
 }
 
+/* Autres pages */
+.boutonVoirCorrection {
+    color: white;
+    background-color: #333;
+    border: 0;
+    border-radius: 25px;
+    padding: 5px 10px;
+    width: 150px;
+}
+
 /************************************************/
 
 @media screen and (min-width: 576px) {
