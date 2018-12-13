@@ -103,7 +103,10 @@ class PersonneManager{
 		$res = $requete->fetch(PDO::FETCH_OBJ);
 		$requete->closeCursor();
 
-		return is_null($res);
+		if(isset($res->login)){
+			return true;
+		}
+		return false;
 
 	}
 
