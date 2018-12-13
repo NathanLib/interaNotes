@@ -94,6 +94,21 @@
 		include_once('pages/test_detailMonCompte.inc.php');
 		break;
 
+		default:
+		if(isset($_SESSION['eleve'])){
+			
+			header('Location: index.php?page=7');
+
+		} elseif (isset($_SESSION['enseignant'])) {
+
+			header('Location: index.php?page=1');
+		
+		} else {
+		
+			header('Location: index.php?page=0');
+		
+		}
+		break;
 	}
 
 	?>
