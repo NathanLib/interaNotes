@@ -79,25 +79,11 @@ class SujetManager{
 	}
 
 	public function insererTableauSujets($sujets) {
-		foreach ($sujets as $sujet) {
-			$sql = 'INSERT INTO sujet(idSujet, idEnonce, semestre, idExamen) VALUES (:idSujet,:idEnonce,:semestre,:idExamen) ';
-
-			$requete = $this->db->prepare($sql);
-			$requete->bindValue(':idSujet', $sujet->getIdSujet());
-			$requete->bindValue(':idEnonce', $sujet->getIdEnonce());
-			$requete->bindValue(':semestre', $sujet->getSemestreOfSujet());
-			$requete->bindValue(':idExamen', $sujet->getIdExamenOfSujet());
-			$requete->execute();
-
-			$requete->closeCursor();
-		}
-	}
-
-	public function insererTableauSujets2($sujets) {
 		$sujetsTableaux = $this->preparationRequeteTableauSujets($sujets);
 
 		$args = array_fill(0, count($sujetsTableaux[0]), '?');
 
+		$this->db->beginTransaction();
 		$sql = "INSERT INTO sujet(idSujet, idEnonce, semestre, idExamen) VALUES (".implode(',', $args).")";
 		$requete = $this->db->prepare($sql);
 
@@ -105,8 +91,10 @@ class SujetManager{
 		{
 			$requete->execute($row);
 		}
+		$resultat = $this->db->commit();
 
 		$requete->closeCursor();
+		return $resultat;
 	}
 
 	private function preparationRequeteTableauSujets($sujetsObjets){

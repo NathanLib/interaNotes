@@ -22,24 +22,11 @@ class EnonceManager{
 	}
 
 	public function insererTableauEnonces($enonces) {
-		foreach ($enonces as $enonce) {
-			$sql = 'INSERT INTO enonce(idEnonce, titre, consigne) VALUES (:id,:titre,:consigne) ';
-
-			$requete = $this->db->prepare($sql);
-			$requete->bindValue(':id', $enonce->getIdEnonce());
-			$requete->bindValue(':titre', $enonce->getTitreEnonce());
-			$requete->bindValue(':consigne', $enonce->getConsigneEnonce());
-			$requete->execute();
-
-			$requete->closeCursor();
-		}
-	}
-
-	public function insererTableauEnonces2($enonces) {
 		$enoncesTableaux = $this->preparationRequeteTableauEnonces($enonces);
 
 		$args = array_fill(0, count($enoncesTableaux[0]), '?');
 
+		$this->db->beginTransaction();
 		$sql = "INSERT INTO enonce(idEnonce, titre, consigne) VALUES (".implode(',', $args).")";
 		$requete = $this->db->prepare($sql);
 
@@ -47,8 +34,10 @@ class EnonceManager{
 		{
 			$requete->execute($row);
 		}
+		$resultat = $this->db->commit();
 
 		$requete->closeCursor();
+		return $resultat;
 	}
 
 	private function preparationRequeteTableauEnonces($enoncesObjets){

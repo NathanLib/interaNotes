@@ -7,23 +7,11 @@ class ExerciceGenereManager{
 	}
 
 	public function insererTableauExercices($exercices) {
-		foreach ($exercices as $exercice) {
-			$sql = 'INSERT INTO exercicegenere(idSujet, idValeur) VALUES (:idSujet,:idValeur) ';
-
-			$requete = $this->db->prepare($sql);
-			$requete->bindValue(':idSujet', $exercice->getIdSujet());
-			$requete->bindValue(':idValeur', $exercice->getIdValeur());
-			$requete->execute();
-
-			$requete->closeCursor();
-		}
-	}
-
-	public function insererTableauExercices2($exercices) {
 		$exercicesTableaux = $this->preparationRequeteTableauExercices($exercices);
 
 		$args = array_fill(0, count($exercicesTableaux[0]), '?');
 
+		$this->db->beginTransaction();
 		$sql = "INSERT INTO exercicegenere(idSujet, idValeur) VALUES (".implode(',', $args).")";
 		$requete = $this->db->prepare($sql);
 
@@ -31,8 +19,10 @@ class ExerciceGenereManager{
 		{
 			$requete->execute($row);
 		}
+		$resultat = $this->db->commit();
 
 		$requete->closeCursor();
+		return $resultat;
 	}
 
 	private function preparationRequeteTableauExercices($exercicesObjets){

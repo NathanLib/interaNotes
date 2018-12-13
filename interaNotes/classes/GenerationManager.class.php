@@ -7,7 +7,7 @@ class GenerationManager{
 		$this->db = $db;
 	}
 
-	public function genererExercice($listeDependances, $idSujet){
+	public function genererExerciceFusee($listeDependances, $idSujet){
     $valeurManager = new ValeurManager($this->db);
 
     $listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
@@ -43,10 +43,8 @@ class GenerationManager{
                       $listeValeurs[] = new ExerciceGenere($idSujet, $consoNourritures->getIdValeur());
                       $listeValeurs[] = new ExerciceGenere($idSujet, $consoO2->getIdValeur());
 
-                      //avec params accessible
                       $listeEnonces[] = new Enonce(array('idEnonce'=>$idSujet,'titre'=>"Simulation d'une fusée",'consigne'=>"consigne du sujet n°".$idSujet));
 
-                      //WARNING : comment savoir le bon numéro d'énoncé dans la base ?
                       $listeSujets[] = new Sujet(array('idSujet'=>$idSujet,'idEnonce'=>$idSujet,'semestre'=>1, 'idExamen'=>1));
 
                       $idSujet++;
