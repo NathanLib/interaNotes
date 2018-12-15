@@ -46,13 +46,13 @@ if(!$idSujet){
                                 <p style="align-self:end; margin:0"><?php echo " /".$question->getBareme()."pts" ?></p>
                             </div>
                             <div class="col-12">
-                                <p><?php echo $question->getIntituleQuestion() ;?></p>
+                                <p><?php echo $question->getIntituleQuestion() ;?> ?</p>
                             </div>
 
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-12 col-lg-7 form-group">
-                                        <label for="detailAnswer">Détail calcul :</label>
+                                        <label for="detailAnswer">Détails calculs :</label>
                                         <textarea class="form-control" id="detailAnswer" name="justification<?php echo $question->getIdReponse() ?>" onkeyup="adjustHeightTextAreaLittle(this)" placeholder='Veuillez écrire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...' maxlength="65535" required></textarea>
                                     </div>
 
