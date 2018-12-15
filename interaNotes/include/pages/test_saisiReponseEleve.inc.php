@@ -13,7 +13,7 @@ $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']); // WARNING
 $sujet = $sujetManager->getSujet($idSujet);
 $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
 if(!$idSujet){
-    ?><p>Aucun sujet attribué !</p> <?php
+    ?><p><img src="image/erreur.png" alt="erreur"> Aucun sujet attribué !</p> <?php
 } else {
     if (empty($_POST['reponse1'])) {
         ?>

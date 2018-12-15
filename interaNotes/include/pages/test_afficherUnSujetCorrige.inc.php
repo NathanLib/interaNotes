@@ -68,8 +68,6 @@ $personne = $personneManager->getNomPrenomParSujet($_GET['id']); //WARNING
 			</tbody>
 		</table>
 	</div>
-
-
 </div>
 
 
