@@ -21,13 +21,10 @@ if($sujetManager->exists($idSujet)){
 
   $personneManager = new PersonneManager($pdo);
   $personne = $personneManager->getNomPrenomParSujet($idSujet);
-?>
-<h1 style="margin-top:5%; text-align:center">Sujet <?php echo $idSujet;?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
-
   $valeurs = $valeurManager->getValeursSujet($idSujet);
 
-  ?>
-  <h1>Sujet <?php echo $idSujet;?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
+?>
+<h1 style="margin-top:5%; text-align:center">Sujet <?php echo $idSujet;?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
 
 
   <div class="row mySubject">
@@ -75,13 +72,6 @@ if($sujetManager->exists($idSujet)){
 
           <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureTwo" src="image/sujet/Astronaute<?php echo $valeurs[2]->getValeur() ?>.jpg">
         </div>
-
-        <div class="col-12 d-flex justify-content-center">
-            <div class="boutonCorrection">
-                <a href="index.php?page=13&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
-            </div>
-        </div>
-    </div>
 
     <div class="col-12 d-flex justify-content-center">
       <div class="boutonCorrection">
