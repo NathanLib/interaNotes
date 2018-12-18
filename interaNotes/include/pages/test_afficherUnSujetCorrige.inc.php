@@ -74,7 +74,7 @@ $personne = $personneManager->getNomPrenomParSujet($_GET['id']); //WARNING
 <br><br>
 
 <div class="row d-flex justify-content-center correctionSujet">
-	<div class="col-12 listImportStudent">
+	<div class="col-11 listImportStudent">
 
 		<table class="table table-hover">
 			<thead class="thead-dark">

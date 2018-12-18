@@ -12,7 +12,7 @@ $pointManager = new PointManager($pdo);
 $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']);
 if (!$idSujet){
     ?>
-    <p>
+    <p style="text-align:center;font-weight:bold; margin:10% 0;">
         <img src="image/erreur.png" alt="Erreur" title="erreur">Aucun sujet attribué actuellement !
     </p>
     <?php
