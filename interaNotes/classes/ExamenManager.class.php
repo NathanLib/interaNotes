@@ -18,7 +18,12 @@ class ExamenManager{
 		}
 
 		$requete->closeCursor();
-		return $listeExamens;
+
+		if(isset($listeExamens)){
+			return $listeExamens;
+		}
+		
+		return false;
 	}
 
 	public function getExamen($idExamen){

@@ -9,69 +9,17 @@ $sujetManager = new SujetManager($db);
 
 if(isset(($_GET['id']))) {
 
-if($sujetManager->exists($_GET['id'])){
+	if($sujetManager->exists($_GET['id'])){
 
-$personneManager = new PersonneManager($db);
+		$personneManager = new PersonneManager($db);
 $personne = $personneManager->getNomPrenomParSujet($_GET['id']); //WARNING
 
 
 ?>
 <h1 style="margin:3% 0; text-align:center">Sujet <?php echo $_GET['id'];?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
-<div class="correctionSujet">
-	<?php // WARNING: BLOC A LAISSER ?>
-	<div class="row justify-content-around text-center teteCorrectionSujet">
-		<div class="col-5 col-sm-3 col-lg-2 textCorrectionSujet">
-			<p>Question</p>
-		</div>
-		<div class="col-3 col-sm-3 col-lg-2 textCorrectionSujet">
-			<p>Réponse</p>
-		</div>
-		<div class="col-2 col-sm-3 col-lg-2 textCorrectionSujet">
-			<p>Exposant</p>
-		</div>
-		<div class="col-2 col-sm-3 col-lg-2 textCorrectionSujet">
-			<p>Unité</p>
-		</div>
-	</div>
-
-	<?php
-	$questions = $questionManager->getAllQuestion($_GET['id']);?>
-
-	<div class="row justify-content-around text-center contenuCorrectionSujet">
-		<div class="col-5 col-sm-3 col-lg-2 textCorrectionSujet">
-			<?php foreach ($questions as $question) {
-				$intitule = $question->getIntituleQuestion();?>
-
-				<p><?php echo $intitule; ?></p>
-			<?php } ?>
-		</div>
-		<div class="col-3 col-sm-3 col-lg-2 textCorrectionSujet">
-			<?php foreach ($questions as $question) {
-				$resultat = $question->getResultat();?>
-
-				<p><?php echo $resultat; ?></p>
-			<?php } ?>
-		</div>
-		<div class="col-2 col-sm-3 col-lg-2 textCorrectionSujet">
-			<?php foreach ($questions as $question) {
-				$exposant = $question->getExposantUnite();?>
-
-				<p><?php echo $exposant; ?></p>
-			<?php } ?>
-		</div>
-		<div class="col-2 col-sm-3 col-lg-2 textCorrectionSujet">
-			<?php foreach ($questions as $question) {
-				$unite = $question->getResultatUnite();?>
-
-				<p><?php echo $unite; ?></p>
-			<?php } ?>
-		</div>
-	</div>
 
 
-</div>
-
-<br><br>
+<?php $questions = $questionManager->getAllQuestion($_GET['id']);?>
 
 <div class="row d-flex justify-content-center correctionSujet">
 	<div class="col-11 listImportStudent">
@@ -120,8 +68,6 @@ $personne = $personneManager->getNomPrenomParSujet($_GET['id']); //WARNING
 			</tbody>
 		</table>
 	</div>
-
-
 </div>
 
 

@@ -89,7 +89,7 @@ CREATE TABLE `enonce` (
 
 LOCK TABLES `enonce` WRITE;
 /*!40000 ALTER TABLE `enonce` DISABLE KEYS */;
-INSERT INTO `enonce` VALUES (1,'Simulation de fusée','Selon les paramètres suivants, indiquez les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Lune :\r\n-nombre de moteurs : 1\r\n-vitesse : 1000\r\n-Consommation de carburant par moteur : 100T/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : 3\r\n-Destination : Lune\r\n-Distance Terre/Lune : 340000'),(2,'Simulation de fusée','Selon les paramètres suivants, indiquez les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Mars :\r\n-nombre de moteurs : 2\r\n-vitesse : 2000\r\n-Consommation de carburant par moteur : 100T/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : 6\r\n-Destination : Mars\r\n-Distance Terre/Mars : 100000000');
+INSERT INTO `enonce` VALUES (1,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Lune :\r\n-nombre de moteurs : 1\r\n-vitesse : 1000\r\n-Consommation de carburant par moteur : 100T/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : 3\r\n-Destination : Lune\r\n-Distance Terre/Lune : 340000'),(2,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Mars :\r\n-nombre de moteurs : 2\r\n-vitesse : 2000\r\n-Consommation de carburant par moteur : 100T/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : 6\r\n-Destination : Mars\r\n-Distance Terre/Mars : 100000000');
 /*!40000 ALTER TABLE `enonce` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,7 +305,7 @@ CREATE TABLE `resultatsattendus` (
 
 LOCK TABLES `resultatsattendus` WRITE;
 /*!40000 ALTER TABLE `resultatsattendus` DISABLE KEYS */;
-INSERT INTO `resultatsattendus` VALUES (1,1,'Quantités nécessaires d\'oxygène',2550.00,1,'L',1.00),(2,1,'Quantités nécessaires d\'oxygène',750000.00,1,'L',1.00),(1,2,'Quantités nécessaires de carburant',34000000000.00,6,'g',1.00),(2,2,'Quantités nécessaires de carburant',20000000000000.00,6,'g',1.00),(1,3,'Quantités nécessaires de nourriture',85.00,3,'g',1.00),(2,3,'Quantités nécessaires de nourriture',25000.00,3,'g',1.00),(1,4,'Quantités nécessaires d\'eau',63.75,1,'L',1.00),(2,4,'Quantités nécessaires d\'eau',18750.00,1,'L',1.00);
+INSERT INTO `resultatsattendus` VALUES (1,1,'Quantités nécessaires d\'oxygène',2550.000,1,'L',1.00),(2,1,'Quantités nécessaires d\'oxygène',750000.000,1,'L',1.00),(1,2,'Quantités nécessaires de carburant',34000000000.000,6,'g',1.00),(2,2,'Quantités nécessaires de carburant',20000000000000.000,6,'g',1.00),(1,3,'Quantités nécessaires de nourriture',85.000,3,'g',1.00),(2,3,'Quantités nécessaires de nourriture',25000.000,3,'g',1.00),(1,4,'Quantités nécessaires d\'eau',63.750,1,'L',1.00),(2,4,'Quantités nécessaires d\'eau',18750.000,1,'L',1.00),(1,5,'Nombre de jours',14.000,1,'jours',1.00),(2,5,'Nombre de jours',2083.000,1,'jours',1.00);
 /*!40000 ALTER TABLE `resultatsattendus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -436,4 +436,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-06 15:19:02
+-- Dump completed on 2018-12-15 21:10:28
