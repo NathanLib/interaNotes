@@ -23,7 +23,7 @@ class ReponseEleveManager{
 
 		if($attenduObj->getResultatUnite()==$reponseObj->getResultatUnite() && $attenduObj->getExposantUnite()==$reponseObj->getExposantUnite()){
 			$precision = round($reponseObj->getResultat() * 100 / $attenduObj->getResultat(),1);
-			if($precision>100){
+			if($precision>100 && $precision<=200){
 				$precision=100-($precision-100);
 				
 			}
