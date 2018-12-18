@@ -8,12 +8,16 @@ $questionManager = new QuestionManager($pdo);
 $personneManager = new PersonneManager($pdo);
 $reponseEleveManager = new ReponseEleveManager($pdo);
 
-
 $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']); // WARNING
 $sujet = $sujetManager->getSujet($idSujet);
 $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
 if(!$idSujet){
-    ?><p><img src="image/erreur.png" alt="erreur"> Aucun sujet attribué !</p> <?php
+    ?>
+    <p style="text-align:center;font-weight:bold; margin:10% 0;">
+        <img src="image/erreur.png" alt="erreur">
+        Aucun sujet attribué !
+    </p>
+    <?php
 } else {
     if (empty($_POST['reponse1'])) {
         ?>

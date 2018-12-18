@@ -9,7 +9,10 @@ $listeExamens = $examenManager->getAllExamens();
 
 if(!$listeExamens) { ?>
 
-	<p><img src="image/erreur.png" alt="erreur.png"> Aucun examen créé <p>
+	<p style="text-align:center;font-weight:bold; margin:10% 0;">
+		<img src="image/erreur.png" alt="erreur.png">
+		Aucun examen créé
+	</p>
 
 	<?php } else {
 
@@ -103,5 +106,5 @@ if(!$listeExamens) { ?>
 			<?php }
 		} ?>
 	</table>
-<?php } 
+<?php }
 } ?>
