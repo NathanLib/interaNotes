@@ -91,7 +91,12 @@ if(!$listeExamens) { ?>
 		$listeReponses = $reponseEleveManager->getAllReponseEleve($_GET['idSujet']);
 
 		if(!$listeReponses){
-			?><p>L'élève n'a saisi aucune réponse</p><?php
+			?>
+			<p style="text-align:center;font-weight:bold; margin:10% 0;">
+				<img src="image/erreur.png" alt="erreur">
+				Aucune réponse saisie par l'élève
+			</p>
+			<?php
 		} else { ?>
 			<table style="width:100%">
 				<tr>
