@@ -254,7 +254,6 @@ CREATE TABLE `points` (
   `idPoint` int(11) NOT NULL,
   `idExamen` int(11) NOT NULL,
   `nomPoint` varchar(50) NOT NULL,
-  `unitePoint` varchar(30) NOT NULL,
   PRIMARY KEY (`idPoint`,`idExamen`),
   KEY `idExamen` (`idExamen`),
   CONSTRAINT `points_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
@@ -281,7 +280,7 @@ CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
   `intituleQuestion` text NOT NULL,
-  `resultat` decimal(21,3) NOT NULL,
+  `resultat` decimal(20,2) NOT NULL,
   `exposantUnite` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
   `bareme` decimal(4,2) NOT NULL,
@@ -312,7 +311,7 @@ CREATE TABLE `resultatseleves` (
   `idEleve` int(11) NOT NULL,
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
-  `resultat` decimal(21,3) NOT NULL,
+  `resultat` decimal(20,2) NOT NULL,
   `exposantUnite` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
   `justification` text NOT NULL,
@@ -401,6 +400,8 @@ CREATE TABLE `valeurs` (
   `idValeur` int(11) NOT NULL,
   `idPoint` int(11) NOT NULL,
   `valeur` varchar(50) NOT NULL,
+  `uniteValeur` varchar(30) NOT NULL,
+  `exposantValeur` int(11) NOT NULL,
   PRIMARY KEY (`idValeur`),
   KEY `idPoint` (`idPoint`),
   CONSTRAINT `valeurs_ibfk_1` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
@@ -425,4 +426,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-06 15:15:13
+-- Dump completed on 2018-12-21 23:24:54
