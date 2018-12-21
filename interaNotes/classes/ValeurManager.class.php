@@ -8,7 +8,7 @@ class ValeurManager{
 
 	public function getAllValeursOfPoints($idPoint){
 
-		$sql = 'SELECT idValeur, idPoint, valeur FROM valeurs WHERE idPoint=:id';
+		$sql = 'SELECT idValeur, idPoint, valeur, uniteValeur, exposantValeur FROM valeurs WHERE idPoint=:id';
 
     $requete = $this->db->prepare($sql);
 		$requete->bindValue(':id', $idPoint);
@@ -24,7 +24,7 @@ class ValeurManager{
 	}
 
 	public function getValeursSujet($idSujet){
-		$sql = 'SELECT v.idValeur, v.idPoint, v.valeur FROM valeurs v
+		$sql = 'SELECT v.idValeur, v.idPoint, v.valeur, v.uniteValeur, v.exposantValeur FROM valeurs v
 						INNER JOIN exercicegenere e ON(e.idValeur = v.idValeur)
 						WHERE e.idSujet = :idSujet';
 

@@ -3,7 +3,6 @@ class Point{
 	private $idPoint;
 	private $idExamen;
   private $nomPoint;
-  private $unitePoint;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -25,10 +24,6 @@ class Point{
 
         case 'nomPoint' :
 					$this->setNomPoint($valeur);
-					break;
-
-        case 'unitePoint' :
-					$this->setUnitePoint($valeur);
 					break;
 			}
 		}
@@ -58,14 +53,6 @@ class Point{
 
 	public function setNomPoint($nomPoint){
 		$this->nomPoint = $nomPoint;
-	}
-
-  public function getUnitePoint(){
-		return $this->unitePoint;
-	}
-
-	public function setUnitePoint($unitePoint){
-		$this->unitePoint = $unitePoint;
 	}
 
 }
