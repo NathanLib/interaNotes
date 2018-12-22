@@ -22,14 +22,16 @@ class ReponseEleveManager{
 		$requete->closeCursor();
 
 		if($attenduObj->getResultatUnite()==$reponseObj->getResultatUnite() && $attenduObj->getExposantUnite()==$reponseObj->getExposantUnite()){
-			$precision = round($reponseObj->getResultat() * 100 / $attenduObj->getResultat(),1);
-			if($precision>100 && $precision<=200){
-				$precision=100-($precision-100);
-				
+			if($reponseObj->getResultat() > $attenduObj->getResultat()){
+				$precision = round($attenduObj->getResultat() * 100 / $reponseObj->getResultat(),1);
+			} else {
+				$precision = round($reponseObj->getResultat() * 100 / $attenduObj->getResultat(),1);
 			}
+			//WARNING Mettre 0 sur le pourcentage est négatif ? cad l'élève c'est trompé de signe 
 			return $precision;
 		} else {
 			return 0;
+
 		}
 
 	}
