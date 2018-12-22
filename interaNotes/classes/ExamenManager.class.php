@@ -73,4 +73,10 @@ class ExamenManager{
 
 		return $date->dateDepot;
 	}
+
+	public function convertirDate($date){
+		$dateTab = explode('-', $date);
+		$tabJourHeure = explode(' ',$dateTab[2]);
+		return $tabJourHeure[0]."/".$dateTab[1]."/".$dateTab[0]." ".$tabJourHeure[1];
+	}
 }

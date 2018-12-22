@@ -9,6 +9,7 @@ $idSujet = $_GET['id'];
 $pdo = new Mypdo();
 $sujetManager = new SujetManager($pdo);
 $enonceManager = new EnonceManager($pdo);
+$examenManager = new ExamenManager($pdo);
 
 
 if($sujetManager->exists($idSujet)){
@@ -38,7 +39,7 @@ if($sujetManager->exists($idSujet)){
       <div class="col-12">
         <p>
           <span>Date de fin : </span>
-          <?php echo $_SESSION['examen']->getDateDepotExamen(); ?>
+          <?php echo $examenManager->convertirDate($_SESSION['examen']->getDateDepotExamen()); ?>
         </p>
       </div>
     </div>

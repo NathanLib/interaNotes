@@ -27,7 +27,7 @@ if(!$listeExamens) { ?>
 			<?php foreach ($listeExamens as $attribut => $value) { ?>
 				<tr>
 					<td><?php echo $value->getIdExamen() ?></td>
-					<td><?php echo $value->getDateDepotExamen() ?></td>
+					<td><?php echo $examenManager->convertirDate($value->getDateDepotExamen()) ?></td>
 					<td><?php echo $value->getAnneeScolaireExamen() ?></td>
 					<td><a href="index.php?page=18&amp;id=<?php echo $value->getIdExamen();?>"><button>Consulter</button></a></td>
 				</tr>
@@ -110,7 +110,7 @@ if(!$listeExamens) { ?>
 				</tr>
 				<?php foreach ($listeReponses as $attribut => $value) { ?>
 					<tr>
-						<td><?php echo $value->getDateResult()?></td>
+						<td><?php echo $examenManager->convertirDate($value->getDateResult()) ?></td>
 						<td><?php echo $value->getIdReponse() ?></td>
 						<td><?php echo $value->getResultat() ?></td>
 						<td><?php echo $value->getResultatUnite() ?></td>

@@ -32,7 +32,7 @@ if(!$idSujet){
                         </div>
                         <div class="col-12 col-sm-6 col-md-5 form-group headerSaisie">
                             <span>Date de fin : </span>
-                            <?php echo $examenManager->getDateLimitebySujet($idSujet); ?>
+                            <?php echo $examenManager->convertirDate($examenManager->getDateLimitebySujet($idSujet)); ?>
                         </div>
                     </div>
                 </div>
