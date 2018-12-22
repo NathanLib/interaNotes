@@ -79,4 +79,12 @@ class ExamenManager{
 		$tabJourHeure = explode(' ',$dateTab[2]);
 		return $tabJourHeure[0]."/".$dateTab[1]."/".$dateTab[0]." ".$tabJourHeure[1];
 	}
+
+	public function dateLimiteDepassee ($date){
+		$now = new DateTime(date("Y:m:d H:i:s"));
+		$limite = new DateTime($date);
+
+		return $now>$limite;
+
+	}
 }
