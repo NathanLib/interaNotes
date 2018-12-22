@@ -155,6 +155,9 @@ if(!$idSujet){
                 $reponseObj->setIdEleve($idEleve);
                 $reponseObj->setPrecisionReponse($reponseEleveManager->getPrecisionReponse($reponseObj));
 
+                $resultatAttendu = 34000.00 * pow(10,12);
+                $resultatEleve = 34000000.00 * pow(10,$reponseObj->getExposantUnite());
+
                 $reponseEleveManager->importSaisie($reponseObj);
 
             } ?>

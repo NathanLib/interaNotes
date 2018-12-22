@@ -21,11 +21,15 @@ class ReponseEleveManager{
 		
 		$requete->closeCursor();
 
-		if($attenduObj->getResultatUnite()==$reponseObj->getResultatUnite() && $attenduObj->getExposantUnite()==$reponseObj->getExposantUnite()){
+		if($attenduObj->getResultatUnite()==$reponseObj->getResultatUnite()) {
+
+			$resultatAttendu = $attenduObj->getResultat() * pow(10,$attenduObj->getExposantUnite());
+			$resultatEleve = $reponseObj->getResultat() * pow(10,$reponseObj->getExposantUnite());
+
 			if($reponseObj->getResultat() > $attenduObj->getResultat()){
-				$precision = round($attenduObj->getResultat() * 100 / $reponseObj->getResultat(),1);
+				$precision = round($resultatAttendu * 100 / $resultatEleve,1);
 			} else {
-				$precision = round($reponseObj->getResultat() * 100 / $attenduObj->getResultat(),1);
+				$precision = round($resultatAttendu * 100 / $attenduObj->getResultat(),1);
 			}
 			//WARNING Mettre 0 sur le pourcentage est négatif ? cad l'élève c'est trompé de signe 
 			return $precision;
