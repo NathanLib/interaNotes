@@ -38,7 +38,7 @@ if (!$idSujet){
             <div class="col-12">
                 <p>
                     <span>Date de fin : </span>
-                    <?php echo $examenManager->convertirDate($examenManager->getDateLimitebySujet($idSujet)); ?>
+                    <?php echo getFrenchDate($examenManager->getDateLimitebySujet($idSujet)); ?>
                 </p>
             </div>
         </div>

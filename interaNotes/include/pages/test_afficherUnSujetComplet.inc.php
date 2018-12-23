@@ -39,7 +39,7 @@ if($sujetManager->exists($idSujet)){
       <div class="col-12">
         <p>
           <span>Date de fin : </span>
-          <?php echo $examenManager->convertirDate($_SESSION['examen']->getDateDepotExamen()); ?>
+          <?php echo getFrenchDate($_SESSION['examen']->getDateDepotExamen()); ?>
         </p>
       </div>
     </div>
@@ -85,7 +85,7 @@ if($sujetManager->exists($idSujet)){
 <?php
   }else{
     header('Location: index.php?page=3');
-  } 
+  }
   } else {
     header('Location: index.php?page=3');
   }?>

@@ -22,7 +22,7 @@ class ExamenManager{
 		if(isset($listeExamens)){
 			return $listeExamens;
 		}
-		
+
 		return false;
 	}
 
@@ -74,13 +74,7 @@ class ExamenManager{
 		return $date->dateDepot;
 	}
 
-	public function convertirDate($date){
-		$dateTab = explode('-', $date);
-		$tabJourHeure = explode(' ',$dateTab[2]);
-		return $tabJourHeure[0]."/".$dateTab[1]."/".$dateTab[0]." ".$tabJourHeure[1];
-	}
-
-	public function dateLimiteDepassee ($date){
+	public function dateLimiteEstDepassee ($date){
 		$now = new DateTime(date("Y:m:d H:i:s"));
 		$limite = new DateTime($date);
 

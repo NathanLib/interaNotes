@@ -21,14 +21,14 @@ if(!$idSujet){
 } else {
     $dateLimite=$examenManager->getDateLimitebySujet($idSujet);
 
-    if($examenManager->dateLimiteDepassee($dateLimite)) { ?>
+    if($examenManager->dateLimiteEstDepassee($dateLimite)) { ?>
 
         <p style="text-align:center;font-weight:bold; margin:10% 0;">
             <img src="image/erreur.png" alt="erreur">
             La date limite pour envoyer les réponses est dépassée !
         </p>
 
-    <?php } else { 
+    <?php } else {
 
         if (empty($_POST['reponse1'])) { ?>
 
@@ -42,7 +42,7 @@ if(!$idSujet){
                             </div>
                             <div class="col-12 col-sm-6 col-md-5 form-group headerSaisie">
                                 <span>Date de fin : </span>
-                                <?php echo $examenManager->convertirDate($dateLimite); ?>
+                                <?php echo getFrenchDate($dateLimite); ?>
                             </div>
                         </div>
                     </div>
@@ -154,9 +154,6 @@ if(!$idSujet){
                 $reponseObj->setIdSujet($idSujet);
                 $reponseObj->setIdEleve($idEleve);
                 $reponseObj->setPrecisionReponse($reponseEleveManager->getPrecisionReponse($reponseObj));
-
-                $resultatAttendu = 34000.00 * pow(10,12);
-                $resultatEleve = 34000000.00 * pow(10,$reponseObj->getExposantUnite());
 
                 $reponseEleveManager->importSaisie($reponseObj);
 

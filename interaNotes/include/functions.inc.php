@@ -5,6 +5,12 @@
 		return $date;
 	}
 
+	function getFrenchDate($date){
+		$dateTab = explode('-', $date);
+		$tabJourHeure = explode(' ',$dateTab[2]);
+		return $tabJourHeure[0]."/".$dateTab[1]."/".$dateTab[0]." ".$tabJourHeure[1];
+	}
+
 	function createProtectedPassword($pwd){
     	$protectedPassword = sha1(sha1($pwd).SALT);
 

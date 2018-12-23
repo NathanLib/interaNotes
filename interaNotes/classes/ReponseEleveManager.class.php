@@ -14,11 +14,11 @@ class ReponseEleveManager{
 		$requete->bindValue(':idSujet', $reponseObj->getIdSujet());
 		$requete->bindValue(':idReponse', $reponseObj->getIdReponse());
 		$requete->execute();
-		
+
 		$res = $requete->fetch(PDO::FETCH_OBJ);
 
 		$attenduObj = new Question($res);
-		
+
 		$requete->closeCursor();
 
 		if($attenduObj->getResultatUnite()==$reponseObj->getResultatUnite()) {
@@ -31,7 +31,7 @@ class ReponseEleveManager{
 			} else {
 				$precision = round($resultatAttendu * 100 / $attenduObj->getResultat(),1);
 			}
-			//WARNING Mettre 0 sur le pourcentage est négatif ? cad l'élève c'est trompé de signe 
+			//WARNING Mettre 0 sur le pourcentage est négatif ? cad l'élève s'est trompé de signe 
 			return $precision;
 		} else {
 			return 0;
@@ -66,7 +66,7 @@ class ReponseEleveManager{
 		while($res = $requete->fetch(PDO::FETCH_OBJ)){
 			$listeReponses[] = new ReponseEleve($res);
 		}
-		
+
 		$requete->closeCursor();
 
 		if(isset($listeReponses)) {
@@ -74,4 +74,4 @@ class ReponseEleveManager{
 		}
 		return false;
 	}
-} 
+}
