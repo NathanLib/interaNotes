@@ -153,7 +153,7 @@ if(!$idSujet){
                 $reponseObj->setIdReponse($numeroReponse+1);
                 $reponseObj->setIdSujet($idSujet);
                 $reponseObj->setIdEleve($idEleve);
-                $reponseObj->setPrecisionReponse($reponseEleveManager->getPrecisionReponse($reponseObj));
+                $reponseObj->setPrecisionReponse($reponseEleveManager->calculerPrecisionReponse($reponseObj));
 
                 $reponseEleveManager->importSaisie($reponseObj);
 

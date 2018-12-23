@@ -42,7 +42,7 @@ class ReponseEleveManager{
 		return false;
 	}
 
-	public function getPrecisionReponse($reponseObj){
+	public function calculerPrecisionReponse($reponseObj){
 		$attenduObj = $this->getResultatAttendu($reponseObj);
 
 		if($attenduObj->getResultatUnite() == $reponseObj->getResultatUnite()) {
@@ -50,12 +50,9 @@ class ReponseEleveManager{
 			$resultatAttendu = $attenduObj->getResultat() * pow(10,$attenduObj->getExposantUnite());
 			$resultatEleve = $reponseObj->getResultat() * pow(10,$reponseObj->getExposantUnite());
 
-			if($reponseObj->getResultat() > $attenduObj->getResultat()){
-				$precision = round($resultatAttendu * 100 / $resultatEleve,1);
-			} else {
-				$precision = round($resultatAttendu * 100 / $attenduObj->getResultat(),1);
-			}
-			
+			$precision = ($resultatEleve-$resultatAttendu) / $resultatAttendu * 100;
+			$precision = abs(100 - abs($precision));
+
 			//WARNING Mettre 0 sur le pourcentage est négatif ? cad l'élève s'est trompé de signe
 			return $precision;
 		} else {
