@@ -108,15 +108,15 @@ if(!$listeExamens) { ?>
 					<th>Justification</th>
 					<th>Précision</th>
 				</tr>
-				<?php foreach ($listeReponses as $attribut => $value) { ?>
+				<?php foreach ($listeReponses as $reponse) { ?>
 					<tr>
-						<td><?php echo getFrenchDate($value->getDateResult()) ?></td>
-						<td><?php echo $value->getIdReponse() ?></td>
-						<td><?php echo $value->getResultat() ?></td>
-						<td><?php echo $value->getResultatUnite() ?></td>
-						<td><?php echo $value->getExposantUnite() ?></td>
-						<td><?php echo $value->getJustification() ?></td>
-						<td><?php echo $value->getPrecisionReponse() ?></td>
+						<td><?php echo getFrenchDate($reponse->getDateResult()) ?></td>
+						<td><?php echo $reponse->getIdReponse() ?></td>
+						<td><?php echo $reponse->getResultat() ?></td>
+						<td><?php echo $reponse->getResultatUnite() ?></td>
+						<td><?php echo $reponse->getExposantUnite() ?></td>
+						<td><?php echo $reponse->getJustification() ?></td>
+						<td><?php echo $reponse->getPrecisionReponse() ?></td>
 					</tr>
 				<?php }
 			} ?>

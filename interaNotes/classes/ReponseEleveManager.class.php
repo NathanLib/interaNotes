@@ -7,39 +7,6 @@ class ReponseEleveManager{
 		$this->db = $db;
 	}
 
-	public function getPrecisionReponse($reponseObj){
-		$sql = 'SELECT resultat,exposantUnite,resultatUnite FROM resultatsattendus WHERE idSujet=:idSujet AND idReponse=:idReponse';
-
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idSujet', $reponseObj->getIdSujet());
-		$requete->bindValue(':idReponse', $reponseObj->getIdReponse());
-		$requete->execute();
-
-		$res = $requete->fetch(PDO::FETCH_OBJ);
-
-		$attenduObj = new Question($res);
-
-		$requete->closeCursor();
-
-		if($attenduObj->getResultatUnite()==$reponseObj->getResultatUnite()) {
-
-			$resultatAttendu = $attenduObj->getResultat() * pow(10,$attenduObj->getExposantUnite());
-			$resultatEleve = $reponseObj->getResultat() * pow(10,$reponseObj->getExposantUnite());
-
-			if($reponseObj->getResultat() > $attenduObj->getResultat()){
-				$precision = round($resultatAttendu * 100 / $resultatEleve,1);
-			} else {
-				$precision = round($resultatAttendu * 100 / $attenduObj->getResultat(),1);
-			}
-			//WARNING Mettre 0 sur le pourcentage est négatif ? cad l'élève s'est trompé de signe 
-			return $precision;
-		} else {
-			return 0;
-
-		}
-
-	}
-
 	public function importSaisie($reponseObj){
 		$sql = 'INSERT INTO resultatseleves(dateResult,idEleve,idSujet,idReponse,resultat,exposantUnite,resultatUnite,justification,precisionReponse) VALUES (:dateResult,:idEleve,:idSujet,:idReponse,:resultat,:exposantUnite,:resultatUnite,:justification,:precisionReponse) ';
 
@@ -73,5 +40,43 @@ class ReponseEleveManager{
 			return $listeReponses;
 		}
 		return false;
+	}
+
+	public function getPrecisionReponse($reponseObj){
+		$attenduObj = $this->getResultatAttendu($reponseObj);
+
+		if($attenduObj->getResultatUnite() == $reponseObj->getResultatUnite()) {
+
+			$resultatAttendu = $attenduObj->getResultat() * pow(10,$attenduObj->getExposantUnite());
+			$resultatEleve = $reponseObj->getResultat() * pow(10,$reponseObj->getExposantUnite());
+
+			if($reponseObj->getResultat() > $attenduObj->getResultat()){
+				$precision = round($resultatAttendu * 100 / $resultatEleve,1);
+			} else {
+				$precision = round($resultatAttendu * 100 / $attenduObj->getResultat(),1);
+			}
+			
+			//WARNING Mettre 0 sur le pourcentage est négatif ? cad l'élève s'est trompé de signe
+			return $precision;
+		} else {
+			return 0;
+
+		}
+	}
+
+	private function getResultatAttendu($reponseObj){
+		$sql = 'SELECT resultat,exposantUnite,resultatUnite FROM resultatsattendus WHERE idSujet=:idSujet AND idReponse=:idReponse';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idSujet', $reponseObj->getIdSujet());
+		$requete->bindValue(':idReponse', $reponseObj->getIdReponse());
+		$requete->execute();
+
+		$res = $requete->fetch(PDO::FETCH_OBJ);
+
+		$attenduObj = new Question($res);
+
+		$requete->closeCursor();
+		return $attenduObj;
 	}
 }
