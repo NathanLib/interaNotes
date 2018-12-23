@@ -77,7 +77,6 @@ CREATE TABLE points (
   idPoint INT NOT NULL,
   idExamen INT NOT NULL,
   nomPoint VARCHAR(50) NOT NULL,
-  unitePoint VARCHAR(30) NOT NULL,
   FOREIGN KEY (idExamen) REFERENCES examen(idExamen),
   PRIMARY KEY (idPoint, idExamen)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -86,6 +85,8 @@ CREATE TABLE valeurs (
   idValeur INT NOT NULL,
   idPoint INT NOT NULL,
   valeur VARCHAR(50) NOT NULL,
+  uniteValeur VARCHAR(30) NOT NULL,
+  exposantValeur INT NOT NULL,
   FOREIGN KEY (idPoint) REFERENCES points(idPoint),
   PRIMARY KEY (idValeur)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

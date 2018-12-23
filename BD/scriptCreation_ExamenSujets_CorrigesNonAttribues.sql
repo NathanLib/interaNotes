@@ -89,7 +89,7 @@ CREATE TABLE `enonce` (
 
 LOCK TABLES `enonce` WRITE;
 /*!40000 ALTER TABLE `enonce` DISABLE KEYS */;
-INSERT INTO `enonce` VALUES (1,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Lune :\r\n-nombre de moteurs : 1\r\n-vitesse : 1000\r\n-Consommation de carburant par moteur : 100T/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : 3\r\n-Destination : Lune\r\n-Distance Terre/Lune : 340000'),(2,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Mars :\r\n-nombre de moteurs : 2\r\n-vitesse : 2000\r\n-Consommation de carburant par moteur : 100T/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : 6\r\n-Destination : Mars\r\n-Distance Terre/Mars : 100000000');
+INSERT INTO `enonce` VALUES (1,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Lune :\r\n-nombre de moteurs : 1\r\n-vitesse : 1000 km/h\r\n-Consommation de carburant par moteur : 100 tonnes/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : 3\r\n-Destination : Lune\r\n-Distance Terre/Lune : 340000'),(2,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Mars :\r\n-nombre de moteurs : 2\r\n-vitesse : 2000 km/h\r\n-Consommation de carburant par moteur : 100 tonnes/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : 6\r\n-Destination : Mars\r\n-Distance Terre/Mars : 100000000');
 /*!40000 ALTER TABLE `enonce` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,7 +261,6 @@ CREATE TABLE `points` (
   `idPoint` int(11) NOT NULL,
   `idExamen` int(11) NOT NULL,
   `nomPoint` varchar(50) NOT NULL,
-  `unitePoint` varchar(30) NOT NULL,
   PRIMARY KEY (`idPoint`,`idExamen`),
   KEY `idExamen` (`idExamen`),
   CONSTRAINT `points_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
@@ -274,7 +273,7 @@ CREATE TABLE `points` (
 
 LOCK TABLES `points` WRITE;
 /*!40000 ALTER TABLE `points` DISABLE KEYS */;
-INSERT INTO `points` VALUES (1,1,'nbMoteur','unité'),(2,1,'vitesse','Km/H'),(3,1,'nbPersonne','unité'),(4,1,'destinationPlanète',''),(5,1,'distanceDestination','milllions de Kms'),(6,1,'consoCarburantParMoteurs','tonnes/1000kms'),(7,1,'consoEauParPersonnesParJour','L'),(8,1,'consoNourrituresParPersonneParJour','KG'),(9,1,'consoO2ParPersonnesParJour','L');
+INSERT INTO `points` VALUES (1,1,'nbMoteur'),(2,1,'vitesse'),(3,1,'nbPersonne'),(4,1,'destinationPlanète'),(5,1,'distanceDestination'),(6,1,'consoCarburantParMoteurs'),(7,1,'consoEauParPersonnesParJour'),(8,1,'consoNourrituresParPersonneParJour'),(9,1,'consoO2ParPersonnesParJour');
 /*!40000 ALTER TABLE `points` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,7 +288,7 @@ CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
   `intituleQuestion` text NOT NULL,
-  `resultat` decimal(21,3) NOT NULL,
+  `resultat` decimal(20,2) NOT NULL,
   `exposantUnite` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
   `bareme` decimal(4,2) NOT NULL,
@@ -305,7 +304,7 @@ CREATE TABLE `resultatsattendus` (
 
 LOCK TABLES `resultatsattendus` WRITE;
 /*!40000 ALTER TABLE `resultatsattendus` DISABLE KEYS */;
-INSERT INTO `resultatsattendus` VALUES (1,1,'Quantités nécessaires d\'oxygène',2550.000,1,'L',1.00),(2,1,'Quantités nécessaires d\'oxygène',750000.000,1,'L',1.00),(1,2,'Quantités nécessaires de carburant',34000000000.000,6,'g',1.00),(2,2,'Quantités nécessaires de carburant',20000000000000.000,6,'g',1.00),(1,3,'Quantités nécessaires de nourriture',85.000,3,'g',1.00),(2,3,'Quantités nécessaires de nourriture',25000.000,3,'g',1.00),(1,4,'Quantités nécessaires d\'eau',63.750,1,'L',1.00),(2,4,'Quantités nécessaires d\'eau',18750.000,1,'L',1.00),(1,5,'Nombre de jours',14.000,1,'jours',1.00),(2,5,'Nombre de jours',2083.000,1,'jours',1.00);
+INSERT INTO `resultatsattendus` VALUES (1,1,'Quantités nécessaires d\'oxygène',2550.00,0,'L',1.00),(2,1,'Quantités nécessaires d\'oxygène',750.00,3,'L',1.00),(1,2,'Quantités nécessaires de carburant',34000.00,12,'g',1.00),(2,2,'Quantités nécessaires de carburant',20000000.00,12,'g',1.00),(1,3,'Quantités nécessaires de nourriture',85.00,3,'g',1.00),(2,3,'Quantités nécessaires de nourriture',25000.00,3,'g',1.00),(1,4,'Quantités nécessaires d\'eau',63.75,0,'L',1.00),(2,4,'Quantités nécessaires d\'eau',18750.00,0,'L',1.00),(1,5,'Nombre de jours',14.00,0,'jours',1.00),(2,5,'Nombre de jours',2083.00,0,'jours',1.00);
 /*!40000 ALTER TABLE `resultatsattendus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -321,7 +320,7 @@ CREATE TABLE `resultatseleves` (
   `idEleve` int(11) NOT NULL,
   `idSujet` int(11) NOT NULL,
   `idReponse` int(11) NOT NULL,
-  `resultat` decimal(21,3) NOT NULL,
+  `resultat` decimal(20,2) NOT NULL,
   `exposantUnite` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
   `justification` text NOT NULL,
@@ -411,6 +410,8 @@ CREATE TABLE `valeurs` (
   `idValeur` int(11) NOT NULL,
   `idPoint` int(11) NOT NULL,
   `valeur` varchar(50) NOT NULL,
+  `uniteValeur` varchar(30) NOT NULL,
+  `exposantValeur` int(11) NOT NULL,
   PRIMARY KEY (`idValeur`),
   KEY `idPoint` (`idPoint`),
   CONSTRAINT `valeurs_ibfk_1` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
@@ -423,7 +424,7 @@ CREATE TABLE `valeurs` (
 
 LOCK TABLES `valeurs` WRITE;
 /*!40000 ALTER TABLE `valeurs` DISABLE KEYS */;
-INSERT INTO `valeurs` VALUES (1,1,'1'),(2,1,'2'),(3,1,'3'),(4,1,'4'),(5,1,'5'),(6,2,'1000'),(7,2,'2000'),(8,2,'3000'),(9,2,'4000'),(10,2,'5000'),(11,3,'3'),(12,3,'4'),(13,3,'5'),(14,3,'6'),(15,3,'7'),(16,3,'8'),(17,3,'9'),(18,3,'10'),(19,3,'11'),(20,3,'12'),(21,4,'Lune'),(22,4,'Mars'),(23,5,'340000'),(24,5,'350000'),(25,5,'360000'),(26,5,'370000'),(27,5,'380000'),(28,5,'390000'),(29,5,'400000'),(30,5,'410000'),(31,5,'50000000'),(32,5,'100000000'),(33,5,'150000000'),(34,5,'200000000'),(35,5,'250000000'),(36,5,'300000000'),(37,5,'350000000'),(38,5,'400000000'),(39,6,'100'),(40,7,'1.5'),(41,8,'2'),(42,9,'60');
+INSERT INTO `valeurs` VALUES (1,1,'1','unité',0),(2,1,'2','unité',0),(3,1,'3','unité',0),(4,1,'4','unité',0),(5,1,'5','unité',0),(6,2,'1000','km/h',0),(7,2,'2000','km/h',0),(8,2,'3000','km/h',0),(9,2,'4000','km/h',0),(10,2,'5000','km/h',0),(11,3,'3','unité',0),(12,3,'4','unité',0),(13,3,'5','unité',0),(14,3,'6','unité',0),(15,3,'7','unité',0),(16,3,'8','unité',0),(17,3,'9','unité',0),(18,3,'10','unité',0),(19,3,'11','unité',0),(20,3,'12','unité',0),(21,4,'Lune','',0),(22,4,'Mars','',0),(23,5,'340','m',6),(24,5,'350','m',6),(25,5,'360','m',6),(26,5,'370','m',6),(27,5,'380','m',6),(28,5,'390','m',6),(29,5,'400','m',6),(30,5,'410','m',6),(31,5,'50','m',9),(32,5,'100','m',9),(33,5,'150','m',9),(34,5,'200','m',9),(35,5,'250','m',9),(36,5,'300','m',9),(37,5,'350','m',9),(38,5,'400','m',9),(39,6,'100','tonnes/1000km',0),(40,7,'1.5','L',0),(41,8,'2','g',3),(42,9,'60','L',0);
 /*!40000 ALTER TABLE `valeurs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -436,4 +437,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-15 21:10:28
+-- Dump completed on 2018-12-21 23:28:11

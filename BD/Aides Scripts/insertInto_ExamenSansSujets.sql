@@ -13,59 +13,59 @@ INSERT INTO `enseignant` VALUES (2);
 INSERT INTO `examen` VALUES (1,'2018-11-30 00:00:00',2018);
 
 INSERT INTO `points` VALUES 
-(1,1,'nbMoteur','unité'),
-(2,1,'vitesse','Km/H'),
-(3,1,'nbPersonne','unité'),
-(4,1,'destinationPlanète',''),
-(5,1,'distanceDestination','milllions de Kms'),
-(6,1,'consoCarburantParMoteurs','tonnes/1000kms'),
-(7,1,'consoEauParPersonnesParJour','L'),
-(8,1,'consoNourrituresParPersonneParJour','KG'),
-(9,1,'consoO2ParPersonnesParJour','L');
+(1,1,'nbMoteur'),
+(2,1,'vitesse'),
+(3,1,'nbPersonne'),
+(4,1,'destinationPlanète'),
+(5,1,'distanceDestination'),
+(6,1,'consoCarburantParMoteurs'),
+(7,1,'consoEauParPersonnesParJour'),
+(8,1,'consoNourrituresParPersonneParJour'),
+(9,1,'consoO2ParPersonnesParJour');
 
 INSERT INTO `valeurs` VALUES 
-(1,1,'1'), /*nbMoteurs*/
-(2,1,'2'),
-(3,1,'3'),
-(4,1,'4'),
-(5,1,'5'),
-(6,2,'1000'), /*vitesse*/
-(7,2,'2000'),
-(8,2,'3000'),
-(9,2,'4000'),
-(10,2,'5000'),
-(11,3,'3'), /*nbPersonnes*/
-(12,3,'4'),
-(13,3,'5'),
-(14,3,'6'),
-(15,3,'7'),
-(16,3,'8'),
-(17,3,'9'),
-(18,3,'10'),
-(19,3,'11'),
-(20,3,'12'),
-(21,4,'Lune'), /*planete*/
-(22,4,'Mars'),
-(23,5,'340000'), /*distance*/
-(24,5,'350000'),
-(25,5,'360000'),
-(26,5,'370000'),
-(27,5,'380000'),
-(28,5,'390000'),
-(29,5,'400000'),
-(30,5,'410000'),
-(31,5,'50000000'),
-(32,5,'100000000'),
-(33,5,'150000000'),
-(34,5,'200000000'),
-(35,5,'250000000'),
-(36,5,'300000000'),
-(37,5,'350000000'),
-(38,5,'400000000'),
-(39,6,'100'),
-(40,7,'1.5'),
-(41,8,'2'),
-(42,9,'60');
+(1,1,'1','unité',0), /*nbMoteurs*/
+(2,1,'2','unité',0),
+(3,1,'3','unité',0),
+(4,1,'4','unité',0),
+(5,1,'5','unité',0),
+(6,2,'1000','km/h',0), /*vitesse*/
+(7,2,'2000','km/h',0),
+(8,2,'3000','km/h',0),
+(9,2,'4000','km/h',0),
+(10,2,'5000','km/h',0),
+(11,3,'3','unité',0), /*nbPersonnes*/
+(12,3,'4','unité',0),
+(13,3,'5','unité',0),
+(14,3,'6','unité',0),
+(15,3,'7','unité',0),
+(16,3,'8','unité',0),
+(17,3,'9','unité',0),
+(18,3,'10','unité',0),
+(19,3,'11','unité',0),
+(20,3,'12','unité',0),
+(21,4,'Lune','',0), /*planete*/
+(22,4,'Mars','',0),
+(23,5,'340','m',6), /*distance*/
+(24,5,'350','m',6),
+(25,5,'360','m',6),
+(26,5,'370','m',6),
+(27,5,'380','m',6),
+(28,5,'390','m',6),
+(29,5,'400','m',6),
+(30,5,'410','m',6),
+(31,5,'50','m',9),
+(32,5,'100','m',9),
+(33,5,'150','m',9),
+(34,5,'200','m',9),
+(35,5,'250','m',9),
+(36,5,'300','m',9),
+(37,5,'350','m',9),
+(38,5,'400','m',9),
+(39,6,'100','tonnes/1000km',0), /*ConsoCarburantParMoteurPar1000km*/
+(40,7,'1.5','L',0), /*ConsoEau*/
+(41,8,'2','g',3), /*ConsoNourriture*/
+(42,9,'60','L',0); /*ConsoO2*/
 
 INSERT INTO `dependances` VALUES 
 (6,1),

@@ -9,9 +9,9 @@ class PersonneManager{
 	public function getNomPrenomParSujet($idSujet){
 
 		$sql = 'SELECT nom, prenom FROM personne p
-						INNER JOIN eleve e ON(p.idPersonne=e.idEleve)
-						INNER JOIN exerciceattribue ex ON(e.idEleve=ex.idEleve)
-						WHERE ex.idSujet=:idSujet ';
+		INNER JOIN eleve e ON(p.idPersonne=e.idEleve)
+		INNER JOIN exerciceattribue ex ON(e.idEleve=ex.idEleve)
+		WHERE ex.idSujet=:idSujet ';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
@@ -35,12 +35,16 @@ class PersonneManager{
 				}
 
 				$mdp = createRandomPassword();
-
-				$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'mail'=>$personne[2],'login'=>$login,'mdp'=>$mdp));
+				if(!$this->mailExiste($personne[2])){
+					$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'mail'=>$personne[2],'login'=>$login,'mdp'=>$mdp));
+				} else {
+					return false;	
+				}
 			}
 		}
-
-		return $listeEleves;
+		
+		return $listeEleves;	
+		
 	}
 
 	public function insererTableauEleves($eleves,$annee,$nomPromo) {
@@ -70,7 +74,7 @@ class PersonneManager{
 
 	public function getTableauElevesPourCSV($listeEleves) {
 		foreach ($listeEleves as $personne) {
-		  $tableauEleves[] = array($personne->getNomPersonne(),$personne->getPrenomPersonne(),$personne->getMailPersonne(),$personne->getLoginPersonne(),$personne->getPasswdPersonne());
+			$tableauEleves[] = array($personne->getNomPersonne(),$personne->getPrenomPersonne(),$personne->getMailPersonne(),$personne->getLoginPersonne(),$personne->getPasswdPersonne());
 		}
 
 		return $tableauEleves;
@@ -78,8 +82,8 @@ class PersonneManager{
 
 	public function getAllEleveAnnee($annee){
 		$sql = 'SELECT idPersonne,prenom,nom FROM personne p
-						INNER JOIN eleve e ON(e.idEleve=p.idPersonne)
-						WHERE e.annee=:annee';
+		INNER JOIN eleve e ON(e.idEleve=p.idPersonne)
+		WHERE e.annee=:annee';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':annee', $annee);
@@ -104,6 +108,23 @@ class PersonneManager{
 		$requete->closeCursor();
 
 		if(isset($res->login)){
+			return true;
+		}
+		return false;
+
+	}
+
+	public function mailExiste($mail){
+		$sql = 'SELECT mail FROM personne WHERE mail=:mail';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':mail', $mail);
+		$requete->execute();
+
+		$res = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+
+		if(isset($res->mail)){
 			return true;
 		}
 		return false;

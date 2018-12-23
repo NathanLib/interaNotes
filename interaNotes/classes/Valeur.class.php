@@ -3,6 +3,8 @@ class Valeur{
 	private $idValeur;
 	private $idPoint;
   private $valeur;
+	private $uniteValeur;
+	private $exposantValeur;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -24,6 +26,14 @@ class Valeur{
 
         case 'valeur' :
 					$this->setValeur($valeur);
+					break;
+
+				case 'uniteValeur' :
+					$this->setUniteValeur($valeur);
+					break;
+
+				case 'exposantValeur' :
+					$this->setExposantValeur($valeur);
 					break;
 			}
 		}
@@ -55,6 +65,22 @@ class Valeur{
 
 	public function setValeur($valeur){
 		$this->valeur = $valeur;
+	}
+
+	public function getUniteValeur(){
+		return $this->uniteValeur;
+	}
+
+	public function setUniteValeur($valeur){
+		$this->uniteValeur = $valeur;
+	}
+
+	public function getExposantValeur(){
+		return $this->exposantValeur;
+	}
+
+	public function setExposantValeur($valeur){
+		$this->exposantValeur = $valeur;
 	}
 
 }

@@ -8,7 +8,7 @@ class PointManager{
 
 	public function getAllPointsOfExamens($idExamen){
 
-		$sql = 'SELECT idPoint, idExamen, nomPoint, unitePoint FROM points WHERE idExamen=:idExamen';
+		$sql = 'SELECT idPoint, idExamen, nomPoint FROM points WHERE idExamen=:idExamen';
 
     $requete = $this->db->prepare($sql);
 		$requete->bindValue(':idExamen', $idExamen);
@@ -23,7 +23,7 @@ class PointManager{
 	}
 
 	public function getPoint($idPoint){
-		$sql = 'SELECT idPoint, idExamen, nomPoint, unitePoint FROM points WHERE idPoint=:idPoint';
+		$sql = 'SELECT idPoint, idExamen, nomPoint FROM points WHERE idPoint=:idPoint';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idPoint', $idPoint);

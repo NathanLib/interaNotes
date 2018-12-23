@@ -22,7 +22,7 @@ class ExamenManager{
 		if(isset($listeExamens)){
 			return $listeExamens;
 		}
-		
+
 		return false;
 	}
 
@@ -72,5 +72,13 @@ class ExamenManager{
 		$requete->closeCursor();
 
 		return $date->dateDepot;
+	}
+
+	public function dateLimiteEstDepassee ($date){
+		$now = new DateTime(date("Y:m:d H:i:s"));
+		$limite = new DateTime($date);
+
+		return $now>$limite;
+
 	}
 }

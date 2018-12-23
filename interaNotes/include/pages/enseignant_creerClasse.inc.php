@@ -52,64 +52,71 @@
         $personneManager = new PersonneManager($db);
 
         $listeElevesImportes = $personneManager->creerTableauEleves($eleves);
-        $personneManager->insererTableauEleves($listeElevesImportes,$_POST['annee'],$_POST['nom']);
 
-        $listeEleves = $personneManager->getAllEleveAnnee($_POST['annee']);?>
+        if(!$listeElevesImportes) { ?>
+            <p style="text-align:center;font-weight:bold; margin:10% 0;">
+                <img src="image/erreur.png" alt="Erreur" title="erreur">Un ou plusieurs élèves possèdent déjà cette adresse e-mail !
+            </p>
+        <?php } else {
+            $personneManager->insererTableauEleves($listeElevesImportes,$_POST['annee'],$_POST['nom']);
 
-        <div class="row affClassCreated">
-            <div class="col-12 d-flex justify-content-center" style="margin-bottom:5%">
-                <h4>Récapitulatif de la classe importée</h4>
-            </div>
+            $listeEleves = $personneManager->getAllEleveAnnee($_POST['annee']);?>
 
-            <!--Affichage caractéristiques de la classe importée-->
-            <div class="col-12 col-md-5 ">
-                <div class="row">
-                    <div class="col-12">
-                        <label>Nom de la promotion :</label>
-                        <p><?php echo $_POST['nom'] ?></p>
+            <div class="row affClassCreated">
+                <div class="col-12 d-flex justify-content-center" style="margin-bottom:5%">
+                    <h4>Récapitulatif de la classe importée</h4>
+                </div>
+
+                <!--Affichage caractéristiques de la classe importée-->
+                <div class="col-12 col-md-5 ">
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Nom de la promotion :</label>
+                            <p><?php echo $_POST['nom'] ?></p>
+                        </div>
+
+                        <div class="col-12">
+                            <label>Année de la promotion :</label>
+                            <p><?php echo $_POST['annee'] ?></p>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="col-12">
-                        <label>Année de la promotion :</label>
-                        <p><?php echo $_POST['annee'] ?></p>
-                    </div>
+                <!-- Affichage des élèves importés -->
+                <div class="col-12 col-md-5 listImportStudent">
+
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" style="border-radius: 20px 0 0 0;">#</th>
+                                <th scope="col">Prénom</th>
+                                <th scope="col" style="border-radius: 0 20px 0 0;">Nom</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            foreach ($listeEleves as $eleve) { ?>
+                                <tr>
+                                    <th scope="row"><?php echo $eleve->getIdPersonne() ?></th>
+                                    <td><?php echo $eleve->getPrenomPersonne()?></td>
+                                    <td><?php echo $eleve->getNomPersonne()?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <!-- Affichage des élèves importés -->
-            <div class="col-12 col-md-5 listImportStudent">
-
-                <table class="table table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col" style="border-radius: 20px 0 0 0;">#</th>
-                            <th scope="col">Prénom</th>
-                            <th scope="col" style="border-radius: 0 20px 0 0;">Nom</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php
-                        foreach ($listeEleves as $eleve) { ?>
-                            <tr>
-                                <th scope="row"><?php echo $eleve->getIdPersonne() ?></th>
-                                <td><?php echo $eleve->getPrenomPersonne()?></td>
-                                <td><?php echo $eleve->getNomPersonne()?></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <?php
+            <?php
         //Préparation de la sauvegarde dans un CSV
-        $_SESSION['tableauEleves'] = $personneManager->getTableauElevesPourCSV($listeElevesImportes);?>
+            $_SESSION['tableauEleves'] = $personneManager->getTableauElevesPourCSV($listeElevesImportes);?>
 
-        <meta http-equiv="refresh" content="1;url=include/pages/enseignant_exportElevesCSV.inc.php">
+            <meta http-equiv="refresh" content="1;url=include/pages/enseignant_exportElevesCSV.inc.php">
 
-        <?php
-    } ?>
+            <?php
+        } 
+    }?>
 
 </div>
 <?php }
