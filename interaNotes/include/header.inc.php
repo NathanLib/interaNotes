@@ -1,5 +1,3 @@
-<?php session_start();
-date_default_timezone_set('Europe/Paris');?>
 <!doctype html>
 <html lang="fr">
 
@@ -29,7 +27,7 @@ date_default_timezone_set('Europe/Paris');?>
 
         <!-- Navbar text-->
         <span class="navbar-text">
-            Accueil
+            <?php echo $_SESSION['titre']; ?>
         </span>
 
         <!-- Toggler/collapsibe Button -->
