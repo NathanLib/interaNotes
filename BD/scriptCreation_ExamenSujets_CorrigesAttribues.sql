@@ -89,7 +89,7 @@ CREATE TABLE `enonce` (
 
 LOCK TABLES `enonce` WRITE;
 /*!40000 ALTER TABLE `enonce` DISABLE KEYS */;
-INSERT INTO `enonce` VALUES (1,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Lune :\r\n-nombre de moteurs : 1\r\n-vitesse : 1000 km/h\r\n-Consommation de carburant par moteur : 100 tonnes/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : 3\r\n-Destination : Lune\r\n-Distance Terre/Lune : 340000'),(2,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Mars :\r\n-nombre de moteurs : 2\r\n-vitesse : 2000 km/h\r\n-Consommation de carburant par moteur : 100 tonnes/1000km\r\n-Consommation d\'eau par jour par personne : 1,5L\r\n-Consommation de nourriture par personne par journée : 2 Kg\r\n-Consommation d\'O² par personne par jour : 60L\r\n-Le nombre de personnes dans l\'équipage : 6\r\n-Destination : Mars\r\n-Distance Terre/Mars : 100000000');
+INSERT INTO `enonce` VALUES (1,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Lune :\r\n<ul>\r\n<li>nombre de moteurs : 1</li>\r\n<li>vitesse : 1000 km/h</li>\r\n<li>Consommation de carburant par moteur : 100 tonnes/1000km</li>\r\n<li>Consommation d\'eau par jour par personne : 1,5L</li>\r\n<li>Consommation de nourriture par personne par journée : 2 Kg</li>\r\n<li>Consommation d\'O² par personne par jour : 60L</li>\r\n<li>Le nombre de personnes dans l\'équipage : 3</li>\r\n<li>Destination : Lune</li>\r\n<li>Distance Terre/Lune : 340000 km</li>\r\n</ul>'),(2,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Mars :\r\n<ul>\r\n<li>nombre de moteurs : 2</li>\r\n<li>vitesse : 2000 km/h</li>\r\n<li>Consommation de carburant par moteur : 100 tonnes/1000km</li>\r\n<li>Consommation d\'eau par jour par personne : 1,5L</li>\r\n<li>Consommation de nourriture par personne par journée : 2 Kg</li>\r\n<li>Consommation d\'O² par personne par jour : 60L</li>\r\n<li>Le nombre de personnes dans l\'équipage : 6</li>\r\n<li>Destination : Mars</li>\r\n<li>Distance Terre/Mars : 100000000 km</li>\r\n</ul>');
 /*!40000 ALTER TABLE `enonce` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,7 +138,7 @@ CREATE TABLE `examen` (
 
 LOCK TABLES `examen` WRITE;
 /*!40000 ALTER TABLE `examen` DISABLE KEYS */;
-INSERT INTO `examen` VALUES (1,'2018-11-30 00:00:00',2018);
+INSERT INTO `examen` VALUES (1,'2019-01-30 00:00:00',2018);
 /*!40000 ALTER TABLE `examen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -438,4 +438,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-21 23:29:05
+-- Dump completed on 2018-12-24 17:47:02

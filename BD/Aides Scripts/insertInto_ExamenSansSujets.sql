@@ -10,7 +10,7 @@ INSERT INTO `eleve` VALUES (1,2018, "Promo 1A 2018"),(3,2018, "Promo 1A 2018"),(
 
 INSERT INTO `enseignant` VALUES (2);
 
-INSERT INTO `examen` VALUES (1,'2018-11-30 00:00:00',2018);
+INSERT INTO `examen` VALUES (1,'2019-01-30 00:00:00',2018);
 
 INSERT INTO `points` VALUES 
 (1,1,'nbMoteur'),
@@ -90,5 +90,5 @@ INSERT INTO `dependances` VALUES
 (35,22),
 (36,22),
 (37,22),
-(38,22),
+(38,22);
 
