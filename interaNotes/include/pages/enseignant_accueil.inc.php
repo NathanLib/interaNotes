@@ -67,14 +67,14 @@ $_SESSION['examen'] = $examenManager->getExamen($numExamen);
     </div>
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
-        <a href="#">
+        <a href="index.php?page=19">
             <div class="tictac">
                 <div class="tictacHaut">
                     <img class="iconTictac" src="image/parameter.png" alt="exam" title="exam">
                 </div>
 
                 <div class="tictacBas">
-                    Paramètres
+                    Mon compte
                 </div>
             </div>
         </a>
