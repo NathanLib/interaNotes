@@ -5,7 +5,7 @@ $sujetManager = new SujetManager($pdo);
 $enonceManager = new EnonceManager($pdo);
 $examenManager = new ExamenManager($pdo);
 $questionManager = new QuestionManager($pdo);
-$personneManager = new PersonneManager($pdo);
+$eleveManager = new EleveManager($pdo);
 $reponseEleveManager = new ReponseEleveManager($pdo);
 
 $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']); // WARNING
@@ -144,7 +144,7 @@ if(!$idSujet){
                 }
             }
 
-            $idEleve =$personneManager->getIdEleveByLogin($_SESSION['eleve']);
+            $idEleve =$eleveManager->getIdEleveByLogin($_SESSION['eleve']);
             $date = date("Y-m-d H:i:s");
 
             foreach ($listeReponse as $numeroReponse => $reponse) {
