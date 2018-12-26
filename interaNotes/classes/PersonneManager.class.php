@@ -38,13 +38,13 @@ class PersonneManager{
 				if(!$this->mailExiste($personne[2])){
 					$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'mail'=>$personne[2],'login'=>$login,'mdp'=>$mdp));
 				} else {
-					return false;	
+					return false;
 				}
 			}
 		}
-		
-		return $listeEleves;	
-		
+
+		return $listeEleves;
+
 	}
 
 	public function insererTableauEleves($eleves,$annee,$nomPromo) {
@@ -150,9 +150,9 @@ class PersonneManager{
 
 	}
 
-	public function getIdEleveByLogin($login){
+	public function getPersonneByLogin($login){
 
-		$sql = 'SELECT idEleve FROM eleve e INNER JOIN personne p ON(p.idPersonne=e.idEleve) WHERE p.login=:login';
+		$sql = 'SELECT idPersonne, nom, prenom, mail, login FROM personne p WHERE p.login=:login';
 		$req = $this->db->prepare($sql);
 		$req->bindValue(':login',$login,PDO::PARAM_STR);
 		$req->execute();
@@ -160,7 +160,21 @@ class PersonneManager{
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$req->closeCursor();
 
-		return $res->idEleve;
+		return new Personne($res);
+	}
+
+	public function updatePasswordOfPersonne($idPersonne, $passwordProtected){
+		$sql = 'UPDATE personne SET mdp = :passwd
+						WHERE idPersonne = :num';
+		$requete = $this->db->prepare($sql);
+
+		$requete->bindValue(':idPersonne', $idPersonne);
+		$requete->bindValue(':mdp', $passwordProtected);
+
+		$retour=$requete->execute();
+		$requete->closeCursor();
+
+		return $retour;
 	}
 
 	public function connexion($login,$protectedPassword){

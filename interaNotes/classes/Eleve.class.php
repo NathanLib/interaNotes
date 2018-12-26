@@ -2,6 +2,7 @@
 class Eleve{
 	private $personneObj;
 	private $anneeInscription;
+	private $nomPromotion;
 
 	public function __construct($personneObj, $valeursEtudiant){
 		if(!empty($valeursEtudiant)){
@@ -17,6 +18,10 @@ class Eleve{
 			switch($attribut){
 				case 'annee' :
 					$this->setAnneeInscription($valeur);
+					break;
+
+				case 'nomPromo' :
+					$this->setNomPromotion($valeur);
 					break;
 			}
 		}
@@ -38,5 +43,13 @@ class Eleve{
 		if(is_numeric($anneeInscription)){
 			$this->anneeInscription = $anneeInscription;
 		}
+	}
+
+	public function getNomPromotion(){
+		return $this->nomPromotion;
+	}
+
+	public function setNomPromotion($nomPromotion){
+		$this->nomPromotion = $nomPromotion;
 	}
 }
