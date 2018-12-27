@@ -52,7 +52,7 @@ if(empty($_POST['mdp'])) { ?>
      $db = new Mypdo();
      $personneManager = new PersonneManager($db);
 
-     $log = $personneManager->connexion($_POST['login'],createProtectedPassword($_POST['mdp']));
+     $log = $personneManager->verifierInfosConnexion($_POST['login'],createProtectedPassword($_POST['mdp']));
 
      switch ($log) {
          case "erreurConnexion":

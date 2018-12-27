@@ -66,15 +66,19 @@
 		include_once('pages/test_AffichagePourcentage.inc.php');
 		break;
 
-		case 26:
-		include_once('pages/detailsCompte.inc.php');
-		break;
-
 
 		// WARNING : Pages communes
 
 		case 40:
 		include_once('pages/deconnexion.inc.php');
+		break;
+
+		case 41:
+		include_once('pages/detailsCompte.inc.php');
+		break;
+
+		case 42:
+		include_once('pages/detailsCompte_modifierPassword.inc.php');
 		break;
 
 		default:

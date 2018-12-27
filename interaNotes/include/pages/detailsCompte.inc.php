@@ -1,4 +1,6 @@
 <?php
+if (isset($_SESSION['eleve']) || isset($_SESSION['enseignant'])){
+
 $pdo = new Mypdo();
 $personneManager = new PersonneManager($pdo);
 $eleveManager = new EleveManager($pdo);
@@ -56,8 +58,14 @@ if (isset($_SESSION['eleve'])){
                 <span class="answerDetailCompte"><?php echo $personne->getLoginPersonne(); ?></span>
             </div>
             <div class="col-12 partDetailCompte divBoutonChangerMdp">
-                <input class="changeMdp" type="button" name="" value="Changer mon mot de passe">
+                <a href="index.php?page=42"><input class="changeMdp" type="button" name="" value="Changer mon mot de passe"></a>
             </div>
         </div>
     </div>
 </div>
+
+<?php
+}else{
+  header('Location: index.php?page=0');
+}
+?>

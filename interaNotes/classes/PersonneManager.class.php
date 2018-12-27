@@ -164,8 +164,8 @@ class PersonneManager{
 	}
 
 	public function updatePasswordOfPersonne($idPersonne, $passwordProtected){
-		$sql = 'UPDATE personne SET mdp = :passwd
-						WHERE idPersonne = :num';
+		$sql = 'UPDATE personne SET mdp = :mdp
+						WHERE idPersonne = :idPersonne';
 		$requete = $this->db->prepare($sql);
 
 		$requete->bindValue(':idPersonne', $idPersonne);
@@ -177,7 +177,7 @@ class PersonneManager{
 		return $retour;
 	}
 
-	public function connexion($login,$protectedPassword){
+	public function verifierInfosConnexion($login,$protectedPassword){
 
 		$sql = 'SELECT login,mdp FROM personne WHERE login=:login';
 		$req = $this->db->prepare($sql);
@@ -188,7 +188,7 @@ class PersonneManager{
 
 		$res = $req->fetch(PDO::FETCH_ASSOC);
 
-		if($res['login'] === $login && $res['mdp'] === $protectedPassword ) {
+		if($res['mdp'] === $protectedPassword ) {
 			if($this->isEnseignant($login)){
 				return "enseignant";
 			}
