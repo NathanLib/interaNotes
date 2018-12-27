@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['eleve'])){
-   header('Location: index.php?page=7');
+   header('Location: index.php?page=10');
 } elseif (isset($_SESSION['enseignant'])) {
   header('Location: index.php?page=1');
 }
@@ -100,7 +100,7 @@ if(empty($_POST['mdp'])) { ?>
 
             case "eleve":
             $_SESSION['eleve']=$_POST['login'];
-            header('Location: index.php?page=7');
+            header('Location: index.php?page=10');
             break;
 
             case "enseignant":

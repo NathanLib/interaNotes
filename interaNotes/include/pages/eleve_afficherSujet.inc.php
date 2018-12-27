@@ -78,7 +78,7 @@ if (!$idSujet){
 
         <div class="col-12 d-flex justify-content-center">
             <div class="boutonSaisieReponse">
-                <a href="index.php?page=15">Saisir les réponses</a>
+                <a href="index.php?page=23">Saisir les réponses</a>
             </div>
         </div>
     </div>

@@ -29,7 +29,7 @@ if(!$listeExamens) { ?>
 					<td><?php echo $value->getIdExamen() ?></td>
 					<td><?php echo getFrenchDate($value->getDateDepotExamen()) ?></td>
 					<td><?php echo $value->getAnneeScolaireExamen() ?></td>
-					<td><a href="index.php?page=18&amp;id=<?php echo $value->getIdExamen();?>"><button>Consulter</button></a></td>
+					<td><a href="index.php?page=25&amp;id=<?php echo $value->getIdExamen();?>"><button>Consulter</button></a></td>
 				</tr>
 			<?php } ?>
 		</table>
@@ -79,7 +79,7 @@ if(!$listeExamens) { ?>
 						</div>
 
 						<div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-							<a href="index.php?page=18&amp;id=<?php echo $_GET['id']?>&amp;idSujet=<?php echo $sujet->getIdSujet() ?>"><input type="button" name="" value="Consulter Réponses"></a>
+							<a href="index.php?page=25&amp;id=<?php echo $_GET['id']?>&amp;idSujet=<?php echo $sujet->getIdSujet() ?>"><input type="button" name="" value="Consulter Réponses"></a>
 						</div>
 					</div>
 				<?php } ?>

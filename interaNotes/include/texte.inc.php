@@ -31,73 +31,56 @@
 		include_once('pages/enseignant_creerExamen.inc.php');
 		break;
 
-		case 5:  header('Location: index.php?page=0');
-		break;
-
-		case 6:  header('Location: index.php?page=0');
-		break;
-
 		// WARNING: PARTIE ELEVE
-		case 7:
+		case 10:
 		include_once('pages/eleve_accueil.inc.php');
 		break;
 
-		case 8:
+		case 11:
 		include_once('pages/eleve_afficherSujet.inc.php');
-		break;
-
-		case 9:  header('Location: index.php?page=0');
-		break;
-
-		case 10:  header('Location: index.php?page=0');
-		break;
-
-
-		case 11: header('Location: index.php?page=0');
 		break;
 
 		// WARNING: PARTIE TEST
 
-		case 12:
+		case 20:
 		include_once('pages/test_afficherUnSujetComplet.inc.php');
 		break;
 
-		case 13:
+		case 21:
 		include_once('pages/test_afficherUnSujetCorrige.inc.php');
 		break;
 
-		case 14:
+		case 22:
 		include_once('pages/test_generationSujets.inc.php');
 		break;
 
-		case 15:
+		case 23:
 		include_once('pages/test_saisiReponseEleve.inc.php');
 		break;
 
-
-		// WARNING : DECONNEXION
-
-		case 16:
-		include_once('pages/deconnexion.inc.php');
-		break;
-
-		// WARNING: Suite PARTIE TEST
-		case 17:
+		case 24:
 		include_once('pages/test_publipostage.inc.php');
 		break;
 
-		case 18:
+		case 25:
 		include_once('pages/test_AffichagePourcentage.inc.php');
 		break;
 
-		case 19:
+		case 26:
 		include_once('pages/test_detailMonCompte.inc.php');
+		break;
+
+
+		// WARNING : Pages communes
+
+		case 40:
+		include_once('pages/deconnexion.inc.php');
 		break;
 
 		default:
 		if(isset($_SESSION['eleve'])){
 
-			header('Location: index.php?page=7');
+			header('Location: index.php?page=10');
 
 		} elseif (isset($_SESSION['enseignant'])) {
 

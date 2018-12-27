@@ -3,7 +3,7 @@
 <div class="row justify-content-center justify-content-around">
 
     <div class="col-6 col-lg-2 TicTacAccueil">
-        <a href="index.php?page=8">
+        <a href="index.php?page=11">
             <div class="tictac">
                 <div class="tictacHaut">
                     <img class="iconTictac" src="image/subject.png" alt="exam" title="exam">
@@ -59,7 +59,7 @@
     </div>
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
-        <a href="index.php?page=19">
+        <a href="index.php?page=26">
             <div class="tictac">
                 <div class="tictacHaut">
                     <img class="iconTictac" src="image/parameter.png" alt="exam" title="exam">

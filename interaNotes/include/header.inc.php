@@ -44,11 +44,11 @@
                     </li>
                 <?php } elseif (isset($_SESSION['eleve'])) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=7">Accueil élève</a>
+                        <a class="nav-link" href="index.php?page=10">Accueil élève</a>
                     </li>
                 <?php } if(isset($_SESSION['enseignant']) || isset($_SESSION['eleve'])) {?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=16">Déconnexion</a>
+                        <a class="nav-link" href="index.php?page=40">Déconnexion</a>
                     </li>
                 <?php } ?>
 
@@ -58,12 +58,11 @@
                         More
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.php?page=12">t_ListerSujets</a>
-                        <a class="dropdown-item" href="index.php?page=8">t_afficherSujetPro</a>
-                        <a class="dropdown-item" href="index.php?page=14">t_genSujet</a>
-                        <a class="dropdown-item" href="index.php?page=15">t_saisiReponseEleve</a>
-                        <a class="dropdown-item" href="index.php?page=17">t_publipostage</a>
-                        <a class="dropdown-item" href="index.php?page=18">t_AffichagePourcentage</a>
+                        <a class="dropdown-item" href="index.php?page=20">t_ListerSujets</a>
+                        <a class="dropdown-item" href="index.php?page=22">t_genSujet</a>
+                        <a class="dropdown-item" href="index.php?page=23">t_saisiReponseEleve</a>
+                        <a class="dropdown-item" href="index.php?page=24">t_publipostage</a>
+                        <a class="dropdown-item" href="index.php?page=25">t_AffichagePourcentage</a>
                     </div>
                 </li>
             </ul>
