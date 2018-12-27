@@ -7,8 +7,12 @@ if (isset($_SESSION['eleve'])){
    $personne = $personneManager->getPersonneByLogin($_SESSION['eleve']);
    $eleve = $eleveManager->getEleve($personne);
 
+   $cheminImage = "image/student.png";
+
 } elseif (isset($_SESSION['enseignant'])) {
   $personne = $personneManager->getPersonneByLogin($_SESSION['enseignant']);
+
+  $cheminImage = "image/teacher2.png";
 }
 
 ?>
@@ -18,7 +22,7 @@ if (isset($_SESSION['eleve'])){
         <div class="row headDetailCompte">
             <div class="col-12 col-sm-4 col-lg-12 imgDetailsCompte">
                 <div class="iconStudentDetailsCompte">
-                    <img class="studentImg" src="image/student.png" alt="subject" title="subject">
+                    <img class="studentImg" src="<?php echo $cheminImage; ?>" alt="subject" title="subject">
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-lg-12 nameDetailsCompte">
