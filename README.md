@@ -20,7 +20,7 @@ auth_password=MOT_DE_PASSE
 force_sender=MAIL_D_ENVOI
 ```
 
-- Modifier le fichier 'C:\wamp64\bin\apache\apache2.4.27\bin\php'(garre aux points virgules !):
+- Modifier le fichier 'C:\wamp64\bin\apache\apache2.4.27\bin\php' (_garre aux points virgules !_):
 ```shell
 [mail function]
 ; For Win32 only.
@@ -37,6 +37,8 @@ force_sender=MAIL_D_ENVOI
 ; http://php.net/sendmail-path
 sendmail_path = "C:\wamp64\serveur_mail\sendmail.exe"
 ```
+- Redémarrer les services de WAMP
+
 # Pour configurer un serveur SMTP sur un serveur
 
-Recherche a faire  
+Recherche à faire  
