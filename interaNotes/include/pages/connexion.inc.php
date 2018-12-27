@@ -44,6 +44,8 @@ if(empty($_POST['mdp'])) { ?>
                             <input type="submit" name="submit" value="Connexion">
                         </div>
                     </div>
+
+                    <a href="index.php?page=43">Mot de passe oublié ?</a>
                 </form>
             </div>
         </div>
@@ -90,6 +92,8 @@ if(empty($_POST['mdp'])) { ?>
                                 <input type="submit" name="submit" value="Connexion">
                             </div>
                         </div>
+
+                        <a href="index.php?page=43">Mot de passe oublié ?</a>
                     </form>
                 </div>
             </div>

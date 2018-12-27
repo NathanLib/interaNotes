@@ -81,6 +81,10 @@
 		include_once('pages/detailsCompte_modifierPassword.inc.php');
 		break;
 
+		case 43:
+		include_once('pages/detailsCompte_passwordOublie.inc.php');
+		break;
+
 		default:
 		if(isset($_SESSION['eleve'])){
 
