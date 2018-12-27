@@ -37,6 +37,8 @@ force_sender=MAIL_D_ENVOI
 ; http://php.net/sendmail-path
 sendmail_path = "C:\wamp64\serveur_mail\sendmail.exe"
 ```
+- Activer l'extension Apache 'ssl_module'
+- Activer les extensions PHP 'php_openssl' et 'php_sockets'
 - Redémarrer les services de WAMP
 
 # Pour configurer un serveur SMTP sur un serveur
