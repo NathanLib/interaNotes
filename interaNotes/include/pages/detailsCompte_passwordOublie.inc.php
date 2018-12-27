@@ -35,13 +35,13 @@ $header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$bo
 //=====Création du message.
 $message = $passage_ligne."--".$boundary.$passage_ligne;
 //=====Ajout du message au format texte.
-$message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
+$message.= "Content-Type: text/plain; charset=\"utf-8\"".$passage_ligne;
 $message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 $message.= $passage_ligne.$message_txt.$passage_ligne;
 //==========
 $message.= $passage_ligne."--".$boundary.$passage_ligne;
 //=====Ajout du message au format HTML
-$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
+$message.= "Content-Type: text/html; charset=\"utf-8\"".$passage_ligne;
 $message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 $message.= $passage_ligne.$message_html.$passage_ligne;
 //==========
