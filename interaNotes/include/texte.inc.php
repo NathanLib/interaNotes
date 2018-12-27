@@ -67,7 +67,7 @@
 		break;
 
 		case 26:
-		include_once('pages/test_detailMonCompte.inc.php');
+		include_once('pages/detailsCompte.inc.php');
 		break;
 
 
