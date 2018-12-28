@@ -2,7 +2,7 @@
 
 - Dézipper le fichier 'sendmail.zip' dans "C:\wamp64\serveur_mail"
 - Modifier le fichier 'sendmail.ini' :
-> Si vous voulez, j'ai fais un mail pour Intera Notes :
+> Si vous voulez, j'ai fais un mail pour Intera Notes :  
 > Mail : developpement_web@laposte.net | Mot de passe : @developpementWeb87
 
 ```shell
