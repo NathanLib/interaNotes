@@ -1,7 +1,7 @@
 # Pour configurer un serveur SMTP avec WAMPServeur
 
 - Dézipper le fichier 'sendmail.zip' dans "C:\wamp64\serveur_mail"
-- Modifier le fichier 'sendmail.ini' :
+- Modifier le fichier 'sendmail.ini' pour chaque ligne précisée ci-dessous :
 > Si vous voulez, j'ai fais un mail pour Intera Notes :  
 > Mail : developpement_web@laposte.net | Mot de passe : @developpementWeb87
 
@@ -23,7 +23,7 @@ auth_password=MOT_DE_PASSE
 force_sender=MAIL_D_ENVOI
 ```
 
-- Modifier le fichier 'C:\wamp64\bin\apache\apache2.4.27\bin\php' (_garre aux points virgules !_):
+- Modifier le fichier 'C:\wamp64\bin\apache\apache2.4.27\bin\php' pour la partie [mail function](_garre aux points virgules !_):
 ```shell
 [mail function]
 ; For Win32 only.
