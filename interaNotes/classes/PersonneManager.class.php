@@ -163,6 +163,22 @@ class PersonneManager{
 		return new Personne($res);
 	}
 
+	public function getPersonneByMail($mail){
+
+		$sql = 'SELECT idPersonne, nom, prenom, mail, login FROM personne p WHERE p.mail=:mail';
+		$req = $this->db->prepare($sql);
+		$req->bindValue(':mail',$mail,PDO::PARAM_STR);
+		$req->execute();
+
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		$req->closeCursor();
+
+		if(isset($res->idPersonne)){
+			return new Personne($res);
+		}
+		return false;
+	}
+
 	public function updatePasswordOfPersonne($idPersonne, $passwordProtected){
 		$sql = 'UPDATE personne SET mdp = :mdp
 						WHERE idPersonne = :idPersonne';
