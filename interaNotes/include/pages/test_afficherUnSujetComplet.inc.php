@@ -79,6 +79,11 @@ if($sujetManager->exists($idSujet)){
         <a href="index.php?page=21&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
       </div>
     </div>
+    <div class="col-12 d-flex justify-content-center">
+      <div class="boutonCorrection">
+        <a href="include/pages/test_pdf.inc.php"><input type=button value="Télécharger"></input></a>
+      </div>
+    </div>
   </div>
 </div>
 
