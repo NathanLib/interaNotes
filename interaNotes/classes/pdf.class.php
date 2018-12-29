@@ -4,7 +4,7 @@ require('fpdf.class.php');
 class PDF extends FPDF
 {
 // En-tête
-    function Header()
+    function Header($idSujet)
     {
     // Logo
         $this->Image('../../image/board.png',10,6,30);
@@ -13,7 +13,7 @@ class PDF extends FPDF
     // Décalage à droite
         $this->Cell(80);
     // Titre
-        $this->Cell(30,10,'Sujet N° XXXXX',0,0,'C');
+        $this->Cell(30,10,'Sujet N° '.$idSujet,0,0,'C');
     // Saut de ligne
         $this->Ln(20);
     }
@@ -57,11 +57,11 @@ class PDF extends FPDF
         $this->MultiCell(0,10,$consigne,0,1);
     }
 
-     function AddImages($images){
+     function AddImages($image1,$image2){
         $this->SetFont('Arial','BU',12);
         $this->Cell(25,10,"Images : ",0,0);
-        $this->Image('../../image/sujet/Astronaute3.jpg',50,225,30);
+        $this->Image('../../'.$image1,50,225,30);
 
-        $this->Image('../../image/sujet/FuséeMoteur1.jpg',125,225,30);
+        $this->Image('../../'.$image2,125,225,30);
     }
 }

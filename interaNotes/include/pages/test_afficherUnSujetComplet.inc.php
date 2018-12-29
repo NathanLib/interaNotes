@@ -24,8 +24,14 @@ if($sujetManager->exists($idSujet)){
   $personne = $personneManager->getNomPrenomParSujet($idSujet);
   $valeurs = $valeurManager->getValeursSujet($idSujet);
 
-?>
-<h1 style="margin-top:5%; text-align:center">Sujet <?php echo $idSujet;?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
+  $titre = $enonceSujet->getTitreEnonce();
+  $date = getFrenchDate($_SESSION['examen']->getDateDepotExamen());
+  $enonce = $enonceSujet->getConsigneEnonce();
+  $image1 = "image/sujet/FuséeMoteur".$valeurs[0]->getValeur().".jpg";
+  $image2 = "image/sujet/Astronaute".$valeurs[2]->getValeur().".jpg";
+
+  ?>
+  <h1 style="margin-top:5%; text-align:center">Sujet <?php echo $idSujet;?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>
 
 
   <div class="row mySubject">
@@ -33,13 +39,13 @@ if($sujetManager->exists($idSujet)){
       <div class="col-12">
         <p>
           <span>Titre de l'énoncé : </span>
-          <?php echo $enonceSujet->getTitreEnonce(); ?>
+          <?php echo $titre; ?>
         </p>
       </div>
       <div class="col-12">
         <p>
           <span>Date de fin : </span>
-          <?php echo getFrenchDate($_SESSION['examen']->getDateDepotExamen()); ?>
+          <?php echo $date ?>
         </p>
       </div>
     </div>
@@ -50,7 +56,7 @@ if($sujetManager->exists($idSujet)){
           <span id="subjectTitle">Enoncé :</span>
           <br>
           <p class="textSubject">
-            <?php echo $enonceSujet->getConsigneEnonce(); ?>
+            <?php echo $enonce; ?>
           </p>
         </div>
         <div>
@@ -69,28 +75,31 @@ if($sujetManager->exists($idSujet)){
         <br>
 
         <div class="row justify-content-around">
-          <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureOne" src="image/sujet/FuséeMoteur<?php echo $valeurs[0]->getValeur() ?>.jpg">
+          <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureOne" src=<?php echo $image1; ?> >
 
-          <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureTwo" src="image/sujet/Astronaute<?php echo $valeurs[2]->getValeur() ?>.jpg">
+          <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureTwo" src=<?php echo $image2; ?> >
         </div>
 
-    <div class="col-12 d-flex justify-content-center">
-      <div class="boutonCorrection">
-        <a href="index.php?page=21&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
+        <div class="col-12 d-flex justify-content-center">
+          <div class="boutonCorrection">
+            <a href="index.php?page=21&amp;id=<?php echo $sujet->getIdSujet();?>"><input type=button value="Correction"></input></a>
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <div class="boutonCorrection">
+            <?php 
+            $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $date, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
+            ?>
+            <a href="include/pages/test_pdf.inc.php"><input type=button value="Télécharger"></input></a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-12 d-flex justify-content-center">
-      <div class="boutonCorrection">
-        <a href="include/pages/test_pdf.inc.php"><input type=button value="Télécharger"></input></a>
-      </div>
-    </div>
-  </div>
-</div>
 
-<?php
+    <?php
   }else{
     header('Location: index.php?page=3');
   }
-  } else {
-    header('Location: index.php?page=3');
-  }?>
+} else {
+  header('Location: index.php?page=3');
+}?>
