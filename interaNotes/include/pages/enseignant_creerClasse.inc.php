@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-12 importStudent">
                         <div class="box">
-                            <input type="file" name="file" id="file-3" class="inputfile inputfile-3" required/>
+                            <input type="file" name="file" id="file-3" class="inputfile inputfile-3" accept=".xls,.xlsx,.csv" required/>
                             <label for="file-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
                                     <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
@@ -45,19 +45,32 @@
 
     if (isset($_FILES['file'])) {
 
-        $file = $_FILES['file']['tmp_name'];
-        $eleves = GestionCSV::recupererDonneesDeCSV($file);
+        $extensionAutorises = array('csv','xls' ,'xlsx');
+        $nomFichier = $_FILES['file']['name'];
 
-        $db = new Mypdo();
-        $personneManager = new PersonneManager($db);
+        $extensionFichier = pathinfo($nomFichier, PATHINFO_EXTENSION);
 
-        $listeElevesImportes = $personneManager->creerTableauEleves($eleves);
+        if(!in_array($extensionFichier, $extensionAutorises)) {?>
+          <h1>Erreur fichier importé</h1>
+          <p>Veuillez importer un fichier valide, les extensions acceptées sont : .xls, .xlsx, .csv</p>
+          <a href="index.php?page=2"><input type=button value="Retour"></input></a>
+        <?php
+        }else{
 
-        if(!$listeElevesImportes) { ?>
-            <p style="text-align:center;font-weight:bold; margin:10% 0;">
-                <img src="image/erreur.png" alt="Erreur" title="erreur">Un ou plusieurs élèves possèdent déjà cette adresse e-mail !
-            </p>
-        <?php } else {
+          $fichier = $_FILES['file']['tmp_name'];
+          $eleves = GestionCSV::recupererDonneesDeCSV($fichier);
+
+          $db = new Mypdo();
+          $personneManager = new PersonneManager($db);
+
+          $listeElevesImportes = $personneManager->creerTableauEleves($eleves);
+
+          if(!$listeElevesImportes) { ?>
+              <p style="text-align:center;font-weight:bold; margin:10% 0;">
+                  <img src="image/erreur.png" alt="Erreur" title="erreur">Un ou plusieurs élèves possèdent déjà cette adresse e-mail !
+              </p>
+          <?php
+          } else {
             $personneManager->insererTableauEleves($listeElevesImportes,$_POST['annee'],$_POST['nom']);
 
             $listeEleves = $personneManager->getAllEleveAnnee($_POST['annee']);?>
@@ -109,16 +122,14 @@
             </div>
 
             <?php
-        //Préparation de la sauvegarde dans un CSV
+            //Préparation de la sauvegarde dans un CSV
             $_SESSION['tableauEleves'] = $personneManager->getTableauElevesPourCSV($listeElevesImportes);?>
 
             <meta http-equiv="refresh" content="1;url=include/pages/enseignant_exportElevesCSV.inc.php">
 
-            <?php
-        } 
-    }?>
-
-</div>
-<?php }
-
+          <?php
+          }
+        }
+      }
+    }
 ?>

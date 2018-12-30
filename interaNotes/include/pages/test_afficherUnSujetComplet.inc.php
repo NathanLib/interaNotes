@@ -86,8 +86,8 @@ if($sujetManager->exists($idSujet)){
           </div>
         </div>
         <div class="col-12 d-flex justify-content-center">
-          <div class="boutonCorrection">
-            <?php 
+          <div class="boutonTelecharger">
+            <?php
             $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $date, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
             ?>
             <a href="include/pages/test_pdf.inc.php"><input type=button value="Télécharger"></input></a>
