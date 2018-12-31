@@ -35,7 +35,7 @@ class PersonneManager{
 				}
 
 				$mdp = createRandomPassword();
-				if(!$this->mailExiste($personne[2])){
+			if(!$this->mailExiste($personne[2])){
 					$listeEleves[] = new Personne(array('nom'=>$personne[0],'prenom'=>$personne[1],'mail'=>$personne[2],'login'=>$login,'mdp'=>$mdp));
 				} else {
 					return false;

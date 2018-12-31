@@ -2,7 +2,6 @@
 class GestionCSV{
 
   public static function recupererDonneesDeCSV($file){
-    $handle = fopen($file,'r');
     $row = 1;
     $handle = fopen("$file", "r");
 
