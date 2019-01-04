@@ -10,6 +10,7 @@ $pointManager = new PointManager($pdo);
 
 
 $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']);
+
 if (!$idSujet){
     ?>
     <p style="text-align:center;font-weight:bold; margin:10% 0;">
@@ -23,6 +24,13 @@ if (!$idSujet){
 
     $valeurs = $valeurManager->getValeursSujet($idSujet);
 
+    $titre = $enonceSujet->getTitreEnonce();
+    $date = getFrenchDate($examenManager->getDateLimitebySujet($idSujet));
+    $enonce = $enonceSujet->getConsigneEnonce();
+    $image1 = "image/sujet/FuséeMoteur".$valeurs[0]->getValeur().".jpg";
+    $image2 = "image/sujet/Astronaute".$valeurs[2]->getValeur().".jpg";
+
+
     ?>
 
 
@@ -32,13 +40,13 @@ if (!$idSujet){
             <div class="col-12">
                 <p>
                     <span>Titre de l'énoncé : </span>
-                    <?php echo $enonceSujet->getTitreEnonce(); ?>
+                    <?php echo $titre ?>
                 </p>
             </div>
             <div class="col-12">
                 <p>
                     <span>Date de fin : </span>
-                    <?php echo getFrenchDate($examenManager->getDateLimitebySujet($idSujet)); ?>
+                    <?php echo $date; ?>
                 </p>
             </div>
         </div>
@@ -49,7 +57,7 @@ if (!$idSujet){
                     <span id="subjectTitle">Enoncé :</span>
                     <br>
                     <p class="textSubject">
-                        <?php echo $enonceSujet->getConsigneEnonce(); ?>
+                        <?php echo $enonce; ?>
                     </p>
                 </div>
                 <div>
@@ -68,9 +76,9 @@ if (!$idSujet){
                 <br>
 
                 <div class="row justify-content-around">
-                    <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureOne" src="image/sujet/FuséeMoteur<?php echo $valeurs[0]->getValeur() ?>.jpg">
+                    <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureOne" src=<?php echo $image1; ?> >
 
-                    <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureTwo" src="image/sujet/Astronaute<?php echo $valeurs[2]->getValeur() ?>.jpg">
+                    <img class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureTwo"src=<?php echo $image2; ?> >
                 </div>
 
             </div>
@@ -81,7 +89,15 @@ if (!$idSujet){
                 <a href="index.php?page=23">Saisir les réponses</a>
             </div>
         </div>
+        <div class="col-12 d-flex justify-content-center">
+          <div class="boutonTelecharger">
+            <?php
+            $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $date, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
+            ?>
+            <a href="include/pages/test_pdf.inc.php"><input type=button value="Télécharger"></input></a>
+        </div>
     </div>
+</div>
 </div>
 
 
