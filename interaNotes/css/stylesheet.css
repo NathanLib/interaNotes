@@ -126,10 +126,6 @@ footer .text-uppercase {
     margin-top: 2%;
 }
 
-.msgErrorMailCompte {
-    margin: 50px 50px;
-}
-
 
 /* TicTac button */
 .tictac {
@@ -237,6 +233,16 @@ footer .text-uppercase {
     width: 35px;
     height: 35px;
     margin-right: 10px;
+}
+
+.btnRetour {
+    margin: 1% 0;
+    color: white;
+    background-color: #333333;
+    padding: 7px 5px;
+    border: 0;
+    border-radius: 25px;
+    width: 100px;
 }
 
 .inputNameClass, .inputYearClass {
@@ -505,6 +511,14 @@ footer .text-uppercase {
     padding: 5px 10px;
     width: 150px;
 }
+.alertError {
+    font-weight:bold;
+    margin: 50px 50px;
+}
+
+.msgErrorTitre {
+    margin: 50px 50px;
+}
 
 /* DetailsCompte modifier mdp */
 .form-wrapper {
@@ -618,7 +632,7 @@ footer .text-uppercase {
     }
 
     /* Page création compte */
-    .affClassCreated h4 {
+    .affCreated h4 {
         font-size: 1.5rem;
     }
 
@@ -694,6 +708,7 @@ footer .text-uppercase {
         margin-bottom: 2%;
         margin-top: 5%;
     }
+
 
     /* Page enseignant_creerExamen */
     .createExam {

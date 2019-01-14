@@ -9,11 +9,9 @@ $listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExa
 
 
 if (!$listeSujets){ ?>
-    <div style="text-align:center; margin:10% 0">
-        <p style="font-weight:bold">
-            <img src="image/erreur.png">
-            Aucun sujet n'a été attribué pour l'instant !
-        </p>
+    <div class="msgErrorTitre">
+        <h3>Erreur sujet</h3>
+        <p>Aucun sujet n'a été attribué pour l'instant !</p>
     </div>
 <?php } else { ?>
 

@@ -13,9 +13,10 @@ $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']);
 
 if (!$idSujet){
     ?>
-    <p style="text-align:center;font-weight:bold; margin:10% 0;">
-        <img src="image/erreur.png" alt="Erreur" title="erreur">Aucun sujet attribué actuellement !
-    </p>
+    <div class="msgErrorTitre">
+        <h3>Erreur sujet</h3>
+        <p>Aucun sujet n'a été attribué pour actuellement !</p>
+    </div>
     <?php
 } else {
 

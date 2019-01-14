@@ -38,7 +38,7 @@ if(empty($_POST['mail'])){ ?>
   <?php
   }else{ ?>
 
-    <div class="msgErrorMailCompte">
+    <div class="msgErrorTitre">
       <h3>Compte inexistant</h3>
       <p>L'adresse mail insérée ne correspond à aucun compte, veuillez vérifier votre adresse mail et essayer à nouveau</p>
     </div>

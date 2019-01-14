@@ -13,20 +13,20 @@ $sujet = $sujetManager->getSujet($idSujet);
 $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
 if(!$idSujet){
     ?>
-    <p style="text-align:center;font-weight:bold; margin:10% 0;">
-        <img src="image/erreur.png" alt="erreur">
-        Aucun sujet attribué !
-    </p>
+    <div class="msgErrorTitre">
+        <h3>Erreur sujet</h3>
+        <p>Aucun sujet n'a été attribué pour l'instant !</p>
+    </div>
     <?php
 } else {
     $dateLimite=$examenManager->getDateLimitebySujet($idSujet);
 
     if($examenManager->dateLimiteEstDepassee($dateLimite)) { ?>
 
-        <p style="text-align:center;font-weight:bold; margin:10% 0;">
-            <img src="image/erreur.png" alt="erreur">
-            La date limite pour envoyer les réponses est dépassée !
-        </p>
+        <div class="msgErrorTitre">
+            <h3>Erreur date</h3>
+            <p>La date limite pour envoyer les réponses a été dépassée !</p>
+        </div>
 
     <?php } else {
 
