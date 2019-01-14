@@ -13,9 +13,13 @@ $passage_ligne = "\n";
 //$imageBoard = "../../image/board.png";
 
 //=====Déclaration des messages au format texte et au format HTML.
-$message_txt = "Vous avez récemment demander un nouveau mot de passe pour votre compte Intera Notes.\n
+$message_txt = "Intera Notes\n
+Des problèmes de connexion ?\n
+Vous avez récemment demander un nouveau mot de passe pour votre compte Intera Notes.\n
 Votre mot de passe : ".$passwd."\n\n
-Veuillez le modifier le plus rapidement possible. Pour cela, rendez vous sur votre profil puis sur Modifier mon mot de passe. Merci et à bientôt sur Intera Notes !";
+Veuillez le modifier le plus rapidement possible. Pour cela, rendez vous sur votre 'Profil' puis sur 'Modifier mon mot de passe'.\n
+Merci et à bientôt sur Intera Notes !\n
+L'équipe Intera Notes.";
 
 $message_html =" 
 <html>
