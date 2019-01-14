@@ -31,56 +31,61 @@
 		break;
 
 		// WARNING: PARTIE ELEVE
-		case 7:
+		case 10:
 		$_SESSION['titre'] = "Accueil";
 		break;
 
-		case 8:
+		case 11:
 		$_SESSION['titre'] = "Mon sujet";
 		break;
 
 		// WARNING: PARTIE TEST
 
-		case 12:
+		case 20:
 		$_SESSION['titre'] = "Test - sujet complet";
 		break;
 
-		case 13:
+		case 21:
 		$_SESSION['titre'] = "Test - sujet corrigé";
 		break;
 
-		case 14:
+		case 22:
 		$_SESSION['titre'] = "Test - génération sujets";
 		break;
 
-		case 15:
+		case 23:
 		$_SESSION['titre'] = "Test - saisie élève";
 		break;
 
-
-		// WARNING : DECONNEXION
-
-		case 16:
-		$_SESSION['titre'] = "Déconnexion";
-		break;
-
-		// WARNING: Suite PARTIE TEST
-		case 17:
+		case 24:
 		$_SESSION['titre'] = "Test - Publipostage";
 		break;
 
-		case 18:
+		case 25:
 		$_SESSION['titre'] = "Test - affichage correction";
 		break;
 
-		case 19:
+		// WARNING : Pages communes
+
+		case 40:
+		$_SESSION['titre'] = "Déconnexion";
+		break;
+
+		case 41:
 		$_SESSION['titre'] = "Mon compte";
 		break;
 
-		default:
-		$_SESSION['titre'] = "Accueil";
+		case 42:
+		$_SESSION['titre'] = "Mon compte - Mot de passe";
 		break;
 
+		case 43:
+		$_SESSION['titre'] = "Mot de passe oublié";
+		break;
+
+		case 44:
+		$_SESSION['titre'] = "Mot de passe oublié";
+		break;
 	}
 
 	?>
