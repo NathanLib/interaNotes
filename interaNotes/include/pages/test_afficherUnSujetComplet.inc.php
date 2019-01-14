@@ -59,13 +59,6 @@ if($sujetManager->exists($idSujet)){
             <?php echo $enonce; ?>
           </p>
         </div>
-        <div>
-          <span id="subjectTitle">Consigne :</span>
-          <br>
-          <p class="textSubject">
-            Selon les paramètres énoncés précédemment, veuillez indiquer les quantités nécessaires d'O², de carburant, de nourriture et d'eau pour que la fusée Ariane 5 atteigne sa destination.
-          </p>
-        </div>
       </div>
     </div>
 
