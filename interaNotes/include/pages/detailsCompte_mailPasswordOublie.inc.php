@@ -8,22 +8,31 @@ unset($_SESSION['mail']);
 unset($_SESSION['passwd']);
 
 $passage_ligne = "\n";
+//    <img src='image/board.png' alt='Logo'>
+
+//$imageBoard = "../../image/board.png";
 
 //=====Déclaration des messages au format texte et au format HTML.
 $message_txt = "Vous avez récemment demander un nouveau mot de passe pour votre compte Intera Notes.\n
 Votre mot de passe : ".$passwd."\n\n
-Veuillez le modifier le plus rapidement possible, merci et à bientôt sur Intera Notes !";
+Veuillez le modifier le plus rapidement possible. Pour cela, rendez vous sur votre profil puis sur Modifier mon mot de passe. Merci et à bientôt sur Intera Notes !";
 
-$message_html = "
+$message_html =" 
 <html>
   <head>
   </head>
-  <body>
-    <h1>Demande de nouveau mot de passe</h1>
-    <p>Vous avez récemment demander un nouveau mot de passe pour votre compte Intera Notes.</p>
-    <p>Votre nouveau mot de passe : <b>".$passwd."</b></p>
-    </br>
-    <p>Veuillez le modifier le plus rapidement possible, merci et à bientôt sur Intera Notes !</p>
+  <body style='width:75%; margin-left:8%; float:left;'>
+      <h1 align='center' style='color:white; background-color:#333333; border-radius:25px 25px 0 0; margin-bottom:0;'>Intera Notes</h1>
+    <div style='border:solid black 1px; padding:0 10px;'>
+      <h2 style='margin-left:5%;'>Des problèmes de connexion ? </h2>
+      <p>Vous avez récemment demander un nouveau mot de passe pour votre compte Intera Notes.</p>
+      <p>Votre nouveau mot de passe : <b>".$passwd."</b></p>
+      </br>
+      <p>Veuillez le modifier le plus rapidement possible. Pour cela, rendez vous sur votre 'Profil' puis sur 'Modifier mon mot de passe'.
+     </p>
+      <p>Merci et à bientôt sur Intera Notes !</p>
+      <p align='right'>L'équipe Intera Notes</p>
+    </div>
   </body>
 </html>";
 //==========
