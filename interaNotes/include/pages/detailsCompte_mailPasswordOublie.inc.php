@@ -66,17 +66,17 @@ $retour = mail($mail,$sujet,$message,$header);
 
 //======Vérification de l'envoi
 if($retour){?>
-  <div>
-    <h1>Mot de passe oublié ?</h1>
-    <p>Un nouveau mot de passe vous a été attribué, vous le trouverez dans le mail envoyé</p>
+  <div class="msgErrorMailCompte">
+    <h3>Mot de passe oublié ?</h3>
+    <p>Un nouveau mot de passe vous a été attribué, vous le trouverez dans le mail envoyé !</p>
   </div>
 
 <?php
 }else{ ?>
 
-  <div>
-    <h1>Echec de l'envoi</h1>
-    <p>Un problème est survenu lors de l'envoi du mail, veuillez réessayer dans quelques minutes</p>
+  <div class="msgErrorMailCompte">
+    <h3>Echec de l'envoi</h3>
+    <p>Un problème est survenu lors de l'envoi du mail, veuillez réessayer dans quelques minutes !</p>
   </div>
 
 <?php

@@ -48,3 +48,18 @@ function adjustHeightTextArea(el){
 function adjustHeightTextAreaLittle(el){
     el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight)+"px" : "100px";
 }
+
+
+$('input').focus(function(){
+  $(this).parents('.form-group').addClass('focused');
+});
+
+$('input').blur(function(){
+  var inputValue = $(this).val();
+  if ( inputValue == "" ) {
+    $(this).removeClass('filled');
+    $(this).parents('.form-group').removeClass('focused');
+  } else {
+    $(this).addClass('filled');
+  }
+});
