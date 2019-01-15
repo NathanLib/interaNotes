@@ -201,7 +201,7 @@ footer .text-uppercase {
 .contenuListeSujet p {
     margin: 0;
 }
-.contenuListeSujet {
+.contenuListe {
     margin: 3% 0;
 }
 
@@ -348,6 +348,16 @@ footer .text-uppercase {
 .textSubject {
     margin: 2% 5%;
     text-align: justify;
+}
+.boutonCorrection input, .boutonTelecharger input{
+    color: white;
+    background-color: #333;
+    border: 0;
+    border-radius: 25px;
+    padding: 5px 10px;
+    width: 150px;
+    margin: 10% 0 0 0;
+    cursor: pointer;
 }
 
 /* Page enseignant_creerExamen */
@@ -599,6 +609,9 @@ footer .text-uppercase {
 }
 
 /************************************************/
+/************************************************/
+/************************************************/
+/************************************************/
 
 @media screen and (min-width: 576px) {
     /* Page Connexion */
@@ -676,6 +689,14 @@ footer .text-uppercase {
     }
     .messageEnvoiValide {
         margin: 10%;
+    }
+
+    /* Page afficher sujet complet */
+    .boutonCorrection input {
+        margin-left: -100px;
+    }
+    .boutonTelecharger input {
+        margin-right: -100px;
     }
 
 }
