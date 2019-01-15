@@ -9,6 +9,7 @@ $objet= $_SESSION['objet']; // Déclaration de l'objet du mail.
 $nom= $_SESSION['nom']; // Déclaration du nom de l'élève
 $prenom= $_SESSION['prenom']; // Déclaration du prenom de l'élève.
 
+unset($_SESSION['mail']);
 unset($_SESSION['objet']);
 unset($_SESSION['contenu']);
 unset($_SESSION['nom']);
