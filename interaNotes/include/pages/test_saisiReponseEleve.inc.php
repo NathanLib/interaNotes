@@ -49,6 +49,28 @@ if(!$idSujet){
 
                     <hr class="hr" style="width:80%">
 
+                    <div class="col-12 d-flex justify-content-center" id="needHelp">
+                        <a href="" data-toggle="tooltip" data-placement="bottom" data-html="true" title="</br>
+                            <h4>Comment&nbspsaisir vos&nbspréponses ?</h4>  </br>
+
+                            <h6> La zone de détails :</h6>
+                            <p>C'est dans cette zone que vous pouvez détailler les différentes étapes qui vous ont permis de trouver votre résultat</p> </br>
+
+                            <h6> Le résultat :</h6>
+                            <p>La saisie du résultat (en écriture scientifique) se fait en 2 étapes : vous devez d'abord saisir la partie décimale du résultat puis la puissance de 10</p>
+                            <i>Exemple : Pour 5,32 x10^4, vous saisissez 5,32 dans la zone gauche et 4 dans la zone qui se situe en haut à droite du 10 </i> </br> </br> </br>
+
+                            <h6> L'unité du résultat :</h6>
+                            <p>La saisie de l'unité se fait en 2 étapes : vous devez d'abord saisir l'unité du Système International (SI) puis la puissance de 10 qui permet d'obtenir la bonne unité</p>
+                            <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i> </br> </br> </br>
+                            ">
+                            <img class="helpIcon" src="image/help.svg" alt="help" title="help">
+                            Besoin d'aide ?
+                        </a>
+                    </div>
+
+                    <hr class="hr" style="width:80%">
+
                     <div class="col-12">
                         <?php $listeQuestions = $questionManager->getAllQuestion($idSujet);
                         foreach ($listeQuestions as $question) { ?>
@@ -82,7 +104,7 @@ if(!$idSujet){
 
                                                         <div class="col-5 col-sm-3 col-md-2 col-lg-4 d-flex form-group divPuissanceResult">
                                                             <p id="puissanceResult">x10</p>
-                                                            <input id="resultAnswer"  class="form-control saisiePuissanceResult" name="" type="number" placeholder="1" step="1" required>
+                                                            <input id="resultAnswer"  class="form-control saisiePuissanceResult" name="" type="number" placeholder="0" step="1" required>
                                                         </div>
                                                     </div>
                                                 </div>
