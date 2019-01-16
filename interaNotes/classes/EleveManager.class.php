@@ -33,21 +33,4 @@ class EleveManager{
 		return new Eleve($personne, $eleve);
 	}
 
-	/*public function getNomPrenomParSujet($idSujet){
-
-		$sql = 'SELECT nom, prenom FROM personne p
-		INNER JOIN eleve e ON(p.idPersonne=e.idEleve)
-		INNER JOIN exerciceattribue ex ON(e.idEleve=ex.idEleve)
-		WHERE ex.idSujet=:idSujet ';
-
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idSujet', $idSujet);
-		$requete->execute();
-
-		$personne = $requete->fetch(PDO::FETCH_OBJ);
-		$requete->closeCursor();
-
-		return new Personne($personne);
-	}*/
-
 }
