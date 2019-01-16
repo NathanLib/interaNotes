@@ -17,7 +17,7 @@ $(document).ready(function() {
     var inputs = document.querySelectorAll( '.inputfile' );
     Array.prototype.forEach.call( inputs, function( input )
     {
-        var label	 = input.nextElementSibling,
+        var label = input.nextElementSibling,
         labelVal = label.innerHTML;
 
         input.addEventListener( 'change', function( e )
@@ -47,6 +47,10 @@ function adjustHeightTextArea(el){
 
 function adjustHeightTextAreaLittle(el){
     el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight)+"px" : "100px";
+}
+
+function adjustHeightTextAreaSmall(el){
+    el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight)+"px" : "85px";
 }
 
 

@@ -575,6 +575,13 @@ span#text_info, p#text_info {
     margin: 50px 50px;
 }
 
+#phMail::placeholder {
+    color: #999;
+}
+#phMail {
+    border-color: #999;
+}
+
 /* DetailsCompte modifier mdp */
 .form-wrapper {
     max-width: 30%;
