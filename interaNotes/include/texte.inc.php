@@ -78,6 +78,10 @@
 		include_once('pages/test_affDivJS.inc.php');
 		break;
 
+		case 27:
+		include_once('pages/test_Correction.inc.php');
+		break;
+
 		// WARNING : Pages communes
 
 		case 40:

@@ -24,14 +24,14 @@ $(document).ready(function() {
         {
             var fileName = '';
             if( this.files && this.files.length > 1 )
-            fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+                fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
             else
-            fileName = e.target.value.split( '\\' ).pop();
+                fileName = e.target.value.split( '\\' ).pop();
 
             if( fileName )
-            label.querySelector( 'span' ).innerHTML = fileName;
+                label.querySelector( 'span' ).innerHTML = fileName;
             else
-            label.innerHTML = labelVal;
+                label.innerHTML = labelVal;
         });
 
         // Firefox bug fix
@@ -118,19 +118,19 @@ $(document).ready(function () {
 
 });
 
-function ajouterValeurDeParametre(event) {
+function ajouterValeurDeParametre(event,idValeur,idListe) {
     if (event.which == 13 || event.keyCode == 13) {
-        alert("coucou");
-        alert(event.trigger());
+        var valeur = document.getElementById(idValeur);
+        var liste = document.getElementById(idListe);
+        alert(valeur.value+" / "+idValeur);
+
+        
+        var option = document.createElement("option");
+        option.text = valeur.value;
+        liste.add(option);
+
+        
         event.preventDefault();
         return false;
     }
 }
-
-/*const node = document.getElementById("#saisieParametre1");
-node.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        // Do more work
-    }
-});*/
