@@ -14,7 +14,7 @@ if($listePromo===false) { ?>
     </p>
 
 <?php } else { ?>
-    
+
     <?php if(!isset($_POST['enonceExam'])) { ?>
         <form action="index.php?page=4" method="post" name="form1">
             <div class="row createExam">
@@ -52,9 +52,9 @@ if($listePromo===false) { ?>
                 <input type="submit" class="createClassSubmit" name="Submit" value="Importer">
             </form>
         </div>
-    
-    <?php } else {
         
+    <?php } else {
+
         $nomPromotion = $_POST['classExam'];
         $dateLimite = $_POST['endExam'];
         $titreExamen = $_POST['nameExam'];
@@ -72,7 +72,6 @@ if($listePromo===false) { ?>
         <p><?php echo $texteEnonce?></p>
         
         <h3>Liste des paramètres de l'examen</h3>
-
         <?php
         foreach ($tableauParametres as $compteur => $parametre) { ?>
             <p><?php echo $parametre ?> : </p>
@@ -80,23 +79,23 @@ if($listePromo===false) { ?>
             <div class="box">
 
                 <div class="form-wrapper">
-                    <form method="post" action="#">
 
-                        <div><?php echo $parametre ?></div>
 
-                        <div>
-                            <input id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Nouvelle valeur">
+                    <div><?php echo $parametre ?></div>
 
-                            <select id="<?php echo 'parametre'.$compteur ?>"></select>
+                    <div>                            
+                        <input id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Nouvelle valeur" onkeypress="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>)">
 
-                        <div class="form-group divMdpButton">
-                            <input class="detailMdpButton" type="submit" value="Valider" class="btn"/>
-                        </div>
+                        <select id="<?php echo 'parametre'.$compteur ?>" multiple></select>
+                    </div>
+                    <div class="form-group divMdpButton">
+                        <input class="detailMdpButton" type="button" value="Valider" class="btn"/>
+                    </div>
 
-                    </form>
+
                 </div>
             </div>
-        <?php
+            <?php
         }
     } ?>
 <?php } ?>

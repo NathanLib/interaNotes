@@ -17,7 +17,7 @@ $(document).ready(function() {
     var inputs = document.querySelectorAll( '.inputfile' );
     Array.prototype.forEach.call( inputs, function( input )
     {
-        var label = input.nextElementSibling,
+        var label	 = input.nextElementSibling,
         labelVal = label.innerHTML;
 
         input.addEventListener( 'change', function( e )
@@ -47,10 +47,6 @@ function adjustHeightTextArea(el){
 
 function adjustHeightTextAreaLittle(el){
     el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight)+"px" : "100px";
-}
-
-function adjustHeightTextAreaSmall(el){
-    el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight)+"px" : "85px";
 }
 
 
@@ -125,15 +121,10 @@ $(document).ready(function () {
 function ajouterValeurDeParametre(event,idValeur,idListe) {
     if (event.which == 13 || event.keyCode == 13) {
         var valeur = document.getElementById(idValeur);
-        var liste = document.getElementById(idListe);
-        alert(valeur.value+" / "+idValeur);
-
-        
+        var liste = document.getElementById(idListe);        
         var option = document.createElement("option");
         option.text = valeur.value;
         liste.add(option);
-
-        
         event.preventDefault();
         return false;
     }
