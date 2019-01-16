@@ -64,7 +64,7 @@ $('input').blur(function(){
     }
 });
 
-// WARNING: Fonction affichage div : pop up
+// Page 'Creer un examen'
 $('.popUp').click(function(){
     $('.box').toggle();
 });
@@ -73,3 +73,20 @@ $('.popUp').click(function(){
 $(document).ready(function() {
     $('[data-toggle=tooltip]').tooltip();
 });
+
+function ajouterValeurDeParametre(event) {
+    if (event.which == 13 || event.keyCode == 13) {
+        alert("coucou");
+        alert(event.trigger());
+        event.preventDefault();
+        return false;
+    }
+}
+
+/*const node = document.getElementById("#saisieParametre1");
+node.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        // Do more work
+    }
+});*/
