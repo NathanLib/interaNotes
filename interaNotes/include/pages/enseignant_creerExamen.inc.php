@@ -75,8 +75,8 @@ if($listePromo===false) { ?>
         <?php
         foreach ($tableauParametres as $compteur => $parametre) { ?>
             <p><?php echo $parametre ?> : </p>
-            <button class="btn btn-primary popUp" type="button" name="button">Ajouter les valeurs</button>
-            <div class="box">
+            <button class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
+            <div class="box" id=<?php echo "box".$compteur ;?> >
 
                 <div class="form-wrapper">
 

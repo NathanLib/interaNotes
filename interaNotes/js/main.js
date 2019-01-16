@@ -65,9 +65,18 @@ $('input').blur(function(){
 });
 
 // Page 'Creer un examen'
-$('.popUp').click(function(){
-    $('.box').toggle();
-});
+
+
+function ouvrirBox(compteur) {
+    $('#box'+compteur).toggle();
+}
+
+$(document).ready(function() {
+    if(document.getElementById("box0") != undefined)
+        $('.box').toggle();
+    })
+
+
 
 // WARNING: tooltip
 $(document).ready(function() {
