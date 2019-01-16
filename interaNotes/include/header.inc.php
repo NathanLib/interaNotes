@@ -63,6 +63,7 @@
                         <a class="dropdown-item" href="index.php?page=23">t_saisiReponseEleve</a>
                         <a class="dropdown-item" href="index.php?page=24">t_publipostage</a>
                         <a class="dropdown-item" href="index.php?page=25">t_AffichagePourcentage</a>
+                        <a class="dropdown-item" href="index.php?page=26">t_AffichagePopUp</a>
                     </div>
                 </li>
             </ul>

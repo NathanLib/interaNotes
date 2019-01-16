@@ -78,20 +78,27 @@ if (!$idSujet){
             </div>
         </div>
 
-        <div class="col-12 d-flex justify-content-center">
-            <div class="boutonSaisieReponse">
-                <a href="index.php?page=23">Saisir les réponses</a>
+        <div class="row d-flex w-100 justify-content-center">
+            <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
+                <div class="boutonCorrection">
+                    <a href="index.php?page=23">
+                        <input type=button value="Saisir réponses"></input>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
+                <div class="boutonTelecharger">
+                    <?php
+                    $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $date, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
+                    ?>
+                    <a href="include/pages/test_pdf.inc.php">
+                        <input type=button value="Télécharger"></input>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="col-12 d-flex justify-content-center">
-          <div class="boutonTelecharger">
-            <?php
-            $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $date, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
-            ?>
-            <a href="include/pages/test_pdf.inc.php"><input type=button value="Télécharger"></input></a>
-        </div>
     </div>
-</div>
 </div>
 
 

@@ -64,7 +64,11 @@
 
 		case 25:
 		include_once('pages/test_AffichagePourcentage.inc.php');
-		break;		
+		break;
+
+		case 26:
+		include_once('pages/test_affDivJS.inc.php');
+		break;
 
 		// WARNING : Pages communes
 

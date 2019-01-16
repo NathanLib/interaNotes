@@ -410,6 +410,18 @@ footer .text-uppercase {
     word-wrap:break-word
 }
 
+#puissanceResult {
+    margin: 0;
+    margin-top: 14px;
+    font-size: x-large;
+}
+
+.saisiePuissanceResult {
+    text-align: center;
+    height: 30px;
+    margin-top: -3px;
+}
+
 #resultAnswer, #uniteAnswer, #exposantAnswer {
     border-radius: 25px;
     padding-left: 15px;
@@ -506,7 +518,10 @@ footer .text-uppercase {
     border: 0;
     border-radius: 25px;
     padding: 5px 10px;
-    margin-top: 3%;
+    width: 300px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 5px;
 }
 .mySubject a, .mySubject a:visited {
     color: white !important;
@@ -608,6 +623,12 @@ footer .text-uppercase {
     margin-bottom: -5%;
 }
 
+/* Page aff Pop-Up */
+.box, .bg-info {
+    padding: 10px;
+}
+
+
 /************************************************/
 /************************************************/
 /************************************************/
@@ -618,6 +639,14 @@ footer .text-uppercase {
     .logoConnexion {
         width: 75%;
         height: 75%;
+    }
+
+    /* Page afficher sujet complet */
+    .boutonCorrection input {
+        margin-left: -100px;
+    }
+    .boutonTelecharger input {
+        margin-right: -100px;
     }
 
     /* Page prof lister sujet */
@@ -670,6 +699,7 @@ footer .text-uppercase {
         min-height: 100px;
     }
 
+
     /* Page détail compte */
     .iconStudentDetailsCompte {
         max-width: 45%;
@@ -691,13 +721,6 @@ footer .text-uppercase {
         margin: 10%;
     }
 
-    /* Page afficher sujet complet */
-    .boutonCorrection input {
-        margin-left: -100px;
-    }
-    .boutonTelecharger input {
-        margin-right: -100px;
-    }
 
 }
 
@@ -742,6 +765,9 @@ footer .text-uppercase {
     }
     .sendSaisie {
         margin-top: 3%;
+    }
+    .divPuissanceResult {
+        margin-top: 20px;
     }
 
     /* Page détail compte */
