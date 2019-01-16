@@ -73,9 +73,18 @@ if(!$idSujet){
                                         <div class="col-12 col-lg-5">
 
                                             <div class="row">
-                                                <div class="col-12 form-group">
-                                                    <label for="resultAnswer">Résultat :</label>
-                                                    <input class="form-control" id="resultAnswer" name="reponse<?php echo $question->getIdReponse() ?>" type="number" placeholder="" step="0.001" required>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-12 col-lg-6 form-group">
+                                                            <label for="resultAnswer">Résultat :</label>
+                                                            <input class="form-control" id="resultAnswer" name="reponse<?php echo $question->getIdReponse() ?>" type="number" placeholder="" step="0.001" required>
+                                                        </div>
+
+                                                        <div class="col-5 col-sm-3 col-md-2 col-lg-4 d-flex form-group divPuissanceResult">
+                                                            <p id="puissanceResult">x10</p>
+                                                            <input id="resultAnswer"  class="form-control saisiePuissanceResult" name="" type="number" placeholder="1" step="1" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <div class="col-12 form-group">
@@ -93,7 +102,7 @@ if(!$idSujet){
                                                 </div>
 
                                                 <div class="col-12 form-group">
-                                                    <label for="exposantAnswer">Exposant du Résultat :</label>
+                                                    <label for="exposantAnswer">Exposant de l'unité :</label>
                                                     <select class="form-control" id="exposantAnswer" name="exposant<?php echo $question->getIdReponse() ?>" type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
                                                         <?php
                                                         $listeExposants = Exposants::getConstants();

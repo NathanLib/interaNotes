@@ -45,7 +45,7 @@
     </div>
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
-        <a href="#">
+        <a href="index.php?page=12">
             <div class="tictac">
                 <div class="tictacHaut">
                     <img class="iconTictac" src="image/questions.png" alt="exam" title="exam">

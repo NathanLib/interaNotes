@@ -63,3 +63,8 @@ $('input').blur(function(){
     $(this).addClass('filled');
   }
 });
+
+// WARNING: Fonction affichage div : pop up
+$('.popUp').click(function(){
+  $('.box').toggle();
+});
