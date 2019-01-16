@@ -33,4 +33,21 @@ class EleveManager{
 		return new Eleve($personne, $eleve);
 	}
 
+	public function getAllPromo() {
+		$sql = 'SELECT DISTINCT nomPromo FROM eleve e';
+		$req = $this->db->prepare($sql);
+		$req->execute();
+
+		while($promo = $req->fetch(PDO::FETCH_OBJ)){
+			$listePromo[] = $promo;
+		}
+
+		if(isset($listePromo)) {
+			return $listePromo;
+		}
+		return false;
+
+		$req->closeCursor();
+	}
+
 }
