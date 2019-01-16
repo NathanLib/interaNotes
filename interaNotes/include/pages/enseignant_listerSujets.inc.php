@@ -9,11 +9,9 @@ $listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExa
 
 
 if (!$listeSujets){ ?>
-    <div style="text-align:center; margin:10% 0">
-        <p style="font-weight:bold">
-            <img src="image/erreur.png">
-            Aucun sujet n'a été attribué pour l'instant !
-        </p>
+    <div class="msgErrorTitre">
+        <h3>Erreur sujet</h3>
+        <p>Aucun sujet n'a été attribué pour l'instant !</p>
     </div>
 <?php } else { ?>
 
@@ -44,11 +42,13 @@ if (!$listeSujets){ ?>
                 </div>
 
                 <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-                    <a href="index.php?page=20&amp;id=<?php echo $sujet->getIdSujet();?>"><input type="button" name="" value="Consulter"></a>
+                    <a href="index.php?page=20&amp;id=<?php echo $sujet->getIdSujet();?>">
+                        <input type="button" name="" value="Consulter">
+                    </a>
                 </div>
             </div>
-            <?php
-        }
-    } ?>
+        <?php }
+    }
+    ?>
 
 </div>

@@ -1,5 +1,5 @@
 <?php
-class CorrigeManager{
+class CorrigeManager {
 	private $db;
 
 	public function __construct($db){
@@ -8,7 +8,7 @@ class CorrigeManager{
 
 	private function getSujetValeur($idSujet){
 
-		$sql = 'SELECT T.idSujet, T.idValeur, v.valeur FROM(
+		$sql = 'SELECT T.idSujet, T.idValeur, v.valeur, v.exposantValeur FROM (
 						SELECT idSujet, idValeur FROM exercicegenere
 						WHERE idSujet=:idSujet)T
 						INNER JOIN valeurs v ON (T.idValeur = v.idValeur)';
@@ -26,37 +26,38 @@ class CorrigeManager{
 		return $valeursSujet;
 	}
 
-	public function calculerCorrection($idSujet){ //WARNING REFACTOR CLAIREMENT ET SIMPLEMENT
+	public function calculerCorrection($idSujet){ 
 		
-		$valeursSujet = $this->getSujetValeur($idSujet);
+		$tableauPoint = $this->getSujetValeur($idSujet); //NE PAS TOUCHER
 
-		//cLARIFICATION DES VALEURS
+		//REDEFINIR VARIABLES PLUS CLAIREMENT
+		
+		$nbMoteur = $tableauPoint[0]['valeur']*pow(10, $tableauPoint[0]['exposantValeur']);
 
-		$nbMoteur = $valeursSujet[0]['valeur'];
+		$vitesse = $tableauPoint[1]['valeur']*pow(10, $tableauPoint[1]['exposantValeur']);
 
-		$vitesse = $valeursSujet[1]['valeur'];
+		$nbPersonne = $tableauPoint[2]['valeur']*pow(10, $tableauPoint[2]['exposantValeur']);
 
-		$nbPersonne = $valeursSujet[2]['valeur'];
+		$distanceDestination = $tableauPoint[4]['valeur']*pow(10, $tableauPoint[4]['exposantValeur']);
 
-		$distanceDestination = $valeursSujet[4]['valeur']*1000000; //pb conversion WARNING
+		$consommationCarburantDistance = $tableauPoint[5]['valeur']*pow(10, $tableauPoint[5]['exposantValeur']); 
 
-		$consommationCarburantDistance = $valeursSujet[5]['valeur']*10; //pb conversion WARNING
+		$consommationCarburantQuantité = $tableauPoint[5]['valeur']*pow(10, $tableauPoint[5]['exposantValeur'])*10; //ALERTE
 
-		$consommationCarburantQuantité = $valeursSujet[5]['valeur'];
+		$consoEau = $tableauPoint[6]['valeur']*pow(10, $tableauPoint[6]['exposantValeur']);		
 
-		$consoEau = $valeursSujet[6]['valeur'];		
+		$consoNourriture = $tableauPoint[7]['valeur']*pow(10, $tableauPoint[7]['exposantValeur']);
 
-		$consoNourriture = $valeursSujet[7]['valeur'];
-
-		$consoO2 = $valeursSujet[8]['valeur'];
-
-		//opérations
+		$consoO2 = $tableauPoint[8]['valeur']*pow(10, $tableauPoint[8]['exposantValeur']);
+		
+		//OPERATIONS
 
 		$nbConso = $distanceDestination / $consommationCarburantDistance; // nombre de consommation (1000km) = [[distanceDestination]]/ [[nbMoteur]] (vient de l'unité de consommation carburant)
 
 		$qteCarburant = $nbConso*$consommationCarburantQuantité*$nbMoteur; //qtéCarburant tous moteurs = nbConso*consommationMoteur*[[nbMoteur]]
 
-		$jours = ($distanceDestination / $vitesse)/24; // jours = ([[distanceDestination]]/[[vitesse]])/24 (nb heures)
+		$jours = (($distanceDestination/1000) / $vitesse)/24; // jours = ([[distanceDestination]]/[[vitesse]])/24 (nb heures)
+		$jours = ceil($jours);
 
 		$qteO2 =$nbPersonne*$consoO2*$jours; // [[nbPersonnes]]*60*jours
 
@@ -64,18 +65,8 @@ class CorrigeManager{
 
 		$qteEau = $nbPersonne*$consoEau*$jours; //[[nbPersonne]]*1.5*jours
 
-		return array('qteCarburant' => $qteCarburant." T", 'jours' => $jours." jours", 'qteO2' => $qteO2." L", 'qtenourriture' => $qteNourriture." Kg", 'qteeau' => $qteEau." L" );
+		return array('qteCarburant' => $qteCarburant." g", 'jours' => $jours." jours", 'qteO2' => $qteO2." L", 'qtenourriture' => $qteNourriture." g", 'qteeau' => $qteEau." L" );
 	}
 
-	/*public function listeAllIntitulesQuestionsParSujet($idSujet){
-		$requete = $this->db->prepare('SELECT intituleQuestion FROM resultatsattendus WHERE idSujet=:idSujet');
-		$requete->bindValue(':idSujet', $idSujet);
-		$requete->execute();
-		$resultat = $requete->fetch(PDO::FETCH_OBJ);
-		$req->closeCursor();
-
-		return ;
-	}*/
+	
 }
-
-//RENTRER AVEC UNITE DE BASE PUIS PRPOSER CONVERTIR puis rentrer dans la BD

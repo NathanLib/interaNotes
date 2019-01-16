@@ -1,17 +1,22 @@
 <?php
 if(empty($_POST['mail'])){ ?>
 
-  <h1>Mot de passe oublié ?</h1>
+  <div class="form-wrapper">
+      <h3 style="margin-bottom : 5%; margin-top:-2%">Mot de passe oublié&nbsp?</h3>
 
-  <form method="post" action="#">
+      <form method="post" action="#">
 
-    <label for="mail">Veuillez saisir votre mail : </label>
-      <input type="email" id="mail" name="mail" required/>
-    </br>
+          <div class="form-group">
+              <label for="mail" class="form-label">Veuillez saisir votre mail</label>
+              <input class="form-input" type="mail" id="mail" name="mail"  required/>
+          </div>
 
-    <input type="submit" value="Valider" class="btn">
+          <div class="form-group divMdpButton">
+              <input class="detailMdpButton" type="submit" value="Valider" class="btn"/>
+          </div>
 
-  </form>
+      </form>
+  </div>
 
 <?php
 }else{
@@ -33,8 +38,8 @@ if(empty($_POST['mail'])){ ?>
   <?php
   }else{ ?>
 
-    <div>
-      <h1>Compte inexistant</h1>
+    <div class="msgErrorTitre">
+      <h3>Compte inexistant</h3>
       <p>L'adresse mail insérée ne correspond à aucun compte, veuillez vérifier votre adresse mail et essayer à nouveau</p>
     </div>
 

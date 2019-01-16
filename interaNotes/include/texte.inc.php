@@ -40,6 +40,14 @@
 		include_once('pages/eleve_afficherSujet.inc.php');
 		break;
 
+		case 12:
+		include_once('pages/eleve_poserQuestion.inc.php');
+		break;
+
+		case 13:
+		include_once('pages/eleve_mailPoserQuestion.inc.php');
+		break;
+
 		// WARNING: PARTIE TEST
 
 		case 20:
@@ -64,6 +72,10 @@
 
 		case 25:
 		include_once('pages/test_AffichagePourcentage.inc.php');
+		break;
+
+		case 26:
+		include_once('pages/test_affDivJS.inc.php');
 		break;
 
 		// WARNING : Pages communes

@@ -3,6 +3,8 @@ require('fpdf.class.php');
 
 class PDF extends FPDF
 {
+
+    protected $hauteur;
 // En-tête
     function Header($idSujet)
     {
@@ -41,27 +43,24 @@ class PDF extends FPDF
         $this->Cell(25,10,"Date de fin : ",0,0);
         $this->SetFont('Arial','',12);
         $this->Cell(0,10,$date,0,1);
+        $this->hauteur=60;
     }
 
     function AddEnonce($enonce){
         $this->SetFont('Arial','BU',12);
         $this->Cell(25,10,"Enoncé : ",0,1);
         $this->SetFont('Arial','',12);
+        $enonce=str_replace("<br>","
+            ",$enonce);
         $this->MultiCell(0,10,$enonce,0,1);
-    }
-
-     function AddConsigne($consigne){
-        $this->SetFont('Arial','BU',12);
-        $this->Cell(30,10,"Consignes : ",0,1);
-        $this->SetFont('Arial','',12);
-        $this->MultiCell(0,10,$consigne,0,1);
     }
 
      function AddImages($image1,$image2){
         $this->SetFont('Arial','BU',12);
         $this->Cell(25,10,"Images : ",0,0);
-        $this->Image('../../'.$image1,50,225,30);
-
-        $this->Image('../../'.$image2,125,225,30);
+        $this->Image('../../'.$image1,50,$this->y+20,30);
+        $this->Image('../../'.$image2,125,$this->y+20,30);
     }
+
+
 }

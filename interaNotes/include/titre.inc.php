@@ -65,6 +65,10 @@
 		$_SESSION['titre'] = "Test - affichage correction";
 		break;
 
+		case 26:
+		$_SESSION['titre'] = "Test - affichage Pop up";
+		break;
+
 		// WARNING : Pages communes
 
 		case 40:

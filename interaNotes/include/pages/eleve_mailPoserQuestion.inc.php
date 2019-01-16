@@ -1,25 +1,32 @@
 <?php
-if(isset($_SESSION['mail'])){
+if(isset($_SESSION['objet'])){
 
-$mail = $_SESSION['mail']; // Déclaration de l'adresse de destination.
-$passwd = $_SESSION['passwd']; //Récupération du mot de passe à insérer dans le mail
+$mail = "jeremy.lorthioir@etu.unilim.fr"; // Déclaration de l'adresse de destination.
+$mailEtudiant = $_SESSION['mail'];
+$sujet = "Vous avez recu une nouvelle question !"; // Déclaration du sujet du mail.
+$contenu= $_SESSION['contenu']; // Déclaration de l'objet du mail.
+$objet= $_SESSION['objet']; // Déclaration de l'objet du mail.
+$nom= $_SESSION['nom']; // Déclaration du nom de l'élève
+$prenom= $_SESSION['prenom']; // Déclaration du prenom de l'élève.
 
 unset($_SESSION['mail']);
-unset($_SESSION['passwd']);
+unset($_SESSION['objet']);
+unset($_SESSION['contenu']);
+unset($_SESSION['nom']);
+unset($_SESSION['prenom']);
 
 $passage_ligne = "\n";
-//    <img src='image/board.png' alt='Logo'>
-
-//$imageBoard = "../../image/board.png";
 
 //=====Déclaration des messages au format texte et au format HTML.
 $message_txt = "Intera Notes\n
-Des problèmes de connexion ?\n
-Vous avez récemment demander un nouveau mot de passe pour votre compte Intera Notes.\n
-Votre mot de passe : ".$passwd."\n\n
-Veuillez le modifier le plus rapidement possible. Pour cela, rendez vous sur votre 'Profil' puis sur 'Modifier mon mot de passe'.\n
-Merci et à bientôt sur Intera Notes !\n
-L'équipe Intera Notes.";
+Vous avez recu une nouvelle question\n
+Vous avez recu une nouvelle question de ".$prenom." ".$nom."\n
+  ".$objet."\n
+  ".$contenu."\n
+  \n
+
+  Répondez à l'étudiant en utilisant cette adresse mail : ".$mailEtudiant."\n
+";
 
 $message_html =" 
 <html>
@@ -27,15 +34,20 @@ $message_html ="
   </head>
   <body style='width:75%; margin-left:8%; float:left;'>
       <h1 align='center' style='color:white; background-color:#333333; border-radius:25px 25px 0 0; margin-bottom:0;'>Intera Notes</h1>
-    <div style='border:solid black 1px; padding:0 10px;'>
-      <h2 style='margin-left:5%;'>Des problèmes de connexion ? </h2>
-      <p>Vous avez récemment demander un nouveau mot de passe pour votre compte Intera Notes.</p>
-      <p>Votre nouveau mot de passe : <b>".$passwd."</b></p>
+    <div style='border:solid black 1px; padding:0 10px 3%;'>
+      <h2 align='center' >Vous avez recu une nouvelle question de <b>".$prenom." ".$nom."</b></h2>
+      <h3>".$objet."</h3>
+      <p style='padding: 0 5% 0 5%; text-align:justify;'>".$contenu."</b></p>
       </br>
-      <p>Veuillez le modifier le plus rapidement possible. Pour cela, rendez vous sur votre 'Profil' puis sur 'Modifier mon mot de passe'.
-     </p>
-      <p>Merci et à bientôt sur Intera Notes !</p>
-      <p align='right'>L'équipe Intera Notes</p>
+      <a align='center' style='border: 0;
+    border-radius: 50px;
+    background-color: #333;
+    color: #ededed;
+    padding : 5px 10px;
+    width: 200px;
+    cursor: pointer;
+    margin-left: 40%; 
+    ' href='mailto:".$mailEtudiant."'> Répondre </a>
     </div>
   </body>
 </html>";
@@ -44,10 +56,6 @@ $message_html ="
 //=====Création de la boundary
 $boundary = "-----=".md5(rand());
 //==========
-
-//=====Définition du sujet.
-$sujet = "Mot de passe oublié";
-//=========
 
 //=====Création du header de l'e-mail.
 $header = "From: \"Intera Notes\"<developpement_web@laposte.net>".$passage_ligne;
@@ -79,15 +87,15 @@ $retour = mail($mail,$sujet,$message,$header);
 
 //======Vérification de l'envoi
 if($retour){?>
-  <div class="msgErrorTitre">
-    <h3>Mot de passe oublié ?</h3>
-    <p>Un nouveau mot de passe vous a été attribué, vous le trouverez dans le mail envoyé !</p>
+  <div class="msgErrorMailCompte">
+    <h3>Poser une question</h3>
+    <p>La question a bien été envoyée à votre professeur !</p>
   </div>
 
 <?php
 }else{ ?>
 
-  <div class="msgErrorTitre">
+  <div class="msgErrorMailCompte">
     <h3>Echec de l'envoi</h3>
     <p>Un problème est survenu lors de l'envoi du mail, veuillez réessayer dans quelques minutes !</p>
   </div>

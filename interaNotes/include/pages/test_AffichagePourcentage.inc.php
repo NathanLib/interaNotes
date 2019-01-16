@@ -9,10 +9,10 @@ $listeExamens = $examenManager->getAllExamens();
 
 if(!$listeExamens) { ?>
 
-	<p style="text-align:center;font-weight:bold; margin:10% 0;">
-		<img src="image/erreur.png" alt="erreur.png">
-		Aucun examen créé
-	</p>
+	<div class="msgErrorTitre">
+        <h3>Erreur examen</h3>
+        <p>Aucun examen crée actuellement</p>
+    </div>
 
 <?php } else {
 
@@ -43,10 +43,10 @@ if(!$listeExamens) { ?>
 		$listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExamen());
 		if(!$listeSujets){
 			?>
-			<p style="text-align:center;font-weight:bold; margin:10% 0;">
-				<img src="image/erreur.png" alt="erreur">
-				Aucun sujet attribué
-			</p>
+			<div class="msgErrorTitre">
+		        <h3>Erreur sujet</h3>
+		        <p>Aucun sujet n'a été attribué pour l'instant !</p>
+		    </div>
 			<?php
 		} else {
 			?>

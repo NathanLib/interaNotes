@@ -13,9 +13,10 @@ $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']);
 
 if (!$idSujet){
     ?>
-    <p style="text-align:center;font-weight:bold; margin:10% 0;">
-        <img src="image/erreur.png" alt="Erreur" title="erreur">Aucun sujet attribué actuellement !
-    </p>
+    <div class="msgErrorTitre">
+        <h3>Erreur sujet</h3>
+        <p>Aucun sujet n'a été attribué pour actuellement !</p>
+    </div>
     <?php
 } else {
 
@@ -60,13 +61,6 @@ if (!$idSujet){
                         <?php echo $enonce; ?>
                     </p>
                 </div>
-                <div>
-                    <span id="subjectTitle">Consigne :</span>
-                    <br>
-                    <p class="textSubject">
-                        Selon les paramètres énoncés précédemment, veuillez indiquer les quantités nécessaires d'O², de carburant, de nourriture et d'eau pour que la fusée Ariane 5 atteigne sa destination.
-                    </p>
-                </div>
             </div>
         </div>
 
@@ -84,20 +78,27 @@ if (!$idSujet){
             </div>
         </div>
 
-        <div class="col-12 d-flex justify-content-center">
-            <div class="boutonSaisieReponse">
-                <a href="index.php?page=23">Saisir les réponses</a>
+        <div class="row d-flex w-100 justify-content-center">
+            <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
+                <div class="boutonCorrection">
+                    <a href="index.php?page=23">
+                        <input type=button value="Saisir réponses"></input>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
+                <div class="boutonTelecharger">
+                    <?php
+                    $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $date, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
+                    ?>
+                    <a href="include/pages/test_pdf.inc.php">
+                        <input type=button value="Télécharger"></input>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="col-12 d-flex justify-content-center">
-          <div class="boutonTelecharger">
-            <?php
-            $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $date, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
-            ?>
-            <a href="include/pages/test_pdf.inc.php"><input type=button value="Télécharger"></input></a>
-        </div>
     </div>
-</div>
 </div>
 
 

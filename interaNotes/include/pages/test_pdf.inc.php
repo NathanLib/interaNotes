@@ -8,11 +8,10 @@ $consigne="Selon les paramètres énoncés précédemment, veuillez indiquer les
 $pdf = new PDF();
 $pdf->SetTitle("Sujet_".$_SESSION['sujet']['idSujet']);
 $pdf->AliasNbPages();
-$pdf->AddPage('','',0,$_SESSION['sujet']['idSujet']);
+$pdf->AddPage('','',0);
 $pdf->AddTitre($_SESSION['sujet']['titre']);
 $pdf->AddDate($_SESSION['sujet']['date']);
 $pdf->AddEnonce($_SESSION['sujet']['enonce']);
-$pdf->AddConsigne($consigne);
 $pdf->AddImages($_SESSION['sujet']['image1'],$_SESSION['sujet']['image2']);
 $pdf->Output();
 ?>

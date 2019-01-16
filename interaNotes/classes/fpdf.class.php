@@ -277,7 +277,7 @@ function Close()
 	if($this->state==3)
 		return;
 	if($this->page==0)
-		$this->AddPage();
+		$this->AddPage('','',0,$_);
 	// Page footer
 	$this->InFooter = true;
 	$this->Footer();
@@ -288,7 +288,7 @@ function Close()
 	$this->_enddoc();
 }
 
-function AddPage($orientation='', $size='', $rotation=0,$idSujet)
+function AddPage($orientation='', $size='', $rotation=0)
 {
 	// Start a new page
 	if($this->state==3)
@@ -331,7 +331,7 @@ function AddPage($orientation='', $size='', $rotation=0,$idSujet)
 	$this->ColorFlag = $cf;
 	// Page header
 	$this->InHeader = true;
-	$this->Header($idSujet);
+	$this->Header($_SESSION['sujet']['idSujet']);
 	$this->InHeader = false;
 	// Restore line width
 	if($this->LineWidth!=$lw)
