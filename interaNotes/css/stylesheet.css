@@ -456,26 +456,30 @@ footer .text-uppercase {
     width: 35px;
     height: 35px;
 }
-#needHelp a:hover {
-    color: #666;
-    text-decoration: none;
-}
-#needHelp a {
-    color: #333;
+.more_info {
+    position: relative;
+    cursor: pointer;
 }
 
-/* Tooltip */
-.tooltip-inner {
-    background-color: #333;
-    border-radius: .20rem;
-    min-width: 35%;
-    max-width: 65%;
+.more_info .popup {
+    position: absolute;
+    top: 51px; /*must overlap parent element otherwise pop-up doesn't stay open when rolloing over '*/
+    background: #333;
+    border: 1px solid #ccc;
+    padding: 8px;
+    left: -50%;
+    width: 200%;
+    z-index: 100;
+    display: none;
+    text-align: center;
     border-radius: 25px;
-    margin: auto;
+    color: white;
+    opacity: 0.95;
+
 }
-.tooltip .arrow:before {
-    border-bottom-color:#333 !important;
-    border-top-color:#333 !important;
+
+span#text_info, p#text_info {
+    font-weight: inherit;
 }
 
 
@@ -709,6 +713,10 @@ footer .text-uppercase {
         width: 50%;
         margin: 0 25% 5% 25%;
     }
+    .more_info .popup {
+        width: 300%;
+        left: -100%;
+    }
 
 }
 
@@ -808,6 +816,11 @@ footer .text-uppercase {
     .sendSaisie {
         width: 20%;
         margin: 0 40% 5% 40%;
+    }
+
+    .more_info .popup {
+        width: 500%;
+        left: -200%;
     }
 
 }
