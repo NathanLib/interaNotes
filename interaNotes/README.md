@@ -1,15 +1,5 @@
-Créer examen :
-1) Enregistrer l'examen : CHECK
-	- Examen
-	- Valeurs
-	- Points
-	- Dependances
+IP adress : 164.81.120.31
+AccÃ¨s au fichiers du site : /var/www/html/index.html
 
-2) Generer les sujets :
-	- Sujet
-	- Enonce
-	- ExerciceGenere
-	- ResultatsAttendus
-
-3) Attribuer les sujets :
-	-exerciceattribue
+http://164.81.120.31
+root mot de passe mysql : interaNotes#87
