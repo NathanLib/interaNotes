@@ -51,20 +51,25 @@ function adjustHeightTextAreaLittle(el){
 
 
 $('input').focus(function(){
-  $(this).parents('.form-group').addClass('focused');
+    $(this).parents('.form-group').addClass('focused');
 });
 
 $('input').blur(function(){
-  var inputValue = $(this).val();
-  if ( inputValue == "" ) {
-    $(this).removeClass('filled');
-    $(this).parents('.form-group').removeClass('focused');
-  } else {
-    $(this).addClass('filled');
-  }
+    var inputValue = $(this).val();
+    if ( inputValue == "" ) {
+        $(this).removeClass('filled');
+        $(this).parents('.form-group').removeClass('focused');
+    } else {
+        $(this).addClass('filled');
+    }
 });
 
 // WARNING: Fonction affichage div : pop up
 $('.popUp').click(function(){
-  $('.box').toggle();
+    $('.box').toggle();
+});
+
+// WARNING: tooltip
+$(document).ready(function() {
+    $('[data-toggle=tooltip]').tooltip();
 });

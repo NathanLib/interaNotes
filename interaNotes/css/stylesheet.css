@@ -452,6 +452,32 @@ footer .text-uppercase {
     margin: 5%;
 }
 
+.helpIcon {
+    width: 35px;
+    height: 35px;
+}
+#needHelp a:hover {
+    color: #666;
+    text-decoration: none;
+}
+#needHelp a {
+    color: #333;
+}
+
+/* Tooltip */
+.tooltip-inner {
+    background-color: #333;
+    border-radius: .20rem;
+    min-width: 35%;
+    max-width: 65%;
+    border-radius: 25px;
+    margin: auto;
+}
+.tooltip .arrow:before {
+    border-bottom-color:#333 !important;
+    border-top-color:#333 !important;
+}
+
 
 
 /* Page detail compte */
