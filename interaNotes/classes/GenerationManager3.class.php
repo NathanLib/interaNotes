@@ -1,16 +1,76 @@
 <?php
-class GenerationManager{
+class GenerationManager3{
 
   private $db;
+
+  private $memory;
+  private $memory2;
+  private $idSujet;
+  private $listeDependances;
 
   public function __construct($db){
 		$this->db = $db;
 	}
 
+  private function genererSujetAvecNouveauParametre($nbEtape, $etapeActuelle, $tabPoints, $listeValeurs, $pointsDependances, $valeursDependances){
+    if($nbEtape === $etapeActuelle){
+
+      foreach ($tabPoints[$etapeActuelle] as $valeur => $value) {
+        $listeValeurs[$etapeActuelle]=$value;
+
+        foreach ($listeValeurs as $point => $valeurPoint) {
+          $this->memory[$this->idSujet][$valeurPoint->getIdPointOfValeur()] = $valeurPoint;
+
+          //$this->memory2[$this->idSujet][$valeurPoint->getIdPointOfValeur()] = $valeurPoint;
+          //$this->genererSujetAvecNouvelleDependance(2, 1, $listeValeurs, $pointsDependances, $valeursDependances, $etapeActuelle);
+        }
+
+        $this->idSujet++;
+      }
+
+    } else {
+      foreach ($tabPoints[$etapeActuelle] as $valeur => $value) {
+        $listeValeurs[$etapeActuelle]=$value;
+        $this->genererSujetAvecNouveauParametre($nbEtape,$etapeActuelle+1,$tabPoints,$listeValeurs, $pointsDependances, $valeursDependances);
+      }
+    }
+  }
+
+  private function verifierLaDependance($valeur, $listeValeurs, $pointsDependances, $valeursDependances){
+    $listeDependances = array_keys($valeursDependances,$idValeur);
+    if(count($listeDependances) == 0){
+      $this->memory[$this->idSujet][$valeur->getIdPointOfValeur()] = $valeur;
+      $this->idSujet++;
+
+    }else{
+      foreach ($listeDependances as $value) {
+        $this->memory[$this->idSujet][$valeur] = $valeurPoint;
+        $this->idSujet++;
+      }
+    }
+  }
+
 	public function genererExerciceFusee($listeDependances, $idSujet){
     $valeurManager = new ValeurManager($this->db);
 
-    $listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
+    $tabPoints = [1,3,4,6,7,8,9];
+    $tabDependances = [2,5];
+    $this->idSujet = $idSujet;
+
+    //$this->$listeDependances = $listeDependances;
+
+    foreach ($tabPoints as $key => $point) {
+      $listeValeursDesPoints[$key] = $valeurManager->getAllValeursOfPoints($tabPoints[$key]);
+    }
+    /*echo "<pre>";
+    var_dump($this->$listeDependances);
+    echo "</pre>";*/
+
+    $listeValeurs = array();
+    $this->genererSujetAvecNouveauParametre(6,0,$listeValeursDesPoints,$listeValeurs, $tabDependances, $listeDependances);
+    return $this->memory2;//$this->memory;
+
+    /*$listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
     $listeValeurs_points_nbPersonnes = $valeurManager->getAllValeursOfPoints(3);
     $listeValeurs_points_destinationPlanete = $valeurManager->getAllValeursOfPoints(4);
     $listeValeurs_points_consoCarbu = $valeurManager->getAllValeursOfPoints(6);
@@ -77,12 +137,12 @@ class GenerationManager{
           }
         }
       }
-    }
+    }*/
 
-    $tableauSujets['enonces'] = $listeEnonces;
+    /*$tableauSujets['enonces'] = $listeEnonces;
     $tableauSujets['sujets'] = $listeSujets;
     $tableauSujets['exerciceGenere'] = $listeValeurs;
-    return $tableauSujets;
+    return $tableauSujets;*/
   }
 
 }

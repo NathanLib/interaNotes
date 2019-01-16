@@ -18,4 +18,19 @@ class DependanceManager{
 		$requete->closeCursor();
 		return $dependance;
 	}
+
+	public function getAllDependances2(){
+
+		$sql = 'SELECT idValeur, idValeurDependante FROM dependances';
+
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+
+		while($dependance = $requete->fetch(PDO::FETCH_OBJ)){
+			$listeDependances[] = array($dependance->idValeur, $dependance->idValeurDependante);
+		}
+
+		$requete->closeCursor();
+		return $listeDependances;
+	}
 }

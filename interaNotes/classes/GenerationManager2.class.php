@@ -1,16 +1,85 @@
 <?php
-class GenerationManager{
+class GenerationManager2{
 
   private $db;
 
+  private $memory;
+  private $idSujet;
+
+  private $valeurManager;
+
+
   public function __construct($db){
 		$this->db = $db;
+    $this->valeurManager = new ValeurManager($db);
 	}
+
+  private function genererSujetAvecNouveauParametre($nbEtape, $etapeActuelle, $tabPoints, $listeValeurs,$listeDependances,$nbDpendances=0){
+    if($nbEtape === $etapeActuelle) {
+
+      foreach ($tabPoints[$etapeActuelle] as $valeur => $value) {
+        $listeValeurs[$etapeActuelle]=$value;
+        $taille = count($listeDependances);
+
+        foreach ($listeValeurs as $point => $valeurPoint) {
+
+          $this->memory[$this->idSujet][$point] = $valeurPoint; //FIN
+        }
+
+        $this->idSujet++;
+      }
+
+    } else {
+      $taille = count($listeDependances);
+      $i = 0;
+      $isDependance = false;
+      foreach ($tabPoints[$etapeActuelle] as $valeur => $value) {
+          if($etapeActuelle > 0) {
+            while ($i < $taille && !$isDependance) {
+
+              if($listeDependances[$i][0] == $value->getIdValeur()) {
+                $isDependance = true;
+                $idDep = $i;
+              }
+              $i++;
+            }
+          }
+
+         if($isDependance) {
+           if($this->valeurManager->compterNbValeurs($listeDependances[$idDep][1]) > 1) { // cas plusieurs valeurs
+             $listeDesValeursPossibles = $this->valeurManager->listerValeurDependante($listeDependances[$idDep][1]);
+             //foreach ($listeDesValeursPossibles as $possible => $value2) {
+              // $listeValeurs[$etapeActuelle]=$value2;
+               $this->genererSujetAvecNouveauParametre($nbEtape,$etapeActuelle+1,$tabPoints,$listeValeurs,$listeDependances,$nbDpendances);
+            // }
+           } else { // cas une seule valeur
+             $listeValeurs[$etapeActuelle]=$this->valeurManager->listerValeurDependante($listeDependances[$idDep][1]);
+             $this->genererSujetAvecNouveauParametre($nbEtape,$etapeActuelle+1,$tabPoints,$listeValeurs,$listeDependances,$nbDpendances);
+           }
+          } else { // cas non dependance
+            $listeValeurs[$etapeActuelle]=$value;
+            $this->genererSujetAvecNouveauParametre($nbEtape,$etapeActuelle+1,$tabPoints,$listeValeurs,$listeDependances,$nbDpendances);
+          }
+        }
+      }
+    }
+
 
 	public function genererExerciceFusee($listeDependances, $idSujet){
     $valeurManager = new ValeurManager($this->db);
 
-    $listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
+    $tabPoints = [1,2,3,4,5,6,7,8,9];
+    $this->idSujet = $idSujet;
+
+    foreach ($tabPoints as $key => $point) {
+      $listeValeursDesPoints[$key] = $valeurManager->getAllValeursOfPoints($tabPoints[$key]);
+    }
+
+    $listeValeurs = array();
+    $this->genererSujetAvecNouveauParametre(8,0,$listeValeursDesPoints,$listeValeurs,$listeDependances);
+    return $this->memory;
+
+    /*$listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
     $listeValeurs_points_nbPersonnes = $valeurManager->getAllValeursOfPoints(3);
     $listeValeurs_points_destinationPlanete = $valeurManager->getAllValeursOfPoints(4);
     $listeValeurs_points_consoCarbu = $valeurManager->getAllValeursOfPoints(6);
@@ -77,12 +146,12 @@ class GenerationManager{
           }
         }
       }
-    }
+    }*/
 
-    $tableauSujets['enonces'] = $listeEnonces;
+    /*$tableauSujets['enonces'] = $listeEnonces;
     $tableauSujets['sujets'] = $listeSujets;
     $tableauSujets['exerciceGenere'] = $listeValeurs;
-    return $tableauSujets;
+    return $tableauSujets;*/
   }
 
 }

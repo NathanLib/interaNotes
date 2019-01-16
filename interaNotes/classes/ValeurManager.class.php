@@ -54,4 +54,53 @@ class ValeurManager{
 
 		return $valeur->valeur;
 	}
+
+	public function getIdPointByIdValeur($idValeur){
+
+		$sql = 'SELECT idPoint FROM valeurs v WHERE idValeur=:id';
+
+    $requete = $this->db->prepare($sql);
+		$requete->bindValue(':id', $idValeur);
+		/*$requete->bindValue(':id', $idPoint->getIdPoint());*/
+		$requete->execute();
+
+		$idPoint = $requete->fetch(PDO::FETCH_OBJ);
+
+		return $idPoint->idPoint;
+
+		$requete->closeCursor();
+
+	}
+
+	public function compterNbValeurs($idValeur){
+		$sql = 'SELECT COUNT(idValeurDependante) AS nb FROM dependances d WHERE idValeurDependante=:id';
+
+    $requete = $this->db->prepare($sql);
+		$requete->bindValue(':id', $idValeur);
+		/*$requete->bindValue(':id', $idPoint->getIdPoint());*/
+		$requete->execute();
+
+		$nb = $requete->fetch(PDO::FETCH_OBJ);
+
+		return $nb->nb;
+
+		$requete->closeCursor();
+	}
+
+	public function listerValeurDependante($idValeurDependante){
+		$sql = 'SELECT d.idValeur,idPoint,valeur,uniteValeur,exposantValeur FROM dependances d JOIN valeurs v ON v.idValeur=d.idValeurDependante WHERE d.idValeurDependante=:id';
+
+    $requete = $this->db->prepare($sql);
+		$requete->bindValue(':id', $idValeurDependante);
+		/*$requete->bindValue(':id', $idPoint->getIdPoint());*/
+		$requete->execute();
+
+		while($valeur = $requete->fetch(PDO::FETCH_OBJ)){
+			$listeValeurs[] = new Valeur($valeur);
+		}
+
+		return $listeValeurs;
+
+		$requete->closeCursor();
+	}
 }
