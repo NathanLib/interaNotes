@@ -5,7 +5,7 @@
         <form method="post" action="#">
 
             <div>
-                <input id="<?php echo 'saisieParametre1' ?>" type="text" placeholder="Nouvelle valeur" onkeypress="return ajouterValeurDeParametre(event)">
+                <input id="<?php echo 'saisieParametre1' ?>" type="text" placeholder="Nouvelle valeur" onkeypress="return ajouterValeurDeParametre(event,'saisieParametre1','parametre1')">
 
                 <select id="<?php echo 'parametre1' ?>"></select>
 
