@@ -74,7 +74,8 @@ function ouvrirBox(compteur) {
 $(document).ready(function() {
     if(document.getElementById("box0") != undefined)
         $('.box').toggle();
-    })
+    
+});
 
 
 
@@ -127,15 +128,54 @@ $(document).ready(function () {
 
 });
 
-function ajouterValeurDeParametre(event,idValeur,idListe) {
-    if (event.which == 13 || event.keyCode == 13) {
-        var valeur = document.getElementById(idValeur);
-        var liste = document.getElementById(idListe);        
-        var option = document.createElement("option");
-        option.text = valeur.value;
-        liste.add(option);
-        event.preventDefault();
-        valeur.value = null;
-        return false;
-    }
+function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnite,idExposantUnite) {
+
+
+    var valeur = document.getElementById(idValeur);
+    var liste = document.getElementById(idListe);  
+    var exposantValeur = document.getElementById(idExposantValeur); 
+    var unite = document.getElementById(idUnite);
+    var exposantUnite = document.getElementById(idExposantUnite);
+
+
+    var option = document.createElement("option");
+    option.text = valeur.value+" / "+exposantValeur.value+" / "+unite.value+" / "+exposantUnite.value;
+
+
+    liste.add(option);
+    event.preventDefault();
+    valeur.value = null;
+    return false;
+    
+}
+
+function ajouteEvent(objet, typeEvent, nomFonction, typePropagation){
+  if (objet.addEventListener){
+    objet.addEventListener(typeEvent, nomFonction, typePropagation);
+}
+else if (objet.attachEvent)         {
+    objet.attachEvent('on'+typeEvent, nomFonction);
+}
+}
+
+function supprimerSelection() {
+  var i = 0;
+  while(document.getElementById('bouton'+i) != undefined){
+    var bouton = document.getElementById('bouton'+i);
+    ajouteEvent (bouton, 'click',supprimerValeur, false);
+    i++;
+}
+}
+
+function supprimerValeur(i) {
+
+    var liste = document.getElementById('parametre'+i);
+    
+    if(liste.options.selectedIndex >= 0) {
+        var optionIndex = liste.options.selectedIndex;
+        liste.options[optionIndex] = null;
+    } else {
+        i++;
+   
+}
 }

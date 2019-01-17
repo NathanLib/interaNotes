@@ -116,7 +116,7 @@ if(!$idSujet){
                                                     $listeUnites = Unites::getConstants();
 
                                                     foreach ($listeUnites as $unite => $abreviation) { ?>
-                                                        <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
+                                                        <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>
                                                         <?php
                                                     }
                                                     ?>
@@ -131,7 +131,7 @@ if(!$idSujet){
                                                     $defautExposant = Exposants::getExposantParDefaut();
 
                                                     foreach ($listeExposants as $exposant) { ?>
-                                                        <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
+                                                        <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>
                                                         <?php
                                                     }
                                                     ?>
