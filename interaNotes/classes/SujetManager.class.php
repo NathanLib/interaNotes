@@ -8,6 +8,23 @@ class SujetManager{
 
 	public function getAllSujetsOfExamen($idExamen){
 
+		$sql = 'SELECT idSujet, idEnonce, semestre, idExamen FROM sujet s WHERE idExamen=:idExamen ';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idExamen',$idExamen);
+		$requete->execute();
+
+		while($sujet = $requete->fetch(PDO::FETCH_OBJ)){
+			$listeSujets[] = new Sujet($sujet);
+		}
+
+		$requete->closeCursor();
+
+		return $listeSujets;
+	}
+
+	public function getAllSujetsOfExamenAttribues($idExamen){
+
 		$sql = 'SELECT e.idSujet, idEnonce, semestre, idExamen FROM sujet s INNER JOIN exerciceattribue e ON s.idSujet=e.idSujet WHERE idExamen=:idExamen ';
 
 		$requete = $this->db->prepare($sql);

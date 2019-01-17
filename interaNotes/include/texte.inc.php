@@ -82,6 +82,10 @@
 		include_once('pages/test_Correction.inc.php');
 		break;
 
+		case 28:
+		include_once('pages/test_attributionDesSujets.inc.php');
+		break;
+
 		// WARNING : Pages communes
 
 		case 40:

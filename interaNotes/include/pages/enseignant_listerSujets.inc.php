@@ -5,7 +5,7 @@ $pdo = new Mypdo();
 $sujetManager = new SujetManager($pdo);
 $personneManager = new PersonneManager($pdo);
 
-$listeSujets = $sujetManager->getAllSujetsOfExamen($_SESSION['examen']->getIdExamen());
+$listeSujets = $sujetManager->getAllSujetsOfExamenAttribues($_SESSION['examen']->getIdExamen());
 
 
 if (!$listeSujets){ ?>
