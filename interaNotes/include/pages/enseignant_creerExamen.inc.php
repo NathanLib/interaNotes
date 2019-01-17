@@ -72,30 +72,69 @@ if($listePromo===false) { ?>
         <p><?php echo $texteEnonce?></p>
         
         <h3>Liste des paramètres de l'examen</h3>
-        <?php
-        foreach ($tableauParametres as $compteur => $parametre) { ?>
-            <p><?php echo $parametre ?> : </p>
-            <button class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
-            <div class="box" id=<?php echo "box".$compteur ;?> >
-
-                <div class="form-wrapper">
-
-
-                    <div><?php echo $parametre ?></div>
-
-                    <div>                            
-                        <input id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Nouvelle valeur" onkeypress="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>)">
-
-                        <select id="<?php echo 'parametre'.$compteur ?>" multiple></select>
-                    </div>
-                    <div class="form-group divMdpButton">
-                        <input class="detailMdpButton" type="button" value="Valider" class="btn"/>
-                    </div>
-
-
-                </div>
-            </div>
+        
             <?php
-        }
-    } ?>
+            foreach ($tableauParametres as $compteur => $parametre) { ?>
+                <p><?php echo $parametre ?> : </p>
+                <button class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
+                <div class="box" id=<?php echo "box".$compteur ;?> >
+
+                    <div class="form-wrapper">
+
+
+                        <div><?php echo $parametre ?></div>
+
+                        <div>   
+
+                            <input id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Nouvelle valeur" >
+                            <div class="form-group divPuissanceResult">
+                                <p id="puissanceValeur">x10</p>
+                                <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeur".$compteur; ?> type="number" value="0" step="1" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="uniteAnswer">Unité de la valeur :</label>
+                                <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                    <?php
+                                    $listeUnites = Unites::getConstants();
+
+                                    foreach ($listeUnites as $unite => $abreviation) { ?>
+                                        <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exposantAnswer">Exposant de la valeur :</label>
+                                <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                    <?php
+                                    $listeExposants = Exposants::getConstants();
+                                    $defautExposant = Exposants::getExposantParDefaut();
+
+                                    foreach ($listeExposants as $exposant) { ?>
+                                        <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <select class="listeValeur" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
+
+                        </div>
+                        <button id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.")"; ?> value="Supprimer">Poubelle</button>
+                        <div class="form-group divMdpButton">
+                            <input class="detailMdpButton" type="button" value="Valider" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" />
+                        </div>
+
+
+                    </div>
+                </div>
+                <?php
+            } ?>
+            
+        
+    <?php    } ?>
 <?php } ?>
