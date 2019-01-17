@@ -69,6 +69,14 @@ $('input').blur(function(){
 
 function ouvrirBox(compteur) {
     $('#box'+compteur).toggle();
+    changerNomBouton(compteur);
+}
+
+function changerNomBouton(compteur) {
+    var bouton = document.getElementById('btnAjout'+compteur);
+    if (bouton.innerHTML != "Mes Valeurs") {
+        bouton.innerHTML = "Mes valeurs";
+    }
 }
 
 $(document).ready(function() {
@@ -132,6 +140,10 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
 
 
     var valeur = document.getElementById(idValeur);
+
+    if(valeur.value == ""){
+        return false;
+    }
     var liste = document.getElementById(idListe);  
     var exposantValeur = document.getElementById(idExposantValeur); 
     var unite = document.getElementById(idUnite);
@@ -176,6 +188,31 @@ function supprimerValeur(i) {
         liste.options[optionIndex] = null;
     } else {
         i++;
-   
+
+    }
 }
+
+function affichageSaisieValeurUnique(i){
+    document.getElementById('valeursUniques'+i).style.display = "block";
+    document.getElementById('boutonUnique'+i).disabled = true ;
+    document.getElementById('boutonIntervalle'+i).disabled = true ;
+}
+
+function affichageSaisieIntervalle(i){ //a completer
+    //document.getElementById('valeursIntervalle'+i).style.display = "block";
+    document.getElementById('boutonUnique'+i).disabled = true ;
+    document.getElementById('boutonIntervalle'+i).disabled = true;
+}
+
+function annulerSaisie(i){ //a completer
+    if(document.getElementById('valeursUniques'+i).style.display == "block"){
+        document.getElementById('valeursUniques'+i).style.display = "none";
+        document.getElementById('saisieParametre'+i).value=null;
+        document.getElementById('parametre'+i).options.length = 0;
+        document.getElementById('boutonUnique'+i).disabled = false ;
+        document.getElementById('boutonIntervalle'+i).disabled = false ;
+    } else {
+
+    }
+
 }
