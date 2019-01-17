@@ -42,12 +42,27 @@ class EleveManager{
 			$listePromo[] = $promo;
 		}
 
+		$req->closeCursor();
+
 		if(isset($listePromo)) {
 			return $listePromo;
 		}
 		return false;
+	}
 
-		$req->closeCursor();
+	public function getAllIdElevesByPromo($nomPromo) {
+		$sql = 'SELECT idEleve FROM eleve e WHERE e.nomPromo = :nomPromo';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':nomPromo', $nomPromo);
+		$requete->execute();
+
+		while($eleve = $requete->fetch(PDO::FETCH_OBJ)){
+			$listeEleves[] = $eleve->idEleve;
+		}
+
+		$requete->closeCursor();
+		return $listeEleves;
 	}
 
 }
