@@ -135,6 +135,7 @@ function ajouterValeurDeParametre(event,idValeur,idListe) {
         option.text = valeur.value;
         liste.add(option);
         event.preventDefault();
+        valeur.value = null;
         return false;
     }
 }

@@ -83,7 +83,8 @@ if($listePromo===false) { ?>
 
                     <div><?php echo $parametre ?></div>
 
-                    <div>                            
+                    <div>   
+                                                 
                         <input id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Nouvelle valeur" onkeypress="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>)">
 
                         <select id="<?php echo 'parametre'.$compteur ?>" multiple></select>
