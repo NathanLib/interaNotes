@@ -82,7 +82,6 @@ function changerNomBouton(compteur) {
 $(document).ready(function() {
     if(document.getElementById("box0") != undefined)
         $('.box').toggle();
-    
 });
 
 
@@ -215,4 +214,29 @@ function annulerSaisie(i){ //a completer
 
     }
 
+}
+
+
+// TEST
+
+//Clone the hidden element and shows it
+
+$(document).ready(function() {
+    $('.add-one').click(function(){
+      $('.dynamic-element').first().clone().appendTo('.dynamic-stuff').show();
+      attach_delete();
+  });
+});
+
+//Attach functionality to delete buttons
+function attach_delete(){
+  $('.delete').off();
+  $('.delete').click(function(){
+    $(this).closest('.form-group').remove();
+});
+};
+
+
+function testquestion(){
+    console.log(document.getElementsByClassName('intituleQuestion'));
 }

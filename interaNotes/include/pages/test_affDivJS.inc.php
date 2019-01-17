@@ -1,18 +1,52 @@
-<button class="btn btn-primary popUp" type="button" name="button">Pute</button>
-<div class="box">
+<style type="text/css">
 
-    <div class="form-wrapper">
-        <form method="post" action="#">
+</style>
 
-            <div>
-                <input id="<?php echo 'saisieParametre1' ?>" type="text" placeholder="Nouvelle valeur" onkeypress="return ajouterValeurDeParametre(event,'saisieParametre1','parametre1')">
-
-                <select id="<?php echo 'parametre1' ?>"></select>
-
-                <div class="form-group divMdpButton">
-                    <input class="detailMdpButton" type="button" value="Valider" class="btn"/>
-                </div>
-
-            </form>
-        </div>
+<!-- HIDDEN DYNAMIC ELEMENT TO CLONE -->
+<!-- you can replace it with any other elements -->
+<div class="form-group dynamic-element" style="display:none">
+  <div class="row">
+    <div class="col-md-10"></div>
+    
+    <!-- Replace these fields -->
+    <div class="col-md-4">
+      <input type="text" name="" class="form-control">
     </div>
+    <div class="col-md-4">
+      <input type="number" step="0.25" min="0" max="20" name="" class="form-control">
+    </div>
+    <!-- End of fields-->
+    <div class="col-md-1">
+      <p class="delete">X</p>
+    </div>
+  </div>
+</div>
+<!-- END OF HIDDEN ELEMENT -->
+
+
+
+
+
+<div class="form-container">
+  <form class="form-horizontal">
+    <fieldset>
+      <!-- Form Name -->
+      <legend class="title">test</legend>
+
+      <div class="dynamic-stuff">
+        <!-- Dynamic element will be cloned here -->
+        <!-- You can call clone function once if you want it to show it a first element-->
+      </div>
+
+      <!-- Button -->
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="add-one">+ ajouter Question</p>
+          </div>
+          <div class="col-md-5"></div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
