@@ -188,7 +188,7 @@ if($listePromo===false) { ?>
                                 </div>
                             </div>
 
-                            <div id=<?php echo "valeursUniques".$compteur ;?> style="display : none">
+                            <div class="blockValeurUnique" id=<?php echo "valeursUniques".$compteur ;?> style="display : none">
 
                                 <div class="row">
                                     <div class="col-12">
@@ -206,6 +206,90 @@ if($listePromo===false) { ?>
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="uniteAnswer">Unité de la valeur :</label>
+                                    <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                        <?php
+                                        $listeUnites = Unites::getConstants();
+
+                                        foreach ($listeUnites as $unite => $abreviation) { ?>
+                                            <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exposantAnswer">Exposant de la valeur :</label>
+                                    <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                        <?php
+                                        $listeExposants = Exposants::getConstants();
+                                        $defautExposant = Exposants::getExposantParDefaut();
+
+                                        foreach ($listeExposants as $exposant) { ?>
+                                            <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" />
+                                    </div>
+                                </div>
+
+                                <div class="row d-flex justify-content-between divListeValeursTrash">
+                                    <div class="col-8 d-flex justify-content-center listeValeur">
+                                        <select class="form-control" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
+                                    </div>
+                                    <div class="col-3 d-flex jsutify-content-center">
+                                        <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.")"; ?> value="Supprimer">
+                                            <img src="image/delete.png" alt="delete">
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group divMdpButton d-flex justify-content-around">
+                                    <div class="col-5 d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
+                                    </div>
+                                    <div class="col-5 d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.")"; ?> />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="blockIntervalle" id=<?php echo "intervalle".$compteur ;?> style="display : none">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="">Nouvel intervalle :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Valeur manimale">
+                                    </div>
+                                    <div class="col-5 form-group divPuissanceResult d-flex">
+                                        <span id="puissanceValeur">x10</span>
+                                        <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeur".$compteur; ?> type="number" value="0" step="1" required>
+                                    </div>
+
+                                    <div class="col-7">
+                                        <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Valeur maximale">
+                                    </div>
+                                    <div class="col-5 form-group divPuissanceResult d-flex">
+                                        <span id="puissanceValeur">x10</span>
+                                        <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeur".$compteur; ?> type="number" value="0" step="1" required>
+
+                                    </div>
+
+                                    <div class="col-12">
+                                        <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Pas">
+                                    </div>
+                                            </div>
+
+                                <div class="form-group" style="margin-top:15px">
                                     <label for="uniteAnswer">Unité de la valeur :</label>
                                     <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
                                         <?php

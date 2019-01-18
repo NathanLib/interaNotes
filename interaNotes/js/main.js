@@ -200,7 +200,7 @@ function affichageSaisieValeurUnique(i){
 }
 
 function affichageSaisieIntervalle(i){ //a completer
-    //document.getElementById('valeursIntervalle'+i).style.display = "block";
+    document.getElementById('intervalle'+i).style.display = "block";
     document.getElementById('boutonUnique'+i).disabled = true ;
     document.getElementById('boutonIntervalle'+i).disabled = true;
     document.getElementById('boutonUnique'+i).style.backgroundColor = "#ededed";
@@ -211,13 +211,23 @@ function annulerSaisie(i){ //a completer
     if(document.getElementById('valeursUniques'+i).style.display == "block"){
         document.getElementById('valeursUniques'+i).style.display = "none";
         document.getElementById('saisieParametre'+i).value=null;
+        document.getElementById('puissanceValeur'+i).value=null;
+        document.getElementById('exposantValeur'+i).value=null;
         document.getElementById('parametre'+i).options.length = 0;
         document.getElementById('boutonUnique'+i).disabled = false ;
         document.getElementById('boutonIntervalle'+i).disabled = false ;
         document.getElementById('boutonUnique'+i).style.backgroundColor = "#333";
         document.getElementById('boutonIntervalle'+i).style.backgroundColor = "#333" ;
     } else {
-
+        document.getElementById('intervalle'+i).style.display = "none";
+        document.getElementById('saisieParametre'+i).value=null;
+        document.getElementById('puissanceValeur'+i).value=null;
+        document.getElementById('exposantValeur'+i).value=null;
+        document.getElementById('parametre'+i).options.length = 0;
+        document.getElementById('boutonUnique'+i).disabled = false ;
+        document.getElementById('boutonIntervalle'+i).disabled = false ;
+        document.getElementById('boutonUnique'+i).style.backgroundColor = "#333";
+        document.getElementById('boutonIntervalle'+i).style.backgroundColor = "#333" ;
     }
 
 }
