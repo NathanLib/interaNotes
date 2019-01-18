@@ -800,6 +800,7 @@ span#text_info, p#text_info {
 .myTrash {
     border: 0;
     background : none;
+    width: 75%;
 }
 .myTrash img {
     width: 32px;

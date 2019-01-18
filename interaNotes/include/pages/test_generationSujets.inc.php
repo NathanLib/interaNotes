@@ -1,4 +1,6 @@
 <?php
+require_once("include/verifEnseignant.inc.php");
+
 $pdo = new Mypdo();
 ?>
 
