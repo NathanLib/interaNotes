@@ -143,8 +143,8 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
     if(valeur.value == ""){
         return false;
     }
-    var liste = document.getElementById(idListe);  
-    var exposantValeur = document.getElementById(idExposantValeur); 
+    var liste = document.getElementById(idListe);
+    var exposantValeur = document.getElementById(idExposantValeur);
     var unite = document.getElementById(idUnite);
     var exposantUnite = document.getElementById(idExposantUnite);
 
@@ -157,7 +157,7 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
     event.preventDefault();
     valeur.value = null;
     return false;
-    
+
 }
 
 function ajouteEvent(objet, typeEvent, nomFonction, typePropagation){
@@ -181,7 +181,7 @@ function supprimerSelection() {
 function supprimerValeur(i) {
 
     var liste = document.getElementById('parametre'+i);
-    
+
     if(liste.options.selectedIndex >= 0) {
         var optionIndex = liste.options.selectedIndex;
         liste.options[optionIndex] = null;
@@ -195,12 +195,16 @@ function affichageSaisieValeurUnique(i){
     document.getElementById('valeursUniques'+i).style.display = "block";
     document.getElementById('boutonUnique'+i).disabled = true ;
     document.getElementById('boutonIntervalle'+i).disabled = true ;
+    document.getElementById('boutonUnique'+i).style.backgroundColor = "#ededed";
+    document.getElementById('boutonIntervalle'+i).style.backgroundColor = "#ededed" ;
 }
 
 function affichageSaisieIntervalle(i){ //a completer
     //document.getElementById('valeursIntervalle'+i).style.display = "block";
     document.getElementById('boutonUnique'+i).disabled = true ;
     document.getElementById('boutonIntervalle'+i).disabled = true;
+    document.getElementById('boutonUnique'+i).style.backgroundColor = "#ededed";
+    document.getElementById('boutonIntervalle'+i).style.backgroundColor = "#ededed" ;
 }
 
 function annulerSaisie(i){ //a completer
@@ -210,6 +214,8 @@ function annulerSaisie(i){ //a completer
         document.getElementById('parametre'+i).options.length = 0;
         document.getElementById('boutonUnique'+i).disabled = false ;
         document.getElementById('boutonIntervalle'+i).disabled = false ;
+        document.getElementById('boutonUnique'+i).style.backgroundColor = "#333";
+        document.getElementById('boutonIntervalle'+i).style.backgroundColor = "#333" ;
     } else {
 
     }

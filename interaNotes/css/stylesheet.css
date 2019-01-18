@@ -673,10 +673,8 @@ span#text_info, p#text_info {
 
 .add-one{
     color:green;
-    text-align:center;
     font-weight:bolder;
     cursor:pointer;
-    margin-top:10px;
 }
 
 .delete{
@@ -732,13 +730,86 @@ span#text_info, p#text_info {
     height: 18px;
 }
 
+.custom-control-label::before {
+    background-color: white;
+}
+
 .saisieValeursParametre {
     margin-top: -15px;
 }
 
-.custom-control-label::before {
-    background-color: white;
+.saisieValeursParametre .popUp {
+    margin-bottom: 30px;
 }
+
+.choiceParameterSaisie {
+    margin-left: 20px;
+    display: flex;
+
+}
+.choiceParameterSaisie .custom-checkbox {
+    margin-top: 8px;
+    margin-left: 30px;
+}
+
+.choiceParameterSaisie button {
+    background-color: #333 !important;
+    border: solid 1px #333;
+}
+
+.mesParametresSaisie .form-wrapper {
+    max-width: 50% !important;
+    min-width: 400px;
+    padding: 30px 30px 40px 30px;
+    margin: 20px auto 35px auto;
+}
+
+.choixTypesValeurs input {
+    width: 150px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    background-color: #333;
+    padding: 3px 6px;
+}
+.choixTypesValeurs div {
+    padding: 0;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+.divPuissanceResult {
+    margin-bottom: 10px;
+}
+.divPuissanceResult span {
+    margin-top: 13px;
+    font-size: 20px;
+}
+
+.btnSaisieValeur {
+    width: 150px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+}
+
+.divListeValeursTrash {
+    margin: 20px 0;
+}
+.myTrash {
+    border: 0;
+    background : none;
+}
+.myTrash img {
+    width: 32px;
+    height: 32px;
+}
+.listeValeur {
+    padding: 0;
+}
+
+
 
 
 
@@ -879,6 +950,10 @@ span#text_info, p#text_info {
     /* Page enseignant_creerExamen */
     .createExam {
         margin: 2% 0;
+    }
+
+    .mesParametresSaisie .divPuissanceResult {
+        margin-top: 0;
     }
 
     /* page eleve saisie réponse */

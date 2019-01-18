@@ -164,34 +164,45 @@ if($listePromo===false) { ?>
                 foreach ($tableauParametres as $compteur => $parametre) { ?>
                     <p><?php echo $parametre ?> : </p>
 
-                    <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
+                    <div class="choiceParameterSaisie">
+                        <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
 
-                    <label>
-                        Catia
-                        <input type="checkbox" name="catia" value="catia">
-                    </label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="catia" name="catia">
+                            <label class="custom-control-label" for="catia">Catia</label>
+                        </div>
+                    </div>
 
 
-                    <div class="box" id=<?php echo "box".$compteur ;?> >
-
+                    <div class="box mesParametresSaisie" id=<?php echo "box".$compteur ;?> >
                         <div class="form-wrapper">
+                            <h4><?php echo $parametre ?></h4>
 
+                            <div class="row d-flex justify-content-around choixTypesValeurs">
+                                <div class="col-5 d-flex justify-content-center">
+                                    <input id=<?php echo "boutonUnique".$compteur ; ?> type="button" value="Valeurs Uniques" onclick="affichageSaisieValeurUnique(<?php echo $compteur; ?>)">
+                                </div>
 
-                            <h3><?php echo $parametre ?></h3>
-
-                            <div>
-
-                                <input id=<?php echo "boutonUnique".$compteur ; ?> type="button" value="Valeurs Uniques" onclick="affichageSaisieValeurUnique(<?php echo $compteur; ?>)">
-
-                                <input id=<?php echo "boutonIntervalle".$compteur ; ?> type="button" onclick="affichageSaisieIntervalle(<?php echo $compteur; ?>)" value="Intervalles">
+                                <div class="col-5 d-flex justify-content-center">
+                                    <input id=<?php echo "boutonIntervalle".$compteur ; ?> type="button" onclick="affichageSaisieIntervalle(<?php echo $compteur; ?>)" value="Intervalles">
+                                </div>
                             </div>
 
                             <div id=<?php echo "valeursUniques".$compteur ;?> style="display : none">
 
-                                <input id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Nouvelle valeur" >
-                                <div class="form-group divPuissanceResult">
-                                    <p id="puissanceValeur">x10</p>
-                                    <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeur".$compteur; ?> type="number" value="0" step="1" required>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="">Nouvelle valeur :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text">
+                                    </div>
+                                    <div class="col-5 form-group divPuissanceResult d-flex">
+                                        <span id="puissanceValeur">x10</span>
+                                        <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeur".$compteur; ?> type="number" value="0" step="1" required>
+
+                                    </div>
+
                                 </div>
 
                                 <div class="form-group">
@@ -222,15 +233,31 @@ if($listePromo===false) { ?>
                                         ?>
                                     </select>
                                 </div>
-                                <input class="detailMdpButton" type="button" value="Valider" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" />
 
-                                <select class="listeValeur" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" />
+                                    </div>
+                                </div>
 
-                                <button id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.")"; ?> value="Supprimer">Poubelle</button>
+                                <div class="row d-flex justify-content-between divListeValeursTrash">
+                                    <div class="col-8 d-flex justify-content-center listeValeur">
+                                        <select class="form-control" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
+                                    </div>
+                                    <div class="col-3 d-flex jsutify-content-center">
+                                        <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.")"; ?> value="Supprimer">
+                                            <img src="image/delete.png" alt="delete">
+                                        </button>
+                                    </div>
+                                </div>
 
-                                <div class="form-group divMdpButton">
-                                    <input class="detailMdpButton" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
-                                    <input class="detailMdpButton" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.")"; ?> />
+                                <div class="row form-group divMdpButton d-flex justify-content-around">
+                                    <div class="col-5 d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
+                                    </div>
+                                    <div class="col-5 d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.")"; ?> />
+                                    </div>
                                 </div>
                             </div>
 
