@@ -104,7 +104,7 @@ if(!$idSujet){
 
                                                     <div class="col-5 col-sm-3 col-md-2 col-lg-4 d-flex form-group divPuissanceResult">
                                                         <p id="puissanceResult">x10</p>
-                                                        <input id="resultAnswer"  class="form-control saisiePuissanceResult" name="resultatExposant<?php echo $question->getIdQuestion() ?>"" type="number" placeholder="0" step="1" required>
+                                                        <input id="resultAnswer"  class="form-control saisiePuissanceResult" name="resultatExposant<?php echo $question->getIdQuestion() ?>" type="number" value="0" step="1" required>
                                                     </div>
                                                 </div>
                                             </div>
