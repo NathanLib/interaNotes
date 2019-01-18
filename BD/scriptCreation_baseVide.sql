@@ -254,6 +254,7 @@ CREATE TABLE `points` (
   `idPoint` int(11) NOT NULL,
   `idExamen` int(11) NOT NULL,
   `nomPoint` varchar(50) NOT NULL,
+  `estDonneesCatia` tinyint(1) NOT NULL,
   PRIMARY KEY (`idPoint`,`idExamen`),
   KEY `idExamen` (`idExamen`),
   CONSTRAINT `points_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
@@ -270,6 +271,34 @@ LOCK TABLES `points` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `question`
+--
+
+DROP TABLE IF EXISTS `question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `question` (
+  `idQuestion` int(11) NOT NULL,
+  `idExamen` int(11) NOT NULL,
+  `intituleQuestion` tinytext NOT NULL,
+  `baremeQuestion` decimal(4,2) NOT NULL,
+  `estValeurParfaite` tinyint(1) NOT NULL,
+  PRIMARY KEY (`idQuestion`,`idExamen`),
+  KEY `idExamen` (`idExamen`),
+  CONSTRAINT `question_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `question`
+--
+
+LOCK TABLES `question` WRITE;
+/*!40000 ALTER TABLE `question` DISABLE KEYS */;
+/*!40000 ALTER TABLE `question` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `resultatsattendus`
 --
 
@@ -278,15 +307,15 @@ DROP TABLE IF EXISTS `resultatsattendus`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
-  `idReponse` int(11) NOT NULL,
-  `intituleQuestion` text NOT NULL,
+  `idQuestion` int(11) NOT NULL,
   `resultat` decimal(20,2) NOT NULL,
-  `exposantUnite` int(11) NOT NULL,
+  `resultatExposant` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
-  `bareme` decimal(4,2) NOT NULL,
-  PRIMARY KEY (`idReponse`,`idSujet`),
+  `exposantUnite` int(11) NOT NULL,
+  PRIMARY KEY (`idQuestion`,`idSujet`),
   KEY `idSujet` (`idSujet`),
-  CONSTRAINT `resultatsattendus_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`)
+  CONSTRAINT `resultatsattendus_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`),
+  CONSTRAINT `resultatsattendus_ibfk_2` FOREIGN KEY (`idQuestion`) REFERENCES `question` (`idQuestion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -310,19 +339,20 @@ CREATE TABLE `resultatseleves` (
   `dateResult` datetime NOT NULL,
   `idEleve` int(11) NOT NULL,
   `idSujet` int(11) NOT NULL,
-  `idReponse` int(11) NOT NULL,
+  `idQuestion` int(11) NOT NULL,
   `resultat` decimal(20,2) NOT NULL,
-  `exposantUnite` int(11) NOT NULL,
+  `resultatExposant` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
+  `exposantUnite` int(11) NOT NULL,
   `justification` text NOT NULL,
   `precisionReponse` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`,`idReponse`),
+  PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`,`idQuestion`),
   KEY `idEleve` (`idEleve`),
   KEY `idSujet` (`idSujet`),
-  KEY `idReponse` (`idReponse`),
+  KEY `idQuestion` (`idQuestion`),
   CONSTRAINT `resultatseleves_ibfk_1` FOREIGN KEY (`idEleve`) REFERENCES `eleve` (`idEleve`),
   CONSTRAINT `resultatseleves_ibfk_2` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`),
-  CONSTRAINT `resultatseleves_ibfk_3` FOREIGN KEY (`idReponse`) REFERENCES `resultatsattendus` (`idReponse`)
+  CONSTRAINT `resultatseleves_ibfk_3` FOREIGN KEY (`idQuestion`) REFERENCES `question` (`idQuestion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -333,31 +363,6 @@ CREATE TABLE `resultatseleves` (
 LOCK TABLES `resultatseleves` WRITE;
 /*!40000 ALTER TABLE `resultatseleves` DISABLE KEYS */;
 /*!40000 ALTER TABLE `resultatseleves` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `schemasujet`
---
-
-DROP TABLE IF EXISTS `schemasujet`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `schemasujet` (
-  `idSujet` int(11) NOT NULL,
-  `schema1` longblob NOT NULL,
-  `schema2` longblob NOT NULL,
-  PRIMARY KEY (`idSujet`),
-  CONSTRAINT `schemasujet_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `schemasujet`
---
-
-LOCK TABLES `schemasujet` WRITE;
-/*!40000 ALTER TABLE `schemasujet` DISABLE KEYS */;
-/*!40000 ALTER TABLE `schemasujet` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -400,8 +405,9 @@ CREATE TABLE `valeurs` (
   `idValeur` int(11) NOT NULL,
   `idPoint` int(11) NOT NULL,
   `valeur` varchar(50) NOT NULL,
-  `uniteValeur` varchar(30) NOT NULL,
   `exposantValeur` int(11) NOT NULL,
+  `uniteValeur` varchar(30) NOT NULL,
+  `uniteExposant` int(11) NOT NULL,
   PRIMARY KEY (`idValeur`),
   KEY `idPoint` (`idPoint`),
   CONSTRAINT `valeurs_ibfk_1` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
@@ -426,4 +432,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-21 23:24:54
+-- Dump completed on 2019-01-18 13:05:38

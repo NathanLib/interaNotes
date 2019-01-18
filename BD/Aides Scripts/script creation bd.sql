@@ -29,6 +29,16 @@ CREATE TABLE examen (
   PRIMARY KEY (idExamen)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE question (
+  idQuestion INT NOT NULL,
+  idExamen INT NOT NULL,
+  intituleQuestion TINYTEXT NOT NULL,
+  baremeQuestion DECIMAL(4,2) NOT NULL,
+  estValeurParfaite TINYINT(1) NOT NULL,
+  FOREIGN KEY (idExamen) REFERENCES examen(idExamen),
+  PRIMARY KEY(idQuestion,idExamen)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE enonce (
   idEnonce INT NOT NULL,
   titre VARCHAR(50) NOT NULL,
@@ -45,16 +55,6 @@ CREATE TABLE sujet (
   FOREIGN KEY (idExamen) REFERENCES examen(idExamen),
   PRIMARY KEY (idSujet,idEnonce)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*A Redecouper*/
-CREATE TABLE schemaSujet (
-  idSujet INT NOT NULL,
-  schema1 longblob NOT NULL,
-  schema2 longblob NOT NULL,
-  FOREIGN KEY (idSujet) REFERENCES sujet(idSujet),
-  PRIMARY KEY (`idSujet`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*----*/
 
 CREATE TABLE exerciceAttribue (
   idEleve INT NOT NULL,
@@ -77,6 +77,7 @@ CREATE TABLE points (
   idPoint INT NOT NULL,
   idExamen INT NOT NULL,
   nomPoint VARCHAR(50) NOT NULL,
+  estDonneesCatia TINYINT(1) NOT NULL,
   FOREIGN KEY (idExamen) REFERENCES examen(idExamen),
   PRIMARY KEY (idPoint, idExamen)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -85,8 +86,9 @@ CREATE TABLE valeurs (
   idValeur INT NOT NULL,
   idPoint INT NOT NULL,
   valeur VARCHAR(50) NOT NULL,
-  uniteValeur VARCHAR(30) NOT NULL,
   exposantValeur INT NOT NULL,
+  uniteValeur VARCHAR(30) NOT NULL,
+  uniteExposant INT NOT NULL,
   FOREIGN KEY (idPoint) REFERENCES points(idPoint),
   PRIMARY KEY (idValeur)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -101,30 +103,31 @@ CREATE TABLE exerciceGenere (
 
 CREATE TABLE resultatsAttendus (
   idSujet INT NOT NULL,
-  idReponse INT NOT NULL,
-  intituleQuestion TEXT NOT NULL,
+  idQuestion INT NOT NULL,
   resultat DECIMAL(20,2) NOT NULL,
-  exposantUnite INT NOT NULL,
+  resultatExposant INT NOT NULL,
   resultatUnite VARCHAR(30) NOT NULL,
-  bareme DECIMAL(4,2) NOT NULL,
+  exposantUnite INT NOT NULL,
   FOREIGN KEY (idSujet) REFERENCES sujet(idSujet),
-  PRIMARY KEY (idReponse, idSujet)
+  FOREIGN KEY (idQuestion) REFERENCES question(idQuestion),
+  PRIMARY KEY (idQuestion, idSujet)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE resultatsEleves (
   dateResult DATETIME NOT NULL,
   idEleve INT NOT NULL,
   idSujet INT NOT NULL,
-  idReponse INT NOT NULL,
+  idQuestion INT NOT NULL,
   resultat DECIMAL(20,2) NOT NULL,
-  exposantUnite INT NOT NULL,
+  resultatExposant INT NOT NULL,
   resultatUnite VARCHAR(30) NOT NULL,
+  exposantUnite INT NOT NULL,
   justification TEXT NOT NULL,
   precisionReponse DECIMAL(10,2) NOT NULL,
   FOREIGN KEY (idEleve) REFERENCES eleve(idEleve),
   FOREIGN KEY (idSujet) REFERENCES sujet(idSujet),
-  FOREIGN KEY (idReponse) REFERENCES resultatsAttendus(idReponse),
-  PRIMARY KEY (dateResult, idEleve, idSujet, idReponse)
+  FOREIGN KEY (idQuestion) REFERENCES question(idQuestion),
+  PRIMARY KEY (dateResult, idEleve, idSujet, idQuestion)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE dependances (

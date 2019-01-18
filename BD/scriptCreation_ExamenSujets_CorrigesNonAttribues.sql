@@ -89,7 +89,7 @@ CREATE TABLE `enonce` (
 
 LOCK TABLES `enonce` WRITE;
 /*!40000 ALTER TABLE `enonce` DISABLE KEYS */;
-INSERT INTO `enonce` VALUES (1,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Lune :\r\n<ul>\r\n<li>nombre de moteurs : 1</li>\r\n<li>vitesse : 1000 km/h</li>\r\n<li>Consommation de carburant par moteur : 100 tonnes/1000km</li>\r\n<li>Consommation d\'eau par jour par personne : 1,5L</li>\r\n<li>Consommation de nourriture par personne par journée : 2 Kg</li>\r\n<li>Consommation d\'O² par personne par jour : 60L</li>\r\n<li>Le nombre de personnes dans l\'équipage : 3</li>\r\n<li>Destination : Lune</li>\r\n<li>Distance Terre/Lune : 340000 km</li>\r\n</ul>'),(2,'Simulation de fusée','Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d\'O2, de carburant, de nourriture et d\'eau pour atteindre Mars :\r\n<ul>\r\n<li>nombre de moteurs : 2</li>\r\n<li>vitesse : 2000 km/h</li>\r\n<li>Consommation de carburant par moteur : 100 tonnes/1000km</li>\r\n<li>Consommation d\'eau par jour par personne : 1,5L</li>\r\n<li>Consommation de nourriture par personne par journée : 2 Kg</li>\r\n<li>Consommation d\'O² par personne par jour : 60L</li>\r\n<li>Le nombre de personnes dans l\'équipage : 6</li>\r\n<li>Destination : Mars</li>\r\n<li>Distance Terre/Mars : 100000000 km</li>\r\n</ul>');
+INSERT INTO `enonce` VALUES (1,'Simulation de fusée','En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de Lune qui se situe à 340000 Kms de notre chère Terre !<br><br>Nous savons que la fusée possède 1 moteur(s), la fusée peut aller à une vitesse de 1000 Km/H et chaque moteur a une consommation de carburant qui vaut 100 Tonnes/1000 Kms !<br><br>A bord de cette fusée, l\'équipage est constitué de 3 personnes et chaque personne consomme 2 Kgs de nourriture, 1.5 L d\'eau et 60 L d\'O² par jour.'),(2,'Simulation de fusée','En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de Mars qui se situe à 100000000 Kms de notre chère Terre !<br><br>Nous savons que la fusée possède 2 moteur(s), la fusée peut aller à une vitesse de 2000 Km/H et chaque moteur a une consommation de carburant qui vaut 100 Tonnes/1000 Kms !<br><br>A bord de cette fusée, l\'équipage est constitué de 6 personnes et chaque personne consomme 2 Kgs de nourriture, 1.5 L d\'eau et 60 L d\'O² par jour.');
 /*!40000 ALTER TABLE `enonce` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,6 +261,7 @@ CREATE TABLE `points` (
   `idPoint` int(11) NOT NULL,
   `idExamen` int(11) NOT NULL,
   `nomPoint` varchar(50) NOT NULL,
+  `estDonneesCatia` tinyint(1) NOT NULL,
   PRIMARY KEY (`idPoint`,`idExamen`),
   KEY `idExamen` (`idExamen`),
   CONSTRAINT `points_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
@@ -273,8 +274,37 @@ CREATE TABLE `points` (
 
 LOCK TABLES `points` WRITE;
 /*!40000 ALTER TABLE `points` DISABLE KEYS */;
-INSERT INTO `points` VALUES (1,1,'nbMoteur'),(2,1,'vitesse'),(3,1,'nbPersonne'),(4,1,'destinationPlanète'),(5,1,'distanceDestination'),(6,1,'consoCarburantParMoteurs'),(7,1,'consoEauParPersonnesParJour'),(8,1,'consoNourrituresParPersonneParJour'),(9,1,'consoO2ParPersonnesParJour');
+INSERT INTO `points` VALUES (1,1,'nbMoteur',0),(2,1,'vitesse',0),(3,1,'nbPersonne',1),(4,1,'destinationPlanète',0),(5,1,'distanceDestination',1),(6,1,'consoCarburantParMoteurs',0),(7,1,'consoEauParPersonnesParJour',0),(8,1,'consoNourrituresParPersonneParJour',0),(9,1,'consoO2ParPersonnesParJour',0);
 /*!40000 ALTER TABLE `points` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `question`
+--
+
+DROP TABLE IF EXISTS `question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `question` (
+  `idQuestion` int(11) NOT NULL,
+  `idExamen` int(11) NOT NULL,
+  `intituleQuestion` tinytext NOT NULL,
+  `baremeQuestion` decimal(4,2) NOT NULL,
+  `estValeurParfaite` tinyint(1) NOT NULL,
+  PRIMARY KEY (`idQuestion`,`idExamen`),
+  KEY `idExamen` (`idExamen`),
+  CONSTRAINT `question_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `question`
+--
+
+LOCK TABLES `question` WRITE;
+/*!40000 ALTER TABLE `question` DISABLE KEYS */;
+INSERT INTO `question` VALUES (1,1,'Combien de jours seront nécessaires pour effectuer ce voyage ?',2.00,0),(2,1,'Indiquez la quantité d\'O2 nécessaire pour effectuer ce voyage ?',2.00,0),(3,1,'Indiquez la quantité de carburant nécessaire pour effectuer ce voyage ?',2.00,0),(4,1,'Indiquez la quantité de nourriture nécessaire pour effectuer ce voyage ?',2.00,0),(5,1,'Indiquez la quantité d\'eau nécessaire pour effectuer ce voyage ?',2.00,0);
+/*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -286,15 +316,15 @@ DROP TABLE IF EXISTS `resultatsattendus`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `resultatsattendus` (
   `idSujet` int(11) NOT NULL,
-  `idReponse` int(11) NOT NULL,
-  `intituleQuestion` text NOT NULL,
+  `idQuestion` int(11) NOT NULL,
   `resultat` decimal(20,2) NOT NULL,
-  `exposantUnite` int(11) NOT NULL,
+  `resultatExposant` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
-  `bareme` decimal(4,2) NOT NULL,
-  PRIMARY KEY (`idReponse`,`idSujet`),
+  `exposantUnite` int(11) NOT NULL,
+  PRIMARY KEY (`idQuestion`,`idSujet`),
   KEY `idSujet` (`idSujet`),
-  CONSTRAINT `resultatsattendus_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`)
+  CONSTRAINT `resultatsattendus_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`),
+  CONSTRAINT `resultatsattendus_ibfk_2` FOREIGN KEY (`idQuestion`) REFERENCES `question` (`idQuestion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -304,7 +334,7 @@ CREATE TABLE `resultatsattendus` (
 
 LOCK TABLES `resultatsattendus` WRITE;
 /*!40000 ALTER TABLE `resultatsattendus` DISABLE KEYS */;
-INSERT INTO `resultatsattendus` VALUES (1,1,'Quantités nécessaires d\'oxygène',2550.00,0,'L',1.00),(2,1,'Quantités nécessaires d\'oxygène',750.00,3,'L',1.00),(1,2,'Quantités nécessaires de carburant',34000.00,12,'g',1.00),(2,2,'Quantités nécessaires de carburant',20000000.00,12,'g',1.00),(1,3,'Quantités nécessaires de nourriture',85.00,3,'g',1.00),(2,3,'Quantités nécessaires de nourriture',25000.00,3,'g',1.00),(1,4,'Quantités nécessaires d\'eau',63.75,0,'L',1.00),(2,4,'Quantités nécessaires d\'eau',18750.00,0,'L',1.00),(1,5,'Nombre de jours',14.00,0,'jours',1.00),(2,5,'Nombre de jours',2083.00,0,'jours',1.00);
+INSERT INTO `resultatsattendus` VALUES (1,1,2550.00,0,'L',0),(2,1,750.00,3,'L',0),(1,2,34000.00,12,'g',0),(2,2,20000000.00,12,'g',0),(1,3,85.00,3,'g',0),(2,3,25000.00,3,'g',0),(1,4,63.75,0,'L',0),(2,4,18750.00,0,'L',0),(1,5,14.00,0,'jours',0),(2,5,2083.00,0,'jours',0);
 /*!40000 ALTER TABLE `resultatsattendus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,19 +349,20 @@ CREATE TABLE `resultatseleves` (
   `dateResult` datetime NOT NULL,
   `idEleve` int(11) NOT NULL,
   `idSujet` int(11) NOT NULL,
-  `idReponse` int(11) NOT NULL,
+  `idQuestion` int(11) NOT NULL,
   `resultat` decimal(20,2) NOT NULL,
-  `exposantUnite` int(11) NOT NULL,
+  `resultatExposant` int(11) NOT NULL,
   `resultatUnite` varchar(30) NOT NULL,
+  `exposantUnite` int(11) NOT NULL,
   `justification` text NOT NULL,
   `precisionReponse` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`,`idReponse`),
+  PRIMARY KEY (`dateResult`,`idEleve`,`idSujet`,`idQuestion`),
   KEY `idEleve` (`idEleve`),
   KEY `idSujet` (`idSujet`),
-  KEY `idReponse` (`idReponse`),
+  KEY `idQuestion` (`idQuestion`),
   CONSTRAINT `resultatseleves_ibfk_1` FOREIGN KEY (`idEleve`) REFERENCES `eleve` (`idEleve`),
   CONSTRAINT `resultatseleves_ibfk_2` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`),
-  CONSTRAINT `resultatseleves_ibfk_3` FOREIGN KEY (`idReponse`) REFERENCES `resultatsattendus` (`idReponse`)
+  CONSTRAINT `resultatseleves_ibfk_3` FOREIGN KEY (`idQuestion`) REFERENCES `question` (`idQuestion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -342,31 +373,6 @@ CREATE TABLE `resultatseleves` (
 LOCK TABLES `resultatseleves` WRITE;
 /*!40000 ALTER TABLE `resultatseleves` DISABLE KEYS */;
 /*!40000 ALTER TABLE `resultatseleves` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `schemasujet`
---
-
-DROP TABLE IF EXISTS `schemasujet`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `schemasujet` (
-  `idSujet` int(11) NOT NULL,
-  `schema1` longblob NOT NULL,
-  `schema2` longblob NOT NULL,
-  PRIMARY KEY (`idSujet`),
-  CONSTRAINT `schemasujet_ibfk_1` FOREIGN KEY (`idSujet`) REFERENCES `sujet` (`idSujet`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `schemasujet`
---
-
-LOCK TABLES `schemasujet` WRITE;
-/*!40000 ALTER TABLE `schemasujet` DISABLE KEYS */;
-/*!40000 ALTER TABLE `schemasujet` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -410,8 +416,9 @@ CREATE TABLE `valeurs` (
   `idValeur` int(11) NOT NULL,
   `idPoint` int(11) NOT NULL,
   `valeur` varchar(50) NOT NULL,
-  `uniteValeur` varchar(30) NOT NULL,
   `exposantValeur` int(11) NOT NULL,
+  `uniteValeur` varchar(30) NOT NULL,
+  `uniteExposant` int(11) NOT NULL,
   PRIMARY KEY (`idValeur`),
   KEY `idPoint` (`idPoint`),
   CONSTRAINT `valeurs_ibfk_1` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
@@ -424,7 +431,7 @@ CREATE TABLE `valeurs` (
 
 LOCK TABLES `valeurs` WRITE;
 /*!40000 ALTER TABLE `valeurs` DISABLE KEYS */;
-INSERT INTO `valeurs` VALUES (1,1,'1','unité',0),(2,1,'2','unité',0),(3,1,'3','unité',0),(4,1,'4','unité',0),(5,1,'5','unité',0),(6,2,'1000','km/h',0),(7,2,'2000','km/h',0),(8,2,'3000','km/h',0),(9,2,'4000','km/h',0),(10,2,'5000','km/h',0),(11,3,'3','unité',0),(12,3,'4','unité',0),(13,3,'5','unité',0),(14,3,'6','unité',0),(15,3,'7','unité',0),(16,3,'8','unité',0),(17,3,'9','unité',0),(18,3,'10','unité',0),(19,3,'11','unité',0),(20,3,'12','unité',0),(21,4,'Lune','',0),(22,4,'Mars','',0),(23,5,'340','m',6),(24,5,'350','m',6),(25,5,'360','m',6),(26,5,'370','m',6),(27,5,'380','m',6),(28,5,'390','m',6),(29,5,'400','m',6),(30,5,'410','m',6),(31,5,'50','m',9),(32,5,'100','m',9),(33,5,'150','m',9),(34,5,'200','m',9),(35,5,'250','m',9),(36,5,'300','m',9),(37,5,'350','m',9),(38,5,'400','m',9),(39,6,'100','tonnes/1000km',0),(40,7,'1.5','L',0),(41,8,'2','g',3),(42,9,'60','L',0);
+INSERT INTO `valeurs` VALUES (1,1,'1',0,'unité',0),(2,1,'2',0,'unité',0),(3,1,'3',0,'unité',0),(4,1,'4',0,'unité',0),(5,1,'5',0,'unité',0),(6,2,'1000',0,'km/h',0),(7,2,'2000',0,'km/h',0),(8,2,'3000',0,'km/h',0),(9,2,'4000',0,'km/h',0),(10,2,'5000',0,'km/h',0),(11,3,'3',0,'unité',0),(12,3,'4',0,'unité',0),(13,3,'5',0,'unité',0),(14,3,'6',0,'unité',0),(15,3,'7',0,'unité',0),(16,3,'8',0,'unité',0),(17,3,'9',0,'unité',0),(18,3,'10',0,'unité',0),(19,3,'11',0,'unité',0),(20,3,'12',0,'unité',0),(21,4,'Lune',0,'',0),(22,4,'Mars',0,'',0),(23,5,'340',0,'m',6),(24,5,'350',0,'m',6),(25,5,'360',0,'m',6),(26,5,'370',0,'m',6),(27,5,'380',0,'m',6),(28,5,'390',0,'m',6),(29,5,'400',0,'m',6),(30,5,'410',0,'m',6),(31,5,'50',0,'m',9),(32,5,'100',0,'m',9),(33,5,'150',0,'m',9),(34,5,'200',0,'m',9),(35,5,'250',0,'m',9),(36,5,'300',0,'m',9),(37,5,'350',0,'m',9),(38,5,'400',0,'m',9),(39,6,'100',0,'tonnes/1000km',0),(40,7,'1.5',0,'L',0),(41,8,'2',0,'g',3),(42,9,'60',0,'L',0);
 /*!40000 ALTER TABLE `valeurs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -437,4 +444,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-24 17:46:09
+-- Dump completed on 2019-01-18 13:08:16
