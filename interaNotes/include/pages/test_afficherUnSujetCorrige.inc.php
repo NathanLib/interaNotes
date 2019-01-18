@@ -29,8 +29,9 @@ $personne = $personneManager->getNomPrenomParSujet($_GET['id']); //WARNING
 				<tr>
 					<th scope="col" style="border-radius: 20px 0 0 0;">Question</th>
 					<th scope="col">Réponse</th>
-					<th scope="col">Exposant</th>
-					<th scope="col" style="border-radius: 0 20px 0 0;">Unité</th>
+					<th scope="col">Exposant Réponse</th>
+					<th scope="col">Unité</th>
+					<th scope="col" style="border-radius: 0 20px 0 0;">Exposant Unité</th>
 				</tr>
 			</thead>
 
@@ -52,9 +53,9 @@ $personne = $personneManager->getNomPrenomParSujet($_GET['id']); //WARNING
 					</td>
 					<td>
 						<?php foreach ($questions as $question) {
-							$exposant = $question->getExposantUnite();?>
+							$exposantUnite = $question->getExposantUnite();?>
 
-							<p><?php echo $exposant; ?></p>
+							<p><?php echo $exposantUnite; ?></p>
 						<?php } ?>
 					</td>
 					<td>
@@ -62,6 +63,13 @@ $personne = $personneManager->getNomPrenomParSujet($_GET['id']); //WARNING
 							$unite = $question->getResultatUnite();?>
 
 							<p><?php echo $unite; ?></p>
+						<?php } ?>
+					</td>
+					<td>
+						<?php foreach ($questions as $question) {
+							$exposantResultat = $question->getExposantResultat();?>
+
+							<p><?php echo $exposantResultat; ?></p>
 						<?php } ?>
 					</td>
 				</tr>
