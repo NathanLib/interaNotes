@@ -23,8 +23,8 @@ class Question{
 					$this->setIdSujet($valeur);
 					break;
 
-				case 'idReponse' :
-					$this->setIdReponse($valeur);
+				case 'idQuestion' :
+					$this->setIdQuestion($valeur);
 					break;
 
 				case 'intituleQuestion' :
@@ -59,12 +59,12 @@ class Question{
 		}
 	}
 
-	public function getIdReponse(){
-		return $this->idReponse;
+	public function getIdQuestion(){
+		return $this->idQuestion;
 	}
 
-	public function setIdReponse($idReponse){
-		$this->idReponse = $idReponse;
+	public function setIdQuestion($idQuestion){
+		$this->idQuestion = $idQuestion;
 	}
 
 	public function getIntituleQuestion(){
@@ -92,7 +92,7 @@ class Question{
 	}
 
 	public function getBaremeQuestion(){
-		return $this->bareme;
+		return $this->baremeQuestion;
 	}
 
 	public function setBaremeQuestion($bareme){
