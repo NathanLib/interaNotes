@@ -1,4 +1,4 @@
-<?php 
+<?php
 $pdo = new Mypdo();
 
 $sujetManager = new SujetManager($pdo);
@@ -10,7 +10,7 @@ $tabSujetTerminés = $sujetManager->getSujetTermineByLogin($_SESSION['eleve']);
 ?>
 
 
-<?php 
+<?php
 if (!$tabSujetTerminés){ ?>
     <div class="msgErrorTitre">
         <h3>Aucun sujet</h3>
@@ -32,7 +32,7 @@ if (!$tabSujetTerminés){ ?>
         </div>
 
         <?php // WARNING: BLOC A GENERER EN PHP
-        foreach ($tabSujetTerminés as $sujet) { 
+        foreach ($tabSujetTerminés as $sujet) {
         	$sujetComplet = $sujetManager->getSujet($sujet);
         	?>
             <div class="row justify-content-center text-center contenuListeSujet">
@@ -41,8 +41,6 @@ if (!$tabSujetTerminés){ ?>
                     	echo($enonce->getTitreEnonce());
                      ?></p>
                 </div>
-
-                <?php  ?>
 
                 <div class="col-6 col-lg-4 textListeSujet">
                     <p> <?php $note = $noteManager->getNoteByIdSujet($sujet);
@@ -61,4 +59,3 @@ if (!$tabSujetTerminés){ ?>
     ?>
 
 </div>
-?>
