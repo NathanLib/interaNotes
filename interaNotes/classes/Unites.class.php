@@ -10,4 +10,5 @@ abstract class Unites extends BasicEnum {
     const HERTZ = "Hz";
     const JOURS = "jours";
     const KILOMETRES_PAR_HEURE = "km/h";
+    const UNITE = "unité";
 }

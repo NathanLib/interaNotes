@@ -5,8 +5,9 @@ class Question{
 	private $intituleQuestion;
 	private $resultat;
 	private $resultatUnite;
-	private $bareme;
+	private $baremeQuestions;
 	private $exposantUnite;
+	private $exposantResultat;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -22,8 +23,8 @@ class Question{
 					$this->setIdSujet($valeur);
 					break;
 
-				case 'idReponse' :
-					$this->setIdReponse($valeur);
+				case 'idQuestion' :
+					$this->setIdQuestion($valeur);
 					break;
 
 				case 'intituleQuestion' :
@@ -35,11 +36,14 @@ class Question{
 				case 'resultatUnite' :
 					$this->setResultatUnite($valeur);
 					break;
-				case 'bareme' :
-					$this->setBareme($valeur);
+				case 'baremeQuestion' :
+					$this->setBaremeQuestion($valeur);
 					break;
 				case 'exposantUnite' :
 					$this->setExposantUnite($valeur);
+					break;
+				case 'resultatExposant' :
+					$this->setExposantResultat($valeur);
 					break;
 			}
 		}
@@ -55,12 +59,12 @@ class Question{
 		}
 	}
 
-	public function getIdReponse(){
-		return $this->idReponse;
+	public function getIdQuestion(){
+		return $this->idQuestion;
 	}
 
-	public function setIdReponse($idReponse){
-		$this->idReponse = $idReponse;
+	public function setIdQuestion($idQuestion){
+		$this->idQuestion = $idQuestion;
 	}
 
 	public function getIntituleQuestion(){
@@ -87,12 +91,12 @@ class Question{
 		$this->resultatUnite = $uniteResultat;
 	}
 
-	public function getBareme(){
-		return $this->bareme;
+	public function getBaremeQuestion(){
+		return $this->baremeQuestion;
 	}
 
-	public function setBareme($bareme){
-		$this->bareme = $bareme;
+	public function setBaremeQuestion($bareme){
+		$this->baremeQuestion = $bareme;
 	}
 
 	public function getExposantUnite(){
@@ -101,5 +105,13 @@ class Question{
 
 	public function setExposantUnite($exposantUnite){
 		$this->exposantUnite = $exposantUnite;
+	}
+
+	public function getExposantResultat(){
+		return $this->exposantResultat;
+	}
+
+	public function setExposantResultat($exposantResultat){
+		$this->exposantResultat = $exposantResultat;
 	}
 }

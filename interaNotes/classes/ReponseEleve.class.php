@@ -3,12 +3,13 @@ class ReponseEleve{
 	private $dateResult;
 	private $idEleve;
 	private $idSujet;
-	private $idReponse;
+	private $idQuestion;
 	private $resultat;
 	private $exposantUnite;
 	private $resultatUnite;
 	private $justification;
 	private $precisionReponse;
+	private $resultatExposant;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -30,8 +31,8 @@ class ReponseEleve{
 				case 'idSujet' :
 					$this->setIdSujet($valeur);
 					break;
-				case 'idReponse' :
-					$this->setIdReponse($valeur);
+				case 'idQuestion' :
+					$this->setIdQuestion($valeur);
 					break;
 				case 'resultat' :
 					$this->setResultat($valeur);
@@ -47,6 +48,9 @@ class ReponseEleve{
 					break;
 				case 'precisionReponse' :
 					$this->setPrecisionReponse($valeur);
+					break;
+				case 'resultatExposant' :
+					$this->setResultatExposant($valeur);
 					break;
 			}
 		}
@@ -76,12 +80,12 @@ class ReponseEleve{
 		$this->idSujet = $idSujet;
 	}
 
-	public function getIdReponse(){
-		return $this->idReponse;
+	public function getIdQuestion(){
+		return $this->idQuestion;
 	}
 
-	public function setIdReponse($idReponse){
-		$this->idReponse = $idReponse;
+	public function setIdQuestion($idQuestion){
+		$this->idQuestion = $idQuestion;
 	}
 
 	public function getResultat(){
@@ -122,5 +126,13 @@ class ReponseEleve{
 
 	public function setPrecisionReponse($precisionReponse){
 		$this->precisionReponse = $precisionReponse;
+	}
+
+	public function getResultatExposant(){
+		return $this->resultatExposant;
+	}
+
+	public function setResultatExposant($resultatExposant){
+		$this->resultatExposant = $resultatExposant;
 	}
 }
