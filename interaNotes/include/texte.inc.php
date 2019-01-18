@@ -52,6 +52,10 @@
 		include_once('pages/eleve_sujetTermine.inc.php');
 		break;
 
+		case 15:
+		include_once('pages/eleve_afficherSujetComplet.inc.php');
+		break;
+
 		// WARNING: PARTIE TEST
 
 		case 20:
