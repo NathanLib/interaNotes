@@ -667,48 +667,80 @@ span#text_info, p#text_info {
 
 /* Créer Examen question Dynamique */
 .form-container{
-  padding:10px;
-  padding-bottom:25px;
-  margin:0 auto;
-  margin-top:20px;
-  width:50%;
-  border-radius:20px;
-  background-color: #ececec;
+    padding:0 20px;
+    margin-top:20px;
 }
 
 .add-one{
-  color:green;
-  text-align:center;
-  font-weight:bolder;
-  cursor:pointer;
-  margin-top:10px;
+    color:green;
+    text-align:center;
+    font-weight:bolder;
+    cursor:pointer;
+    margin-top:10px;
 }
 
 .delete{
-  color:white;
-  background-color:rgb(231, 76, 60);
-  text-align:center;
-  margin-top:6px;
-  font-weight:700;
-  border-radius:5px;
-  min-width:20px;
-  cursor:pointer;
+    color:white;
+    background-color:rgb(231, 76, 60);
+    text-align:center;
+    margin-top:6px;
+    border-radius:5px;
+    min-width:20px;
+    cursor:pointer;
+    height: 28px;
 }
 
 #singlebutton{
-  width:100%;
-  margin-top:20px;
+    width:100%;
+    margin-top:20px;
 }
 
 .title{
-  text-align:center;
-  font-size:40px;
-  margin-bottom:40px;
+    text-align:center;
+    font-size:40px;
+    margin-bottom:40px;
 }
 
 .dynamic-element{
-  margin-bottom:0px;
+    margin-bottom:5px;
 }
+
+/* Page enseignant_creerExamen */
+.headCreateExam {
+    text-align: center;
+}
+.headCreateExam h4 {
+    margin: 20px 0 0 0;
+}
+.headCreateExam span {
+    font-weight: lighter;
+}
+
+.titleQuestionCreateExam {
+    margin-top: 20px;
+    margin-bottom: -20px;
+    font-weight: bold;
+}
+
+.enonceCreateExam p {
+    padding: 0 20px;
+    text-align: justify;
+}
+
+.trachIconCreateExam {
+    width: 18px;
+    height: 18px;
+}
+
+.saisieValeursParametre {
+    margin-top: -15px;
+}
+
+.custom-control-label::before {
+    background-color: white;
+}
+
+
 
 /************************************************/
 /************************************************/
@@ -806,6 +838,11 @@ span#text_info, p#text_info {
         margin: 10%;
     }
 
+    /* Page enseignant_creerExamen */
+    .btnSuppr {
+        margin-top: 40px;
+    }
+
 
 }
 
@@ -875,4 +912,3 @@ span#text_info, p#text_info {
     }
 
 }
-

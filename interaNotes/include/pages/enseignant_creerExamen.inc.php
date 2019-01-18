@@ -1,6 +1,6 @@
 <?php require_once("include/verifEnseignant.inc.php"); ?>
 
-<?php 
+<?php
 
 $db = new Mypdo();
 $eleveManager = new EleveManager($db);
@@ -8,10 +8,10 @@ $eleveManager = new EleveManager($db);
 $listePromo = $eleveManager->getAllPromo();
 
 if($listePromo===false) { ?>
-    <p style="text-align:center;font-weight:bold; margin:10% 0;">
-        <img src="image/erreur.png" alt="erreur.png">
-        Aucune promo enregistrée ! 
-    </p>
+    <div class="msgErrorTitre">
+        <h3>Erreur saisie</h3>
+        <p>Il n'y a aucune promotion enregistrée</p>
+    </div>
 
 <?php } else { ?>
 
@@ -52,7 +52,7 @@ if($listePromo===false) { ?>
                 <input type="submit" class="createClassSubmit" name="Submit" value="Importer">
             </form>
         </div>
-        
+
     <?php } else {
 
         $nomPromotion = $_POST['classExam'];
@@ -63,170 +63,184 @@ if($listePromo===false) { ?>
         preg_match_all( '#\$(\w++)\$#', $_POST['enonceExam'], $tableauParametres);
         $tableauParametres = $tableauParametres[1]; //destruction des variables $var$
         ?>
-        
-        <h1>Titre de l'examen : <?php echo $titreExamen ?></h1>
-        <h2>Promotion concernée : <?php echo $nomPromotion ?></h2>
-        <h2>Date de fin : <?php echo $dateLimite ?></h2>
 
-        <h3>Enonce de l'examen</h3>
-        <p><?php echo $texteEnonce?></p>
-        
-        <h3>Liste des questions de l'examen :</h3>
+        <div class="row d-flex justify-content-center headCreateExam">
+            <div class="col-12 col-md-4">
+                <h4>Titre de l'examen : <span><?php echo $titreExamen ?></span> </h4>
+            </div>
+            <div class="col-12 col-md-4">
+                <h4>Promotion concernée : <span><?php echo $nomPromotion ?></span> </h4>
+            </div>
+            <div class="col-12 col-md-4">
+                <h4>Date de fin : <span><?php echo $dateLimite ?></span> </h4>
+            </div>
+        </div>
+
+        <hr class="hr" style="width:80%">
+
+        <div class="row enonceCreateExam">
+            <div class="col-12">
+                <h4>Enonce de l'examen</h4>
+                <p><?php echo $texteEnonce?></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h4>Liste des questions de l'examen :</h4>
+
+                <div class="form-container">
+                    <fieldset>
+                        <!-- Form Name -->
+                        <div class="form-group" style="margin-bottom:15px;">
+                            <div class="row">
+                                <!-- Replace these fields -->
+                                <div class="col-12 col-md-6">
+                                    <input type="text" name="" class="form-control intituleQuestion" placeholder="Intitulé">
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <input type="number" step="0.25" min="0" max="20" name="" class="form-control bareme" placeholder="Barème">
+                                </div>
+                                <div class="col-6 col-md-3" style="padding-top:8px">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="valeurParfaite">
+                                        <label class="custom-control-label" for="customCheck">Valeur parfaite</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dynamic-stuff">
+                            <!-- Dynamic element will be cloned here -->
+                            <!-- You can call clone function once if you want it to show it a first element-->
+                            <!-- HIDDEN DYNAMIC ELEMENT TO CLONE -->
+                            <!-- you can replace it with any other elements -->
+                            <div class="form-group dynamic-element" style="display:none">
+                                <div class="row">
+                                    <!-- Replace these fields -->
+                                    <div class="col-12 col-md-6">
+                                        <input id="intituleQuestion" type="text" name="" class="form-control intituleQuestion" placeholder="Intitulé">
+                                    </div>
+                                    <div class="col-4 col-md-2">
+                                        <input id="bareme" type="number" step="0.25" min="0" max="20" name="" class="form-control bareme" placeholder="Barème">
+                                    </div>
+                                    <div class="col-6 col-md-3" style="padding-top:8px">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck" name="valeurParfaite">
+                                            <label class="custom-control-label" for="customCheck">Valeur parfaite</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- End of fields-->
+                                    <div class="col-md-1">
+                                        <p class="delete">
+                                            <img class="trachIconCreateExam" src="image/trash.ico" alt="trash">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END OF HIDDEN ELEMENT -->
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="add-one">+ ajouter une question</p>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
 
 
-        <div class="form-container">
-            <fieldset>
-              <!-- Form Name -->
-              <legend class="title">test</legend>
-              <div class="form-group">
-                  <div class="row">
-                    <div class="col-md-10"></div>
-                    
-                    <!-- Replace these fields -->
-                    <div class="col-md-4">
-                      <input type="text" name="" class="form-control intituleQuestion">
-                  </div>
-                  <div class="col-md-4">
-                      <input type="number" step="0.25" min="0" max="20" name="" class="form-control bareme">
-                  </div>
-                  <div class="col-md-2">
-                      <label>
-                        Valeur parfaite
-                        <input type="checkbox" name="catia" value="Valeur parfaite">
+        <div class="row saisieValeursParametre">
+            <div class="col-12">
+                <h4>Liste des paramètres de l'examen :</h4>
+
+                <?php
+                foreach ($tableauParametres as $compteur => $parametre) { ?>
+                    <p><?php echo $parametre ?> : </p>
+
+                    <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
+
+                    <label>
+                        Catia
+                        <input type="checkbox" name="catia" value="catia">
                     </label>
-                </div>
+
+
+                    <div class="box" id=<?php echo "box".$compteur ;?> >
+
+                        <div class="form-wrapper">
+
+
+                            <h3><?php echo $parametre ?></h3>
+
+                            <div>
+
+                                <input id=<?php echo "boutonUnique".$compteur ; ?> type="button" value="Valeurs Uniques" onclick="affichageSaisieValeurUnique(<?php echo $compteur; ?>)">
+
+                                <input id=<?php echo "boutonIntervalle".$compteur ; ?> type="button" onclick="affichageSaisieIntervalle(<?php echo $compteur; ?>)" value="Intervalles">
+                            </div>
+
+                            <div id=<?php echo "valeursUniques".$compteur ;?> style="display : none">
+
+                                <input id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Nouvelle valeur" >
+                                <div class="form-group divPuissanceResult">
+                                    <p id="puissanceValeur">x10</p>
+                                    <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeur".$compteur; ?> type="number" value="0" step="1" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="uniteAnswer">Unité de la valeur :</label>
+                                    <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                        <?php
+                                        $listeUnites = Unites::getConstants();
+
+                                        foreach ($listeUnites as $unite => $abreviation) { ?>
+                                            <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exposantAnswer">Exposant de la valeur :</label>
+                                    <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                        <?php
+                                        $listeExposants = Exposants::getConstants();
+                                        $defautExposant = Exposants::getExposantParDefaut();
+
+                                        foreach ($listeExposants as $exposant) { ?>
+                                            <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <input class="detailMdpButton" type="button" value="Valider" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" />
+
+                                <select class="listeValeur" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
+
+                                <button id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.")"; ?> value="Supprimer">Poubelle</button>
+
+                                <div class="form-group divMdpButton">
+                                    <input class="detailMdpButton" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
+                                    <input class="detailMdpButton" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.")"; ?> />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <?php
+                } ?>
             </div>
         </div>
-        <div class="dynamic-stuff">
-            <!-- Dynamic element will be cloned here -->
-            <!-- You can call clone function once if you want it to show it a first element-->
-            <!-- HIDDEN DYNAMIC ELEMENT TO CLONE -->
-            <!-- you can replace it with any other elements -->
-            <div class="form-group dynamic-element" style="display:none">
-              <div class="row">
-                <div class="col-md-10"></div>
-
-                <!-- Replace these fields -->
-                <div class="col-md-4">
-                  <input id="intituleQuestion" type="text" name="" class="form-control intituleQuestion">
-              </div>
-              <div class="col-md-4">
-                  <input id="bareme" type="number" step="0.25" min="0" max="20" name="" class="form-control bareme">
-              </div>
-              <div class="col-md-2">
-                  <label>
-                    Valeur parfaite
-                    <input type="checkbox" name="catia" value="Valeur parfaite">
-                </label>
-            </div>
-
-            <!-- End of fields-->
-            <div class="col-md-1">
-              <p class="delete">X</p>
-          </div>
-      </div>
-  </div>
-  <!-- END OF HIDDEN ELEMENT -->
-</div>
-
-<!-- Button -->
-<div class="form-group">
-    <div class="row">
-      <div class="col-md-12">
-        <p class="add-one">+ ajouter Question</p>
-    </div>
-    <div class="col-md-5"></div>
-</div>
-</div>
-</fieldset>
-
-</div>
-
-<button class="btn btn-primary popUp" type="button" name="button" onclick="testquestion()" >TEST</button>
-<h3>Liste des paramètres de l'examen :</h3>
-
-<?php
-foreach ($tableauParametres as $compteur => $parametre) { ?>
-    <p><?php echo $parametre ?> : </p>
-
-    <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
-
-    <label>
-        Catia
-        <input type="checkbox" name="catia" value="catia">
-    </label>
 
 
-    <div class="box" id=<?php echo "box".$compteur ;?> >
-
-        <div class="form-wrapper">
-
-
-            <h3><?php echo $parametre ?></h3>
-
-            <div>
-
-                <input id=<?php echo "boutonUnique".$compteur ; ?> type="button" value="Valeurs Uniques" onclick="affichageSaisieValeurUnique(<?php echo $compteur; ?>)">
-
-                <input id=<?php echo "boutonIntervalle".$compteur ; ?> type="button" onclick="affichageSaisieIntervalle(<?php echo $compteur; ?>)" value="Intervalles">
-            </div>
-
-            <div id=<?php echo "valeursUniques".$compteur ;?> style="display : none">   
-
-                <input id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Nouvelle valeur" >
-                <div class="form-group divPuissanceResult">
-                    <p id="puissanceValeur">x10</p>
-                    <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeur".$compteur; ?> type="number" value="0" step="1" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="uniteAnswer">Unité de la valeur :</label>
-                    <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
-                        <?php
-                        $listeUnites = Unites::getConstants();
-
-                        foreach ($listeUnites as $unite => $abreviation) { ?>
-                            <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
-                            <?php
-                        }
-                        ?>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="exposantAnswer">Exposant de la valeur :</label>
-                    <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
-                        <?php
-                        $listeExposants = Exposants::getConstants();
-                        $defautExposant = Exposants::getExposantParDefaut();
-
-                        foreach ($listeExposants as $exposant) { ?>
-                            <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
-                            <?php
-                        }
-                        ?>
-                    </select>
-                </div>
-                <input class="detailMdpButton" type="button" value="Valider" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" />
-
-                <select class="listeValeur" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
-
-                <button id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.")"; ?> value="Supprimer">Poubelle</button>
-
-                <div class="form-group divMdpButton">
-                    <input class="detailMdpButton" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
-                    <input class="detailMdpButton" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.")"; ?> />
-                </div>
-            </div>
-
-
-
-
-        </div>
-    </div>
-    <?php
-} ?>
-
-
-<?php    } ?>
+    <?php    } ?>
 <?php } ?>
