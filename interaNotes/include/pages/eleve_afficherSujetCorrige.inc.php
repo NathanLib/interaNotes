@@ -99,16 +99,18 @@ if(isset($idSujet)) {
 						<th>Résultat saisi</th>
 						<th>Exposant du résultat</th>
 						<th>Unité du résultat</th>
+						<th>Exposant du résultat</th>
 						<th>Justification</th>
 						<th>Précision</th>
 					</tr>
 					<?php foreach ($listeReponses as $reponse) { ?>
 						<tr>
 							<td><?php echo getFrenchDate($reponse->getDateResult()) ?></td>
-							<td><?php echo $reponse->getIdReponse() ?></td>
+							<td><?php echo $reponse->getIdQuestion() ?></td>
 							<td><?php echo $reponse->getResultat() ?></td>
-							<td><?php echo $reponse->getExposantUnite() ?></td>
 							<td><?php echo $reponse->getResultatUnite() ?></td>
+							<td><?php echo $reponse->getExposantUnite() ?></td>
+							<td><?php echo $reponse->getResultatExposant() ?></td>
 							<td><?php echo $reponse->getJustification() ?></td>
 							<td><?php echo $reponse->getPrecisionReponse() ?> %</td>
 						</tr>
