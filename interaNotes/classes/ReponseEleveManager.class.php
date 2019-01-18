@@ -8,23 +8,24 @@ class ReponseEleveManager{
 	}
 
 	public function importSaisie($reponseObj){
-		$sql = 'INSERT INTO resultatseleves(dateResult,idEleve,idSujet,idReponse,resultat,exposantUnite,resultatUnite,justification,precisionReponse) VALUES (:dateResult,:idEleve,:idSujet,:idReponse,:resultat,:exposantUnite,:resultatUnite,:justification,:precisionReponse) ';
+		$sql = 'INSERT INTO resultatseleves(dateResult,idEleve,idSujet,idQuestion,resultat,exposantUnite,resultatUnite,justification,precisionReponse,resultatExposant) VALUES (:dateResult,:idEleve,:idSujet,:idQuestion,:resultat,:exposantUnite,:resultatUnite,:justification,:precisionReponse,:resultatExposant) ';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':dateResult', $reponseObj->getDateResult());
 		$requete->bindValue(':idEleve', $reponseObj->getIdEleve());
 		$requete->bindValue(':idSujet', $reponseObj->getIdSujet());
-		$requete->bindValue(':idReponse',$reponseObj->getIdReponse());
+		$requete->bindValue(':idQuestion',$reponseObj->getIdQuestion());
 		$requete->bindValue(':resultat', $reponseObj->getResultat());
 		$requete->bindValue(':exposantUnite', $reponseObj->getExposantUnite());
 		$requete->bindValue(':resultatUnite', $reponseObj->getResultatUnite());
 		$requete->bindValue(':justification', $reponseObj->getJustification());
 		$requete->bindValue(':precisionReponse', $reponseObj->getPrecisionReponse());
+		$requete->bindValue(':resultatExposant', $reponseObj->getResultatExposant());
 		$requete->execute();
 	}
 
 	public function getAllReponseEleve($idSujet){
-		$sql = 'SELECT dateResult,resultat,idReponse,exposantUnite,resultatUnite,precisionReponse,justification FROM resultatseleves WHERE idSujet=:idSujet';
+		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification FROM resultatseleves WHERE idSujet=:idSujet';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
@@ -62,11 +63,11 @@ class ReponseEleveManager{
 	}
 
 	private function getResultatAttendu($reponseObj){
-		$sql = 'SELECT resultat,exposantUnite,resultatUnite FROM resultatsattendus WHERE idSujet=:idSujet AND idReponse=:idReponse';
+		$sql = 'SELECT resultat,exposantUnite,resultatUnite FROM resultatsattendus WHERE idSujet=:idSujet AND idQuestion=:idQuestion';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $reponseObj->getIdSujet());
-		$requete->bindValue(':idReponse', $reponseObj->getIdReponse());
+		$requete->bindValue(':idQuestion', $reponseObj->getIdQuestion());
 		$requete->execute();
 
 		$res = $requete->fetch(PDO::FETCH_OBJ);

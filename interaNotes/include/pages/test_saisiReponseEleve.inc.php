@@ -104,7 +104,7 @@ if(!$idSujet){
 
                                                     <div class="col-5 col-sm-3 col-md-2 col-lg-4 d-flex form-group divPuissanceResult">
                                                         <p id="puissanceResult">x10</p>
-                                                        <input id="resultAnswer"  class="form-control saisiePuissanceResult" name="" type="number" placeholder="0" step="1" required>
+                                                        <input id="resultAnswer"  class="form-control saisiePuissanceResult" name="resultatExposant<?php echo $question->getIdQuestion() ?>"" type="number" placeholder="0" step="1" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -162,10 +162,14 @@ if(!$idSujet){
                 $i++;
                 break;
                 case 3:
-                $reponse['resultatUnite']=$value;
+                $reponse['resultatExposant']=$value;
                 $i++;
                 break;
                 case 4:
+                $reponse['resultatUnite']=$value;
+                $i++;
+                break;
+                case 5:
                 $reponse['exposantUnite']=$value;
                 $i=1;
                 $listeReponse[]=$reponse;
@@ -181,9 +185,10 @@ if(!$idSujet){
         foreach ($listeReponse as $numeroReponse => $reponse) {
             $reponseObj = new ReponseEleve($reponse);
             $reponseObj->setDateResult($date);
-            $reponseObj->setIdReponse($numeroReponse+1);
+            $reponseObj->setIdQuestion($numeroReponse+1);
             $reponseObj->setIdSujet($idSujet);
             $reponseObj->setIdEleve($idEleve);
+
             $reponseObj->setPrecisionReponse($reponseEleveManager->calculerPrecisionReponse($reponseObj));
 
             $reponseEleveManager->importSaisie($reponseObj);
