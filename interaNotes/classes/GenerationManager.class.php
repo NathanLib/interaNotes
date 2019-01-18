@@ -37,18 +37,7 @@ class GenerationManager{
                       $valeurVitesse = $valeurManager->getValeur($vitesse);
                       $valeurDistance = $valeurManager->getValeur($distance);
 
-                      $enonceSujet = "Selon les paramètres suivants, indiquez le nombre de jours ainsi que les quantités nécessaires d'O2, de carburant, de nourriture et d'eau pour atteindre Lune :
-                      <ul>
-                        <li>nombre de moteurs : ".$nbMoteurs->getValeur()."</li>
-                        <li>vitesse : ".$valeurVitesse." km/h</li>
-                        <li>Consommation de carburant par moteur : ".$consoCarbu->getValeur()." tonnes/1000km</li>
-                        <li>Consommation d'eau par jour par personne : ".$consoEau->getValeur()."L</li>
-                        <li>Consommation de nourriture par personne par journée : ".$consoNourritures->getValeur()." Kg</li>
-                        <li>Consommation d'O² par personne par jour : ".$consoO2->getValeur()."L</li>
-                        <li>Le nombre de personnes dans l'équipage : ".$personnes->getValeur()."</li>
-                        <li>Destination : ".$planete->getValeur()."</li>
-                        <li>Distance Terre/Lune : ".$valeurDistance." km</li>
-                      </ul>";
+                      $enonceSujet ="En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de ".$planete->getValeur()."qui se situe à ".$valeurDistance." Kms de notre chère Terre !<br><br>Nous savons que la fusée possède ".$nbMoteurs->getValeur()." moteur(s), la fusée peut aller à une vitesse de ".$valeurVitesse." Km/H et chaque moteur a une consommation de carburant qui vaut ".$consoCarbu->getValeur()." Tonnes/1000 Kms !<br><br>A bord de cette fusée, l'équipage est constitué de ".$personnes->getValeur()." personnes et chaque personne consomme ".$consoNourritures->getValeur()." Kgs de nourriture, ".$consoEau->getValeur()." L d'eau et ".$consoO2->getValeur()." L d'O² par jour."
 
                       //Partie exportation des données
                       $listeValeurs[] = new ExerciceGenere($idSujet, $nbMoteurs->getIdValeur());
