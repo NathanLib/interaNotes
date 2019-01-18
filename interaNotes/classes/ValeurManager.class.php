@@ -8,7 +8,7 @@ class ValeurManager{
 
 	public function getAllValeursOfPoints($idPoint){
 
-		$sql = 'SELECT idValeur, idPoint, valeur, uniteValeur, exposantValeur FROM valeurs WHERE idPoint=:id';
+		$sql = 'SELECT idValeur, idPoint, valeur, exposantValeur, uniteValeur, uniteExposant FROM valeurs WHERE idPoint=:id';
 
     $requete = $this->db->prepare($sql);
 		$requete->bindValue(':id', $idPoint);
@@ -24,7 +24,7 @@ class ValeurManager{
 	}
 
 	public function getValeursSujet($idSujet){
-		$sql = 'SELECT v.idValeur, v.idPoint, v.valeur, v.uniteValeur, v.exposantValeur FROM valeurs v
+		$sql = 'SELECT v.idValeur, v.idPoint, v.valeur, v.exposantValeur, v.uniteValeur, v.uniteExposant FROM valeurs v
 						INNER JOIN exercicegenere e ON(e.idValeur = v.idValeur)
 						WHERE e.idSujet = :idSujet';
 
@@ -88,7 +88,7 @@ class ValeurManager{
 	}
 
 	public function listerValeurDependante($idValeurDependante){
-		$sql = 'SELECT d.idValeur,idPoint,valeur,uniteValeur,exposantValeur FROM dependances d JOIN valeurs v ON v.idValeur=d.idValeurDependante WHERE d.idValeurDependante=:id';
+		$sql = 'SELECT d.idValeur,idPoint,valeur,exposantValeur,uniteValeur,uniteExposant FROM dependances d JOIN valeurs v ON v.idValeur=d.idValeurDependante WHERE d.idValeurDependante=:id';
 
     $requete = $this->db->prepare($sql);
 		$requete->bindValue(':id', $idValeurDependante);
