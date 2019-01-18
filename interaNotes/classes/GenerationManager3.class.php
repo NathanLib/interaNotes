@@ -57,7 +57,7 @@ class GenerationManager3{
     $tabDependances = [2,5];
     $this->idSujet = $idSujet;
 
-    //$this->$listeDependances = $listeDependances;
+    //$this->listeDependances = $listeDependances;
 
     foreach ($tabPoints as $key => $point) {
       $listeValeursDesPoints[$key] = $valeurManager->getAllValeursOfPoints($tabPoints[$key]);
