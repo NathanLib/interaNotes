@@ -77,7 +77,7 @@ if($sujetManager->exists($idSujet)){
                     <div class="row justify-content-center">
                         <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
                             <div class="boutonCorrection">
-                                <a href="index.php?page=21&amp;id=<?php echo $sujet->getIdSujet();?>">
+                                <a href="index.php?page=16&amp;id=<?php echo $idSujet;?>">
                                     <input type=button value="Voir corrigé"></input>
                                 </a>
                             </div>
