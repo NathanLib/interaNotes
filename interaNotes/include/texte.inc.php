@@ -48,6 +48,10 @@
 		include_once('pages/eleve_mailPoserQuestion.inc.php');
 		break;
 
+		case 14:
+		include_once('pages/eleve_sujetTermine.inc.php');
+		break;
+
 		// WARNING: PARTIE TEST
 
 		case 20:
