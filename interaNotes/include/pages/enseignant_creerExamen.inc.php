@@ -14,53 +14,70 @@ if($listePromo===false) { ?>
     </div>
 
 <?php } else { ?>
+    <hr class="hr" style="width:80%">
+    <div class="col-12 d-flex justify-content-center" id="needHelp">
+        <span class="more_info" id="text_info">
+            <img class="helpIcon" src="image/help.svg" alt="help" title="help">
+            Besoin d'aide ?
+            <div class="popup">
+            </br> <h3>Comment saisir un énoncé ?</h3>  </br>
 
-    <?php if(!isset($_POST['enonceExam'])) { ?>
-        <form action="index.php?page=4" method="post" name="form1">
-            <div class="row createExam">
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="row">
-                        <div class="col-12 form-group">
-                            <label for="classExam">Promotion :</label>
-                            <select class="form-control" id="classExam" name="classExam" required>
-                                <?php foreach ($listePromo as $promo => $value) { ?>
-                                    <option value=<?php echo $value->nomPromo ?> > <?php echo $value->nomPromo ; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
+            <h5> Saisir du texte :</h5>
+            <p id="text_info">C'est dans cette zone que vous devrez saisir le texte commun à tous les sujets. Pour revenir à la ligne, une simple pression sur la touche "Entrée" est nécessaire. Les questions et leurs barèmes associés seront saisis ultérieurement.</p>
 
-                        <div class="col-12 form-group">
-                            <label for="endExam">Date de fin :</label>
-                            <input class="form-control" id="endExam" name="endExam" type="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" min='<?php echo date('Y-m-d');?>' value='<?php echo date('Y-m-d');?>' placeholder="DD/MM/YYYY" required/>
-                        </div>
+            <h5> Saisir une variable :</h5>
+            <p id="text_info">La saisie des variables doit se faire comme ceci : $maVariable$. Le nom de la variable ne doit pas comporter d'espaces, de '$' et ne doit pas etre identique à un autre nom de variable. Les valeurs et l'unité de la variable seront saisies ultérieurement.</p>
 
-                        <div class="col-12 form-group">
-                            <label for="nameExam">Titre de l'examen :</label>
-                            <input class="form-control" id="nameExam" name="nameExam" type="text" placeholder="" maxlength="50" required>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-8">
-                    <div class="row">
-                        <div class="col-12 form-group">
-                            <label for="enonceExam">Enoncé :</label>
-                            <textarea class="form-control" id="enonceExam" name="enonceExam" onkeyup="adjustHeightTextArea(this)" placeholder='Veuillez écrire vos variables de la manière suivante : $maVariables$' maxlength="65535" required></textarea>
-                        </div>
-                    </div>
-                </div>
-                <input type="submit" class="createClassSubmit" name="Submit" value="Importer">
-            </form>
         </div>
+    </span>
+</div>
 
-    <?php } else {
+<?php if(!isset($_POST['enonceExam'])) { ?>
+    <form action="index.php?page=4" method="post" name="form1">
+        <div class="row createExam">
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="row">
+                    <div class="col-12 form-group">
+                        <label for="classExam">Promotion :</label>
+                        <select class="form-control" id="classExam" name="classExam" required>
+                            <?php foreach ($listePromo as $promo => $value) { ?>
+                                <option value=<?php echo $value->nomPromo ?> > <?php echo $value->nomPromo ; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
 
-        $nomPromotion = $_POST['classExam'];
-        $dateLimite = $_POST['endExam'];
-        $titreExamen = $_POST['nameExam'];
-        $texteEnonce = $_POST['enonceExam'];
+                    <div class="col-12 form-group">
+                        <label for="endExam">Date de fin :</label>
+                        <input class="form-control" id="endExam" name="endExam" type="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" min='<?php echo date('Y-m-d');?>' value='<?php echo date('Y-m-d');?>' placeholder="DD/MM/YYYY" required/>
+                    </div>
 
-        preg_match_all( '#\$(\w++)\$#', $_POST['enonceExam'], $tableauParametres);
+                    <div class="col-12 form-group">
+                        <label for="nameExam">Titre de l'examen :</label>
+                        <input class="form-control" id="nameExam" name="nameExam" type="text" placeholder="" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-8">
+                <div class="row">
+                    <div class="col-12 form-group">
+                        <label for="enonceExam">Enoncé :</label>
+                        <textarea class="form-control" id="enonceExam" name="enonceExam" onkeyup="adjustHeightTextArea(this)" placeholder='Veuillez écrire vos variables de la manière suivante : $maVariables$' maxlength="65535" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" class="createClassSubmit" name="Submit" value="Suivant">
+        </form>
+    </div>
+
+<?php } else {
+
+    $nomPromotion = $_POST['classExam'];
+    $dateLimite = $_POST['endExam'];
+    $titreExamen = $_POST['nameExam'];
+    $texteEnonce = $_POST['enonceExam'];
+
+    preg_match_all( '#\$(\w++)\$#', $_POST['enonceExam'], $tableauParametres);
         $tableauParametres = $tableauParametres[1]; //destruction des variables $var$
         ?>
 
