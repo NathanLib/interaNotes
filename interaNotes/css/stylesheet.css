@@ -466,7 +466,7 @@ footer .text-uppercase {
     top: 51px; /*must overlap parent element otherwise pop-up doesn't stay open when rolloing over '*/
     background: #333;
     border: 1px solid #ccc;
-    padding: 8px;
+    padding: 10px;
     left: -50%;
     width: 200%;
     z-index: 100;
@@ -480,6 +480,7 @@ footer .text-uppercase {
 
 span#text_info, p#text_info {
     font-weight: inherit;
+    text-align: justify;
 }
 
 
