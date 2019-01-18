@@ -25,7 +25,7 @@ class ReponseEleveManager{
 	}
 
 	public function getAllReponseEleve($idSujet){
-		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification FROM resultatseleves WHERE idSujet=:idSujet';
+		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);

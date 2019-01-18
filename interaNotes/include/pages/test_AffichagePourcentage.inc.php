@@ -103,6 +103,7 @@ if(!$listeExamens) { ?>
 					<th>Date de saisie</th>
 					<th>Question N°</th>
 					<th>Résultat saisi</th>
+					<th>Exposant résultat</th>
 					<th>Unité du résultat</th>
 					<th>Exposant du résultat</th>
 					<th>Justification</th>
@@ -113,6 +114,7 @@ if(!$listeExamens) { ?>
 						<td><?php echo getFrenchDate($reponse->getDateResult()) ?></td>
 						<td><?php echo $reponse->getIdQuestion() ?></td>
 						<td><?php echo $reponse->getResultat() ?></td>
+						<td><?php echo $reponse->getResultatExposant() ?></td>
 						<td><?php echo $reponse->getResultatUnite() ?></td>
 						<td><?php echo $reponse->getExposantUnite() ?></td>
 						<td><?php echo $reponse->getJustification() ?></td>
