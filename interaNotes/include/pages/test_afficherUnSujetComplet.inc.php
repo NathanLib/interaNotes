@@ -27,8 +27,8 @@ if(isset($_GET['id'])){ //WARNING gérer quand l'id n'existe pas dans la base
         $titre = $enonceSujet->getTitreEnonce();
         $date = getFrenchDate($_SESSION['examen']->getDateDepotExamen());
         $enonce = $enonceSujet->getConsigneEnonce();
-        $image1 = "image/sujet/FuséeMoteur".$valeurs[0]->getValeur().".jpg";
-        $image2 = "image/sujet/Astronaute".$valeurs[2]->getValeur().".jpg";
+        $image1 = "image/examen"."1"."/sujet".$_GET['id']."/FuséeMoteur".$valeurs[0]->getValeur().".jpg"; //WARNING METTRE EXAMEN SESSION
+        $image2 = "image/examen"."1"."/sujet".$_GET['id']."/Astronaute".$valeurs[2]->getValeur().".jpg";
 
         ?>
         <h1 style="margin-top:5%; text-align:center">Sujet <?php echo $idSujet;?> - Elève : <?php echo $personne->getPrenomPersonne()." ".$personne->getNomPersonne();?> </h1>

@@ -233,8 +233,6 @@ function annulerSaisie(i){ //a completer
 }
 
 
-// TEST
-
 //Clone the hidden element and shows it
 
 $(document).ready(function() {
