@@ -14,6 +14,8 @@ if($listePromo===false) { ?>
     </div>
 
 <?php } else { ?>
+
+<?php if(!isset($_POST['enonceExam']) && !isset($_POST['intituleQuestion0'])) { ?>
     <hr class="hr" style="width:80%">
     <div class="col-12 d-flex justify-content-center" id="needHelp">
         <span class="more_info" id="text_info">
@@ -31,8 +33,6 @@ if($listePromo===false) { ?>
         </div>
     </span>
 </div>
-
-<?php if(!isset($_POST['enonceExam'])) { ?>
     <form action="index.php?page=4" method="post" name="form1">
         <div class="row createExam">
             <div class="col-12 col-sm-6 col-md-4">
@@ -70,7 +70,7 @@ if($listePromo===false) { ?>
         </form>
     </div>
 
-<?php } else {
+<?php } elseif (!isset($_POST['intituleQuestion0'])) {
 
     $nomPromotion = $_POST['classExam'];
     $dateLimite = $_POST['endExam'];
@@ -109,19 +109,21 @@ if($listePromo===false) { ?>
                 <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
                 <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
                 <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
-             </br>
-            </div>
-        </span>
-    </div>
-
-    <hr class="hr" style="width:80%">
-
-    <div class="row enonceCreateExam">
-        <div class="col-12">
-            <h4>Enonce de l'examen</h4>
-            <p><?php echo $texteEnonce?></p>
+            </br>
         </div>
+    </span>
+</div>
+
+<hr class="hr" style="width:80%">
+
+<div class="row enonceCreateExam">
+    <div class="col-12">
+        <h4>Enonce de l'examen</h4>
+        <p><?php echo $texteEnonce?></p>
     </div>
+</div>
+
+<form method="post" action="index.php?page=4" id="createExam2">
 
     <div class="row">
         <div class="col-12">
@@ -134,14 +136,14 @@ if($listePromo===false) { ?>
                         <div class="row">
                             <!-- Replace these fields -->
                             <div class="col-12 col-md-6">
-                                <input type="text" name="" class="form-control intituleQuestion" placeholder="Intitulé">
+                                <input type="text" name=<?php echo "intituleQuestion0" ?> class="form-control intituleQuestion" placeholder="Intitulé" required>
                             </div>
                             <div class="col-4 col-md-2">
-                                <input type="number" step="0.25" min="0" max="20" name="" class="form-control bareme" placeholder="Barème">
+                                <input type="number" step="0.25" min="0" max="20" name="bareme0" class="form-control bareme" placeholder="Barème" required>
                             </div>
                             <div class="col-6 col-md-3" style="padding-top:8px">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="valeurParfaite">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="valeurParfaite0">
                                     <label class="custom-control-label" for="customCheck">Valeur parfaite</label>
                                 </div>
 
@@ -206,7 +208,7 @@ if($listePromo===false) { ?>
                     <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
 
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="catia" name="catia">
+                        <input type="checkbox" class="custom-control-input" id=<?php echo "catia".$compteur ?> name=<?php echo "catia".$compteur ?> >
                         <label class="custom-control-label" for="catia">Catia</label>
                     </div>
                 </div>
@@ -389,7 +391,11 @@ if($listePromo===false) { ?>
             } ?>
         </div>
     </div>
+    <input type="submit">
+</form>
 
 
-<?php    } ?>
-<?php } ?>
+<?php    } else {
+    var_dump($_POST);
+}?>
+<?php } ?> 
