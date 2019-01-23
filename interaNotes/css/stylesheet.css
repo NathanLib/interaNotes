@@ -218,6 +218,10 @@ footer .text-uppercase {
 .createClassSubmit {
     color: white;
     background-color: #333;
+    border: 0;
+    border-radius: 5px;
+    margin: 2% 15px;
+    padding: 5px 10px;
 }
 .importStudent p {
     margin: 0;
@@ -376,7 +380,6 @@ footer .text-uppercase {
 #ennonceExam {
     border-radius: 25px;
     padding-left: 15px;
-    min-height: 215px;
     overflow:hidden;
     word-wrap:break-word
 }

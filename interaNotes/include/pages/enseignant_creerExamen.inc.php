@@ -57,6 +57,17 @@ if($listePromo===false) { ?>
                         <label for="nameExam">Titre de l'examen :</label>
                         <input class="form-control" id="nameExam" name="nameExam" type="text" placeholder="" maxlength="50" required>
                     </div>
+
+                    <div class="col-12 form-group" >
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="customRadio" name="numSemestre" value="1">
+                            <label class="custom-control-label" for="customRadio">Semestre 1</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="customRadio2" name="numSemestre" value="2">
+                            <label class="custom-control-label" for="customRadio2">Semestre 2</label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -64,7 +75,7 @@ if($listePromo===false) { ?>
                 <div class="row">
                     <div class="col-12 form-group">
                         <label for="enonceExam">Enoncé :</label>
-                        <textarea class="form-control" id="enonceExam" name="enonceExam" onkeyup="adjustHeightTextArea(this)" placeholder='Veuillez écrire vos variables de la manière suivante : $maVariables$' maxlength="65535" required></textarea>
+                        <textarea class="form-control" id="enonceExam" name="enonceExam" onkeyup="adjustHeightTextArea(this)" placeholder='Veuillez écrire vos variables de la manière suivante : $maVariables$' maxlength="65535" style="min-height:210px !important;" required></textarea>
                     </div>
                 </div>
             </div>
