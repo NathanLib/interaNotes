@@ -15,24 +15,26 @@ if($listePromo===false) { ?>
 
 <?php } else { ?>
 
-<?php if(!isset($_POST['enonceExam']) && !isset($_POST['intituleQuestion0'])) { ?>
+    <?php if(!isset($_POST['enonceExam']) && !isset($_POST['intituleQuestion0'])) { ?>
+
+        <div class="col-12 d-flex justify-content-center" id="needHelp" style="margin-top:20px;">
+            <span class="more_info" id="text_info">
+                <img class="helpIcon" src="image/help.svg" alt="help" title="help">
+                Besoin d'aide ?
+                <div class="popup">
+                </br> <h3>Comment saisir un énoncé ?</h3>  </br>
+
+                <h5> Saisir du texte :</h5>
+                <p id="text_info">C'est dans cette zone que vous devrez saisir le texte commun à tous les sujets. Pour revenir à la ligne, une simple pression sur la touche "Entrée" est nécessaire. Les questions et leurs barèmes associés seront saisis ultérieurement.</p>
+
+                <h5> Saisir une variable :</h5>
+                <p id="text_info">La saisie des variables doit se faire comme ceci : $maVariable$. Le nom de la variable ne doit pas comporter d'espaces, de '$' et ne doit pas etre identique à un autre nom de variable. Les valeurs et l'unité de la variable seront saisies ultérieurement.</p>
+
+            </div>
+        </span>
+    </div>
     <hr class="hr" style="width:80%">
-    <div class="col-12 d-flex justify-content-center" id="needHelp">
-        <span class="more_info" id="text_info">
-            <img class="helpIcon" src="image/help.svg" alt="help" title="help">
-            Besoin d'aide ?
-            <div class="popup">
-            </br> <h3>Comment saisir un énoncé ?</h3>  </br>
 
-            <h5> Saisir du texte :</h5>
-            <p id="text_info">C'est dans cette zone que vous devrez saisir le texte commun à tous les sujets. Pour revenir à la ligne, une simple pression sur la touche "Entrée" est nécessaire. Les questions et leurs barèmes associés seront saisis ultérieurement.</p>
-
-            <h5> Saisir une variable :</h5>
-            <p id="text_info">La saisie des variables doit se faire comme ceci : $maVariable$. Le nom de la variable ne doit pas comporter d'espaces, de '$' et ne doit pas etre identique à un autre nom de variable. Les valeurs et l'unité de la variable seront saisies ultérieurement.</p>
-
-        </div>
-    </span>
-</div>
     <form action="index.php?page=4" method="post" name="form1">
         <div class="row createExam">
             <div class="col-12 col-sm-6 col-md-4">
@@ -78,40 +80,40 @@ if($listePromo===false) { ?>
     $texteEnonce = $_POST['enonceExam'];
 
     preg_match_all( '#\$(\w++)\$#', $_POST['enonceExam'], $tableauParametres);
-        $tableauParametres = $tableauParametres[1]; //destruction des variables $var$
-        ?>
+    $tableauParametres = $tableauParametres[1]; //destruction des variables $var$
+    ?>
 
-        <div class="row d-flex justify-content-center headCreateExam">
-            <div class="col-12 col-md-4">
-                <h4>Titre de l'examen : <span><?php echo $titreExamen ?></span> </h4>
-            </div>
-            <div class="col-12 col-md-4">
-                <h4>Promotion concernée : <span><?php echo $nomPromotion ?></span> </h4>
-            </div>
-            <div class="col-12 col-md-4">
-                <h4>Date de fin : <span><?php echo $dateLimite ?></span> </h4>
-            </div>
+    <div class="row d-flex justify-content-center headCreateExam">
+        <div class="col-12 col-md-4">
+            <h4>Titre de l'examen : <span><?php echo $titreExamen ?></span> </h4>
         </div>
-
-        <hr class="hr" style="width:80%">
-
-        <div class="col-12 d-flex justify-content-center" id="needHelp">
-            <span class="more_info" id="text_info">
-                <img class="helpIcon" src="image/help.svg" alt="help" title="help">
-                Besoin d'aide ?
-                <div class="popup">
-                </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
-
-                <h5> La saisie de question :</h5>
-                <p id="text_info">Pour saisir une question, vous devez d'abord saisir l'intitulé de la question puis son barème. Si cette question représente 2pts sur 20, vous devez seulement saisir 2. Enfin, vous pouvez cocher la case "valeur parfaite" si vous souhaitez que l'élève doit saisir exactement la bonne réponse pour avoir les points sinon il n'aura aucun point. Dans le cas contraire, les points de l'élève dépendront de la différence entre son résultat et le résultat attentu</p>
-
-                <h5> La saisie des valeurs :</h5>
-                <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
-                <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
-                <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
-            </br>
+        <div class="col-12 col-md-4">
+            <h4>Promotion concernée : <span><?php echo $nomPromotion ?></span> </h4>
         </div>
-    </span>
+        <div class="col-12 col-md-4">
+            <h4>Date de fin : <span><?php echo $dateLimite ?></span> </h4>
+        </div>
+    </div>
+
+    <hr class="hr" style="width:80%">
+
+    <div class="col-12 d-flex justify-content-center" id="needHelp">
+        <span class="more_info" id="text_info">
+            <img class="helpIcon" src="image/help.svg" alt="help" title="help">
+            Besoin d'aide ?
+            <div class="popup">
+            </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
+
+            <h5> La saisie de question :</h5>
+            <p id="text_info">Pour saisir une question, vous devez d'abord saisir l'intitulé de la question puis son barème. Si cette question représente 2pts sur 20, vous devez seulement saisir 2. Enfin, vous pouvez cocher la case "valeur parfaite" si vous souhaitez que l'élève doit saisir exactement la bonne réponse pour avoir les points sinon il n'aura aucun point. Dans le cas contraire, les points de l'élève dépendront de la différence entre son résultat et le résultat attentu</p>
+
+            <h5> La saisie des valeurs :</h5>
+            <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
+            <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
+            <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
+        </br>
+    </div>
+</span>
 </div>
 
 <hr class="hr" style="width:80%">
@@ -391,11 +393,11 @@ if($listePromo===false) { ?>
             } ?>
         </div>
     </div>
-    <input type="submit">
+    <input class="btnValiderExamen" type="submit" value="Valider">
 </form>
 
 
 <?php    } else {
     var_dump($_POST);
 }?>
-<?php } ?> 
+<?php } ?>

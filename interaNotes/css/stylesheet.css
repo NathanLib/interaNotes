@@ -760,7 +760,7 @@ span#text_info, p#text_info {
 
 .mesParametresSaisie .form-wrapper {
     max-width: 50% !important;
-    min-width: 400px;
+    min-width: 300px;
     padding: 30px 30px 40px 30px;
     margin: 20px auto 35px auto;
 }
@@ -784,6 +784,16 @@ span#text_info, p#text_info {
 .divPuissanceResult span {
     margin-top: 13px;
     font-size: 20px;
+}
+
+.btnValiderExamen {
+    width: 150px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin: 3% 0;
 }
 
 .btnSaisieValeur {
