@@ -141,6 +141,7 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
     var valeur = document.getElementById(idValeur);
 
     if(valeur.value == ""){
+        alert("Une ou plusieurs valeurs sont manquantes ou incorrectes !");
         return false;
     }
     var liste = document.getElementById(idListe);
@@ -169,6 +170,7 @@ function ajouterValeurDeParametreIntervalle(event,idValeur1,idValeur2,idPas,idLi
     var pas = document.getElementById(idPas)
 
     if(valeurMinimale.value == "" || valeurMaximale.value == "" || pas.value == "" || valeurMinimale.value==valeurMaximale.value){
+        alert("Une ou plusieurs valeurs sont manquantes ou incorrectes !");
         return false;
     }
     var liste = document.getElementById(idListe);
