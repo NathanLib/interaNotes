@@ -272,7 +272,7 @@ if($listePromo===false) { ?>
                             </div>
 
                             <div class="form-group">
-                                <label for="exposantAnswer">Exposant de la valeur :</label>
+                                <label for="exposantAnswer">Exposant de l'unité :</label>
                                 <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" name=<?php echo "exposantValeur".$compteur ;?> required>
                                     <?php
                                     $listeExposants = Exposants::getConstants();
@@ -356,7 +356,7 @@ if($listePromo===false) { ?>
                             </div>
 
                             <div class="form-group">
-                                <label for="exposantAnswer">Exposant de la valeur :</label>
+                                <label for="exposantAnswer">Exposant de l'unité :</label>
                                 <select class="form-control" id=<?php echo "exposantValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
                                     <?php
                                     $listeExposants = Exposants::getConstants();
