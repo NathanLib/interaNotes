@@ -141,6 +141,7 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
     var valeur = document.getElementById(idValeur);
 
     if(valeur.value == ""){
+        alert("Une ou plusieurs valeurs sont manquantes ou incorrectes !");
         return false;
     }
     var liste = document.getElementById(idListe);
@@ -156,6 +157,37 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
     liste.add(option);
     event.preventDefault();
     valeur.value = null;
+    return false;
+
+}
+
+function ajouterValeurDeParametreIntervalle(event,idValeur1,idValeur2,idPas,idListe,idExposantValeur1
+    ,idExposantValeur2,idUnite,idExposantUnite) {
+
+
+    var valeurMinimale = document.getElementById(idValeur1);
+    var valeurMaximale = document.getElementById(idValeur2);
+    var pas = document.getElementById(idPas)
+
+    if(valeurMinimale.value == "" || valeurMaximale.value == "" || pas.value == "" || valeurMinimale.value==valeurMaximale.value){
+        alert("Une ou plusieurs valeurs sont manquantes ou incorrectes !");
+        return false;
+    }
+    var liste = document.getElementById(idListe);
+    var exposantValeur1 = document.getElementById(idExposantValeur1);
+    var exposantValeur2 = document.getElementById(idExposantValeur1);
+    var unite = document.getElementById(idUnite);
+    var exposantUnite = document.getElementById(idExposantUnite);
+
+
+    var option = document.createElement("option");
+    option.text = valeurMinimale.value+"*10^"+exposantValeur1.value+" / "+valeurMaximale.value+"*10^"+exposantValeur2.value+" / "+pas.value+" / "+unite.value+" / "+exposantUnite.value;
+
+    liste.add(option);
+    event.preventDefault();
+    valeurMinimale.value = null;
+    valeurMaximale.value = null;
+    pas.value = null;
     return false;
 
 }
@@ -178,16 +210,20 @@ function supprimerSelection() {
 }
 }
 
-function supprimerValeur(i) {
+function supprimerValeur(i,isValeur) {
 
-    var liste = document.getElementById('parametre'+i);
+    if(isValeur == 0){
+        var liste = document.getElementById('parametre'+i);
+    } else {
+        var liste = document.getElementById('liste'+i);
+    }
+    
 
     if(liste.options.selectedIndex >= 0) {
         var optionIndex = liste.options.selectedIndex;
         liste.options[optionIndex] = null;
     } else {
         i++;
-
     }
 }
 
@@ -214,6 +250,7 @@ function annulerSaisie(i){ //a completer
         document.getElementById('puissanceValeur'+i).value=null;
         document.getElementById('exposantValeur'+i).value=null;
         document.getElementById('parametre'+i).options.length = 0;
+        document.getElementById('liste'+i).options.length = 0;
         document.getElementById('boutonUnique'+i).disabled = false ;
         document.getElementById('boutonIntervalle'+i).disabled = false ;
         document.getElementById('boutonUnique'+i).style.backgroundColor = "#333";
@@ -224,6 +261,7 @@ function annulerSaisie(i){ //a completer
         document.getElementById('puissanceValeur'+i).value=null;
         document.getElementById('exposantValeur'+i).value=null;
         document.getElementById('parametre'+i).options.length = 0;
+        document.getElementById('liste'+i).options.length = 0;
         document.getElementById('boutonUnique'+i).disabled = false ;
         document.getElementById('boutonIntervalle'+i).disabled = false ;
         document.getElementById('boutonUnique'+i).style.backgroundColor = "#333";

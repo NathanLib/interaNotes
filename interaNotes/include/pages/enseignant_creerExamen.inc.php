@@ -57,6 +57,17 @@ if($listePromo===false) { ?>
                         <label for="nameExam">Titre de l'examen :</label>
                         <input class="form-control" id="nameExam" name="nameExam" type="text" placeholder="" maxlength="50" required>
                     </div>
+
+                    <div class="col-12 form-group" >
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="customRadio" name="numSemestre" value="1">
+                            <label class="custom-control-label" for="customRadio">Semestre 1</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="customRadio2" name="numSemestre" value="2">
+                            <label class="custom-control-label" for="customRadio2">Semestre 2</label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -64,7 +75,7 @@ if($listePromo===false) { ?>
                 <div class="row">
                     <div class="col-12 form-group">
                         <label for="enonceExam">Enoncé :</label>
-                        <textarea class="form-control" id="enonceExam" name="enonceExam" onkeyup="adjustHeightTextArea(this)" placeholder='Veuillez écrire vos variables de la manière suivante : $maVariables$' maxlength="65535" required></textarea>
+                        <textarea class="form-control" id="enonceExam" name="enonceExam" onkeyup="adjustHeightTextArea(this)" placeholder='Veuillez écrire vos variables de la manière suivante : $maVariables$' maxlength="65535" style="min-height:210px !important;" required></textarea>
                     </div>
                 </div>
             </div>
@@ -238,7 +249,7 @@ if($listePromo===false) { ?>
                                     <label for="">Nouvelle valeur :</label>
                                 </div>
                                 <div class="col-7">
-                                    <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text">
+                                    <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" name=<?php echo 'saisieParametre'.$compteur ?> >
                                 </div>
                                 <div class="col-5 form-group divPuissanceResult d-flex">
                                     <span id="puissanceValeur">x10</span>
@@ -250,10 +261,9 @@ if($listePromo===false) { ?>
 
                             <div class="form-group">
                                 <label for="uniteAnswer">Unité de la valeur :</label>
-                                <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" name=<?php echo "uniteValeur".$compteur ;?> required>
                                     <?php
                                     $listeUnites = Unites::getConstants();
-
                                     foreach ($listeUnites as $unite => $abreviation) { ?>
                                         <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
                                         <?php
@@ -263,8 +273,8 @@ if($listePromo===false) { ?>
                             </div>
 
                             <div class="form-group">
-                                <label for="exposantAnswer">Exposant de la valeur :</label>
-                                <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                <label for="exposantAnswer">Exposant de l'unité :</label>
+                                <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" name=<?php echo "exposantValeur".$compteur ;?> required>
                                     <?php
                                     $listeExposants = Exposants::getConstants();
                                     $defautExposant = Exposants::getExposantParDefaut();
@@ -279,16 +289,16 @@ if($listePromo===false) { ?>
 
                             <div class="row">
                                 <div class="col d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" />
+                                    <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" name=<?php echo "'saisieParametre".$compteur."'" ?> />
                                 </div>
                             </div>
 
                             <div class="row d-flex justify-content-between divListeValeursTrash">
                                 <div class="col-8 d-flex justify-content-center listeValeur">
-                                    <select class="form-control" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
+                                    <select class="form-control" id="<?php echo 'parametre'.$compteur ?>" name=<?php echo 'parametre'.$compteur ?> multiple></select>
                                 </div>
                                 <div class="col-3 d-flex jsutify-content-center">
-                                    <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.")"; ?> value="Supprimer">
+                                    <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.",0)"; ?> type="button" value="Supprimer">
                                         <img src="image/delete.png" alt="delete">
                                     </button>
                                 </div>
@@ -311,30 +321,30 @@ if($listePromo===false) { ?>
                                     <label for="">Nouvel intervalle :</label>
                                 </div>
                                 <div class="col-7">
-                                    <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Valeur manimale">
+                                    <input class="form-control" id="<?php echo 'saisieValeurMinimale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur manimale">
                                 </div>
                                 <div class="col-5 form-group divPuissanceResult d-flex">
                                     <span id="puissanceValeur">x10</span>
-                                    <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeur".$compteur; ?> type="number" value="0" step="1" required>
+                                    <input id=<?php echo "puissanceValeurIntervalle".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeurIntervalle".$compteur; ?> type="number" value="0" step="1" required>
                                 </div>
 
                                 <div class="col-7">
-                                    <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Valeur maximale">
+                                    <input class="form-control" id="<?php echo 'saisieValeurMaximale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur maximale">
                                 </div>
                                 <div class="col-5 form-group divPuissanceResult d-flex">
                                     <span id="puissanceValeur">x10</span>
-                                    <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeur".$compteur; ?> type="number" value="0" step="1" required>
+                                    <input id=<?php echo "puissanceValeurIntervalle2".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeurIntervalle2".$compteur; ?> type="number" value="0" step="1" required>
 
                                 </div>
 
                                 <div class="col-12">
-                                    <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" placeholder="Pas">
+                                    <input class="form-control" id="<?php echo 'pas'.$compteur ?>" type="number" min="0.0001" step="0.0001" placeholder="Pas">
                                 </div>
                             </div>
 
                             <div class="form-group" style="margin-top:15px">
                                 <label for="uniteAnswer">Unité de la valeur :</label>
-                                <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                <select class="form-control" id=<?php echo "uniteValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
                                     <?php
                                     $listeUnites = Unites::getConstants();
 
@@ -347,8 +357,8 @@ if($listePromo===false) { ?>
                             </div>
 
                             <div class="form-group">
-                                <label for="exposantAnswer">Exposant de la valeur :</label>
-                                <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                <label for="exposantAnswer">Exposant de l'unité :</label>
+                                <select class="form-control" id=<?php echo "exposantValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
                                     <?php
                                     $listeExposants = Exposants::getConstants();
                                     $defautExposant = Exposants::getExposantParDefaut();
@@ -363,16 +373,16 @@ if($listePromo===false) { ?>
 
                             <div class="row">
                                 <div class="col d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" />
+                                    <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametreIntervalle(event,<?php echo "'saisieValeurMinimale".$compteur."'" ?>,<?php echo "'saisieValeurMaximale".$compteur."'" ?>,<?php echo "'pas".$compteur."'" ?>,<?php echo "'liste".$compteur."'" ?>,<?php echo "'puissanceValeurIntervalle".$compteur."'" ?>,<?php echo "'puissanceValeurIntervalle2".$compteur."'" ?>,<?php echo "'uniteValeurIntervalle".$compteur."'" ?>,<?php echo "'exposantValeurIntervalle".$compteur."'" ?>)" />
                                 </div>
                             </div>
 
                             <div class="row d-flex justify-content-between divListeValeursTrash">
                                 <div class="col-8 d-flex justify-content-center listeValeur">
-                                    <select class="form-control" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
+                                    <select class="form-control" id="<?php echo 'liste'.$compteur ?>" multiple></select>
                                 </div>
                                 <div class="col-3 d-flex jsutify-content-center">
-                                    <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.")"; ?> value="Supprimer">
+                                    <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.",1)"; ?> type="button" value="Supprimer">
                                         <img src="image/delete.png" alt="delete">
                                     </button>
                                 </div>
