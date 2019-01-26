@@ -222,8 +222,8 @@ if($listePromo===false) { ?>
                     <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
 
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id=<?php echo "catia".$compteur ?> name=<?php echo "catia".$compteur ?> >
-                        <label class="custom-control-label" for="catia">Catia</label>
+                        <input type="checkbox" id=<?php echo "catia".$compteur ?> name=<?php echo "catia".$compteur ?> class="custom-control-input" >
+                        <label class="custom-control-label" for=<?php echo "catia".$compteur ?>>Catia</label>
                     </div>
                 </div>
 
