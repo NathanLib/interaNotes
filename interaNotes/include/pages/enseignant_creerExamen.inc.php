@@ -409,6 +409,8 @@ if($listePromo===false) { ?>
 
 
 <?php    } else {
+    echo "<pre>";
     var_dump($_POST);
+    echo "</pre>";
 }?>
 <?php } ?>

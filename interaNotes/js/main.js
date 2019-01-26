@@ -255,9 +255,11 @@ $(document).ready(function() {
     //On met à jour chacun des inputs
     intituleQuestion.attr('id', 'intituleQuestion'+compteurQuestion);
     intituleQuestion.attr('name', 'intituleQuestion'+compteurQuestion);
+    intituleQuestion.prop('required',true);
 
     baremeQuestion.attr('id', 'bareme'+compteurQuestion);
     baremeQuestion.attr('name', 'bareme'+compteurQuestion);
+    baremeQuestion.prop('required',true);
 
     labelValeurParfaite.attr('id', 'labelValeurParfaite'+compteurQuestion);
     labelValeurParfaite.attr('for', 'valeurParfaite'+compteurQuestion);
