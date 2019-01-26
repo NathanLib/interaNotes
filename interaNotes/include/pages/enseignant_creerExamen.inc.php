@@ -138,20 +138,21 @@ if($listePromo===false) { ?>
                         <div class="row">
                             <!-- Replace these fields -->
                             <div class="col-12 col-md-6">
-                                <input type="text" name=<?php echo "intituleQuestion0" ?> class="form-control intituleQuestion" placeholder="Intitulé" required>
+                                <input type="text" id="intituleQuestion0" name="intituleQuestion0" class="form-control intituleQuestion" placeholder="Intitulé" required>
                             </div>
                             <div class="col-4 col-md-2">
-                                <input type="number" step="0.25" min="0" max="20" name="bareme0" class="form-control bareme" placeholder="Barème" required>
+                                <input type="number" id="bareme0" name="bareme0" class="form-control bareme" placeholder="Barème" step="0.25" min="0" max="20" required>
                             </div>
                             <div class="col-6 col-md-3" style="padding-top:8px">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="valeurParfaite0">
-                                    <label class="custom-control-label" for="customCheck">Valeur parfaite</label>
+                                    <input type="checkbox" id="valeurParfaite0" name="valeurParfaite0" class="custom-control-input">
+                                    <label class="custom-control-label" for="valeurParfaite0">Valeur parfaite</label>
                                 </div>
 
                             </div>
                         </div>
                     </div>
+
                     <div class="dynamic-stuff">
                         <!-- Dynamic element will be cloned here -->
                         <!-- You can call clone function once if you want it to show it a first element-->
@@ -161,15 +162,15 @@ if($listePromo===false) { ?>
                             <div class="row">
                                 <!-- Replace these fields -->
                                 <div class="col-12 col-md-6">
-                                    <input id="intituleQuestion" type="text" name="" class="form-control intituleQuestion" placeholder="Intitulé">
+                                    <input type="text" id="intituleQuestion" name="intituleQuestion" class="form-control intituleQuestion" placeholder="Intitulé">
                                 </div>
                                 <div class="col-4 col-md-2">
-                                    <input id="bareme" type="number" step="0.25" min="0" max="20" name="" class="form-control bareme" placeholder="Barème">
+                                    <input type="number" id="bareme" name="bareme" class="form-control bareme" placeholder="Barème" step="0.25" min="0" max="20">
                                 </div>
                                 <div class="col-6 col-md-3" style="padding-top:8px">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="valeurParfaite">
-                                        <label class="custom-control-label" for="customCheck">Valeur parfaite</label>
+                                        <input type="checkbox" class="custom-control-input" id="valeurParfaite" name="valeurParfaite">
+                                        <label id="labelValeurParfaite" class="custom-control-label" for="valeurParfaite">Valeur parfaite</label>
                                     </div>
                                 </div>
 

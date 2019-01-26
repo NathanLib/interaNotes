@@ -232,25 +232,49 @@ function annulerSaisie(i){ //a completer
 
 }
 
+//----------------Partie créer un examen
 
-//Clone the hidden element and shows it
+//Gestion des questions
 
 $(document).ready(function() {
-    $('.add-one').click(function(){
-      $('.dynamic-element').first().clone().appendTo('.dynamic-stuff').show();
-      attach_delete();
+  var compteurQuestion = 0;
+
+  $('.add-one').click(function(){
+    //Ajout d'une question
+    compteurQuestion++;
+
+    //On ajoute le bloc dupliqué
+    var blocAjoute = $('.dynamic-element').first().clone().appendTo('.dynamic-stuff').show();
+
+    //On recupère chacun des inputs
+    var intituleQuestion = blocAjoute.find("#intituleQuestion");
+    var baremeQuestion = blocAjoute.find("#bareme");
+    var labelValeurParfaite = blocAjoute.find("#labelValeurParfaite");
+    var valeurParfaite = blocAjoute.find("#valeurParfaite");
+
+    //On met à jour chacun des inputs
+    intituleQuestion.attr('id', 'intituleQuestion'+compteurQuestion);
+    intituleQuestion.attr('name', 'intituleQuestion'+compteurQuestion);
+
+    baremeQuestion.attr('id', 'bareme'+compteurQuestion);
+    baremeQuestion.attr('name', 'bareme'+compteurQuestion);
+
+    labelValeurParfaite.attr('id', 'labelValeurParfaite'+compteurQuestion);
+    labelValeurParfaite.attr('for', 'valeurParfaite'+compteurQuestion);
+
+    valeurParfaite.attr('id', 'valeurParfaite'+compteurQuestion);
+    valeurParfaite.attr('name', 'valeurParfaite'+compteurQuestion);
+
+    //Suppression d'une question
+    attach_delete();
   });
 });
 
 //Attach functionality to delete buttons
 function attach_delete(){
   $('.delete').off();
+
   $('.delete').click(function(){
     $(this).closest('.form-group').remove();
-});
+  });
 };
-
-
-function testquestion(){
-    console.log(document.getElementsByClassName('intituleQuestion'));
-}
