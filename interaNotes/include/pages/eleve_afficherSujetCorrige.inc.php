@@ -105,7 +105,7 @@ if(isset($idSujet)) {
 					</tr>
 					<?php foreach ($listeReponses as $reponse) { ?>
 						<tr>
-							<td><?php echo getFrenchDate($reponse->getDateResult()) ?></td>
+							<td><?php echo getFrenchDateWithHours($reponse->getDateResult()) ?></td>
 							<td><?php echo $reponse->getIdQuestion() ?></td>
 							<td><?php echo $reponse->getResultat() ?></td>
 							<td><?php echo $reponse->getResultatUnite() ?></td>

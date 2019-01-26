@@ -42,7 +42,7 @@ if(!$idSujet){
                             </div>
                             <div class="col-12 col-sm-6 col-md-5 form-group headerSaisie">
                                 <span>Date de fin : </span>
-                                <?php echo getFrenchDate($dateLimite); ?>
+                                <?php echo getFrenchDateWithHours($dateLimite); ?>
                             </div>
                         </div>
                     </div>

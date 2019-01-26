@@ -27,7 +27,7 @@ if(!$listeExamens) { ?>
 			<?php foreach ($listeExamens as $attribut => $value) { ?>
 				<tr>
 					<td><?php echo $value->getIdExamen() ?></td>
-					<td><?php echo getFrenchDate($value->getDateDepotExamen()) ?></td>
+					<td><?php echo getFrenchDateWithHours($value->getDateDepotExamen()) ?></td>
 					<td><?php echo $value->getAnneeScolaireExamen() ?></td>
 					<td><a href="index.php?page=25&amp;id=<?php echo $value->getIdExamen();?>"><button>Consulter</button></a></td>
 				</tr>
@@ -111,7 +111,7 @@ if(!$listeExamens) { ?>
 				</tr>
 				<?php foreach ($listeReponses as $reponse) { ?>
 					<tr>
-						<td><?php echo getFrenchDate($reponse->getDateResult()) ?></td>
+						<td><?php echo getFrenchDateWithHours($reponse->getDateResult()) ?></td>
 						<td><?php echo $reponse->getIdQuestion() ?></td>
 						<td><?php echo $reponse->getResultat() ?></td>
 						<td><?php echo $reponse->getResultatExposant() ?></td>

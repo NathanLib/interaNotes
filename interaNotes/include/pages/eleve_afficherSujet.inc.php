@@ -26,7 +26,7 @@ if (!$idSujet){
     $valeurs = $valeurManager->getValeursSujet($idSujet);
 
     $titre = $enonceSujet->getTitreEnonce();
-    $date = getFrenchDate($examenManager->getDateLimitebySujet($idSujet));
+    $date = getFrenchDateWithHours($examenManager->getDateLimitebySujet($idSujet));
     $enonce = $enonceSujet->getConsigneEnonce();
     $image1 = "image/examen"."1"."/sujet".$idSujet."/FuséeMoteur".$valeurs[0]->getValeur().".jpg"; //WARNING METTRE EXAMEN SESSION
     $image2 = "image/examen"."1"."/sujet".$idSujet."/Astronaute".$valeurs[2]->getValeur().".jpg";

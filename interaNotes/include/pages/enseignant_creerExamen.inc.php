@@ -102,7 +102,7 @@ if($listePromo===false) { ?>
             <h4>Promotion concernée : <span><?php echo $nomPromotion ?></span> </h4>
         </div>
         <div class="col-12 col-md-4">
-            <h4>Date de fin : <span><?php echo $dateLimite ?></span> </h4>
+            <h4>Date de fin : <span><?php echo getFrenchDate($dateLimite) ?></span> </h4>
         </div>
     </div>
 
