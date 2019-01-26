@@ -60,7 +60,7 @@ if($listePromo===false) { ?>
 
                     <div class="col-12 form-group" >
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="customRadio" name="numSemestre" value="1">
+                            <input type="radio" class="custom-control-input" id="customRadio" name="numSemestre" value="1" checked>
                             <label class="custom-control-label" for="customRadio">Semestre 1</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
