@@ -255,10 +255,12 @@ $(document).ready(function() {
     //On met à jour chacun des inputs
     intituleQuestion.attr('id', 'intituleQuestion'+compteurQuestion);
     intituleQuestion.attr('name', 'intituleQuestion'+compteurQuestion);
+    intituleQuestion.prop('disabled',false);
     intituleQuestion.prop('required',true);
 
     baremeQuestion.attr('id', 'bareme'+compteurQuestion);
     baremeQuestion.attr('name', 'bareme'+compteurQuestion);
+    baremeQuestion.prop('disabled',false);
     baremeQuestion.prop('required',true);
 
     labelValeurParfaite.attr('id', 'labelValeurParfaite'+compteurQuestion);
