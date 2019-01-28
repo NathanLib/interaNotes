@@ -60,6 +60,14 @@
 		include_once('pages/eleve_afficherSujetCorrige.inc.php');
 		break;
 
+		case 17:
+		include_once('pages/eleve_consulterNote.inc.php');
+		break;
+
+		case 18:
+		include_once('pages/eleve_calculerNote.inc.php');
+		break;
+
 		// WARNING: PARTIE TEST
 
 		case 20:
