@@ -25,7 +25,7 @@ if(isset($_GET['id'])){ //WARNING gérer quand l'id n'existe pas dans la base
         $valeurs = $valeurManager->getValeursSujet($idSujet);
 
         $titre = $enonceSujet->getTitreEnonce();
-        $date = getFrenchDate($_SESSION['examen']->getDateDepotExamen());
+        $date = getFrenchDateWithHours($_SESSION['examen']->getDateDepotExamen());
         $enonce = $enonceSujet->getConsigneEnonce();
         $image1 = "image/examen"."1"."/sujet".$_GET['id']."/FuséeMoteur".$valeurs[0]->getValeur().".jpg"; //WARNING METTRE EXAMEN SESSION
         $image2 = "image/examen"."1"."/sujet".$_GET['id']."/Astronaute".$valeurs[2]->getValeur().".jpg";
@@ -81,7 +81,7 @@ if(isset($_GET['id'])){ //WARNING gérer quand l'id n'existe pas dans la base
                                 </a>
                             </div>
                         </div>
-                    
+
                         <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
                             <div class="boutonTelecharger">
                                 <?php

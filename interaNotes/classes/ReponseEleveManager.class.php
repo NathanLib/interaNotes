@@ -77,4 +77,22 @@ class ReponseEleveManager{
 		$requete->closeCursor();
 		return $attenduObj;
 	}
+
+	public function getReponseEleveByIdQuestion($idQuestion, $idSujet){
+
+		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idQuestion=:idQuestion AND idSujet=:idSujet';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idQuestion', $idQuestion);
+		$requete->bindValue(':idSujet', $idSujet);
+		$requete->execute();
+
+		$res = $requete->fetch(PDO::FETCH_OBJ);
+		$reponse = new ReponseEleve($res);
+
+		if(isset($reponse)){
+			return $reponse;
+		}
+		return false;
+	}
 }

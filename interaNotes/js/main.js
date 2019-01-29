@@ -141,7 +141,6 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
     var valeur = document.getElementById(idValeur);
 
     if(valeur.value == ""){
-        alert("Une ou plusieurs valeurs sont manquantes ou incorrectes !");
         return false;
     }
     var liste = document.getElementById(idListe);
@@ -157,37 +156,6 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
     liste.add(option);
     event.preventDefault();
     valeur.value = null;
-    return false;
-
-}
-
-function ajouterValeurDeParametreIntervalle(event,idValeur1,idValeur2,idPas,idListe,idExposantValeur1
-    ,idExposantValeur2,idUnite,idExposantUnite) {
-
-
-    var valeurMinimale = document.getElementById(idValeur1);
-    var valeurMaximale = document.getElementById(idValeur2);
-    var pas = document.getElementById(idPas)
-
-    if(valeurMinimale.value == "" || valeurMaximale.value == "" || pas.value == "" || valeurMinimale.value==valeurMaximale.value){
-        alert("Une ou plusieurs valeurs sont manquantes ou incorrectes !");
-        return false;
-    }
-    var liste = document.getElementById(idListe);
-    var exposantValeur1 = document.getElementById(idExposantValeur1);
-    var exposantValeur2 = document.getElementById(idExposantValeur1);
-    var unite = document.getElementById(idUnite);
-    var exposantUnite = document.getElementById(idExposantUnite);
-
-
-    var option = document.createElement("option");
-    option.text = valeurMinimale.value+"*10^"+exposantValeur1.value+" / "+valeurMaximale.value+"*10^"+exposantValeur2.value+" / "+pas.value+" / "+unite.value+" / "+exposantUnite.value;
-
-    liste.add(option);
-    event.preventDefault();
-    valeurMinimale.value = null;
-    valeurMaximale.value = null;
-    pas.value = null;
     return false;
 
 }
@@ -210,20 +178,16 @@ function supprimerSelection() {
 }
 }
 
-function supprimerValeur(i,isValeur) {
+function supprimerValeur(i) {
 
-    if(isValeur == 0){
-        var liste = document.getElementById('parametre'+i);
-    } else {
-        var liste = document.getElementById('liste'+i);
-    }
-    
+    var liste = document.getElementById('parametre'+i);
 
     if(liste.options.selectedIndex >= 0) {
         var optionIndex = liste.options.selectedIndex;
         liste.options[optionIndex] = null;
     } else {
         i++;
+
     }
 }
 
@@ -250,7 +214,6 @@ function annulerSaisie(i){ //a completer
         document.getElementById('puissanceValeur'+i).value=null;
         document.getElementById('exposantValeur'+i).value=null;
         document.getElementById('parametre'+i).options.length = 0;
-        document.getElementById('liste'+i).options.length = 0;
         document.getElementById('boutonUnique'+i).disabled = false ;
         document.getElementById('boutonIntervalle'+i).disabled = false ;
         document.getElementById('boutonUnique'+i).style.backgroundColor = "#333";
@@ -261,7 +224,6 @@ function annulerSaisie(i){ //a completer
         document.getElementById('puissanceValeur'+i).value=null;
         document.getElementById('exposantValeur'+i).value=null;
         document.getElementById('parametre'+i).options.length = 0;
-        document.getElementById('liste'+i).options.length = 0;
         document.getElementById('boutonUnique'+i).disabled = false ;
         document.getElementById('boutonIntervalle'+i).disabled = false ;
         document.getElementById('boutonUnique'+i).style.backgroundColor = "#333";
@@ -270,21 +232,53 @@ function annulerSaisie(i){ //a completer
 
 }
 
+//----------------Partie créer un examen
 
-//Clone the hidden element and shows it
+//Gestion des questions
 
 $(document).ready(function() {
-    $('.add-one').click(function(){
-      $('.dynamic-element').first().clone().appendTo('.dynamic-stuff').show();
-      attach_delete();
+  var compteurQuestion = 0;
+
+  $('.add-one').click(function(){
+    //Ajout d'une question
+    compteurQuestion++;
+
+    //On ajoute le bloc dupliqué
+    var blocAjoute = $('.dynamic-element').first().clone().appendTo('.dynamic-stuff').show();
+
+    //On recupère chacun des inputs
+    var intituleQuestion = blocAjoute.find("#intituleQuestion");
+    var baremeQuestion = blocAjoute.find("#bareme");
+    var labelValeurParfaite = blocAjoute.find("#labelValeurParfaite");
+    var valeurParfaite = blocAjoute.find("#valeurParfaite");
+
+    //On met à jour chacun des inputs
+    intituleQuestion.attr('id', 'intituleQuestion'+compteurQuestion);
+    intituleQuestion.attr('name', 'intituleQuestion'+compteurQuestion);
+    intituleQuestion.prop('disabled',false);
+    intituleQuestion.prop('required',true);
+
+    baremeQuestion.attr('id', 'bareme'+compteurQuestion);
+    baremeQuestion.attr('name', 'bareme'+compteurQuestion);
+    baremeQuestion.prop('disabled',false);
+    baremeQuestion.prop('required',true);
+
+    labelValeurParfaite.attr('id', 'labelValeurParfaite'+compteurQuestion);
+    labelValeurParfaite.attr('for', 'valeurParfaite'+compteurQuestion);
+
+    valeurParfaite.attr('id', 'valeurParfaite'+compteurQuestion);
+    valeurParfaite.attr('name', 'valeurParfaite'+compteurQuestion);
+
+    //Suppression d'une question
+    attach_delete();
   });
 });
 
 //Attach functionality to delete buttons
 function attach_delete(){
   $('.delete').off();
+
   $('.delete').click(function(){
     $(this).closest('.form-group').remove();
-});
+  });
 };
-

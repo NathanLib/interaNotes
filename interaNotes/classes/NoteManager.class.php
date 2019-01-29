@@ -19,4 +19,12 @@ class NoteManager{
 
 		return new Note($note);
 	}
+
+	public function calculerNotePourUneQuestion($question, $reponsesEleve){
+		$bareme = $question->getBaremeQuestion();
+		$precision = $reponsesEleve->getPrecisionReponse();
+
+		$note=round(($bareme*$precision)/100, 2);
+		return $note;
+	}
 }

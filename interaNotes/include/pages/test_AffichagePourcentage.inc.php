@@ -40,7 +40,7 @@ if(!$listeExamens) { ?>
 			<?php foreach ($listeExamens as $attribut => $value) { ?>
 				<tr>
 					<td><?php echo $value->getIdExamen() ?></td>
-					<td><?php echo getFrenchDate($value->getDateDepotExamen()) ?></td>
+					<td><?php echo getFrenchDateWithHours($value->getDateDepotExamen()) ?></td>
 					<td><?php echo $value->getAnneeScolaireExamen() ?></td>
 					<td><a href="index.php?page=25&amp;id=<?php echo $value->getIdExamen();?>"><button>Consulter</button></a></td>
 				</tr>
