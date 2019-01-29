@@ -294,7 +294,7 @@ if($listePromo===false) { ?>
 
                             <div class="row d-flex justify-content-between divListeValeursTrash">
                                 <div class="col-8 d-flex justify-content-center listeValeur">
-                                    <select class="form-control" id="<?php echo 'parametre'.$compteur ?>" name=<?php echo 'parametre'.$compteur ?> multiple></select>
+                                    <select class="form-control selectMultiplesValeurs" id="<?php echo 'parametre'.$compteur ?>" name=<?php echo 'parametre'.$compteur ?> multiple></select>
                                 </div>
                                 <div class="col-3 d-flex jsutify-content-center">
                                     <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.",0)"; ?> type="button" value="Supprimer">
@@ -378,7 +378,7 @@ if($listePromo===false) { ?>
 
                             <div class="row d-flex justify-content-between divListeValeursTrash">
                                 <div class="col-8 d-flex justify-content-center listeValeur">
-                                    <select class="form-control" id="<?php echo 'liste'.$compteur ?>" multiple></select>
+                                    <select class="form-control selectMultiplesValeurs" id="<?php echo 'liste'.$compteur ?>" multiple></select>
                                 </div>
                                 <div class="col-3 d-flex jsutify-content-center">
                                     <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.",1)"; ?> type="button" value="Supprimer">
