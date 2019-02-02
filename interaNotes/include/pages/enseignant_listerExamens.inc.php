@@ -12,7 +12,13 @@ if (!$listeExamens){ ?>
         <h3>Erreur examen</h3>
         <p>Aucun examen n'a été créé pour l'instant !</p>
     </div>
-<?php } else { ?>
+<?php } else {
+    if(isset($_GET['selection'])){
+      $_SESSION['examen'] = $examenManager->getExamen($_GET['selection']);
+    }
+
+    echo $_SESSION['examen']->getIdExamen(); //WARNING : penser à suppr
+  ?>
 
     <div class="listerSujet">
         <?php // WARNING: BLOC A LAISSER ?>
@@ -32,19 +38,19 @@ if (!$listeExamens){ ?>
           $examenEstAttribue = in_array($examen->getIdExamen(), $listeExamensAttribues);
           $statutExamen = $examen->getStatut($examenEstAttribue);?>
 
-            <div class="row justify-content-center text-center contenuListeSujet">
+            <div class="row justify-content-center text-center">
                 <!-- Numero examen -->
-                <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
+                <div class="col-6 col-sm-3 col-lg-2">
                     <p>Examen n°<?php echo $compteur +1 ?></p>
                 </div>
 
                 <!-- statut -->
-                <div class="col-6 col-lg-4 textListeSujet">
+                <div class="col-6 col-lg-4">
                   <p> <?php echo $statutExamen; ?></p>
                 </div>
 
                 <!-- Actions examen : bouton 'consulter un examen'-->
-                <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
+                <div class="col-6 col-sm-3 col-lg-2">
                     <a href="#">
                         <input type="button" name="" value="Consulter">
                     </a>
@@ -55,7 +61,7 @@ if (!$listeExamens){ ?>
                 switch($statutExamen){
                   case StatutExamen::EN_COURS: ?>
                     <div class="">
-                        <a href="#">
+                        <a href="index.php?page=5&amp;selection=<?php echo $examen->getIdExamen() ?>">
                             <input type="button" name="" value="Sélectionner">
                         </a>
                     </div>

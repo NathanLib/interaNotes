@@ -70,7 +70,9 @@ class Examen{
 	}
 
 	private function estFini(){
-		return $this->dateDepot >= getdate();
+		$dateFin = new DateTime($this->dateDepot);
+		$dateDuJour = new DateTime();
+		return $dateDuJour >= $dateFin;
 	}
 
 }
