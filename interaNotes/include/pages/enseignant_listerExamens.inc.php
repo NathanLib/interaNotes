@@ -36,9 +36,11 @@ if (!$listeExamens){ ?>
         <?php // WARNING: BLOC A GENERER EN PHP
         foreach ($listeExamens as $compteur=>$examen) {
           $examenEstAttribue = in_array($examen->getIdExamen(), $listeExamensAttribues);
-          $statutExamen = $examen->getStatut($examenEstAttribue);?>
+          $statutExamen = $examen->getStatut($examenEstAttribue);
 
-            <div class="row justify-content-center text-center">
+          $classExamen = ($examen->getIdExamen() === $_SESSION['examen']->getIdExamen()) ? "examenSelection" : ""; ?>
+
+            <div class="row justify-content-center text-center <?php echo $classExamen ?>">
                 <!-- Numero examen -->
                 <div class="col-6 col-sm-3 col-lg-2">
                     <p>Examen n°<?php echo $compteur +1 ?></p>

@@ -827,8 +827,10 @@ span#text_info, p#text_info {
     overflow: auto;
 }
 
-/* Page enseignant_mesExamens */
-
+/* Page enseignant_listerExamens */
+.examenSelection{
+  border: 1px solid red;
+}
 
 
 
