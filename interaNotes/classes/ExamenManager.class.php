@@ -28,11 +28,6 @@ class ExamenManager{
 
 	public function getAllExamensAttribues(){
 
-		/*$sql = 'SELECT e.idexamen, e.dateDepot, e.anneeScolaire FROM (
-						SELECT DISTINCT s.idExamen FROM sujet s
-						WHERE s.idSujet IN (select idSujet FROM exerciceattribue)) T
-						INNER JOIN examen e ON(e.idExamen=T.idExamen)';*/
-
 		$sql = 'SELECT DISTINCT s.idExamen FROM sujet s
 						WHERE s.idSujet IN (select idSujet FROM exerciceattribue)';
 
@@ -76,8 +71,30 @@ class ExamenManager{
 		return new Examen($examen);
 	}
 
+	public function getIdExamenEnCours(){
+
+		$sql = 'SELECT DISTINCT s.idExamen FROM sujet s
+						INNER JOIN examen e ON (e.idExamen = s.idExamen)
+						WHERE s.idSujet IN (select idSujet FROM exerciceattribue) AND e.dateDepot > NOW()
+						ORDER BY e.dateDepot ASC
+						LIMIT 1';
+
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+
+		$examen = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+
+		if(isset($examen)){
+			return $examen->idExamen;
+		}
+
+		return false;
+	}
+
 	/*Pas encore terminée*/
-	public function genererSujetOfExamen2($idExamen){
+	public function genererSujetOfExamen2($idExamen){ //WARNING : c'est sa place ici ?
 		$pdo = new Mypdo();
 		$pointManager = new PointManager($pdo);
     	$valeurManager = new ValeurManager($pdo);

@@ -5,8 +5,10 @@
 $pdo = new Mypdo();
 $examenManager = new ExamenManager($pdo);
 
-$numExamen = 1; //WARNING : utiliser GET (avec listerExamen)
-$_SESSION['examen'] = $examenManager->getExamen($numExamen);
+if(!isset($_SESSION['examen'])){
+  $numExamen = $examenManager->getIdExamenEnCours();
+  $_SESSION['examen'] = $examenManager->getExamen($numExamen);
+}
 ?>
 <div class="row justify-content-around">
 
