@@ -8,14 +8,14 @@ $examenManager = new ExamenManager($db);
 $reponseEleveManager = new ReponseEleveManager($db);
 
 
-$idSujet = $_GET['id'];
+$idSujet = $_GET['id'];//WARNING
 
 if(isset($idSujet)) {
 
 	if($sujetManager->exists($idSujet)){
 
 		$personneManager = new PersonneManager($db);
-		$personne = $personneManager->getNomPrenomParSujet($idSujet); //WARNING
+		$personne = $personneManager->getNomPrenomParSujet($idSujet);
 
 		$questions = $questionManager->getAllQuestion($idSujet);
 

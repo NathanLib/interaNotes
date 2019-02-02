@@ -16,8 +16,6 @@ if (!$listeExamens){ ?>
     if(isset($_GET['selection'])){
       $_SESSION['examen'] = $examenManager->getExamen($_GET['selection']);
     }
-
-    echo $_SESSION['examen']->getIdExamen(); //WARNING : penser à suppr
   ?>
 
     <div class="listerSujet">

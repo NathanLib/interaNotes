@@ -53,7 +53,7 @@
 		break;
 
 		case 14:
-		include_once('pages/eleve_sujetTermine.inc.php');
+		include_once('pages/eleve_listerSujetsTermines.inc.php');
 		break;
 
 		case 15:

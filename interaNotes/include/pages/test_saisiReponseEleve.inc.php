@@ -8,7 +8,7 @@ $questionManager = new QuestionManager($pdo);
 $eleveManager = new EleveManager($pdo);
 $reponseEleveManager = new ReponseEleveManager($pdo);
 
-$idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']); // WARNING
+$idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']); // WARNING si plusieurs sujets
 $sujet = $sujetManager->getSujet($idSujet);
 $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
 if(!$idSujet){

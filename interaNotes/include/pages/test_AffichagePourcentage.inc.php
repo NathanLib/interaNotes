@@ -29,7 +29,7 @@ if(!$listeExamens) { ?>
 			</table>
 		</div>
 
-		<?php // WARNING: A finir (charlie FDP) ?>
+		<?php // WARNING: A finir ?>
 
 		<table style="width:100%">
 			<tr>

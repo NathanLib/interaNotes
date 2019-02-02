@@ -93,25 +93,6 @@ class ExamenManager{
 		return false;
 	}
 
-	/*Pas encore terminée*/
-	public function genererSujetOfExamen2($idExamen){ //WARNING : c'est sa place ici ?
-		$pdo = new Mypdo();
-		$pointManager = new PointManager($pdo);
-    	$valeurManager = new ValeurManager($pdo);
-
-		$listePoints = $pointManager->getAllPointsOfExamens(1);
-
-		foreach($listePoints as $point){
-			$listeValeurs = $valeurManager->getAllValeursOfPoints($point->getIdPoint());
-
-			foreach($listeValeurs as $valeur){
-				$listeValeursDePoints[] = array('idPoint'=>$point->getIdPoint(), 'idValeur'=>$valeur->getIdValeur());
-			}
-		}
-
-		return $listeValeursDePoints;
-	}
-
 	public function getDateLimitebySujet($idSujet){
 		$sql = 'SELECT dateDepot FROM examen e JOIN sujet s ON e.idExamen=s.idExamen AND s.idSujet=:idSujet ';
 

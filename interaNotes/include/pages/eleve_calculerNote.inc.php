@@ -5,7 +5,7 @@ $noteManager = new NoteManager($db);
 $reponseEleveManager = new ReponseEleveManager($db);
 $questionManager = new QuestionManager($db);
 
-$question = $questionManager->getAllQuestion(1);
+$question = $questionManager->getAllQuestion(1);//WARNING: utiliser l'idSujet de l'élève
 
 $noteTotal=0;
 
@@ -18,7 +18,7 @@ foreach ($question as $numQuestion) {
 	echo('note de la question '.$idQuestion.' : '.$note);
 	?>
 	<br>
-	<?php	
+	<?php
 }
 echo($noteTotal);
 ?>
