@@ -57,4 +57,20 @@ class Examen{
 		}
 	}
 
+	public function getStatut($estAttribue){
+		if($this->estFini()){
+			return StatutExamen::TERMINE;
+
+		}elseif(!$estAttribue){
+			return StatutExamen::NON_DISTRIBUE;
+
+		}else{
+			return StatutExamen::EN_COURS;
+		}
+	}
+
+	private function estFini(){
+		return $this->dateDepot >= getdate();
+	}
+
 }

@@ -26,6 +26,41 @@ class ExamenManager{
 		return false;
 	}
 
+	public function getAllExamensAttribues(){
+
+		/*$sql = 'SELECT e.idexamen, e.dateDepot, e.anneeScolaire FROM (
+						SELECT DISTINCT s.idExamen FROM sujet s
+						WHERE s.idSujet IN (select idSujet FROM exerciceattribue)) T
+						INNER JOIN examen e ON(e.idExamen=T.idExamen)';*/
+
+		$sql = 'SELECT DISTINCT s.idExamen FROM sujet s
+						WHERE s.idSujet IN (select idSujet FROM exerciceattribue)';
+
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+
+		while($examen = $requete->fetch(PDO::FETCH_OBJ)){
+			$listeIdExamens[] = $examen->idExamen;
+		}
+
+		$requete->closeCursor();
+
+		if(isset($listeIdExamens)){
+			return $listeIdExamens;
+		}
+		return false;
+	}
+
+	public function examenEstAttribue($listeExamensObjets, $idExamen){
+		foreach($listeExamensObjets as $examen){
+			if($examen->getIdExamen() === $idExamen){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public function getExamen($idExamen){
 
 		$sql = 'SELECT idExamen, dateDepot, anneeScolaire FROM examen e

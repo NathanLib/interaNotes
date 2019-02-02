@@ -12,3 +12,4 @@ abstract class Unites extends BasicEnum {
     const KILOMETRES_PAR_HEURE = "km/h";
     const UNITE = "unité";
 }
+?>

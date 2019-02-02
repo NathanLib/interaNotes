@@ -31,6 +31,10 @@
 		include_once('pages/enseignant_creerExamen.inc.php');
 		break;
 
+		case 5:
+		include_once('pages/enseignant_listerExamens.inc.php');
+		break;
+
 		// WARNING: PARTIE ELEVE
 		case 10:
 		include_once('pages/eleve_accueil.inc.php');
