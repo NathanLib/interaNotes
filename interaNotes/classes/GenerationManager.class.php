@@ -37,7 +37,7 @@ class GenerationManager{
                       $valeurVitesse = $valeurManager->getValeur($vitesse);
                       $valeurDistance = $valeurManager->getValeur($distance);
 
-                      $enonceSujet ="En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de ".$planete->getValeur()."qui se situe à ".$valeurDistance." Kms de notre chère Terre !<br><br>Nous savons que la fusée possède ".$nbMoteurs->getValeur()." moteur(s), la fusée peut aller à une vitesse de ".$valeurVitesse." Km/H et chaque moteur a une consommation de carburant qui vaut ".$consoCarbu->getValeur()." Tonnes/1000 Kms !<br><br>A bord de cette fusée, l'équipage est constitué de ".$personnes->getValeur()." personnes et chaque personne consomme ".$consoNourritures->getValeur()." Kgs de nourriture, ".$consoEau->getValeur()." L d'eau et ".$consoO2->getValeur()." L d'O² par jour."
+                      $enonceSujet ="En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de ".$planete->getValeur()."qui se situe à ".$valeurDistance." Kms de notre chère Terre !<br><br>Nous savons que la fusée possède ".$nbMoteurs->getValeur()." moteur(s), la fusée peut aller à une vitesse de ".$valeurVitesse." Km/H et chaque moteur a une consommation de carburant qui vaut ".$consoCarbu->getValeur()." Tonnes/1000 Kms !<br><br>A bord de cette fusée, l'équipage est constitué de ".$personnes->getValeur()." personnes et chaque personne consomme ".$consoNourritures->getValeur()." Kgs de nourriture, ".$consoEau->getValeur()." L d'eau et ".$consoO2->getValeur()." L d'O² par jour.";
 
                       //Partie exportation des données
                       $listeValeurs[] = new ExerciceGenere($idSujet, $nbMoteurs->getIdValeur());
