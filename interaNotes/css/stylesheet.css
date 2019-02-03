@@ -177,6 +177,23 @@ footer .text-uppercase {
 /* Prof : ListerSujet */
 .listerSujet {
     margin: 3% 0;
+
+}
+.listerSujet p {
+    margin: 0;
+    padding: 10px 0;
+}
+.listerSujet input {
+    margin: 10px 0;
+    width: 135px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #333;
+    color: white;
+}
+.boutonsListerSujetProf {
+    display: flex;
+    justify-content: space-around;
 }
 #attributeTo {
     font-weight: bold;
@@ -829,7 +846,10 @@ span#text_info, p#text_info {
 
 /* Page enseignant_listerExamens */
 .examenSelection{
-  border: 1px solid red;
+    background-color: #999;
+    border-radius: 10px;
+    color: white;
+    border: solid 2px #fff;
 }
 
 

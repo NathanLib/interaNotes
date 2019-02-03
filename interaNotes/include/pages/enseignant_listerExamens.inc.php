@@ -14,29 +14,20 @@ if (!$listeExamens){ ?>
     </div>
 <?php } else {
     if(isset($_GET['selection'])){
-      $_SESSION['examen'] = $examenManager->getExamen($_GET['selection']);
+        $_SESSION['examen'] = $examenManager->getExamen($_GET['selection']);
     }
-  ?>
+    ?>
 
     <div class="listerSujet">
-        <?php // WARNING: BLOC A LAISSER ?>
-        <div class="row justify-content-around text-center teteListeSujet">
-            <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
-                <p> </p>
-            </div>
-            <div class="col-6 col-lg-4">
-                <span id="statut">Statut : </span>
-            </div>
-            <div class="col-3 col-lg-2">
-            </div>
-        </div>
+        <h4 style="text-align:center">Liste de mes sujets : </h4>
+        <hr style="width:80%">
 
         <?php // WARNING: BLOC A GENERER EN PHP
         foreach ($listeExamens as $compteur=>$examen) {
-          $examenEstAttribue = in_array($examen->getIdExamen(), $listeExamensAttribues);
-          $statutExamen = $examen->getStatut($examenEstAttribue);
+            $examenEstAttribue = in_array($examen->getIdExamen(), $listeExamensAttribues);
+            $statutExamen = $examen->getStatut($examenEstAttribue);
 
-          $classExamen = ($examen->getIdExamen() === $_SESSION['examen']->getIdExamen()) ? "examenSelection" : ""; ?>
+            $classExamen = ($examen->getIdExamen() === $_SESSION['examen']->getIdExamen()) ? "examenSelection" : ""; ?>
 
             <div class="row justify-content-center text-center <?php echo $classExamen ?>">
                 <!-- Numero examen -->
@@ -46,48 +37,52 @@ if (!$listeExamens){ ?>
 
                 <!-- statut -->
                 <div class="col-6 col-lg-4">
-                  <p> <?php echo $statutExamen; ?></p>
+                    <p> <?php echo $statutExamen; ?></p>
                 </div>
 
-                <!-- Actions examen : bouton 'consulter un examen'-->
-                <div class="col-6 col-sm-3 col-lg-2">
-                    <a href="#">
-                        <input type="button" name="" value="Consulter">
-                    </a>
+                <div class="boutonsListerSujetProf">
+                    <!-- Actions examen : bouton 'consulter un examen'-->
+                    <div class="col-6 col-sm-4 col-lg-2">
+                        <a href="#">
+                            <input type="button" name="" value="Consulter">
+                        </a>
+                    </div>
+
+                    <!-- Actions examen : bouton 'consulter un examen'-->
+                    <div class="col-6 col-sm-4 col-lg-2">
+                        <?php
+                        switch($statutExamen){
+                            case StatutExamen::EN_COURS: ?>
+                            <div class="">
+                                <a href="index.php?page=5&amp;selection=<?php echo $examen->getIdExamen() ?>">
+                                    <input type="button" name="" value="Sélectionner">
+                                </a>
+                            </div>
+                            <?php break; ?>
+
+                            <?php
+                            case StatutExamen::TERMINE: ?>
+                            <div class="">
+                                <a href="#">
+                                    <input type="button" name="" value="Voir les résultats">
+                                </a>
+                            </div>
+                            <?php break; ?>
+
+                            <?php
+                            case StatutExamen::NON_DISTRIBUE: ?>
+                            <div class="">
+                                <a href="#">
+                                    <input type="button" name="" value="Commencer">
+                                </a>
+                            </div>
+                            <?php break; ?>
+
+                            <?php
+                        }
+                        ?>
+                    </div>
                 </div>
-
-                <!-- Actions examen : bouton 'consulter un examen'-->
-                <?php
-                switch($statutExamen){
-                  case StatutExamen::EN_COURS: ?>
-                    <div class="">
-                        <a href="index.php?page=5&amp;selection=<?php echo $examen->getIdExamen() ?>">
-                            <input type="button" name="" value="Sélectionner">
-                        </a>
-                    </div>
-                    <?php break; ?>
-
-                  <?php
-                  case StatutExamen::TERMINE: ?>
-                    <div class="">
-                        <a href="#">
-                            <input type="button" name="" value="Voir les résultats">
-                        </a>
-                    </div>
-                    <?php break; ?>
-
-                  <?php
-                  case StatutExamen::NON_DISTRIBUE: ?>
-                    <div class="">
-                        <a href="#">
-                            <input type="button" name="" value="Commencer">
-                        </a>
-                    </div>
-                    <?php break; ?>
-
-                <?php
-                }
-                ?>
 
             </div>
         <?php }
