@@ -19,7 +19,7 @@ if (!$listeExamens){ ?>
     ?>
 
     <div class="listerSujet">
-        <h4 style="text-align:center">Liste de mes sujets : </h4>
+        <h4 style="text-align:center">Liste de mes examens : </h4>
         <hr style="width:80%">
 
         <?php // WARNING: BLOC A GENERER EN PHP
