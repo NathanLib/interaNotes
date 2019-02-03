@@ -47,12 +47,11 @@ if (!$idSujet){
             <p>Sujet de : <span><?php echo ($PersonneEleve->getNomPersonne().' '.$PersonneEleve->getPrenomPersonne()); ?></span> </p>
         </div>
     </div>
-
     <div class="row mySubject">
         <div class="row">
             <div class="col-12">
                 <p>
-                    <h1><?php echo $titre.' - '.$eleve->getNomPromotion().' - '.$eleve->getAnneeInscription(); ?></h1>
+                    <h1 style="text-align: center;"><?php echo $titre.' - '.$eleve->getNomPromotion().' - '.$eleve->getAnneeInscription(); ?></h1>
                 </p>
             </div>
             <div class="col-12">
@@ -62,20 +61,48 @@ if (!$idSujet){
                 </p>
             </div>
         </div>
-
-        <div class="row">
+        <div class="row" style="clear: both; width: 100%;" >
             <div class="col-12">
                 <div>
                     <span id="subjectTitle">Enoncé :</span>
                     <br>
-                    <p class="textSubject">
+                    <p style="margin-left: 18px;"class="textSubject">
                         <?php echo $enonce; ?>
                     </p>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="clear: both; width: 100%;" >
+            <div class="col-12">
+                <div>
+                    <span id="subjectTitle">Valeurs :</span>
+                    <br>
+                </div>
+            </div>
+        </div>     
+        <table>
+            <?php $Unicodelettre = 96;
+            foreach ($valeurs as $val) { 
+                $Unicodelettre = $Unicodelettre+1;
+                ?>
+                <tr>
+                    <?php echo('&#'.($Unicodelettre)); ?>
+                </tr>
+            <?php } ?>
+            <br>
+            <?php foreach ($valeurs as $val) { 
+                $Unicodelettre = $Unicodelettre+1;
+                ?>
+                <tr>
+
+                    <?php echo($val->getValeur()); ?>
+
+                </tr>
+            <?php } ?>
+        </table>
+
+        <div class="row" style="width: 100%;">
             <div class="col-12">
                 <div>
                     <span id="subjectTitle">Questions :</span>
