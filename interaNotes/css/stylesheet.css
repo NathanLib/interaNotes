@@ -823,8 +823,14 @@ span#text_info, p#text_info {
 .listeValeur {
     padding: 0;
 }
+.selectMultiplesValeurs {
+    overflow: auto;
+}
 
-
+/* Page enseignant_listerExamens */
+.examenSelection{
+  border: 1px solid red;
+}
 
 
 

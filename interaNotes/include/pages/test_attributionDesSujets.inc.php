@@ -2,8 +2,7 @@
 //WARNING : vérifier si l'attribution n'a pas déjà été faite
 //WARNING : nom de promo a recupérer depuis créer un idExamen
 $nomPromo = "Promo 2021";
-//WARNING : idExamen a recupérer depuis créer un idExamen
-$idExamen = "1";
+$idExamen = $_SESSION['examen']->getIdExamen();
 
 $pdo = new Mypdo();
 $eleveManager = new EleveManager($pdo);

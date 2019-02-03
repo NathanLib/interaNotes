@@ -10,13 +10,26 @@ $listeExamens = $examenManager->getAllExamens();
 if(!$listeExamens) { ?>
 
 	<div class="msgErrorTitre">
-        <h3>Erreur examen</h3>
-        <p>Aucun examen crée actuellement</p>
-    </div>
+		<h3>Erreur examen</h3>
+		<p>Aucun examen crée actuellement</p>
+	</div>
 
 <?php } else {
 
 	if(!isset($_GET['id'])) { ?>
+		<div class="col-12 col-md-8">
+			<table class="table table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col" style="border-radius: 20px 0 0 0;">#</th>
+						<th scope="col">Date de dépot</th>
+						<th scope="col" style="border-radius: 0 20px 0 0;">Année</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+
+		<?php // WARNING: A finir ?>
 
 		<table style="width:100%">
 			<tr>
@@ -44,9 +57,9 @@ if(!$listeExamens) { ?>
 		if(!$listeSujets){
 			?>
 			<div class="msgErrorTitre">
-		        <h3>Erreur sujet</h3>
-		        <p>Aucun sujet n'a été attribué pour l'instant !</p>
-		    </div>
+				<h3>Erreur sujet</h3>
+				<p>Aucun sujet n'a été attribué pour l'instant !</p>
+			</div>
 			<?php
 		} else {
 			?>
@@ -98,30 +111,39 @@ if(!$listeExamens) { ?>
 			</p>
 			<?php
 		} else { ?>
-			<table style="width:100%">
-				<tr>
-					<th>Date de saisie</th>
-					<th>Question N°</th>
-					<th>Résultat saisi</th>
-					<th>Exposant résultat</th>
-					<th>Unité du résultat</th>
-					<th>Exposant du résultat</th>
-					<th>Justification</th>
-					<th>Précision</th>
-				</tr>
-				<?php foreach ($listeReponses as $reponse) { ?>
-					<tr>
-						<td><?php echo getFrenchDateWithHours($reponse->getDateResult()) ?></td>
-						<td><?php echo $reponse->getIdQuestion() ?></td>
-						<td><?php echo $reponse->getResultat() ?></td>
-						<td><?php echo $reponse->getResultatExposant() ?></td>
-						<td><?php echo $reponse->getResultatUnite() ?></td>
-						<td><?php echo $reponse->getExposantUnite() ?></td>
-						<td><?php echo $reponse->getJustification() ?></td>
-						<td><?php echo $reponse->getPrecisionReponse() ?></td>
-					</tr>
-				<?php }
-			} ?>
-		</table>
-	<?php }
+			<h4 style="margin-top:30px;">Réponses saisies par l'étudiant :</h4>
+			<div class="col-12 listImportStudent">
+
+				<table class="table table-hover">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col" style="border-radius: 20px 0 0 0;">Date de saisie</th>
+							<th scope="col">Question n°</th>
+							<th scope="col">Résultat saisi</th>
+							<th scope="col">Exposant du résultat</th>
+							<th scope="col">Unité</th>
+							<th scope="col">Exposant de l'unité</th>
+							<th scope="col">Justification</th>
+							<th scope="col" style="border-radius: 0 20px 0 0;">Précision</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<?php foreach ($listeReponses as $reponse) { ?>
+							<tr>
+								<td><?php echo getFrenchDate($reponse->getDateResult()) ?></td>
+								<td><?php echo $reponse->getIdQuestion() ?></td>
+								<td><?php echo $reponse->getResultat() ?></td>
+								<td><?php echo $reponse->getResultatUnite() ?></td>
+								<td><?php echo $reponse->getExposantUnite() ?></td>
+								<td><?php echo $reponse->getResultatExposant() ?></td>
+								<td><?php echo $reponse->getJustification() ?></td>
+								<td><?php echo $reponse->getPrecisionReponse() ?> %</td>
+							</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
+		<?php }
+	}
 } ?>

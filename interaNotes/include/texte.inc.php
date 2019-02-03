@@ -31,6 +31,10 @@
 		include_once('pages/enseignant_creerExamen.inc.php');
 		break;
 
+		case 5:
+		include_once('pages/enseignant_listerExamens.inc.php');
+		break;
+
 		// WARNING: PARTIE ELEVE
 		case 10:
 		include_once('pages/eleve_accueil.inc.php');
@@ -49,7 +53,7 @@
 		break;
 
 		case 14:
-		include_once('pages/eleve_sujetTermine.inc.php');
+		include_once('pages/eleve_listerSujetsTermines.inc.php');
 		break;
 
 		case 15:
@@ -58,6 +62,14 @@
 
 		case 16:
 		include_once('pages/eleve_afficherSujetCorrige.inc.php');
+		break;
+
+		case 17:
+		include_once('pages/eleve_consulterNote.inc.php');
+		break;
+
+		case 18:
+		include_once('pages/eleve_calculerNote.inc.php');
 		break;
 
 		// WARNING: PARTIE TEST

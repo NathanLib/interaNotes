@@ -141,16 +141,16 @@ class SujetManager{
 	public function getSujetTermineByLogin($login) {
 		$sql = 'SELECT s.idSujet FROM sujet s
 			INNER JOIN exerciceattribue e ON(e.idSujet=s.idSujet)
-			INNER JOIN personne p ON(p.idPersonne=e.idEleve) 
+			INNER JOIN personne p ON(p.idPersonne=e.idEleve)
 			INNER JOIN examen ex ON(s.idExamen=ex.idExamen)
-			WHERE p.login=:login 
+			WHERE p.login=:login
 			AND ex.dateDepot<now()';
-		
+
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':login', $login);
 		$requete->execute();
 
-		
+
 		while($sujet = $requete->fetch(PDO::FETCH_OBJ)){
 			$listeSujet[] = $sujet->idSujet;
 		}

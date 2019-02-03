@@ -26,6 +26,36 @@ class ExamenManager{
 		return false;
 	}
 
+	public function getAllExamensAttribues(){
+
+		$sql = 'SELECT DISTINCT s.idExamen FROM sujet s
+						WHERE s.idSujet IN (select idSujet FROM exerciceattribue)';
+
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+
+		while($examen = $requete->fetch(PDO::FETCH_OBJ)){
+			$listeIdExamens[] = $examen->idExamen;
+		}
+
+		$requete->closeCursor();
+
+		if(isset($listeIdExamens)){
+			return $listeIdExamens;
+		}
+		return false;
+	}
+
+	public function examenEstAttribue($listeExamensObjets, $idExamen){
+		foreach($listeExamensObjets as $examen){
+			if($examen->getIdExamen() === $idExamen){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public function getExamen($idExamen){
 
 		$sql = 'SELECT idExamen, dateDepot, anneeScolaire FROM examen e
@@ -41,23 +71,26 @@ class ExamenManager{
 		return new Examen($examen);
 	}
 
-	/*Pas encore terminée*/
-	public function genererSujetOfExamen2($idExamen){
-		$pdo = new Mypdo();
-		$pointManager = new PointManager($pdo);
-		$valeurManager = new ValeurManager($pdo);
+	public function getIdExamenEnCours(){
 
-		$listePoints = $pointManager->getAllPointsOfExamens(1);
+		$sql = 'SELECT DISTINCT s.idExamen FROM sujet s
+						INNER JOIN examen e ON (e.idExamen = s.idExamen)
+						WHERE s.idSujet IN (select idSujet FROM exerciceattribue) AND e.dateDepot > NOW()
+						ORDER BY e.dateDepot ASC
+						LIMIT 1';
 
-		foreach($listePoints as $point){
-			$listeValeurs = $valeurManager->getAllValeursOfPoints($point->getIdPoint());
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
 
-			foreach($listeValeurs as $valeur){
-				$listeValeursDePoints[] = array('idPoint'=>$point->getIdPoint(), 'idValeur'=>$valeur->getIdValeur());
-			}
+		$examen = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+
+		if(isset($examen)){
+			return $examen->idExamen;
 		}
 
-		return $listeValeursDePoints;
+		return false;
 	}
 
 	public function getDateLimitebySujet($idSujet){

@@ -1,10 +1,10 @@
-<?php 
+<?php
 $db = new Mypdo();
 $correctionManager = new CorrigeManager($db);
 $reponsesAttendusManager = new ResultatsAttendusManager($db);
 
 
-$idExamen = 1;
+$idExamen = 1; //WARNING : utiliser la var de session
 
 $listeSujet = $reponsesAttendusManager->getlisteDesSujets($idExamen);
 foreach ($listeSujet as $idSujet) {

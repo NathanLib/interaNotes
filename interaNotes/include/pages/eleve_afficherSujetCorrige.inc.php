@@ -8,14 +8,14 @@ $examenManager = new ExamenManager($db);
 $reponseEleveManager = new ReponseEleveManager($db);
 
 
-$idSujet = $_GET['id'];
+$idSujet = $_GET['id'];//WARNING
 
 if(isset($idSujet)) {
 
 	if($sujetManager->exists($idSujet)){
 
 		$personneManager = new PersonneManager($db);
-		$personne = $personneManager->getNomPrenomParSujet($idSujet); //WARNING
+		$personne = $personneManager->getNomPrenomParSujet($idSujet);
 
 		$questions = $questionManager->getAllQuestion($idSujet);
 
@@ -33,7 +33,7 @@ if(isset($idSujet)) {
 			<h1>Erreur</h1>
 			<p>La date de fin du sujet n'est pas encore passée</p>
 		<?php } else { ?>
-			<h1>Résultats attendus : </h1>
+			<h4 style="margin-top:30px">Résultats attendus : </h4>
 			<div class="row d-flex justify-content-center correctionSujet">
 				<div class="col-11 listImportStudent">
 
@@ -83,7 +83,7 @@ if(isset($idSujet)) {
 				</div>
 			</div>
 
-			<h1> résultats saisis par l'élève</h1>
+			<h4> Résultats saisis par l'élève : </h4>
 			<?php if(!$listeReponses){
 				?>
 				<p style="text-align:center;font-weight:bold; margin:10% 0;">
@@ -92,35 +92,44 @@ if(isset($idSujet)) {
 				</p>
 				<?php
 			} else { ?>
-				<table>
-					<tr>
-						<th>Date de saisie</th>
-						<th>Question N°</th>
-						<th>Résultat saisi</th>
-						<th>Exposant du résultat</th>
-						<th>Unité du résultat</th>
-						<th>Exposant du résultat</th>
-						<th>Justification</th>
-						<th>Précision</th>
-					</tr>
-					<?php foreach ($listeReponses as $reponse) { ?>
-						<tr>
-							<td><?php echo getFrenchDateWithHours($reponse->getDateResult()) ?></td>
-							<td><?php echo $reponse->getIdQuestion() ?></td>
-							<td><?php echo $reponse->getResultat() ?></td>
-							<td><?php echo $reponse->getResultatUnite() ?></td>
-							<td><?php echo $reponse->getExposantUnite() ?></td>
-							<td><?php echo $reponse->getResultatExposant() ?></td>
-							<td><?php echo $reponse->getJustification() ?></td>
-							<td><?php echo $reponse->getPrecisionReponse() ?> %</td>
-						</tr>
-					<?php } ?>
-				</table>
-				<?php } ?>
-			<?php }
-		} else {
-			header('Location: index.php?page=3');
-		}
+				<div class="col-12 listImportStudent">
+
+					<table class="table table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col" style="border-radius: 20px 0 0 0;">Date de saisie</th>
+								<th scope="col">Question n°</th>
+								<th scope="col">Résultat saisi</th>
+								<th scope="col">Exposant du résultat</th>
+								<th scope="col">Unité</th>
+								<th scope="col">Exposant de l'unité</th>
+								<th scope="col">Justification</th>
+								<th scope="col" style="border-radius: 0 20px 0 0;">Précision</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<?php foreach ($listeReponses as $reponse) { ?>
+								<tr>
+									<td><?php echo getFrenchDate($reponse->getDateResult()) ?></td>
+									<td><?php echo $reponse->getIdQuestion() ?></td>
+									<td><?php echo $reponse->getResultat() ?></td>
+									<td><?php echo $reponse->getResultatUnite() ?></td>
+									<td><?php echo $reponse->getExposantUnite() ?></td>
+									<td><?php echo $reponse->getResultatExposant() ?></td>
+									<td><?php echo $reponse->getJustification() ?></td>
+									<td><?php echo $reponse->getPrecisionReponse() ?> %</td>
+								</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+				</div>
+
+			<?php } ?>
+		<?php }
 	} else {
 		header('Location: index.php?page=3');
-	} ?>
+	}
+} else {
+	header('Location: index.php?page=3');
+} ?>
