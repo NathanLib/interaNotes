@@ -85,24 +85,26 @@ if($listePromo===false) { ?>
 
 <?php } elseif (!isset($_POST['intituleQuestion0'])) {
 
-    $nomPromotion = $_POST['classExam'];
-    $dateLimite = $_POST['endExam'];
-    $titreExamen = $_POST['nameExam'];
-    $texteEnonce = $_POST['enonceExam'];
+    $_SESSION['nomPromotion'] = $_POST['classExam'];
+    $_SESSION['dateLimite'] = $_POST['endExam'];
+    $_SESSION['titreExamen'] = $_POST['nameExam'];
+    $_SESSION['texteEnonce'] = $_POST['enonceExam'];
+    $_SESSION['semestre'] = $_POST['numSemestre'];
 
     preg_match_all( '#\$(\w++)\$#', $_POST['enonceExam'], $tableauParametres);
     $tableauParametres = $tableauParametres[1]; //destruction des variables $var$
+    $_SESSION['tableauParametres'] = $tableauParametres;
     ?>
 
     <div class="row d-flex justify-content-center headCreateExam">
         <div class="col-12 col-md-4">
-            <h4>Titre de l'examen : <span><?php echo $titreExamen ?></span> </h4>
+            <h4>Titre de l'examen : <span><?php echo $_SESSION['titreExamen'] ?></span> </h4>
         </div>
         <div class="col-12 col-md-4">
-            <h4>Promotion concernée : <span><?php echo $nomPromotion ?></span> </h4>
+            <h4>Promotion concernée : <span><?php echo $_SESSION['nomPromotion'] ?></span> </h4>
         </div>
         <div class="col-12 col-md-4">
-            <h4>Date de fin : <span><?php echo getFrenchDate($dateLimite) ?></span> </h4>
+            <h4>Date de fin : <span><?php echo getFrenchDate($_SESSION['dateLimite']) ?></span> </h4>
         </div>
     </div>
 
@@ -132,7 +134,7 @@ if($listePromo===false) { ?>
 <div class="row enonceCreateExam">
     <div class="col-12">
         <h4>Enonce de l'examen</h4>
-        <p><?php echo $texteEnonce?></p>
+        <p><?php echo $_SESSION['texteEnonce']?></p>
     </div>
 </div>
 
@@ -249,11 +251,11 @@ if($listePromo===false) { ?>
                                     <label for="">Nouvelle valeur :</label>
                                 </div>
                                 <div class="col-7">
-                                    <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" name=<?php echo 'saisieParametre'.$compteur ?> >
+                                    <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" >
                                 </div>
                                 <div class="col-5 form-group divPuissanceResult d-flex">
                                     <span id="puissanceValeur">x10</span>
-                                    <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeur".$compteur; ?> type="number" value="0" step="1" required>
+                                    <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
 
                                 </div>
 
@@ -261,7 +263,7 @@ if($listePromo===false) { ?>
 
                             <div class="form-group">
                                 <label for="uniteAnswer">Unité de la valeur :</label>
-                                <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" name=<?php echo "uniteValeur".$compteur ;?> required>
+                                <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
                                     <?php
                                     $listeUnites = Unites::getConstants();
                                     foreach ($listeUnites as $unite => $abreviation) { ?>
@@ -274,7 +276,7 @@ if($listePromo===false) { ?>
 
                             <div class="form-group">
                                 <label for="exposantAnswer">Exposant de l'unité :</label>
-                                <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" name=<?php echo "exposantValeur".$compteur ;?> required>
+                                <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
                                     <?php
                                     $listeExposants = Exposants::getConstants();
                                     $defautExposant = Exposants::getExposantParDefaut();
@@ -295,7 +297,7 @@ if($listePromo===false) { ?>
 
                             <div class="row d-flex justify-content-between divListeValeursTrash">
                                 <div class="col-8 d-flex justify-content-center listeValeur">
-                                    <select class="form-control" id="<?php echo 'parametre'.$compteur ?>" name=<?php echo 'parametre'.$compteur ?> multiple></select>
+                                    <select class="form-control" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
                                 </div>
                                 <div class="col-3 d-flex jsutify-content-center">
                                     <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.",0)"; ?> type="button" value="Supprimer">
@@ -325,7 +327,7 @@ if($listePromo===false) { ?>
                                 </div>
                                 <div class="col-5 form-group divPuissanceResult d-flex">
                                     <span id="puissanceValeur">x10</span>
-                                    <input id=<?php echo "puissanceValeurIntervalle".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeurIntervalle".$compteur; ?> type="number" value="0" step="1" required>
+                                    <input id=<?php echo "puissanceValeurIntervalle".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
                                 </div>
 
                                 <div class="col-7">
@@ -333,7 +335,7 @@ if($listePromo===false) { ?>
                                 </div>
                                 <div class="col-5 form-group divPuissanceResult d-flex">
                                     <span id="puissanceValeur">x10</span>
-                                    <input id=<?php echo "puissanceValeurIntervalle2".$compteur; ?> class="form-control saisiePuissanceResult" name=<?php echo "puissanceValeurIntervalle2".$compteur; ?> type="number" value="0" step="1" required>
+                                    <input id=<?php echo "puissanceValeurIntervalle2".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
 
                                 </div>
 
@@ -379,7 +381,7 @@ if($listePromo===false) { ?>
 
                             <div class="row d-flex justify-content-between divListeValeursTrash">
                                 <div class="col-8 d-flex justify-content-center listeValeur">
-                                    <select class="form-control" id="<?php echo 'liste'.$compteur ?>" multiple></select>
+                                    <select class="form-control" name="<?php echo 'liste'.$compteur ?>" id="<?php echo 'liste'.$compteur ?>" multiple></select>
                                 </div>
                                 <div class="col-3 d-flex jsutify-content-center">
                                     <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.",1)"; ?> type="button" value="Supprimer">
@@ -400,17 +402,32 @@ if($listePromo===false) { ?>
 
                     </div>
                 </div>
-                <?php
+                <?php $nombre = $compteur;
             } ?>
         </div>
     </div>
-    <input class="btnValiderExamen" type="submit" value="Valider">
+    <input class="btnValiderExamen" type="submit" onclick="recupSelect(<?php echo $nombre; ?>)"value="Valider">
 </form>
 
 
-<?php    } else {
-    echo "<pre>";
-    var_dump($_POST);
-    echo "</pre>";
+<?php    } else { ?> 
+
+    <p> Normalement si tout va bien c'est envoyé m'sieur ! </p> 
+   
+    <?php
+    $examenManager = new ExamenManager($db);
+
+    $examenManager->creerExamen($_SESSION['dateLimite'],$_SESSION['nomPromotion']);
+
+    $questions = $_POST;
+    $examenManager->creerQuestion($questions);
+
+    foreach($_COOKIE as $key=>$value)
+    {
+        if($key != "PHPSESSID"){
+            echo "key: ".$key.'<br />';
+            echo "value: ".$value.'<br />';
+        }
+    };
 }?>
 <?php } ?>

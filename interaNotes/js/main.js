@@ -141,6 +141,7 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
     var valeur = document.getElementById(idValeur);
 
     if(valeur.value == ""){
+        alert("Une ou plusieurs valeurs sont manquantes ou incorrectes !");
         return false;
     }
     var liste = document.getElementById(idListe);
@@ -156,6 +157,37 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
     liste.add(option);
     event.preventDefault();
     valeur.value = null;
+    return false;
+
+}
+
+function ajouterValeurDeParametreIntervalle(event,idValeur1,idValeur2,idPas,idListe,idExposantValeur1
+    ,idExposantValeur2,idUnite,idExposantUnite) {
+
+
+    var valeurMinimale = document.getElementById(idValeur1);
+    var valeurMaximale = document.getElementById(idValeur2);
+    var pas = document.getElementById(idPas)
+
+    if(valeurMinimale.value == "" || valeurMaximale.value == "" || pas.value == "" || valeurMinimale.value==valeurMaximale.value){
+        alert("Une ou plusieurs valeurs sont manquantes ou incorrectes !");
+        return false;
+    }
+    var liste = document.getElementById(idListe);
+    var exposantValeur1 = document.getElementById(idExposantValeur1);
+    var exposantValeur2 = document.getElementById(idExposantValeur1);
+    var unite = document.getElementById(idUnite);
+    var exposantUnite = document.getElementById(idExposantUnite);
+
+
+    var option = document.createElement("option");
+    option.text = valeurMinimale.value+"*10^"+exposantValeur1.value+" / "+valeurMaximale.value+"*10^"+exposantValeur2.value+" / "+pas.value+" / "+unite.value+" / "+exposantUnite.value;
+
+    liste.add(option);
+    event.preventDefault();
+    valeurMinimale.value = null;
+    valeurMaximale.value = null;
+    pas.value = null;
     return false;
 
 }
@@ -271,7 +303,7 @@ $(document).ready(function() {
 
     //Suppression d'une question
     attach_delete();
-  });
+});
 });
 
 //Attach functionality to delete buttons
@@ -280,5 +312,39 @@ function attach_delete(){
 
   $('.delete').click(function(){
     $(this).closest('.form-group').remove();
-  });
+});
 };
+
+function recupSelect(compteur){ // rendre modulable via paramètre d'entrée ez puis insere en cookie
+
+for (var i = 0; i <= compteur; i++) {
+
+    
+    var listeUnique = document.getElementById('parametre'+compteur);
+    var listeIntervalle = document.getElementById('liste'+compteur);
+
+    if(listeUnique.options.length > 0 ) {
+        var point = new Array();
+        for (var j = 0; j < listeUnique.options.length ; j++) {
+            point.push(listeUnique.options[j].value);
+            var string = "point"+i+"="+point[0];
+            for(var k = 1; k < point.length; k++)
+                var string = string+","+point[k];
+            
+            document.cookie = string;
+        }
+    } else {
+        var point = new Array();
+        for (var j = 0; j < listeIntervalle.options.length ; j++) {
+            point.push(listeIntervalle.options[j].value);
+            var string = "point"+i+"="+point[0];
+            for(var k = 1; k < point.length; k++)
+                var string = string+","+point[k];
+            
+            document.cookie = string;
+        }            
+
+    } 
+   
+}
+}

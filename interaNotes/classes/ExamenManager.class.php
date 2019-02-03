@@ -29,7 +29,7 @@ class ExamenManager{
 	public function getExamen($idExamen){
 
 		$sql = 'SELECT idExamen, dateDepot, anneeScolaire FROM examen e
-						WHERE e.idExamen=:idExamen';
+		WHERE e.idExamen=:idExamen';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idExamen', $idExamen);
@@ -45,7 +45,7 @@ class ExamenManager{
 	public function genererSujetOfExamen2($idExamen){
 		$pdo = new Mypdo();
 		$pointManager = new PointManager($pdo);
-    	$valeurManager = new ValeurManager($pdo);
+		$valeurManager = new ValeurManager($pdo);
 
 		$listePoints = $pointManager->getAllPointsOfExamens(1);
 
@@ -81,4 +81,71 @@ class ExamenManager{
 		return $now>$limite;
 
 	}
+
+	public function creerExamen($dateLimite,$anneeScolaire) {
+		$sql = 'INSERT INTO examen(dateDepot,anneeScolaire) VALUES (:dateDepot,:anneeScolaire)';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':dateDepot',$dateLimite);
+		$requete->bindValue(':anneeScolaire',2018);
+		$requete->execute();
+
+		$requete->closeCursor();
+	}
+
+	public function creerQuestion($questions) {
+
+		$i = 0;
+		foreach ($questions as $key => $value) {
+
+			switch ($key) {
+				case 'intituleQuestion'.$i:
+				$question['intituleQuestion'] = $value;
+				break;
+				case 'bareme'.$i:
+				$question['bareme'] = $value;
+				if(!isset($questions['valeurParfaite'.$i])){
+					$listeQuestions[]=$question;
+					$i++;
+					$question['intituleQuestion']=null;
+					$question['bareme']=null;
+					$question['valeurParfaite']=null;
+				}
+				break;
+				case 'valeurParfaite'.$i:
+				$question['valeurParfaite'] = $value;
+				$listeQuestions[]=$question;
+				$i++;
+				$question['intituleQuestion']=null;
+				$question['bareme']=null;
+				$question['valeurParfaite']=null;
+				break;
+				default:
+				break;
+			}
+		}
+		
+		$idExamen = $this->db->lastInsertId(); 
+		$i = 1;
+
+		foreach ($listeQuestions as $key => $value) {
+
+			$sql = 'INSERT INTO question(idQuestion,idExamen,intituleQuestion,baremeQuestion,estValeurParfaite) VALUES (:idQuestion,:idExamen,:intituleQuestion,:baremeQuestion,:estValeurParfaite)';
+
+			$requete = $this->db->prepare($sql);
+			$requete->bindValue(':idQuestion',$i);
+			$requete->bindValue(':idExamen',$idExamen);
+			$requete->bindValue(':intituleQuestion',$value['intituleQuestion']);
+			$requete->bindValue('baremeQuestion',$value['bareme']);
+			if (isset($value['valeurParfaite'])){
+				$requete->bindValue(':estValeurParfaite',1); //true
+			} else {
+				$requete->bindValue(':estValeurParfaite',0); //false
+			}
+			
+			$requete->execute();
+			$i++;
+		}
+		
+	} 
 }
