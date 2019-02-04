@@ -320,8 +320,8 @@ function recupSelect(compteur){ // rendre modulable via paramètre d'entrée ez 
 for (var i = 0; i <= compteur; i++) {
 
     
-    var listeUnique = document.getElementById('parametre'+compteur);
-    var listeIntervalle = document.getElementById('liste'+compteur);
+    var listeUnique = document.getElementById('parametre'+i);
+    var listeIntervalle = document.getElementById('liste'+i);
 
     if(listeUnique.options.length > 0 ) {
         var point = new Array();
