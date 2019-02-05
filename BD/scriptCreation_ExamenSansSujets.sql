@@ -409,7 +409,7 @@ DROP TABLE IF EXISTS `valeurs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `valeurs` (
-  `idValeur` int(11) NOT NULL,
+  `idValeur` int(11) NOT NULL AUTO_INCREMENT,
   `idPoint` int(11) NOT NULL,
   `valeur` varchar(50) NOT NULL,
   `exposantValeur` int(11) NOT NULL,
@@ -418,7 +418,7 @@ CREATE TABLE `valeurs` (
   PRIMARY KEY (`idValeur`),
   KEY `idPoint` (`idPoint`),
   CONSTRAINT `valeurs_ibfk_1` FOREIGN KEY (`idPoint`) REFERENCES `points` (`idPoint`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -440,4 +440,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-18 13:06:44
+-- Dump completed on 2019-02-05 14:09:50

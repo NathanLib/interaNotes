@@ -83,7 +83,7 @@ CREATE TABLE points (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE valeurs (
-  idValeur INT NOT NULL,
+  idValeur INT NOT NULL AUTO_INCREMENT,
   idPoint INT NOT NULL,
   valeur VARCHAR(50) NOT NULL,
   exposantValeur INT NOT NULL,
