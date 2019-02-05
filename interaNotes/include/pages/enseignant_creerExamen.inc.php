@@ -413,21 +413,49 @@ if($listePromo===false) { ?>
 <?php    } else { ?> 
 
     <p> Normalement si tout va bien c'est envoyé m'sieur ! </p> 
-   
+
     <?php
     $examenManager = new ExamenManager($db);
 
     $examenManager->creerExamen($_SESSION['dateLimite'],$_SESSION['nomPromotion']);
 
+    $idExamen = $db->lastInsertId();
     $questions = $_POST;
-    $examenManager->creerQuestion($questions);
+   //$examenManager->creerQuestion($questions);
 
-    foreach($_COOKIE as $key=>$value)
-    {
+    foreach($_COOKIE as $key=>$value) {
         if($key != "PHPSESSID"){
             echo "key: ".$key.'<br />';
             echo "value: ".$value.'<br />';
+
+            $points[$key]=$value;
         }
-    };
+    }
+
+    $i=0;
+    foreach ($points as $key => $value) {
+        $listeDonnees = explode(",", $value);
+        $point=$_SESSION['tableauParametres'][$i];
+
+        foreach ($listeDonnees as $key => $value) {
+            $donnees = explode(" / ", $value);
+
+            if(count($donnees) === 4){
+
+                $listePoints[$point][$key]['valeur']=$donnees[0];
+                $listePoints[$point][$key]['exposantValeur']=$donnees[1];
+                $listePoints[$point][$key]['uniteValeur']=$donnees[2];
+                $listePoints[$point][$key]['uniteExposant']=$donnees[3];
+            } else {
+                //intervalles HELP           
+            }
+        }
+        $i++;
+
+    }
+    var_dump($listePoints);
+    $examenManager->creerPoint($listePoints);
+
+
 }?>
 <?php } ?>

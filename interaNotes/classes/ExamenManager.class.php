@@ -29,7 +29,7 @@ class ExamenManager{
 	public function getAllExamensAttribues(){
 
 		$sql = 'SELECT DISTINCT s.idExamen FROM sujet s
-						WHERE s.idSujet IN (select idSujet FROM exerciceattribue)';
+		WHERE s.idSujet IN (select idSujet FROM exerciceattribue)';
 
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
@@ -74,10 +74,10 @@ class ExamenManager{
 	public function getIdExamenEnCours(){
 
 		$sql = 'SELECT DISTINCT s.idExamen FROM sujet s
-						INNER JOIN examen e ON (e.idExamen = s.idExamen)
-						WHERE s.idSujet IN (select idSujet FROM exerciceattribue) AND e.dateDepot > NOW()
-						ORDER BY e.dateDepot ASC
-						LIMIT 1';
+		INNER JOIN examen e ON (e.idExamen = s.idExamen)
+		WHERE s.idSujet IN (select idSujet FROM exerciceattribue) AND e.dateDepot > NOW()
+		ORDER BY e.dateDepot ASC
+		LIMIT 1';
 
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
@@ -169,7 +169,7 @@ class ExamenManager{
 			$requete->bindValue(':idQuestion',$i);
 			$requete->bindValue(':idExamen',$idExamen);
 			$requete->bindValue(':intituleQuestion',$value['intituleQuestion']);
-			$requete->bindValue('baremeQuestion',$value['bareme']);
+			$requete->bindValue(':baremeQuestion',$value['bareme']);
 			if (isset($value['valeurParfaite'])){
 				$requete->bindValue(':estValeurParfaite',1); //true
 			} else {
@@ -181,4 +181,42 @@ class ExamenManager{
 		}
 		
 	} 
+
+	public function creerPoint($listePoints) {
+
+		$i = 1;
+		$idExamen = $this->db->lastInsertId(); 
+
+		foreach ($listePoints as $key => $value) {
+			$sql = 'INSERT INTO points(idPoint,idExamen,nomPoint,estDonneesCatia) VALUES (:idPoint,:idExamen,:nomPoint,:estDonneesCatia)';
+
+			$requete = $this->db->prepare($sql);
+			$requete->bindValue(':idPoint',$i);
+			$requete->bindValue(':idExamen',$idExamen);
+			$requete->bindValue(':nomPoint',$key);
+			$requete->bindValue(':estDonneesCatia',0);
+			
+			$requete->execute();
+			
+			foreach ($value as $clé => $valeur) {
+
+				$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
+
+				$requete = $this->db->prepare($sql);
+			
+				$requete->bindValue(':idPoint',$i);
+				$requete->bindValue(':valeur',$valeur['valeur']);
+				$requete->bindValue(':exposantValeur',$valeur['exposantValeur']);
+				$requete->bindValue(':uniteValeur',$valeur['uniteValeur']);
+				$requete->bindValue(':uniteExposant',$valeur['uniteExposant']);
+
+				$requete->execute();
+				
+			}
+			$i++;
+		}
+
+
+
+	}
 }
