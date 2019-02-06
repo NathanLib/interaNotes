@@ -58,7 +58,7 @@
                         More
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.php?page=20">t_ListerSujets</a>
+                        <a class="dropdown-item" href="index.php?page=6">t_ListerSujets</a>
                         <a class="dropdown-item" href="index.php?page=22">t_genSujet</a>
                         <a class="dropdown-item" href="index.php?page=25">t_AffichagePourcentage</a>
                     </div>

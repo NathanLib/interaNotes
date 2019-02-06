@@ -76,7 +76,7 @@ if(isset($_GET['id'])){ //WARNING gérer quand l'id n'existe pas dans la base
                     <div class="row justify-content-center">
                         <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
                             <div class="boutonCorrection">
-                                <a href="index.php?page=21&amp;id=<?php echo $sujet->getIdSujet();?>">
+                                <a href="index.php?page=7&amp;id=<?php echo $sujet->getIdSujet();?>">
                                     <input type=button value="Correction"></input>
                                 </a>
                             </div>

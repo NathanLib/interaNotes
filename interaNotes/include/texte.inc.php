@@ -35,6 +35,14 @@
 		include_once('pages/enseignant_listerExamens.inc.php');
 		break;
 
+		case 6:
+		include_once('pages/enseignant_afficherUnSujetComplet.inc.php');
+		break;
+
+		case 7:
+		include_once('pages/test_afficherUnSujetCorrige.inc.php');
+		break;
+
 		// WARNING: PARTIE ELEVE
 		case 10:
 		include_once('pages/eleve_accueil.inc.php');
@@ -77,14 +85,6 @@
 		break;
 
 		// WARNING: PARTIE TEST
-
-		case 20:
-		include_once('pages/test_afficherUnSujetComplet.inc.php');
-		break;
-
-		case 21:
-		include_once('pages/test_afficherUnSujetCorrige.inc.php');
-		break;
 
 		case 22:
 		include_once('pages/test_generationSujets3.inc.php');
