@@ -90,9 +90,9 @@ $listeSujets = $sujetManager->getAllSujetsOfExamenAttribues($_SESSION['examen']-
 							<td><?php echo getFrenchDate($reponse->getDateResult()) ?></td>
 							<td><?php echo $reponse->getIdQuestion() ?></td>
 							<td><?php echo $reponse->getResultat() ?></td>
+							<td><?php echo $reponse->getResultatExposant() ?></td>
 							<td><?php echo $reponse->getResultatUnite() ?></td>
 							<td><?php echo $reponse->getExposantUnite() ?></td>
-							<td><?php echo $reponse->getResultatExposant() ?></td>
 							<td><?php echo $reponse->getJustification() ?></td>
 							<td><?php echo $reponse->getPrecisionReponse() ?> %</td>
 						</tr>
