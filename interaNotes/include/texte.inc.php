@@ -72,6 +72,10 @@
 		include_once('pages/eleve_calculerNote.inc.php');
 		break;
 
+		case 19:
+		include_once('pages/eleve_saisieReponses.inc.php');
+		break;
+
 		// WARNING: PARTIE TEST
 
 		case 20:
@@ -83,11 +87,11 @@
 		break;
 
 		case 22:
-		include_once('pages/test_generationSujets.inc.php');
+		include_once('pages/test_generationSujets3.inc.php');
 		break;
 
 		case 23:
-		include_once('pages/test_saisiReponseEleve.inc.php');
+		//
 		break;
 
 		case 24:

@@ -33,7 +33,7 @@ if(!$idSujet){
         if (empty($_POST['reponse1'])) { ?>
 
             <div class="row answerSubject">
-                <form action="index.php?page=23" method="post" style="width:100%">
+                <form action="index.php?page=19" method="post" style="width:100%">
                     <div class="col-12">
                         <div class="row justify-content-around">
                             <div class="col-12 col-sm-6 col-md-5 form-group headerSaisie">

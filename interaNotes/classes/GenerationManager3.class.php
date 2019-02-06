@@ -53,7 +53,7 @@ class GenerationManager3{
 	public function genererExerciceFusee($listeDependances, $idSujet){
     $valeurManager = new ValeurManager($this->db);
 
-    $tabPoints = [1,3,4,6,7,8,9];
+    $tabPoints = [1,2,3,4,5,6,7,8,9];
     $tabDependances = [2,5];
     $this->idSujet = $idSujet;
 
@@ -67,8 +67,8 @@ class GenerationManager3{
     echo "</pre>";*/
 
     $listeValeurs = array();
-    $this->genererSujetAvecNouveauParametre(6,0,$listeValeursDesPoints,$listeValeurs, $tabDependances, $listeDependances);
-    return $this->memory2;//$this->memory;
+    $this->genererSujetAvecNouveauParametre(8,0,$listeValeursDesPoints,$listeValeurs, $tabDependances, $listeDependances);
+    return $this->memory;//$this->memory;
 
     /*$listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
     $listeValeurs_points_nbPersonnes = $valeurManager->getAllValeursOfPoints(3);
