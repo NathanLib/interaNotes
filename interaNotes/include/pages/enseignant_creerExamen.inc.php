@@ -384,7 +384,7 @@ if($listePromo===false) { ?>
                                     <select class="form-control" id="<?php echo 'liste'.$compteur ?>" multiple></select>
                                 </div>
                                 <div class="col-3 d-flex jsutify-content-center">
-                                    <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.",1)"; ?> type="button" value="Supprimer">
+                                    <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeurIntervalle(".$compteur.",1)"; ?> type="button" value="Supprimer">
                                         <img src="image/delete.png" alt="delete">
                                     </button>
                                 </div>
