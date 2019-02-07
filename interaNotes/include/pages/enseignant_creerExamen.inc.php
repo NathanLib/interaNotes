@@ -412,8 +412,7 @@ if($listePromo===false) { ?>
 
 <?php    } else { ?> 
 
-    <p> Normalement si tout va bien c'est envoyé m'sieur ! </p> 
-
+    <p>L'examen a été créé !</p>
     <?php
     $examenManager = new ExamenManager($db);
 
@@ -421,16 +420,7 @@ if($listePromo===false) { ?>
 
     $idExamen = $db->lastInsertId();
     $questions = $_POST;
-   //$examenManager->creerQuestion($questions);
-
-    foreach($_COOKIE as $key=>$value) {
-        if($key != "PHPSESSID"){
-            echo "key: ".$key.'<br />';
-            echo "value: ".$value.'<br />';
-
-            $points[$key]=$value;
-        }
-    }
+    $examenManager->creerQuestion($questions);
 
     $i=0;
     foreach ($points as $key => $value) {
@@ -453,7 +443,6 @@ if($listePromo===false) { ?>
         $i++;
 
     }
-    var_dump($listePoints);
     $examenManager->creerPoint($listePoints);
 
 
