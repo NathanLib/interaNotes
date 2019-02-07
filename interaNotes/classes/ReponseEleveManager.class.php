@@ -25,7 +25,8 @@ class ReponseEleveManager{
 	}
 
 	public function getAllReponseEleve($idSujet){
-		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet';
+		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS*/
+		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT 5';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
@@ -79,8 +80,8 @@ class ReponseEleveManager{
 	}
 
 	public function getReponseEleveByIdQuestion($idQuestion, $idSujet){
-
-		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idQuestion=:idQuestion AND idSujet=:idSujet';
+		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS*/
+		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idQuestion=:idQuestion AND idSujet=:idSujet ORDER BY dateResult DESC LIMIT 1';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idQuestion', $idQuestion);

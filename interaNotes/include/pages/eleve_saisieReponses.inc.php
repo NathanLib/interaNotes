@@ -7,6 +7,7 @@ $examenManager = new ExamenManager($pdo);
 $questionManager = new QuestionManager($pdo);
 $eleveManager = new EleveManager($pdo);
 $reponseEleveManager = new ReponseEleveManager($pdo);
+$noteManager = new NoteManager($pdo);
 
 $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']); // WARNING si plusieurs sujets
 $sujet = $sujetManager->getSujet($idSujet);
@@ -193,7 +194,25 @@ if(!$idSujet){
 
             $reponseEleveManager->importSaisie($reponseObj);
 
-        } ?>
+        } 
+        $questions = $questionManager->getAllQuestion($idSujet);
+        $noteTotal = 0;
+        
+        foreach ($questions as $question) {
+            $idQuestion = $question->getIdQuestion();
+            $reponse = $reponseEleveManager->getReponseEleveByIdQuestion($idQuestion, $idSujet);
+            $note = $noteManager->calculerNotePourUneQuestion($question, $reponse);
+            $noteTotal=$noteTotal+$note;
+        } 
+        $exist = $noteManager->noteExist($idSujet, $idEleve);
+        if (!$exist) {
+            $noteManager->insererNote($idSujet, $idEleve, $noteTotal);
+        }else{
+            $noteManager->updateNote($idSujet, $idEleve, $noteTotal);
+        }
+        
+        ?>
+
         <div class="messageEnvoiValide">
             <p>
                 <img src="image/valid.png">
