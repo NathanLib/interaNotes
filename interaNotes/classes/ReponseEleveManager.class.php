@@ -95,4 +95,24 @@ class ReponseEleveManager{
 		}
 		return false;
 	}
+	public function getDernièreReponsesEleve($idSujet){
+		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS*/
+
+		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT 5';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idSujet', $idSujet);
+		$requete->execute();
+
+		while($res = $requete->fetch(PDO::FETCH_OBJ)){
+			$listeReponses[] = new ReponseEleve($res);
+		}
+
+		$requete->closeCursor();
+
+		if(isset($listeReponses)) {
+			return $listeReponses;
+		}
+		return false;
+	}
 }
