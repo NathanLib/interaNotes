@@ -223,6 +223,19 @@ function supprimerValeur(i) {
     }
 }
 
+function supprimerValeurIntervalle(i) {
+
+    var liste = document.getElementById('liste'+i);
+
+    if(liste.options.selectedIndex >= 0) {
+        var optionIndex = liste.options.selectedIndex;
+        liste.options[optionIndex] = null;
+    } else {
+        i++;
+
+    }
+}
+
 function affichageSaisieValeurUnique(i){
     document.getElementById('valeursUniques'+i).style.display = "block";
     document.getElementById('boutonUnique'+i).disabled = true ;

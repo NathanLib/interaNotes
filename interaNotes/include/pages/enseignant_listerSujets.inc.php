@@ -42,7 +42,7 @@ if (!$listeSujets){ ?>
                 </div>
 
                 <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-                    <a href="index.php?page=20&amp;id=<?php echo $sujet->getIdSujet();?>">
+                    <a href="index.php?page=6&amp;id=<?php echo $sujet->getIdSujet();?>">
                         <input type="button" name="" value="Consulter">
                     </a>
                 </div>

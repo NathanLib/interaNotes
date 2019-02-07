@@ -80,39 +80,39 @@ if (!$idSujet){
                     <br>
                 </div>
             </div>
-        </div>     
+        </div>
         <table>
             <tr>
                 <th style="border: thin solid black; text-align: center;">
-                    Nombre moteurs 
+                    Nombre moteurs
                 </th>
                 <th style="border: thin solid black; text-align: center;">
-                    Vitesse de la fusée 
+                    Vitesse de la fusée
                 </th>
                 <th style="border: thin solid black; text-align: center;">
-                    Nombre de personnes  
+                    Nombre de personnes
                 </th>
                 <th style="border: thin solid black; text-align: center;">
-                    Destination 
+                    Destination
                 </th>
                 <th style="border: thin solid black; text-align: center;">
-                    Distance 
+                    Distance
                 </th>
                 <th style="border: thin solid black; text-align: center;">
-                    Consommation de carburant 
+                    Consommation de carburant
                 </th>
                 <th style="border: thin solid black; text-align: center;">
-                    Consommation d'eau 
+                    Consommation d'eau
                 </th>
                 <th style="border: thin solid black; text-align: center;">
-                    Consommation de nourriture 
+                    Consommation de nourriture
                 </th>
                 <th style="border: thin solid black; text-align: center;">
-                    Consommation d'oxygène 
+                    Consommation d'oxygène
                 </th>
             </tr>
             <tr>
-                <?php foreach ($valeurs as $val) { 
+                <?php foreach ($valeurs as $val) {
                     ?>
                     <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
 
@@ -159,7 +159,7 @@ if (!$idSujet){
         <div class="row d-flex w-100 justify-content-center">
             <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
                 <div class="boutonCorrection">
-                    <a href="index.php?page=23">
+                    <a href="index.php?page=19">
                         <input type=button value="Saisir réponses"></input>
                     </a>
                 </div>
@@ -170,7 +170,7 @@ if (!$idSujet){
                     <?php
                     $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $date, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
                     ?>
-                    <a href="include/pages/test_pdf.inc.php" target="_blank">
+                    <a href="include/pages/obtenirPdfSujet.inc.php" target="_blank">
                         <input type=button value="Télécharger"></input>
                     </a>
                 </div>
