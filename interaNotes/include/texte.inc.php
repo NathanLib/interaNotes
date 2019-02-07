@@ -49,7 +49,7 @@
 		break;
 
 		case 11:
-		include_once('pages/eleve_afficherSujet.inc.php');
+		//
 		break;
 
 		case 12:
@@ -65,11 +65,11 @@
 		break;
 
 		case 15:
-		include_once('pages/eleve_afficherSujetComplet.inc.php');
+		//
 		break;
 
 		case 16:
-		include_once('pages/eleve_afficherSujetCorrige.inc.php');
+		//
 		break;
 
 		case 17:
@@ -134,6 +134,14 @@
 
 		case 44:
 		include_once('pages/detailsCompte_mailPasswordOublie.inc.php');
+		break;
+
+		case 45:
+		include_once('pages/afficherSujet.inc.php');
+		break;
+
+		case 46:
+		include_once('pages/afficherSujet_avecResultats.inc.php');
 		break;
 
 		default:

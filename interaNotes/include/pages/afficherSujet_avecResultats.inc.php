@@ -8,7 +8,7 @@ $examenManager = new ExamenManager($db);
 $reponseEleveManager = new ReponseEleveManager($db);
 
 
-$idSujet = $_GET['id'];//WARNING
+$idSujet = $_GET['idSujet'];//WARNING
 
 if(isset($idSujet)) {
 
@@ -27,12 +27,12 @@ if(isset($idSujet)) {
 
 		$listeReponses = $reponseEleveManager->getAllReponseEleve($idSujet);
 
-		?>
+		if (isset($_SESSION['eleve']) && $dateDepot > $dateActuelle) { ?>
+			<h4 style="margin-top:30px">Résultats attendus : </h4>
+			<p>La date de dépôt du sujet n'est pas encore passée</p>
 
-		<?php  if ($dateDepot > $dateActuelle) { ?>
-			<h1>Erreur</h1>
-			<p>La date de fin du sujet n'est pas encore passée</p>
-		<?php } else { ?>
+		<?php
+		}else{ ?>
 			<h4 style="margin-top:30px">Résultats attendus : </h4>
 			<div class="row d-flex justify-content-center correctionSujet">
 				<div class="col-11 listImportStudent">
@@ -83,14 +83,20 @@ if(isset($idSujet)) {
 				</div>
 			</div>
 
+			<?php
+		} ?>
+
 			<h4> Résultats saisis par l'élève : </h4>
-			<?php if(!$listeReponses){
-				?>
+
+			<?php
+			if(!$listeReponses){ ?>
+
 				<p style="text-align:center;font-weight:bold; margin:10% 0;">
 					<img src="image/erreur.png" alt="erreur">
 					Aucune réponse saisie par l'élève
 				</p>
-				<?php
+
+			<?php
 			} else { ?>
 				<div class="col-12 listImportStudent">
 
@@ -125,11 +131,13 @@ if(isset($idSujet)) {
 					</table>
 				</div>
 
-			<?php } ?>
-		<?php }
+			<?php
+		 	}
+
 	} else {
 		header('Location: index.php?page=3');
 	}
+
 } else {
 	header('Location: index.php?page=3');
 } ?>

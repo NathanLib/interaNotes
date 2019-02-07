@@ -1,9 +1,16 @@
-<?php require_once("include/verifEleve.inc.php"); ?>
+<?php require_once("include/verifEleve.inc.php");
+
+$pdo = new Mypdo();
+$sujetManager = new SujetManager($pdo);
+$idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']);
+
+$examenManager = new ExamenManager($pdo);
+$_SESSION['examen'] = $examenManager->getExamen(1); //WARNING: préciser examen ?>
 
 <div class="row justify-content-center justify-content-around">
 
     <div class="col-6 col-lg-2 TicTacAccueil">
-        <a href="index.php?page=11">
+        <a href="index.php?page=45&amp;idSujet=<?php echo $idSujet ?>">
             <div class="tictac">
                 <div class="tictacHaut">
                     <img class="iconTictac" src="image/subject.png" alt="exam" title="exam">

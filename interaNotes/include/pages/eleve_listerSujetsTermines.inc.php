@@ -49,7 +49,7 @@ if (!$tabSujetTerminés){ ?>
                 </div>
 
                 <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-                    <a href="index.php?page=15&amp;id=<?php echo $sujet;?>">
+                    <a href="index.php?page=45&amp;idSujet=<?php echo $sujet;?>">
                         <input type="button" name="" value="Consulter">
                     </a>
                 </div>
