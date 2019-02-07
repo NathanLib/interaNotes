@@ -40,7 +40,7 @@
 		break;
 
 		case 7:
-		include_once('pages/test_afficherUnSujetCorrige.inc.php');
+		include_once('pages/enseignant_afficherUnSujetCorrige.inc.php');
 		break;
 
 		// WARNING: PARTIE ELEVE
