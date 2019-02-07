@@ -1,21 +1,5 @@
 <?php require_once("include/verifEnseignant.inc.php"); ?>
 
-
-<?php
-$pdo = new Mypdo();
-$examenManager = new ExamenManager($pdo);
-
-if(!isset($_SESSION['examen'])){
-  $numExamen = $examenManager->getIdExamenEnCours();
-
-  if(!$numExamen){
-    $_SESSION['examen'] = $examenManager->getExamen(1);
-  }else{
-    $_SESSION['examen'] = $examenManager->getExamen($numExamen);
-  }
-
-}
-?>
 <div class="row justify-content-around">
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">

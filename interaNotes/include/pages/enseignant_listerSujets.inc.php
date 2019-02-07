@@ -1,54 +1,66 @@
 <?php require_once("include/verifEnseignant.inc.php"); ?>
 
 <?php
-$pdo = new Mypdo();
-$sujetManager = new SujetManager($pdo);
-$personneManager = new PersonneManager($pdo);
+if(isset($_GET['id'])){
+  $pdo = new Mypdo();
+  $examenManager = new ExamenManager($pdo);
+  $sujetManager = new SujetManager($pdo);
+  $personneManager = new PersonneManager($pdo);
 
-$listeSujets = $sujetManager->getAllSujetsOfExamenAttribues($_SESSION['examen']->getIdExamen());
+  $_SESSION['examen'] = $examenManager->getExamen($_GET['id']);
+  $listeSujets = $sujetManager->getAllSujetsOfExamenAttribues($_GET['id']);
 
+  if (!$listeSujets){ ?>
+      <div class="msgErrorTitre">
+          <h3>Liste de sujets vide</h3>
+          <p>Aucun sujet n'a été attribué pour l'instant !</p>
+      </div>
+  <?php } else { ?>
 
-if (!$listeSujets){ ?>
-    <div class="msgErrorTitre">
-        <h3>Erreur sujet</h3>
-        <p>Aucun sujet n'a été attribué pour l'instant !</p>
-    </div>
-<?php } else { ?>
+      <div class="listerSujet">
 
-    <div class="listerSujet">
-        <?php // WARNING: BLOC A LAISSER ?>
-        <div class="row justify-content-around text-center teteListeSujet">
-            <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
-                <p> </p>
-            </div>
-            <div class="col-6 col-lg-4">
-                <span id="attributeTo">Attribué à : </span>
-            </div>
-            <div class="col-3 col-lg-2">
-            </div>
-        </div>
+          <div class="row justify-content-around text-center teteListeSujet">
+              <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
+                  <p> </p>
+              </div>
+              <div class="col-6 col-lg-4">
+                  <span id="attributeTo">Attribué à : </span>
+              </div>
+              <div class="col-3 col-lg-2">
+              </div>
+          </div>
 
-        <?php // WARNING: BLOC A GENERER EN PHP
-        foreach ($listeSujets as $sujet) { ?>
-            <div class="row justify-content-center text-center contenuListeSujet">
-                <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
-                    <p>Sujet n°<?php echo $sujet->getIdSujet() ?></p>
-                </div>
+          <?php
+          foreach ($listeSujets as $sujet) { ?>
+              <div class="row justify-content-center text-center contenuListeSujet">
+                  <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
+                      <p>Sujet n°<?php echo $sujet->getIdSujet() ?></p>
+                  </div>
 
-                <?php $eleve = $personneManager->getNomPrenomParSujet($sujet->getIdSujet()); ?>
+                  <?php $eleve = $personneManager->getNomPrenomParSujet($sujet->getIdSujet()); ?>
 
-                <div class="col-6 col-lg-4 textListeSujet">
-                    <p> <?php echo $eleve->getPrenomPersonne()." ".$eleve->getNomPersonne() ?></p>
-                </div>
+                  <div class="col-6 col-lg-4 textListeSujet">
+                      <p> <?php echo $eleve->getPrenomPersonne()." ".$eleve->getNomPersonne() ?></p>
+                  </div>
 
-                <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-                    <a href="index.php?page=6&amp;id=<?php echo $sujet->getIdSujet();?>">
-                        <input type="button" name="" value="Consulter">
-                    </a>
-                </div>
-            </div>
-        <?php }
-    }
-    ?>
+                  <!--Boutons d'actions sur chaque sujet-->
+                  <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
+                      <a href="index.php?page=6&amp;idSujet=<?php echo $sujet->getIdSujet();?>">
+                          <input type="button" name="" value="Consulter">
+                      </a>
+                  </div>
 
-</div>
+                  <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
+                      <a href="index.php?page=25&amp;idSujet=<?php echo $sujet->getIdSujet();?>">
+                          <input type="button" name="" value="Voir les réponses">
+                      </a>
+                  </div>
+              </div>
+          <?php }
+      }
+      ?>
+
+  </div>
+<?php }else{
+  header('Location: index.php?page=5');
+} ?>

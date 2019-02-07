@@ -8,7 +8,8 @@ class ExamenManager{
 
 	public function getAllExamens(){
 
-		$sql = 'SELECT idExamen, dateDepot, anneeScolaire FROM examen';
+		$sql = 'SELECT idExamen, dateDepot, anneeScolaire FROM examen e
+						ORDER BY e.dateDepot DESC';
 
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
@@ -71,7 +72,7 @@ class ExamenManager{
 		return new Examen($examen);
 	}
 
-	public function getIdExamenEnCours(){
+	public function getIdExamenEnCours(){ //WARNING : est inutile ?
 
 		$sql = 'SELECT DISTINCT s.idExamen FROM sujet s
 		INNER JOIN examen e ON (e.idExamen = s.idExamen)

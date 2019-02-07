@@ -1,62 +1,14 @@
 <?php
 require_once("include/verifEnseignant.inc.php");
 
-$db = new Mypdo();
-$examenManager = new ExamenManager($db);
+if (isset($_GET['idSujet'])) {
 
-$reponseEleveManager = new ReponseEleveManager($db);
+	$db = new Mypdo();
+	$examenManager = new ExamenManager($db);
+	$reponseEleveManager = new ReponseEleveManager($db);
+	$sujetManager = new SujetManager($db);
+	$personneManager = new PersonneManager($db);
 
-if (!isset($_GET['idSujet'])) {
-
-$sujetManager = new SujetManager($db);
-$personneManager = new PersonneManager($db);
-
-$listeSujets = $sujetManager->getAllSujetsOfExamenAttribues($_SESSION['examen']->getIdExamen());
-
-	if(!$listeSujets){
-		?>
-		<div class="msgErrorTitre">
-			<h3>Erreur sujet</h3>
-			<p>Aucun sujet n'a été attribué pour l'instant !</p>
-		</div>
-
-	<?php
-	} else { ?>
-
-		<div class="listerSujet">
-			<div class="row justify-content-around text-center teteListeSujet">
-				<div class="col-6 col-sm-3 col-lg-2 textListeSujet">
-					<p> </p>
-				</div>
-				<div class="col-6 col-lg-4">
-					<span id="attributeTo">Attribué à : </span>
-				</div>
-				<div class="col-3 col-lg-2">
-				</div>
-			</div>
-
-			<?php
-			foreach ($listeSujets as $sujet) { ?>
-				<div class="row justify-content-center text-center contenuListeSujet">
-					<div class="col-6 col-sm-3 col-lg-2 textListeSujet">
-						<p>Sujet n°<?php echo $sujet->getIdSujet() ?></p>
-					</div>
-
-					<?php $eleve = $personneManager->getNomPrenomParSujet($sujet->getIdSujet()); ?>
-
-					<div class="col-6 col-lg-4 textListeSujet">
-						<p> <?php echo $eleve->getPrenomPersonne()." ".$eleve->getNomPersonne() ?></p>
-					</div>
-
-					<div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-						<a href="index.php?page=25&amp;idSujet=<?php echo $sujet->getIdSujet() ?>"><input type="button" name="" value="Consulter Réponses"></a>
-					</div>
-				</div>
-			<?php }
-				} ?>
-	</div>
-
-<?php } else {
 	$listeReponses = $reponseEleveManager->getAllReponseEleve($_GET['idSujet']);
 
 	if(!$listeReponses){ ?>
@@ -101,4 +53,6 @@ $listeSujets = $sujetManager->getAllSujetsOfExamenAttribues($_SESSION['examen']-
 			</table>
 		</div>
 	<?php }
+}else{
+	header('Location: index.php?page=5');
 }?>
