@@ -7,7 +7,13 @@ $examenManager = new ExamenManager($pdo);
 
 if(!isset($_SESSION['examen'])){
   $numExamen = $examenManager->getIdExamenEnCours();
-  $_SESSION['examen'] = $examenManager->getExamen($numExamen);
+
+  if(!$numExamen){
+    $_SESSION['examen'] = $examenManager->getExamen(1);
+  }else{
+    $_SESSION['examen'] = $examenManager->getExamen($numExamen);
+  }
+
 }
 ?>
 <div class="row justify-content-around">

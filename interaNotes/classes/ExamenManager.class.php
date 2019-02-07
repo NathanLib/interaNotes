@@ -86,7 +86,7 @@ class ExamenManager{
 
 		$requete->closeCursor();
 
-		if(isset($examen)){
+		if(isset($examen->idExamen)){
 			return $examen->idExamen;
 		}
 
@@ -157,8 +157,8 @@ class ExamenManager{
 				break;
 			}
 		}
-		
-		$idExamen = $this->db->lastInsertId(); 
+
+		$idExamen = $this->db->lastInsertId();
 		$i = 1;
 
 		foreach ($listeQuestions as $key => $value) {
@@ -175,17 +175,17 @@ class ExamenManager{
 			} else {
 				$requete->bindValue(':estValeurParfaite',0); //false
 			}
-			
+
 			$requete->execute();
 			$i++;
 		}
-		
-	} 
+
+	}
 
 	public function creerPoint($listePoints) {
 
 		$i = 1;
-		$idExamen = $this->db->lastInsertId(); 
+		$idExamen = $this->db->lastInsertId();
 
 		foreach ($listePoints as $key => $value) {
 			$sql = 'INSERT INTO points(idPoint,idExamen,nomPoint,estDonneesCatia) VALUES (:idPoint,:idExamen,:nomPoint,:estDonneesCatia)';
@@ -195,15 +195,15 @@ class ExamenManager{
 			$requete->bindValue(':idExamen',$idExamen);
 			$requete->bindValue(':nomPoint',$key);
 			$requete->bindValue(':estDonneesCatia',0);
-			
+
 			$requete->execute();
-			
+
 			foreach ($value as $clé => $valeur) {
 
 				$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
 
 				$requete = $this->db->prepare($sql);
-			
+
 				$requete->bindValue(':idPoint',$i);
 				$requete->bindValue(':valeur',$valeur['valeur']);
 				$requete->bindValue(':exposantValeur',$valeur['exposantValeur']);
@@ -211,7 +211,7 @@ class ExamenManager{
 				$requete->bindValue(':uniteExposant',$valeur['uniteExposant']);
 
 				$requete->execute();
-				
+
 			}
 			$i++;
 		}
