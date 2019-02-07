@@ -36,11 +36,11 @@
 		break;
 
 		case 6:
-		include_once('pages/enseignant_afficherUnSujetComplet.inc.php');
+		//
 		break;
 
 		case 7:
-		include_once('pages/enseignant_afficherUnSujetCorrige.inc.php');
+		//
 		break;
 
 		// WARNING: PARTIE ELEVE
@@ -99,7 +99,7 @@
 		break;
 
 		case 25:
-		include_once('pages/test_AffichagePourcentage.inc.php');
+		//
 		break;
 
 		case 26:

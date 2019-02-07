@@ -150,6 +150,19 @@ class PersonneManager{
 
 	}
 
+	public function getPersonneById($idPersonne){
+
+		$sql = 'SELECT idPersonne, nom, prenom, mail, login FROM personne p WHERE p.idPersonne=:idPersonne';
+		$req = $this->db->prepare($sql);
+		$req->bindValue(':idPersonne',$idPersonne);
+		$req->execute();
+
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		$req->closeCursor();
+
+		return new Personne($res);
+	}
+
 	public function getPersonneByLogin($login){
 
 		$sql = 'SELECT idPersonne, nom, prenom, mail, login FROM personne p WHERE p.login=:login';

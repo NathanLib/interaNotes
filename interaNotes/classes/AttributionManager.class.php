@@ -7,6 +7,20 @@ class AttributionManager{
 		$this->db = $db;
 	}
 
+  public function getIdEleveByIdSujet($idSujet){
+
+		$sql = 'SELECT idEleve FROM exerciceattribue e WHERE e.idSujet = :idSujet';
+
+    $req = $this->db->prepare($sql);
+		$req->bindValue(':idSujet',$idSujet);
+		$req->execute();
+
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		$req->closeCursor();
+
+		return $res->idEleve;
+	}
+
   public function insererTableauAttribution($listeEleves, $listeSujets) {
     $tableauAttribution = $this->creerTableauAttributions($listeEleves, $listeSujets);
 

@@ -16,12 +16,15 @@ $sujetManager = new SujetManager($pdo);
     $questionManager = new QuestionManager($pdo);
     $eleveManager = new EleveManager($pdo);
 
+    $attributionManager = new AttributionManager($pdo);
+    $idEleve = $attributionManager->getIdEleveByIdSujet($idSujet);
+
     $sujet = $sujetManager->getSujet($idSujet);
     $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
     $examenSujet = $examenManager->getExamen($sujet->getIdExamenOfSujet());
 
     $personneManager = new PersonneManager($pdo);
-    $personneEleve = $personneManager->getPersonneByLogin($_SESSION['eleve']);
+    $personneEleve = $personneManager->getPersonneById($idEleve);
     $eleve = $eleveManager->getEleve($personneEleve);
     $valeurs = $valeurManager->getValeursSujet($idSujet);
 
@@ -144,7 +147,7 @@ $sujetManager = new SujetManager($pdo);
               </div>
 
               <?php
-              if ($dateActuelle < $dateDepot) { ?>
+              if (isset($_SESSION['eleve']) && $dateActuelle < $dateDepot) { ?>
                 <div class="row justify-content-center">
                   <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
                       <div class="boutonCorrection">

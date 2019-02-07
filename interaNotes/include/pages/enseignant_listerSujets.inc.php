@@ -45,14 +45,14 @@ if(isset($_GET['id'])){
 
                   <!--Boutons d'actions sur chaque sujet-->
                   <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-                      <a href="index.php?page=6&amp;idSujet=<?php echo $sujet->getIdSujet();?>">
+                      <a href="index.php?page=45&amp;idSujet=<?php echo $sujet->getIdSujet();?>">
                           <input type="button" name="" value="Consulter">
                       </a>
                   </div>
 
                   <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-                      <a href="index.php?page=25&amp;idSujet=<?php echo $sujet->getIdSujet();?>">
-                          <input type="button" name="" value="Voir les réponses">
+                      <a href="index.php?page=46&amp;idSujet=<?php echo $sujet->getIdSujet();?>">
+                        <input type="button" name="" value="Voir les réponses">
                       </a>
                   </div>
               </div>
