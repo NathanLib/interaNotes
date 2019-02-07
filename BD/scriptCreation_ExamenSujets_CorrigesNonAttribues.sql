@@ -334,7 +334,7 @@ CREATE TABLE `resultatsattendus` (
 
 LOCK TABLES `resultatsattendus` WRITE;
 /*!40000 ALTER TABLE `resultatsattendus` DISABLE KEYS */;
-INSERT INTO `resultatsattendus` VALUES (1,1,2550.00,0,'L',0),(2,1,750.00,3,'L',0),(1,2,34000.00,12,'g',0),(2,2,20000000.00,12,'g',0),(1,3,85.00,3,'g',0),(2,3,25000.00,3,'g',0),(1,4,63.75,0,'L',0),(2,4,18750.00,0,'L',0),(1,5,14.00,0,'jours',0),(2,5,2083.00,0,'jours',0);
+INSERT INTO `resultatsattendus` VALUES (1,1,14.00,0,'jours',0),(2,1,2083.00,0,'jours',0),(1,2,2550.00,0,'L',0),(2,2,750.00,3,'L',0),(1,3,34.00,3,'g',6),(2,3,20000000.00,12,'g',0),(1,4,85.00,0,'g',3),(2,4,25000.00,3,'g',0),(1,5,63.75,0,'L',0),(2,5,18750.00,0,'L',0);
 /*!40000 ALTER TABLE `resultatsattendus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,4 +444,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-05 14:11:16
+-- Dump completed on 2019-02-06 23:06:23

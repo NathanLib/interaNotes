@@ -34,7 +34,7 @@ if (!$idSujet){
     $image1 = "image/examen"."1"."/sujet".$idSujet."/FuséeMoteur".$valeurs[0]->getValeur().".jpg"; //WARNING METTRE EXAMEN SESSION
     $image2 = "image/examen"."1"."/sujet".$idSujet."/Astronaute".$valeurs[2]->getValeur().".jpg";
 
-
+    $_SESSION['question'] = $question;
     ?>
     <div class="row d-flex justify-content-center headCreateExam">
         <div class="col-12 col-md-4">
@@ -80,27 +80,49 @@ if (!$idSujet){
                     <br>
                 </div>
             </div>
-        </div>     
+        </div>
         <table>
-            <?php $Unicodelettre = 96;
-            foreach ($valeurs as $val) { 
-                $Unicodelettre = $Unicodelettre+1;
-                ?>
-                <tr>
-                    <?php echo('&#'.($Unicodelettre)); ?>
-                </tr>
-            <?php } ?>
-            <br>
-            <?php foreach ($valeurs as $val) { 
-                $Unicodelettre = $Unicodelettre+1;
-                ?>
-                <tr>
+            <tr>
+                <th style="border: thin solid black; text-align: center;">
+                    Nombre moteurs
+                </th>
+                <th style="border: thin solid black; text-align: center;">
+                    Vitesse de la fusée
+                </th>
+                <th style="border: thin solid black; text-align: center;">
+                    Nombre de personnes
+                </th>
+                <th style="border: thin solid black; text-align: center;">
+                    Destination
+                </th>
+                <th style="border: thin solid black; text-align: center;">
+                    Distance
+                </th>
+                <th style="border: thin solid black; text-align: center;">
+                    Consommation de carburant
+                </th>
+                <th style="border: thin solid black; text-align: center;">
+                    Consommation d'eau
+                </th>
+                <th style="border: thin solid black; text-align: center;">
+                    Consommation de nourriture
+                </th>
+                <th style="border: thin solid black; text-align: center;">
+                    Consommation d'oxygène
+                </th>
+            </tr>
+            <tr>
+                <?php foreach ($valeurs as $val) {
+                    ?>
+                    <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
 
-                    <?php echo($val->getValeur()); ?>
+                        <?php echo($val->getValeur()); ?>
 
-                </tr>
-            <?php } ?>
+                    </th>
+                <?php } ?>
+            </tr>
         </table>
+        <br>
 
         <div class="row" style="width: 100%;">
             <div class="col-12">
@@ -137,7 +159,7 @@ if (!$idSujet){
         <div class="row d-flex w-100 justify-content-center">
             <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
                 <div class="boutonCorrection">
-                    <a href="index.php?page=23">
+                    <a href="index.php?page=19">
                         <input type=button value="Saisir réponses"></input>
                     </a>
                 </div>
@@ -148,7 +170,7 @@ if (!$idSujet){
                     <?php
                     $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $date, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
                     ?>
-                    <a href="include/pages/test_pdf.inc.php" target="_blank">
+                    <a href="include/pages/obtenirPdfSujet.inc.php" target="_blank">
                         <input type=button value="Télécharger"></input>
                     </a>
                 </div>

@@ -55,6 +55,13 @@ class PDF extends FPDF
         $this->MultiCell(0,10,$enonce,0,1);
     }
 
+    function AddQuestion($question){
+        $this->SetFont('Arial','BU',12);
+        $this->Cell(25,10,"Enoncé : ",0,1);
+        $this->SetFont('Arial','',12);
+        $this->MultiCell(0,10,$question,0,1);
+    }
+
      function AddImages($image1,$image2){
         $this->SetFont('Arial','BU',12);
         $this->Cell(25,10,"Images : ",0,0);

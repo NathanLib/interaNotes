@@ -76,7 +76,7 @@ if(isset($_GET['id'])){ //WARNING gérer quand l'id n'existe pas dans la base
                     <div class="row justify-content-center">
                         <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
                             <div class="boutonCorrection">
-                                <a href="index.php?page=21&amp;id=<?php echo $sujet->getIdSujet();?>">
+                                <a href="index.php?page=7&amp;id=<?php echo $sujet->getIdSujet();?>">
                                     <input type=button value="Correction"></input>
                                 </a>
                             </div>
@@ -87,7 +87,7 @@ if(isset($_GET['id'])){ //WARNING gérer quand l'id n'existe pas dans la base
                                 <?php
                                 $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $date, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
                                 ?>
-                                <a href="include/pages/test_pdf.inc.php" target="_blank">
+                                <a href="include/pages/obtenirPdfSujet.inc.php" target="_blank">
                                     <input type=button value="Télécharger"></input>
                                 </a>
                             </div>
