@@ -422,6 +422,12 @@ if($listePromo===false) { ?>
     $questions = $_POST;
     $examenManager->creerQuestion($questions);
 
+    foreach($_COOKIE as $key=>$value) {
+        if($key != "PHPSESSID"){
+            $points[$key]=$value;
+        }
+    }
+
     $i=0;
     foreach ($points as $key => $value) {
         $listeDonnees = explode(",", $value);
