@@ -19,7 +19,7 @@ if(empty($_POST['mdp'])) { ?>
         <div class="col-9 col-md-6">
             <div class="row justify-content-center">
                 <div class="col-sm-5 logoConnexion">
-                    <img class="logoConnexion" src="image/board.png" alt="logo" title="logo">
+                    <img class="logoConnexion" src="image/board.png" alt="logo" title="Intera Notes">
                 </div>
                 <div class="col-sm-7 text-center interaNoteConnexion">
                     <h2>Intera Note</h2>
@@ -65,7 +65,7 @@ if(empty($_POST['mdp'])) { ?>
             <div class="col-9 col-md-6">
                 <div class="row justify-content-center">
                     <div class="col-sm-5 logoConnexion">
-                        <img class="logoConnexion" src="image/board.png" alt="logo" title="logo">
+                        <img class="logoConnexion" src="image/board.png" alt="logo" title="Intera Notes">
                     </div>
                     <div class="col-sm-7 text-center interaNoteConnexion">
                         <h2>Intera Note</h2>
@@ -75,7 +75,7 @@ if(empty($_POST['mdp'])) { ?>
                 <!--<form action="#" method="post">-->
                 <form action="index.php?page=0" method="post">
                     <div class="messageErreurConnexion">
-                        <img src="image/erreur.png" alt="Erreur" title="Erreur" />
+                        <img src="image/erreur.png" alt="Erreur" title="Erreur connexion" />
                         <span style="font-weight:bold">Login / Mot de passe incorrect</span>
                     </div>
                     <div class="row">

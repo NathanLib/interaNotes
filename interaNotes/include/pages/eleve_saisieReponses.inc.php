@@ -51,7 +51,7 @@ if(!$idSujet){
                     <hr class="hr" style="width:80%">
                     <div class="col-12 d-flex justify-content-center" id="needHelp">
                         <span class="more_info" id="text_info">
-                            <img class="helpIcon" src="image/help.svg" alt="help" title="help">
+                            <img class="helpIcon" src="image/help.svg" alt="help" title="Aide">
                             Besoin d'aide ?
                             <div class="popup">
                             </br> <h3>Comment&nbspsaisir vos&nbspréponses ?</h3>  </br>
@@ -194,23 +194,23 @@ if(!$idSujet){
 
             $reponseEleveManager->importSaisie($reponseObj);
 
-        } 
+        }
         $questions = $questionManager->getAllQuestion($idSujet);
         $noteTotal = 0;
-        
+
         foreach ($questions as $question) {
             $idQuestion = $question->getIdQuestion();
             $reponse = $reponseEleveManager->getReponseEleveByIdQuestion($idQuestion, $idSujet);
             $note = $noteManager->calculerNotePourUneQuestion($question, $reponse);
             $noteTotal=$noteTotal+$note;
-        } 
+        }
         $exist = $noteManager->noteExist($idSujet, $idEleve);
         if (!$exist) {
             $noteManager->insererNote($idSujet, $idEleve, $noteTotal);
         }else{
             $noteManager->updateNote($idSujet, $idEleve, $noteTotal);
         }
-        
+
         ?>
 
         <div class="messageEnvoiValide">

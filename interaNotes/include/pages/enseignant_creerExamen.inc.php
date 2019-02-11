@@ -7,7 +7,7 @@ $eleveManager = new EleveManager($db);
 
 $listePromo = $eleveManager->getAllPromo();
 
-if($listePromo===false) { ?>
+if(!$listePromo) { ?>
     <div class="msgErrorTitre">
         <h3>Erreur saisie</h3>
         <p>Il n'y a aucune promotion enregistrée</p>
@@ -19,7 +19,7 @@ if($listePromo===false) { ?>
 
         <div class="col-12 d-flex justify-content-center" id="needHelp" style="margin-top:20px;">
             <span class="more_info" id="text_info">
-                <img class="helpIcon" src="image/help.svg" alt="help" title="help">
+                <img class="helpIcon" src="image/help.svg" alt="help" title="Aide">
                 Besoin d'aide ?
                 <div class="popup">
                 </br> <h3>Comment saisir un énoncé ?</h3>  </br>
@@ -112,7 +112,7 @@ if($listePromo===false) { ?>
 
     <div class="col-12 d-flex justify-content-center" id="needHelp">
         <span class="more_info" id="text_info">
-            <img class="helpIcon" src="image/help.svg" alt="help" title="help">
+            <img class="helpIcon" src="image/help.svg" alt="help" title="Aide">
             Besoin d'aide ?
             <div class="popup">
             </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
@@ -410,7 +410,7 @@ if($listePromo===false) { ?>
 </form>
 
 
-<?php    } else { ?> 
+<?php    } else { ?>
 
     <p>L'examen a été créé !</p>
     <?php
@@ -443,7 +443,7 @@ if($listePromo===false) { ?>
                 $listePoints[$point][$key]['uniteValeur']=$donnees[2];
                 $listePoints[$point][$key]['uniteExposant']=$donnees[3];
             } else {
-                //intervalles HELP           
+                //intervalles HELP
             }
         }
         $i++;

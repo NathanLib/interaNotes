@@ -123,7 +123,7 @@ if(isset($idSujet)) {
 									<td><?php echo $reponse->getResultatUnite() ?></td>
 									<td><?php echo $reponse->getExposantUnite() ?></td>
 									<td><?php echo $reponse->getResultatExposant() ?></td>
-									<td><?php echo $reponse->getJustification() ?></td>
+									<td style="overflow-wrap: break-word;max-width:400px"><?php echo $reponse->getJustification() ?></td>
 									<td><?php echo $reponse->getPrecisionReponse() ?> %</td>
 								</tr>
 							<?php } ?>

@@ -6,7 +6,7 @@
         <a href="index.php?page=4">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/exam.png" alt="exam" title="exam">
+                    <img class="iconTictac" src="image/exam.png" alt="exam" title="Créer un examen">
                 </div>
 
                 <div class="tictacBas">
@@ -20,7 +20,7 @@
         <a href="index.php?page=5">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/liste.png" alt="exam" title="exam">
+                    <img class="iconTictac" src="image/liste.png" alt="exam" title="Mes examens">
                 </div>
 
                 <div class="tictacBas">
@@ -34,7 +34,7 @@
         <a href="index.php?page=2">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/student.png" alt="exam" title="exam">
+                    <img class="iconTictac" src="image/student.png" alt="exam" title="Mes élèves">
                 </div>
 
                 <div class="tictacBas">
@@ -48,7 +48,7 @@
         <a href="#">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/questions.png" alt="exam" title="exam">
+                    <img class="iconTictac" src="image/questions.png" alt="exam" title="Questions reçues">
                 </div>
 
                 <div class="tictacBas">
@@ -62,7 +62,7 @@
         <a href="index.php?page=41">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/parameter.png" alt="exam" title="exam">
+                    <img class="iconTictac" src="image/parameter.png" alt="exam" title="Mon compte">
                 </div>
 
                 <div class="tictacBas">

@@ -24,7 +24,7 @@ if (isset($_SESSION['eleve'])){
         <div class="row headDetailCompte">
             <div class="col-12 col-sm-4 col-lg-12 imgDetailsCompte">
                 <div class="iconStudentDetailsCompte">
-                    <img class="studentImg" src="<?php echo $cheminImage; ?>" alt="subject" title="subject">
+                    <img class="studentImg" src="<?php echo $cheminImage; ?>" alt="subject" title="Mon compte">
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-lg-12 nameDetailsCompte">
