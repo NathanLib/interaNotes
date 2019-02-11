@@ -90,22 +90,6 @@
 		include_once('pages/test_generationSujets.inc.php');
 		break;
 
-		case 23:
-		//
-		break;
-
-		case 24:
-		include_once('pages/test_publipostage.inc.php');
-		break;
-
-		case 25:
-		//
-		break;
-
-		case 26:
-		include_once('pages/test_affDivJS.inc.php');
-		break;
-
 		case 27:
 		include_once('pages/test_Correction.inc.php');
 		break;

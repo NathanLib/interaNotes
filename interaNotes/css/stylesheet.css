@@ -793,14 +793,17 @@ span#text_info, p#text_info {
     background-color: #333;
     padding: 3px 6px;
 }
+
 .choixTypesValeurs div {
     padding: 0;
     margin-top: 15px;
     margin-bottom: 25px;
 }
+
 .divPuissanceResult {
     margin-bottom: 10px;
 }
+
 .divPuissanceResult span {
     margin-top: 13px;
     font-size: 20px;
@@ -828,18 +831,22 @@ span#text_info, p#text_info {
 .divListeValeursTrash {
     margin: 20px 0;
 }
+
 .myTrash {
     border: 0;
     background : none;
     width: 75%;
 }
+
 .myTrash img {
     width: 32px;
     height: 32px;
 }
+
 .listeValeur {
     padding: 0;
 }
+
 .selectMultiplesValeurs {
     overflow: auto;
 }

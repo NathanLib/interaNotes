@@ -30,43 +30,43 @@
 		$_SESSION['titre'] = "Créer un examen";
 		break;
 
+		case 5:
+		$_SESSION['titre'] = "Lister mes examens";
+		break;
+
 		// WARNING: PARTIE ELEVE
 		case 10:
 		$_SESSION['titre'] = "Accueil";
 		break;
 
-		case 11:
-		$_SESSION['titre'] = "Mon sujet";
+		case 12:
+		$_SESSION['titre'] = "Poser une question";
+		break;
+
+		case 14:
+		$_SESSION['titre'] = "Lister mes sujets terminés";
+		break;
+
+		case 17:
+		$_SESSION['titre'] = "Consulter mes notes";
+		break;
+
+		case 18:
+		$_SESSION['titre'] = "Détails des notes";
+		break;
+
+		case 19:
+		$_SESSION['titre'] = "Saisir mes réponses";
 		break;
 
 		// WARNING: PARTIE TEST
 
-		case 20:
-		$_SESSION['titre'] = "Test - sujet complet";
-		break;
-
-		case 21:
-		$_SESSION['titre'] = "Test - sujet corrigé";
-		break;
-
 		case 22:
-		$_SESSION['titre'] = "Test - génération sujets";
+		$_SESSION['titre'] = "Test - Génération de sujets";
 		break;
 
-		case 23:
-		$_SESSION['titre'] = "Test - saisie élève";
-		break;
-
-		case 24:
-		$_SESSION['titre'] = "Test - Publipostage";
-		break;
-
-		case 25:
-		$_SESSION['titre'] = "Test - affichage correction";
-		break;
-
-		case 26:
-		$_SESSION['titre'] = "Test - affichage Pop up";
+		case 27:
+		$_SESSION['titre'] = "Test - Correction";
 		break;
 
 		// WARNING : Pages communes
@@ -89,6 +89,14 @@
 
 		case 44:
 		$_SESSION['titre'] = "Mot de passe oublié";
+		break;
+
+		case 45:
+		$_SESSION['titre'] = "Afficher le sujet";
+		break;
+
+		case 46:
+		$_SESSION['titre'] = "Afficher le sujet et les résultats";
 		break;
 	}
 
