@@ -22,6 +22,7 @@ $sujetManager = new SujetManager($pdo);
     $sujet = $sujetManager->getSujet($idSujet);
     $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
     $examenSujet = $examenManager->getExamen($sujet->getIdExamenOfSujet());
+    $dateDepot = $examenSujet->getDateDepotExamen();
 
     $personneEleve = $personneManager->getPersonneById($idEleve);
     $eleve = $eleveManager->getEleve($personneEleve);
