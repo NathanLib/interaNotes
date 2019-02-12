@@ -9,21 +9,20 @@ $sujetManager = new SujetManager($pdo);
 
   if($sujetManager->exists($idSujet)){
 
-    $enonceManager = new EnonceManager($pdo);
     $examenManager = new ExamenManager($pdo);
-    $valeurManager = new ValeurManager($pdo);
-    $pointManager = new PointManager($pdo);
+    $enonceManager = new EnonceManager($pdo);
     $questionManager = new QuestionManager($pdo);
+    $valeurManager = new ValeurManager($pdo);
+    $personneManager = new PersonneManager($pdo);
     $eleveManager = new EleveManager($pdo);
-
     $attributionManager = new AttributionManager($pdo);
+
     $idEleve = $attributionManager->getIdEleveByIdSujet($idSujet);
 
     $sujet = $sujetManager->getSujet($idSujet);
     $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
     $examenSujet = $examenManager->getExamen($sujet->getIdExamenOfSujet());
 
-    $personneManager = new PersonneManager($pdo);
     $personneEleve = $personneManager->getPersonneById($idEleve);
     $eleve = $eleveManager->getEleve($personneEleve);
     $valeurs = $valeurManager->getValeursSujet($idSujet);
@@ -31,8 +30,6 @@ $sujetManager = new SujetManager($pdo);
     $titre = $enonceSujet->getTitreEnonce();
     $enonce = $enonceSujet->getConsigneEnonce();
     $question = $questionManager->getAllQuestion($idSujet);
-    $dateDepot = $examenSujet->getDateDepotExamen();
-    $dateActuelle = date("Y-m-d H:i:s");
 
     $image1 = "image/examen".$_SESSION['examen']->getIdExamen()."/sujet".$idSujet."/FuséeMoteur".$valeurs[0]->getValeur().".jpg";
     $image2 = "image/examen".$_SESSION['examen']->getIdExamen()."/sujet".$idSujet."/Astronaute".$valeurs[2]->getValeur().".jpg"; ?>
@@ -147,7 +144,7 @@ $sujetManager = new SujetManager($pdo);
               </div>
 
               <?php
-              if (isset($_SESSION['eleve']) && $dateActuelle < $dateDepot) { ?>
+              if (isset($_SESSION['eleve']) && !$examenSujet->estFini()) { ?>
                 <div class="row justify-content-center">
                   <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center">
                       <div class="boutonCorrection">

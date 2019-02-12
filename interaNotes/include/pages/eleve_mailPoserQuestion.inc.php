@@ -1,6 +1,6 @@
 <?php
 if(isset($_SESSION['objet'])){
-
+  //WARNING:mettre l'email du prof concerné
 $mail = "jeremy.lorthioir@etu.unilim.fr"; // Déclaration de l'adresse de destination.
 $mailEtudiant = $_SESSION['mail'];
 $sujet = "Vous avez recu une nouvelle question !"; // Déclaration du sujet du mail.
@@ -28,7 +28,7 @@ Vous avez recu une nouvelle question de ".$prenom." ".$nom."\n
   Répondez à l'étudiant en utilisant cette adresse mail : ".$mailEtudiant."\n
 ";
 
-$message_html =" 
+$message_html ="
 <html>
   <head>
   </head>
@@ -46,7 +46,7 @@ $message_html ="
     padding : 5px 10px;
     width: 200px;
     cursor: pointer;
-    margin-left: 40%; 
+    margin-left: 40%;
     ' href='mailto:".$mailEtudiant."'> Répondre </a>
     </div>
   </body>

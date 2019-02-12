@@ -1,14 +1,11 @@
 <?php
 $db = new Mypdo();
-$corrigeManager = new CorrigeManager($db);
 $questionManager = new QuestionManager($db);
 $sujetManager = new SujetManager($db);
-$enonceManager = new EnonceManager($db);
 $examenManager = new ExamenManager($db);
 $reponseEleveManager = new ReponseEleveManager($db);
 
-
-$idSujet = $_GET['idSujet'];//WARNING
+$idSujet = $_GET['idSujet'];
 
 if(isset($idSujet)) {
 
@@ -22,12 +19,9 @@ if(isset($idSujet)) {
 		$sujet = $sujetManager->getSujet($idSujet);
 		$examenSujet = $examenManager->getExamen($sujet->getIdExamenOfSujet());
 
-		$dateDepot = $examenSujet->getDateDepotExamen();
-		$dateActuelle = date("Y-m-d H:i:s");
-
 		$listeReponses = $reponseEleveManager->getAllReponseEleve($idSujet);
 
-		if (isset($_SESSION['eleve']) && $dateDepot > $dateActuelle) { ?>
+		if (isset($_SESSION['eleve']) && !$examenSujet->estFini()) { ?>
 			<h4 style="margin-top:30px">Résultats attendus : </h4>
 			<p>La date de dépôt du sujet n'est pas encore passée</p>
 

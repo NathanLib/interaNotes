@@ -6,17 +6,17 @@
         <form method="post" action="#">
 
             <div class="form-group">
-                <label for="objet" class="form-label">Veuillez saisir l'objet du mail</label>
-                <input class="form-input" type="text" id="objet" name="objet"  required/>
+              <label for="objet" class="form-label">Veuillez saisir l'objet du mail</label>
+              <input class="form-input" type="text" id="objet" name="objet" required/>
             </div>
 
             <div>
-                <label for="contenu" class="form-label">Veuillez saisir le contenu du mail</label>
-                <textarea id="phMail" class="form-control" onkeyup="adjustHeightTextAreaSmall(this)" placeholder='Détaillez la question ici ...' maxlength="65535" id="contenu" name="contenu" cols="12" rows="3" required></textarea>
+              <label for="contenu" class="form-label">Veuillez saisir le contenu du mail</label>
+              <textarea id="phMail" class="form-control" onkeyup="adjustHeightTextAreaSmall(this)" placeholder='Détaillez la question ici ...' maxlength="65535" id="contenu" name="contenu" cols="12" rows="3" required></textarea>
             </div>
 
             <div class="form-group divMdpButton">
-                <input class="detailMdpButton" type="submit" value="Valider" class="btn"/>
+              <input class="detailMdpButton" type="submit" value="Valider" class="btn"/>
             </div>
 
         </form>
@@ -44,4 +44,6 @@
         <p>L'adresse mail insérée ne correspond à aucun compte, veuillez vérifier votre adresse mail et essayer à nouveau</p>
     </div>
 
-<?php }} ?>
+<?php
+  }
+} ?>

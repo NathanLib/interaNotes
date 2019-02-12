@@ -3,7 +3,6 @@ $pdo = new Mypdo();
 
 $sujetManager = new SujetManager($pdo);
 $enonceManager = new EnonceManager($pdo);
-$examenManager = new ExamenManager($pdo);
 $noteManager = new NoteManager($pdo);
 
 $tabSujetTermines = $sujetManager->getSujetTermineByLogin($_SESSION['eleve']);?>
@@ -31,28 +30,31 @@ if (!$tabSujetTermines){ ?>
 
         <?php
         foreach ($tabSujetTermines as $sujet) {
-        	$sujetComplet = $sujetManager->getSujet($sujet);
-        	?>
-            <div class="row justify-content-center text-center contenuListeSujet">
-                <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
-                    <p><?php $enonce =  $enonceManager->getEnonce($sujetComplet->getIdEnonce());
-                    	echo($enonce->getTitreEnonce());?>
-                    </p>
-                </div>
+        	$sujetComplet = $sujetManager->getSujet($sujet); ?>
 
-                <div class="col-6 col-lg-4 textListeSujet">
-                    <p> <?php $note = $noteManager->getNoteByIdSujet($sujet);
-                    		echo($note->getNote());?>
-                    </p>
-                </div>
-
-                <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
-                    <a href="index.php?page=45&amp;idSujet=<?php echo $sujet;?>">
-                        <input type="button" name="" value="Consulter">
-                    </a>
-                </div>
+          <div class="row justify-content-center text-center contenuListeSujet">
+            <div class="col-6 col-sm-3 col-lg-2 textListeSujet">
+              <p>
+                <?php $enonce =  $enonceManager->getEnonce($sujetComplet->getIdEnonce());
+              	echo($enonce->getTitreEnonce());?>
+              </p>
             </div>
-        <?php }
+
+            <div class="col-6 col-lg-4 textListeSujet">
+                <p>
+                  <?php $note = $noteManager->getNoteByIdSujet($sujet);
+                	echo($note->getNote());?>
+                </p>
+            </div>
+
+            <div class="col-6 col-sm-3 col-lg-2 buttonConsulter">
+                <a href="index.php?page=45&amp;idSujet=<?php echo $sujet;?>">
+                  <input type="button" name="" value="Consulter">
+                </a>
+            </div>
+          </div>
+        <?php
+      }
     }
     ?>
 

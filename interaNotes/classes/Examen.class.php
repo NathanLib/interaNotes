@@ -69,7 +69,7 @@ class Examen{
 		}
 	}
 
-	private function estFini(){
+	public function estFini(){
 		$dateFin = new DateTime($this->dateDepot);
 		$dateDuJour = new DateTime();
 		return $dateDuJour >= $dateFin;

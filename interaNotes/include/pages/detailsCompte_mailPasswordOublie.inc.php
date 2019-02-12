@@ -8,9 +8,6 @@ unset($_SESSION['mail']);
 unset($_SESSION['passwd']);
 
 $passage_ligne = "\n";
-//    <img src='image/board.png' alt='Logo'>
-
-//$imageBoard = "../../image/board.png";
 
 //=====Déclaration des messages au format texte et au format HTML.
 $message_txt = "Intera Notes\n
@@ -21,7 +18,7 @@ Veuillez le modifier le plus rapidement possible. Pour cela, rendez vous sur vot
 Merci et à bientôt sur Intera Notes !\n
 L'équipe Intera Notes.";
 
-$message_html =" 
+$message_html ="
 <html>
   <head>
   </head>

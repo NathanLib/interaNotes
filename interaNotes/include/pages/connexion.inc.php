@@ -5,15 +5,6 @@ if (isset($_SESSION['eleve'])){
     header('Location: index.php?page=1');
 }
 
-//echo "<br>";
-//echo "charente : ".createProtectedPassword("charente");
-//echo "<br>";
-//echo "pirate : ".createProtectedPassword("pirate");
-//echo "<br>";
-//echo "vitesse : ".createProtectedPassword("vitesse");
-//echo "<br>";
-//echo "tintin : ".createProtectedPassword("tintin");
-
 if(empty($_POST['mdp'])) { ?>
     <div class="row justify-content-center contenuConnexion">
         <div class="col-9 col-md-6">
@@ -107,17 +98,17 @@ if(empty($_POST['mdp'])) { ?>
         break;
 
         case "eleve":
-        $_SESSION['eleve']=$_POST['login'];
-        header('Location: index.php?page=10');
-        break;
+          $_SESSION['eleve']=$_POST['login'];
+          header('Location: index.php?page=10');
+          break;
 
         case "enseignant":
-        $_SESSION['enseignant']=$_POST['login'];
-        header('Location: index.php?page=1');
-        break;
+          $_SESSION['enseignant']=$_POST['login'];
+          header('Location: index.php?page=1');
+          break;
 
         default:
-        header('Location: index.php?page=0');
-        break;
+          header('Location: index.php?page=0');
+          break;
     }
 } ?>
