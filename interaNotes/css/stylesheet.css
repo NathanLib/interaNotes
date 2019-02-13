@@ -183,6 +183,9 @@ footer .text-uppercase {
     margin: 0;
     padding: 10px 0;
 }
+.listerSujet .row {
+    margin : 0 12%;
+}
 .listerSujet input {
     margin: 10px 0;
     width: 135px;
@@ -211,9 +214,9 @@ footer .text-uppercase {
     color: #ededed;
     padding-right: 1px;
     padding-left: 1px;
-    width: 80%;
     margin-top: 3%;
     cursor: pointer;
+    width: 150px;
 }
 .contenuListeSujet p {
     margin: 0;
