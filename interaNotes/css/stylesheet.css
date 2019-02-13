@@ -360,14 +360,27 @@ footer .text-uppercase {
 .mySubject {
     margin: 5%;
 }
+.mySubject h1 {
+    margin-top: -50px;
+}
 .mySubject span {
     font-weight: bold;
+}
+.mySubject th, .mySubject td {
+    padding: 0 15px;
 }
 #subjectTitle {
     text-decoration: underline;
 }
+div.subjectTitle {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.mesBtnSujet {
+    display: flex;
+    justify-content: center;
+}
 .textSubject {
-    margin: 2% 5%;
     text-align: justify;
 }
 .boutonCorrection input, .boutonTelecharger input{
@@ -376,9 +389,14 @@ footer .text-uppercase {
     border: 0;
     border-radius: 25px;
     padding: 5px 10px;
-    width: 150px;
+    width: 175px;
     margin: 10% 0 0 0;
     cursor: pointer;
+}
+.headAfficherSujet {
+    margin-top: 20px;
+    margin-bottom: -23px;
+    text-align: center;
 }
 
 /* Page enseignant_creerExamen */
@@ -861,14 +879,6 @@ span#text_info, p#text_info {
     .logoConnexion {
         width: 75%;
         height: 75%;
-    }
-
-    /* Page afficher sujet complet */
-    .boutonCorrection input {
-        margin-left: -100px;
-    }
-    .boutonTelecharger input {
-        margin-right: -100px;
     }
 
     /* Page prof lister sujet */
