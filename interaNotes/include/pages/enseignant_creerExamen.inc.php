@@ -157,11 +157,10 @@ if($listePromo===false) { ?>
                                 <input type="number" id="bareme0" name="bareme0" class="form-control bareme" placeholder="Barème" step="0.25" min="0.25" max="20" required>
                             </div>
                             <div class="col-6 col-md-3" style="padding-top:8px">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" id="valeurParfaite0" name="valeurParfaite0" class="custom-control-input">
-                                    <label class="custom-control-label" for="valeurParfaite0">Valeur parfaite</label>
+                                <div class="custom-control">
+                                    <input type="number" class="form-control bareme" id="valeurParfaite" name="zoneTolerance" min=0 max=100 step="0.5">
+                                    <label id="labelValeurParfaite" for="valeurParfaite">% de tolérance</label>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -181,9 +180,9 @@ if($listePromo===false) { ?>
                                     <input disabled="disabled" type="number" id="bareme" name="bareme" class="form-control bareme" placeholder="Barème" step="0.25" min="0.25" max="20">
                                 </div>
                                 <div class="col-6 col-md-3" style="padding-top:8px">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="valeurParfaite" name="valeurParfaite">
-                                        <label id="labelValeurParfaite" class="custom-control-label" for="valeurParfaite">Valeur parfaite</label>
+                                    <div class="custom-control">
+                                        <input type="number" class="form-control bareme" id="valeurParfaite" name="zoneTolerance" min=0 max=100 step="0.5">
+                                        <label id="labelValeurParfaite" for="valeurParfaite">% de tolérance</label>
                                     </div>
                                 </div>
 
