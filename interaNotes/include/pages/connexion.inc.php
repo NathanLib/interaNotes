@@ -5,21 +5,12 @@ if (isset($_SESSION['eleve'])){
     header('Location: index.php?page=1');
 }
 
-//echo "<br>";
-//echo "charente : ".createProtectedPassword("charente");
-//echo "<br>";
-//echo "pirate : ".createProtectedPassword("pirate");
-//echo "<br>";
-//echo "vitesse : ".createProtectedPassword("vitesse");
-//echo "<br>";
-//echo "tintin : ".createProtectedPassword("tintin");
-
 if(empty($_POST['mdp'])) { ?>
     <div class="row justify-content-center contenuConnexion">
         <div class="col-9 col-md-6">
             <div class="row justify-content-center">
                 <div class="col-sm-5 logoConnexion">
-                    <img class="logoConnexion" src="image/board.png" alt="logo" title="logo">
+                    <img class="logoConnexion" src="image/board.png" alt="logo" title="Intera Notes">
                 </div>
                 <div class="col-sm-7 text-center interaNoteConnexion">
                     <h2>Intera Note</h2>
@@ -65,7 +56,7 @@ if(empty($_POST['mdp'])) { ?>
             <div class="col-9 col-md-6">
                 <div class="row justify-content-center">
                     <div class="col-sm-5 logoConnexion">
-                        <img class="logoConnexion" src="image/board.png" alt="logo" title="logo">
+                        <img class="logoConnexion" src="image/board.png" alt="logo" title="Intera Notes">
                     </div>
                     <div class="col-sm-7 text-center interaNoteConnexion">
                         <h2>Intera Note</h2>
@@ -75,7 +66,7 @@ if(empty($_POST['mdp'])) { ?>
                 <!--<form action="#" method="post">-->
                 <form action="index.php?page=0" method="post">
                     <div class="messageErreurConnexion">
-                        <img src="image/erreur.png" alt="Erreur" title="Erreur" />
+                        <img src="image/erreur.png" alt="Erreur" title="Erreur connexion" />
                         <span style="font-weight:bold">Login / Mot de passe incorrect</span>
                     </div>
                     <div class="row">
@@ -107,17 +98,17 @@ if(empty($_POST['mdp'])) { ?>
         break;
 
         case "eleve":
-        $_SESSION['eleve']=$_POST['login'];
-        header('Location: index.php?page=10');
-        break;
+          $_SESSION['eleve']=$_POST['login'];
+          header('Location: index.php?page=10');
+          break;
 
         case "enseignant":
-        $_SESSION['enseignant']=$_POST['login'];
-        header('Location: index.php?page=1');
-        break;
+          $_SESSION['enseignant']=$_POST['login'];
+          header('Location: index.php?page=1');
+          break;
 
         default:
-        header('Location: index.php?page=0');
-        break;
+          header('Location: index.php?page=0');
+          break;
     }
 } ?>

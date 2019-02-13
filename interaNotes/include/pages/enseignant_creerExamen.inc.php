@@ -7,7 +7,7 @@ $eleveManager = new EleveManager($db);
 
 $listePromo = $eleveManager->getAllPromo();
 
-if($listePromo===false) { ?>
+if(!$listePromo) { ?>
     <div class="msgErrorTitre">
         <h3>Erreur saisie</h3>
         <p>Il n'y a aucune promotion enregistrée</p>
@@ -19,7 +19,7 @@ if($listePromo===false) { ?>
 
         <div class="col-12 d-flex justify-content-center" id="needHelp" style="margin-top:20px;">
             <span class="more_info" id="text_info">
-                <img class="helpIcon" src="image/help.svg" alt="help" title="help">
+                <img class="helpIcon" src="image/help.svg" alt="help" title="Aide">
                 Besoin d'aide ?
                 <div class="popup">
                 </br> <h3>Comment saisir un énoncé ?</h3>  </br>
@@ -111,32 +111,32 @@ if($listePromo===false) { ?>
     <hr class="hr" style="width:80%">
 
     <div class="col-12 d-flex justify-content-center" id="needHelp">
-        <span class="more_info" id="text_info">
-            <img class="helpIcon" src="image/help.svg" alt="help" title="help">
-            Besoin d'aide ?
-            <div class="popup">
-            </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
+      <span class="more_info" id="text_info">
+        <img class="helpIcon" src="image/help.svg" alt="help" title="Aide">
+        Besoin d'aide ?
+        <div class="popup">
+          </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
 
-            <h5> La saisie de question :</h5>
-            <p id="text_info">Pour saisir une question, vous devez d'abord saisir l'intitulé de la question puis son barème. Si cette question représente 2pts sur 20, vous devez seulement saisir 2. Enfin, vous pouvez cocher la case "valeur parfaite" si vous souhaitez que l'élève doit saisir exactement la bonne réponse pour avoir les points sinon il n'aura aucun point. Dans le cas contraire, les points de l'élève dépendront de la différence entre son résultat et le résultat attentu</p>
+          <h5> La saisie de question :</h5>
+          <p id="text_info">Pour saisir une question, vous devez d'abord saisir l'intitulé de la question puis son barème. Si cette question représente 2pts sur 20, vous devez seulement saisir 2. Enfin, vous pouvez cocher la case "valeur parfaite" si vous souhaitez que l'élève doit saisir exactement la bonne réponse pour avoir les points sinon il n'aura aucun point. Dans le cas contraire, les points de l'élève dépendront de la différence entre son résultat et le résultat attentu</p>
 
-            <h5> La saisie des valeurs :</h5>
-            <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
-            <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
-            <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
-        </br>
+          <h5> La saisie des valeurs :</h5>
+          <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
+          <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
+          <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
+          </br>
+        </div>
+      </span>
     </div>
-</span>
-</div>
 
-<hr class="hr" style="width:80%">
+    <hr class="hr" style="width:80%">
 
-<div class="row enonceCreateExam">
-    <div class="col-12">
-        <h4>Enonce de l'examen</h4>
-        <p><?php echo $_SESSION['texteEnonce']?></p>
+    <div class="row enonceCreateExam">
+        <div class="col-12">
+            <h4>Enonce de l'examen</h4>
+            <p><?php echo $_SESSION['texteEnonce']?></p>
+        </div>
     </div>
-</div>
 
 <form method="post" action="index.php?page=4" id="createExam2">
 
@@ -409,7 +409,7 @@ if($listePromo===false) { ?>
 </form>
 
 
-<?php    } else { ?> 
+<?php    } else { ?>
 
     <p>L'examen a été créé !</p>
     <?php
@@ -442,7 +442,7 @@ if($listePromo===false) { ?>
                 $listePoints[$point][$key]['uniteValeur']=$donnees[2];
                 $listePoints[$point][$key]['uniteExposant']=$donnees[3];
             } else {
-                //intervalles HELP           
+                //intervalles HELP
             }
         }
         $i++;
@@ -451,5 +451,5 @@ if($listePromo===false) { ?>
     $examenManager->creerPoint($listePoints);
 
 
-}?>
-<?php } ?>
+  }
+} ?>

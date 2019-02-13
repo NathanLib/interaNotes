@@ -13,7 +13,7 @@ $_SESSION['examen'] = $examenManager->getExamen(1); //WARNING: préciser examen 
         <a href="index.php?page=45&amp;idSujet=<?php echo $idSujet ?>">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/subject.png" alt="exam" title="exam">
+                    <img class="iconTictac" src="image/subject.png" alt="exam" title="Mon sujet">
                 </div>
 
                 <div class="tictacBas">
@@ -27,7 +27,7 @@ $_SESSION['examen'] = $examenManager->getExamen(1); //WARNING: préciser examen 
         <a href="index.php?page=14">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/liste.png" alt="exam" title="exam">
+                    <img class="iconTictac" src="image/liste.png" alt="exam" title="Mes sujets terminés">
                 </div>
 
                 <div class="tictacBas">
@@ -41,7 +41,7 @@ $_SESSION['examen'] = $examenManager->getExamen(1); //WARNING: préciser examen 
         <a href="index.php?page=17">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/grade.png" alt="exam" title="exam">
+                    <img class="iconTictac" src="image/grade.png" alt="exam" title="Mes notes">
                 </div>
 
                 <div class="tictacBas">
@@ -55,7 +55,7 @@ $_SESSION['examen'] = $examenManager->getExamen(1); //WARNING: préciser examen 
         <a href="index.php?page=12">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/questions.png" alt="exam" title="exam">
+                    <img class="iconTictac" src="image/questions.png" alt="exam" title="Une question ?">
                 </div>
 
                 <div class="tictacBas">
@@ -69,7 +69,7 @@ $_SESSION['examen'] = $examenManager->getExamen(1); //WARNING: préciser examen 
         <a href="index.php?page=41">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/parameter.png" alt="exam" title="exam">
+                    <img class="iconTictac" src="image/parameter.png" alt="exam" title="Mon compte">
                 </div>
 
                 <div class="tictacBas">

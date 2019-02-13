@@ -12,6 +12,7 @@ $noteManager = new NoteManager($pdo);
 $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']); // WARNING si plusieurs sujets
 $sujet = $sujetManager->getSujet($idSujet);
 $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
+
 if(!$idSujet){
     ?>
     <div class="msgErrorTitre">
@@ -51,7 +52,7 @@ if(!$idSujet){
                     <hr class="hr" style="width:80%">
                     <div class="col-12 d-flex justify-content-center" id="needHelp">
                         <span class="more_info" id="text_info">
-                            <img class="helpIcon" src="image/help.svg" alt="help" title="help">
+                            <img class="helpIcon" src="image/help.svg" alt="help" title="Aide">
                             Besoin d'aide ?
                             <div class="popup">
                             </br> <h3>Comment&nbspsaisir vos&nbspréponses ?</h3>  </br>
@@ -73,76 +74,81 @@ if(!$idSujet){
                 <hr class="hr" style="width:80%">
 
                 <div class="col-12">
-                    <?php $listeQuestions = $questionManager->getAllQuestion($idSujet);
+                    <?php
+                    $listeQuestions = $questionManager->getAllQuestion($idSujet);
                     foreach ($listeQuestions as $question) { ?>
-                        <div class="row">
-                            <div class="col-9">
-                                <span>Question <?php echo $question->getIdQuestion() ?> :</span>
-                            </div>
-                            <div class="col-3">
-                                <p style="align-self:end; margin:0"><?php echo " /".$question->getBaremeQuestion()."pts" ?></p>
-                            </div>
-                            <div class="col-12">
-                                <p><?php echo $question->getIntituleQuestion() ;?></p>
-                            </div>
 
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12 col-lg-7 form-group">
-                                        <label for="detailAnswer">Détails calculs :</label>
-                                        <textarea class="form-control" id="detailAnswer" name="justification<?php echo $question->getIdQuestion() ?>" onkeyup="adjustHeightTextAreaLittle(this)" placeholder='Veuillez écrire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...' maxlength="65535" required></textarea>
-                                    </div>
-
-                                    <div class="col-12 col-lg-5">
-
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-12 col-lg-6 form-group">
-                                                        <label for="resultAnswer">Résultat :</label>
-                                                        <input class="form-control" id="resultAnswer" name="reponse<?php echo $question->getIdQuestion() ?>" type="number" placeholder="" step="0.001" required>
-                                                    </div>
-
-                                                    <div class="col-5 col-sm-3 col-md-2 col-lg-4 d-flex form-group divPuissanceResult">
-                                                        <p id="puissanceResult">x10</p>
-                                                        <input id="resultAnswer"  class="form-control saisiePuissanceResult" name="resultatExposant<?php echo $question->getIdQuestion() ?>" type="number" value="0" step="1" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 form-group">
-                                                <label for="uniteAnswer">Unité du Résultat :</label>
-                                                <select class="form-control" id="uniteAnswer" name="unite<?php echo $question->getIdQuestion() ?>" type="text" placeholder="Sélectionnez l'unité du résultat" required>
-                                                    <?php
-                                                    $listeUnites = Unites::getConstants();
-
-                                                    foreach ($listeUnites as $unite => $abreviation) { ?>
-                                                        <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-12 form-group">
-                                                <label for="exposantAnswer">Exposant de l'unité :</label>
-                                                <select class="form-control" id="exposantAnswer" name="exposant<?php echo $question->getIdQuestion() ?>" type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
-                                                    <?php
-                                                    $listeExposants = Exposants::getConstants();
-                                                    $defautExposant = Exposants::getExposantParDefaut();
-
-                                                    foreach ($listeExposants as $exposant) { ?>
-                                                        <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                      <div class="row">
+                        <div class="col-9">
+                            <span>Question <?php echo $question->getIdQuestion() ?> :</span>
                         </div>
+
+                        <div class="col-3">
+                            <p style="align-self:end; margin:0"><?php echo " /".$question->getBaremeQuestion()."pts" ?></p>
+                        </div>
+
+                        <div class="col-12">
+                            <p><?php echo $question->getIntituleQuestion() ;?></p>
+                        </div>
+
+                        <div class="col-12">
+                          <div class="row">
+                            <div class="col-12 col-lg-7 form-group">
+                                <label for="detailAnswer">Détails calculs :</label>
+                                <textarea class="form-control" id="detailAnswer" name="justification<?php echo $question->getIdQuestion() ?>" onkeyup="adjustHeightTextAreaLittle(this)" placeholder='Veuillez écrire ici les différentes étapes de calculs qui vous ont permis de trouver le résultat ...' maxlength="65535" required></textarea>
+                            </div>
+
+                            <div class="col-12 col-lg-5">
+
+                              <div class="row">
+                                <div class="col-12">
+                                  <div class="row">
+                                    <div class="col-12 col-lg-6 form-group">
+                                      <label for="resultAnswer">Résultat :</label>
+                                      <input class="form-control" id="resultAnswer" name="reponse<?php echo $question->getIdQuestion() ?>" type="number" placeholder="" step="0.001" required>
+                                    </div>
+
+                                    <div class="col-5 col-sm-3 col-md-2 col-lg-4 d-flex form-group divPuissanceResult">
+                                      <p id="puissanceResult">x10</p>
+                                      <input id="resultAnswer"  class="form-control saisiePuissanceResult" name="resultatExposant<?php echo $question->getIdQuestion() ?>" type="number" value="0" step="1" required>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-12 form-group">
+                                  <label for="uniteAnswer">Unité du Résultat :</label>
+                                  <select class="form-control" id="uniteAnswer" name="unite<?php echo $question->getIdQuestion() ?>" type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                      <?php
+                                      $listeUnites = Unites::getConstants();
+
+                                      foreach ($listeUnites as $unite => $abreviation) { ?>
+                                          <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>
+                                          <?php
+                                      }
+                                      ?>
+                                  </select>
+                                </div>
+
+                                <div class="col-12 form-group">
+                                  <label for="exposantAnswer">Exposant de l'unité :</label>
+                                  <select class="form-control" id="exposantAnswer" name="exposant<?php echo $question->getIdQuestion() ?>" type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                      <?php
+                                      $listeExposants = Exposants::getConstants();
+                                      $defautExposant = Exposants::getExposantParDefaut();
+
+                                      foreach ($listeExposants as $exposant) { ?>
+                                          <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>
+
+                                      <?php
+                                      }
+                                      ?>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     <?php } ?>
                     <input type="submit" class="sendSaisie" value="Envoyer">
                 </form>
@@ -153,31 +159,31 @@ if(!$idSujet){
 
         $i=1;
         foreach ($_POST as $attribut => $value) {
-            switch ($i) {
-                case 1:
+          switch ($i) {
+              case 1:
                 $reponse['justification']=$value;
                 $i++;
                 break;
-                case 2:
+              case 2:
                 $reponse['resultat']=$value;
                 $i++;
                 break;
-                case 3:
+              case 3:
                 $reponse['resultatExposant']=$value;
                 $i++;
                 break;
-                case 4:
+              case 4:
                 $reponse['resultatUnite']=$value;
                 $i++;
                 break;
-                case 5:
+              case 5:
                 $reponse['exposantUnite']=$value;
                 $i=1;
                 $listeReponse[]=$reponse;
                 break;
-                default:
+              default:
                 break;
-            }
+          }
         }
 
         $idEleve =$eleveManager->getIdEleveByLogin($_SESSION['eleve']);
@@ -193,32 +199,35 @@ if(!$idSujet){
             $reponseObj->setPrecisionReponse($reponseEleveManager->calculerPrecisionReponse($reponseObj));
 
             $reponseEleveManager->importSaisie($reponseObj);
+        }
 
-        } 
         $questions = $questionManager->getAllQuestion($idSujet);
         $noteTotal = 0;
-        
+
         foreach ($questions as $question) {
             $idQuestion = $question->getIdQuestion();
             $reponse = $reponseEleveManager->getReponseEleveByIdQuestion($idQuestion, $idSujet);
             $note = $noteManager->calculerNotePourUneQuestion($question, $reponse);
             $noteTotal=$noteTotal+$note;
-        } 
+        }
+
         $exist = $noteManager->noteExist($idSujet, $idEleve);
+
         if (!$exist) {
             $noteManager->insererNote($idSujet, $idEleve, $noteTotal);
         }else{
             $noteManager->updateNote($idSujet, $idEleve, $noteTotal);
         }
-        
+
         ?>
 
         <div class="messageEnvoiValide">
-            <p>
-                <img src="image/valid.png">
-                Vos réponses ont été envoyées au professeur !
-            </p>
+          <p>
+            <img src="image/valid.png">
+            Vos réponses ont été envoyées au professeur !
+          </p>
         </div>
-    <?php  }
-}
+    <?php
+    }
+  }
 } ?>

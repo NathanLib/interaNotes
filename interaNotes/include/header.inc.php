@@ -22,7 +22,7 @@
     <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark justify-content-bewteen">
         <!-- Brand -->
         <a class="navbar-brand" href="index.php?page=0">
-            <img src="image/board.png" width="75" alt="logo" title="logo">
+            <img src="image/board.png" width="75" alt="logo" title="Accueil">
         </a>
 
         <!-- Navbar text-->
@@ -59,6 +59,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="index.php?page=22">t_genSujet</a>
+                        <a class="dropdown-item" href="index.php?page=27">t_correction</a>
                     </div>
                 </li>
             </ul>

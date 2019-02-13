@@ -183,6 +183,9 @@ footer .text-uppercase {
     margin: 0;
     padding: 10px 0;
 }
+.listerSujet .row {
+    margin : 0 12%;
+}
 .listerSujet input {
     margin: 10px 0;
     width: 135px;
@@ -211,9 +214,9 @@ footer .text-uppercase {
     color: #ededed;
     padding-right: 1px;
     padding-left: 1px;
-    width: 80%;
     margin-top: 3%;
     cursor: pointer;
+    width: 150px;
 }
 .contenuListeSujet p {
     margin: 0;
@@ -360,14 +363,27 @@ footer .text-uppercase {
 .mySubject {
     margin: 5%;
 }
+.mySubject h1 {
+    margin-top: -50px;
+}
 .mySubject span {
     font-weight: bold;
+}
+.mySubject th, .mySubject td {
+    padding: 0 15px;
 }
 #subjectTitle {
     text-decoration: underline;
 }
+div.subjectTitle {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.mesBtnSujet {
+    display: flex;
+    justify-content: center;
+}
 .textSubject {
-    margin: 2% 5%;
     text-align: justify;
 }
 .boutonCorrection input, .boutonTelecharger input{
@@ -376,9 +392,14 @@ footer .text-uppercase {
     border: 0;
     border-radius: 25px;
     padding: 5px 10px;
-    width: 150px;
+    width: 175px;
     margin: 10% 0 0 0;
     cursor: pointer;
+}
+.headAfficherSujet {
+    margin-top: 20px;
+    margin-bottom: -23px;
+    text-align: center;
 }
 
 /* Page enseignant_creerExamen */
@@ -793,14 +814,17 @@ span#text_info, p#text_info {
     background-color: #333;
     padding: 3px 6px;
 }
+
 .choixTypesValeurs div {
     padding: 0;
     margin-top: 15px;
     margin-bottom: 25px;
 }
+
 .divPuissanceResult {
     margin-bottom: 10px;
 }
+
 .divPuissanceResult span {
     margin-top: 13px;
     font-size: 20px;
@@ -828,18 +852,22 @@ span#text_info, p#text_info {
 .divListeValeursTrash {
     margin: 20px 0;
 }
+
 .myTrash {
     border: 0;
     background : none;
     width: 75%;
 }
+
 .myTrash img {
     width: 32px;
     height: 32px;
 }
+
 .listeValeur {
     padding: 0;
 }
+
 .selectMultiplesValeurs {
     overflow: auto;
 }
@@ -854,14 +882,6 @@ span#text_info, p#text_info {
     .logoConnexion {
         width: 75%;
         height: 75%;
-    }
-
-    /* Page afficher sujet complet */
-    .boutonCorrection input {
-        margin-left: -100px;
-    }
-    .boutonTelecharger input {
-        margin-right: -100px;
     }
 
     /* Page prof lister sujet */

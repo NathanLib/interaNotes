@@ -23,9 +23,9 @@ if (!$listeExamens){ ?>
             $examenEstAttribue = in_array($examen->getIdExamen(), $listeExamensAttribues);
             $statutExamen = $examen->getStatut($examenEstAttribue);?>
 
-            <div class="row justify-content-center text-center">
+            <div class="row text-center">
                 <!-- Numero examen -->
-                <div class="col-6 col-sm-3 col-lg-2">
+                <div class="col-6 col-sm-3 col-lg-3">
                     <p>Examen n°<?php echo $compteur +1 ?> : Titre examen</p>
                 </div>
 
@@ -34,7 +34,7 @@ if (!$listeExamens){ ?>
                     <p> <?php echo $statutExamen; ?></p>
                 </div>
 
-                <div class="boutonsListerSujetProf">
+                <div class="justify-content-between boutonsListerSujetProf">
                     <!-- Actions examen : bouton 'Consulter un examen'-->
                     <div class="col-6 col-sm-4 col-lg-2">
                         <a href="index.php?page=3&amp;id=<?php echo $examen->getIdExamen() ?>">
@@ -43,18 +43,18 @@ if (!$listeExamens){ ?>
                     </div>
 
                     <!-- Actions examen : bouton 'commencer un examen'-->
-                    <div class="col-6 col-sm-4 col-lg-2">
+
+                    <?php
+                    if($statutExamen == StatutExamen::NON_DISTRIBUE){ ?>
+                        <div class="col-6 col-sm-4 col-lg-2">
+                            <a href="#">
+                                <input type="button" name="" value="Commencer">
+                            </a>
+                        </div>
                         <?php
-                        if($statutExamen == StatutExamen::NON_DISTRIBUE){ ?>
-                          <div class="col-6 col-sm-4 col-lg-2">
-                              <a href="#">
-                                  <input type="button" name="" value="Commencer">
-                              </a>
-                          </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
+                    }
+                    ?>
+
                 </div>
 
             </div>
