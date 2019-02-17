@@ -9,7 +9,7 @@ class ExamenManager{
 	public function getAllExamens(){
 
 		$sql = 'SELECT idExamen, dateDepot, anneeScolaire FROM examen e
-						ORDER BY e.dateDepot DESC';
+		ORDER BY e.dateDepot DESC';
 
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
@@ -186,7 +186,7 @@ class ExamenManager{
 	public function creerPoint($listePoints) {
 
 		$i = 1;
-		$idExamen = $this->db->lastInsertId();
+		$idExamen = $this->getLastExamenCree();
 
 		foreach ($listePoints as $key => $value) {
 			$sql = 'INSERT INTO points(idPoint,idExamen,nomPoint,estDonneesCatia) VALUES (:idPoint,:idExamen,:nomPoint,:estDonneesCatia)';
@@ -201,23 +201,50 @@ class ExamenManager{
 
 			foreach ($value as $clé => $valeur) {
 
-				$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
+				if (isset($valeur[0])) {
+					$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
 
-				$requete = $this->db->prepare($sql);
+					foreach ($valeur as $key => $valeurPoint) {
+						
+						$requete = $this->db->prepare($sql);
 
-				$requete->bindValue(':idPoint',$i);
-				$requete->bindValue(':valeur',$valeur['valeur']);
-				$requete->bindValue(':exposantValeur',$valeur['exposantValeur']);
-				$requete->bindValue(':uniteValeur',$valeur['uniteValeur']);
-				$requete->bindValue(':uniteExposant',$valeur['uniteExposant']);
+						$requete->bindValue(':idPoint',$i);
+						$requete->bindValue(':valeur',$valeurPoint['valeur']);
+						$requete->bindValue(':exposantValeur',$valeurPoint['exposantValeur']);
+						$requete->bindValue(':uniteValeur',$valeurPoint['uniteValeur']);
+						$requete->bindValue(':uniteExposant',$valeurPoint['uniteExposant']);
 
-				$requete->execute();
+						$requete->execute();
+					}
+				} else {
+					$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
 
+					$requete = $this->db->prepare($sql);
+
+					$requete->bindValue(':idPoint',$i);
+					$requete->bindValue(':valeur',$valeur['valeur']);
+					$requete->bindValue(':exposantValeur',$valeur['exposantValeur']);
+					$requete->bindValue(':uniteValeur',$valeur['uniteValeur']);
+					$requete->bindValue(':uniteExposant',$valeur['uniteExposant']);
+
+					$requete->execute();
+				}
 			}
 			$i++;
 		}
 
 
 
+	}
+
+	public function getLastExamenCree(){
+		$sql = 'SELECT COUNT(idExamen) as nbExam FROM examen ';
+
+			$requete = $this->db->prepare($sql);
+			$requete->execute();
+
+			$res = $requete->fetch(PDO::FETCH_OBJ);
+
+			return($res->nbExam);
 	}
 }

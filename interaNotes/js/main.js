@@ -175,13 +175,13 @@ function ajouterValeurDeParametreIntervalle(event,idValeur1,idValeur2,idPas,idLi
     }
     var liste = document.getElementById(idListe);
     var exposantValeur1 = document.getElementById(idExposantValeur1);
-    var exposantValeur2 = document.getElementById(idExposantValeur1);
+    var exposantValeur2 = document.getElementById(idExposantValeur2);
     var unite = document.getElementById(idUnite);
     var exposantUnite = document.getElementById(idExposantUnite);
 
 
     var option = document.createElement("option");
-    option.text = valeurMinimale.value+"*10^"+exposantValeur1.value+" / "+valeurMaximale.value+"*10^"+exposantValeur2.value+" / "+pas.value+" / "+unite.value+" / "+exposantUnite.value;
+    option.text = valeurMinimale.value+" / "+exposantValeur1.value+" / "+valeurMaximale.value+" / "+exposantValeur2.value+" / "+pas.value+" / "+unite.value+" / "+exposantUnite.value;
 
     liste.add(option);
     event.preventDefault();
@@ -347,6 +347,7 @@ for (var i = 0; i <= compteur; i++) {
             document.cookie = string;
         }
     } else {
+
         var point = new Array();
         for (var j = 0; j < listeIntervalle.options.length ; j++) {
             point.push(listeIntervalle.options[j].value);

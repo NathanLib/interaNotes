@@ -115,28 +115,28 @@ if(!$listePromo) { ?>
         <img class="helpIcon" src="image/help.svg" alt="help" title="Aide">
         Besoin d'aide ?
         <div class="popup">
-          </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
+        </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
 
-          <h5> La saisie de question :</h5>
-          <p id="text_info">Pour saisir une question, vous devez d'abord saisir l'intitulé de la question puis son barème. Si cette question représente 2pts sur 20, vous devez seulement saisir 2. Enfin, vous pouvez cocher la case "valeur parfaite" si vous souhaitez que l'élève doit saisir exactement la bonne réponse pour avoir les points sinon il n'aura aucun point. Dans le cas contraire, les points de l'élève dépendront de la différence entre son résultat et le résultat attentu</p>
+        <h5> La saisie de question :</h5>
+        <p id="text_info">Pour saisir une question, vous devez d'abord saisir l'intitulé de la question puis son barème. Si cette question représente 2pts sur 20, vous devez seulement saisir 2. Enfin, vous pouvez cocher la case "valeur parfaite" si vous souhaitez que l'élève doit saisir exactement la bonne réponse pour avoir les points sinon il n'aura aucun point. Dans le cas contraire, les points de l'élève dépendront de la différence entre son résultat et le résultat attentu</p>
 
-          <h5> La saisie des valeurs :</h5>
-          <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
-          <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
-          <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
-          </br>
-        </div>
-      </span>
+        <h5> La saisie des valeurs :</h5>
+        <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
+        <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
+        <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
+    </br>
+</div>
+</span>
+</div>
+
+<hr class="hr" style="width:80%">
+
+<div class="row enonceCreateExam">
+    <div class="col-12">
+        <h4>Enonce de l'examen</h4>
+        <p><?php echo $_SESSION['texteEnonce']?></p>
     </div>
-
-    <hr class="hr" style="width:80%">
-
-    <div class="row enonceCreateExam">
-        <div class="col-12">
-            <h4>Enonce de l'examen</h4>
-            <p><?php echo $_SESSION['texteEnonce']?></p>
-        </div>
-    </div>
+</div>
 
 <form method="post" action="index.php?page=4" id="createExam2">
 
@@ -422,7 +422,7 @@ if(!$listePromo) { ?>
     $examenManager->creerQuestion($questions);
 
     foreach($_COOKIE as $key=>$value) {
-        if($key != "PHPSESSID"){
+        if($key != "PHPSESSID" && $key != null){
             $points[$key]=$value;
         }
     }
@@ -431,6 +431,7 @@ if(!$listePromo) { ?>
     foreach ($points as $key => $value) {
         $listeDonnees = explode(",", $value);
         $point=$_SESSION['tableauParametres'][$i];
+
 
         foreach ($listeDonnees as $key => $value) {
             $donnees = explode(" / ", $value);
@@ -442,14 +443,31 @@ if(!$listePromo) { ?>
                 $listePoints[$point][$key]['uniteValeur']=$donnees[2];
                 $listePoints[$point][$key]['uniteExposant']=$donnees[3];
             } else {
-                //intervalles HELP
+                $k=0;
+                for ($j = $donnees[0]*pow(10, $donnees[1]); $j <= $donnees[2]*pow(10, $donnees[3]); $j = $j + $donnees[4]) { 
+                   //fonction pour remettre des valeurs propres ?
+                    $listePoints[$point][$key][$k]['valeur']=$j;
+                    $listePoints[$point][$key][$k]['exposantValeur']=0;
+                    $listePoints[$point][$key][$k]['uniteValeur']=$donnees[5];
+                    $listePoints[$point][$key][$k]['uniteExposant']=$donnees[6];
+                    $k++;
+                }
+                
             }
         }
         $i++;
 
     }
+
     $examenManager->creerPoint($listePoints);
 
 
-  }
+    //marche pas
+    /*foreach($_COOKIE as $key=>$value) {
+        if($key != "PHPSESSID"){
+            unset($_COOKIE[$key]);
+            setcookie($_COOKIE[$key], '', time() - 3600);
+        }
+    }*/
+}
 } ?>
