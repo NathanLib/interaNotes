@@ -195,39 +195,41 @@ class ExamenManager{
 			$requete->bindValue(':idPoint',$i);
 			$requete->bindValue(':idExamen',$idExamen);
 			$requete->bindValue(':nomPoint',$key);
-			$requete->bindValue(':estDonneesCatia',0);
+			$requete->bindValue(':estDonneesCatia',$value['estDonneesCatia']);
 
 			$requete->execute();
 
 			foreach ($value as $clé => $valeur) {
 
-				if (isset($valeur[0])) {
-					$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
+				if($valeur['valeur'] != null){
+					if (isset($valeur[0])) {
+						$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
 
-					foreach ($valeur as $key => $valeurPoint) {
-						
+						foreach ($valeur as $key => $valeurPoint) {
+							
+							$requete = $this->db->prepare($sql);
+
+							$requete->bindValue(':idPoint',$i);
+							$requete->bindValue(':valeur',$valeurPoint['valeur']);
+							$requete->bindValue(':exposantValeur',$valeurPoint['exposantValeur']);
+							$requete->bindValue(':uniteValeur',$valeurPoint['uniteValeur']);
+							$requete->bindValue(':uniteExposant',$valeurPoint['uniteExposant']);
+
+							$requete->execute();
+						}
+					} else {
+						$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
+
 						$requete = $this->db->prepare($sql);
 
 						$requete->bindValue(':idPoint',$i);
-						$requete->bindValue(':valeur',$valeurPoint['valeur']);
-						$requete->bindValue(':exposantValeur',$valeurPoint['exposantValeur']);
-						$requete->bindValue(':uniteValeur',$valeurPoint['uniteValeur']);
-						$requete->bindValue(':uniteExposant',$valeurPoint['uniteExposant']);
+						$requete->bindValue(':valeur',$valeur['valeur']);
+						$requete->bindValue(':exposantValeur',$valeur['exposantValeur']);
+						$requete->bindValue(':uniteValeur',$valeur['uniteValeur']);
+						$requete->bindValue(':uniteExposant',$valeur['uniteExposant']);
 
 						$requete->execute();
 					}
-				} else {
-					$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
-
-					$requete = $this->db->prepare($sql);
-
-					$requete->bindValue(':idPoint',$i);
-					$requete->bindValue(':valeur',$valeur['valeur']);
-					$requete->bindValue(':exposantValeur',$valeur['exposantValeur']);
-					$requete->bindValue(':uniteValeur',$valeur['uniteValeur']);
-					$requete->bindValue(':uniteExposant',$valeur['uniteExposant']);
-
-					$requete->execute();
 				}
 			}
 			$i++;

@@ -432,31 +432,35 @@ if(!$listePromo) { ?>
         $listeDonnees = explode(",", $value);
         $point=$_SESSION['tableauParametres'][$i];
 
-
-        foreach ($listeDonnees as $key => $value) {
+        foreach ($listeDonnees as $key2 => $value) {
             $donnees = explode(" / ", $value);
 
             if(count($donnees) === 4){
 
-                $listePoints[$point][$key]['valeur']=$donnees[0];
-                $listePoints[$point][$key]['exposantValeur']=$donnees[1];
-                $listePoints[$point][$key]['uniteValeur']=$donnees[2];
-                $listePoints[$point][$key]['uniteExposant']=$donnees[3];
+                $listePoints[$point][$key2]['valeur']=$donnees[0];
+                $listePoints[$point][$key2]['exposantValeur']=$donnees[1];
+                $listePoints[$point][$key2]['uniteValeur']=$donnees[2];
+                $listePoints[$point][$key2]['uniteExposant']=$donnees[3];
             } else {
                 $k=0;
                 for ($j = $donnees[0]*pow(10, $donnees[1]); $j <= $donnees[2]*pow(10, $donnees[3]); $j = $j + $donnees[4]) { 
                    //fonction pour remettre des valeurs propres ?
-                    $listePoints[$point][$key][$k]['valeur']=$j;
-                    $listePoints[$point][$key][$k]['exposantValeur']=0;
-                    $listePoints[$point][$key][$k]['uniteValeur']=$donnees[5];
-                    $listePoints[$point][$key][$k]['uniteExposant']=$donnees[6];
+                    $listePoints[$point][$key2][$k]['valeur']=$j;
+                    $listePoints[$point][$key2][$k]['exposantValeur']=0;
+                    $listePoints[$point][$key2][$k]['uniteValeur']=$donnees[5];
+                    $listePoints[$point][$key2][$k]['uniteExposant']=$donnees[6];
                     $k++;
                 }
                 
             }
         }
+        
+        if ($_POST['catia'.$i] == "on") {
+            $listePoints[$point]['estDonneesCatia'] = 1;
+        } else {
+            $listePoints[$point]['estDonneesCatia'] = 0;
+        }
         $i++;
-
     }
 
     $examenManager->creerPoint($listePoints);
