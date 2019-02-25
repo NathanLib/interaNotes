@@ -82,7 +82,7 @@ function ouvrirBox(compteur,nombre) {
                 $('#buttonValider').removeAttr("disabled");
                 $('#buttonValider').css('opacity', '1');
             }
-            
+
             if(document.getElementById("parametre"+i).options.length == 0 && document.getElementById("liste"+i).options.length == 0) {
               $('#buttonValider').attr('disabled',"disabled");
               $('#buttonValider').css('opacity', '0.2');
@@ -191,10 +191,16 @@ function ajouterValeurDeParametreIntervalle(event,idValeur1,idValeur2,idPas,idLi
     var valeurMaximale = document.getElementById(idValeur2);
     var pas = document.getElementById(idPas)
 
-    if(valeurMinimale.value == "" || valeurMaximale.value == "" || pas.value == "" || valeurMinimale.value==valeurMaximale.value){
+    if(valeurMinimale.value == "" || valeurMaximale.value == "" || pas.value == ""){
         alert("Une ou plusieurs valeurs sont manquantes ou incorrectes !");
         return false;
     }
+
+    if(valeurMinimale.value * Math.pow(10,document.getElementById(idExposantValeur1).value) >= valeurMaximale.value * Math.pow(10,document.getElementById(idExposantValeur2).value)){
+      alert("La valeur maximale de l'intervalle ne peut être inférieur à la valeur minimale !");
+      return false;
+    }
+
     var liste = document.getElementById(idListe);
     var exposantValeur1 = document.getElementById(idExposantValeur1);
     var exposantValeur2 = document.getElementById(idExposantValeur2);
