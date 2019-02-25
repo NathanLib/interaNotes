@@ -324,8 +324,8 @@ $(document).ready(function() {
     //On recupère chacun des inputs
     var intituleQuestion = blocAjoute.find("#intituleQuestion");
     var baremeQuestion = blocAjoute.find("#bareme");
-    var labelValeurParfaite = blocAjoute.find("#labelValeurParfaite");
-    var valeurParfaite = blocAjoute.find("#valeurParfaite");
+    var labelZoneTolerance = blocAjoute.find("#labelZoneTolerance");
+    var zoneTolerance = blocAjoute.find("#zoneTolerance");
 
     //On met à jour chacun des inputs
     intituleQuestion.attr('id', 'intituleQuestion'+compteurQuestion);
@@ -338,11 +338,11 @@ $(document).ready(function() {
     baremeQuestion.prop('disabled',false);
     baremeQuestion.prop('required',true);
 
-    labelValeurParfaite.attr('id', 'labelValeurParfaite'+compteurQuestion);
-    labelValeurParfaite.attr('for', 'valeurParfaite'+compteurQuestion);
+    labelZoneTolerance.attr('id', 'labelZoneTolerance'+compteurQuestion);
+    labelZoneTolerance.attr('for', 'zoneTolerance'+compteurQuestion);
 
-    valeurParfaite.attr('id', 'valeurParfaite'+compteurQuestion);
-    valeurParfaite.attr('name', 'valeurParfaite'+compteurQuestion);
+    zoneTolerance.attr('id', 'zoneTolerance'+compteurQuestion);
+    zoneTolerance.attr('name', 'zoneTolerance'+compteurQuestion);
 
     //Suppression d'une question
     attach_delete();

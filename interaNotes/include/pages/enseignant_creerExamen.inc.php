@@ -165,8 +165,8 @@ if(!$listePromo) { ?>
                             </div>
                             <div class="col-6 col-md-3" style="padding-top:8px">
                                 <div class="custom-control">
-                                    <input type="number" class="form-control bareme" id="valeurParfaite" name="zoneTolerance" min=0 max=100 step="0.5">
-                                    <label id="labelValeurParfaite" for="valeurParfaite">% de tolérance</label>
+                                    <input type="number" class="form-control bareme" id="zoneTolerance0" name="zoneTolerance0" min=0 max=100 step="0.5">
+                                    <label id="labelZoneTolerance" for="zoneTolerance">% de tolérance</label>
                                 </div>
                             </div>
                         </div>
@@ -188,8 +188,8 @@ if(!$listePromo) { ?>
                                 </div>
                                 <div class="col-6 col-md-3" style="padding-top:8px">
                                     <div class="custom-control">
-                                        <input type="number" class="form-control bareme" id="valeurParfaite" name="zoneTolerance" min=0 max=100 step="0.5">
-                                        <label id="labelValeurParfaite" for="valeurParfaite">% de tolérance</label>
+                                        <input type="number" class="form-control bareme" id="zoneTolerance" name="zoneTolerance" min=0 max=100 step="0.5">
+                                        <label id="labelZoneTolerance" for="zoneTolerance">% de tolérance</label>
                                     </div>
                                 </div>
 

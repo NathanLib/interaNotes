@@ -129,30 +129,40 @@ class ExamenManager{
 
 	public function creerQuestion($questions) {
 
+
+		foreach ($questions as $key => $value) {
+
+				if (strpos($key, 'bareme') !== false) {
+					$tab = explode('areme',$key);
+					$tableauNumeroQuestion[] = $tab[1];
+				}
+
+		}
+
 		$i = 0;
 		foreach ($questions as $key => $value) {
 
 			switch ($key) {
-				case 'intituleQuestion'.$i:
+				case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
 				$question['intituleQuestion'] = $value;
 				break;
-				case 'bareme'.$i:
+				case 'bareme'.$tableauNumeroQuestion[$i]:
 				$question['bareme'] = $value;
-				if(!isset($questions['valeurParfaite'.$i])){
+				if(!isset($questions['zoneTolerance'.$tableauNumeroQuestion[$i]])){
 					$listeQuestions[]=$question;
 					$i++;
 					$question['intituleQuestion']=null;
 					$question['bareme']=null;
-					$question['valeurParfaite']=null;
+					$question['zoneTolerance']=null;
 				}
 				break;
-				case 'valeurParfaite'.$i:
-				$question['valeurParfaite'] = $value;
+				case 'zoneTolerance'.$tableauNumeroQuestion[$i]:
+				$question['zoneTolerance'] = $value;
 				$listeQuestions[]=$question;
 				$i++;
 				$question['intituleQuestion']=null;
 				$question['bareme']=null;
-				$question['valeurParfaite']=null;
+				$question['zoneTolerance']=null;
 				break;
 				default:
 				break;
