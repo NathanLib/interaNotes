@@ -92,7 +92,14 @@ if(!$listePromo) { ?>
     $_SESSION['semestre'] = $_POST['numSemestre'];
 
     preg_match_all( '#\$(\w++)\$#', $_POST['enonceExam'], $tableauParametres);
+
     $tableauParametres = $tableauParametres[1]; //destruction des variables $var$
+
+    if(empty($tableauParametres)){
+      sleep(2);
+      header('Location: index.php?page=4');
+    }
+
     $_SESSION['tableauParametres'] = $tableauParametres;
     ?>
 
