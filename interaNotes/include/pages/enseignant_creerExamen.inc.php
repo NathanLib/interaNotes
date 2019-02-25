@@ -67,6 +67,10 @@ if(!$listePromo) { ?>
                             <input type="radio" class="custom-control-input" id="customRadio2" name="numSemestre" value="2">
                             <label class="custom-control-label" for="customRadio2">Semestre 2</label>
                         </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <label for="nameExam">Nombre d'essais :</label>
+                          <input class="form-control" id="nbEssai" name="nbEssai" type="number" placeholder="" min="1" step="1" required>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -167,18 +167,14 @@ class ExamenManager{
 
 		foreach ($listeQuestions as $key => $value) {
 
-			$sql = 'INSERT INTO question(idQuestion,idExamen,intituleQuestion,baremeQuestion,estValeurParfaite) VALUES (:idQuestion,:idExamen,:intituleQuestion,:baremeQuestion,:estValeurParfaite)';
+			$sql = 'INSERT INTO question(idQuestion,idExamen,intituleQuestion,baremeQuestion,zoneTolerance) VALUES (:idQuestion,:idExamen,:intituleQuestion,:baremeQuestion,:zoneTolerance)';
 
 			$requete = $this->db->prepare($sql);
 			$requete->bindValue(':idQuestion',$i);
 			$requete->bindValue(':idExamen',$idExamen);
 			$requete->bindValue(':intituleQuestion',$value['intituleQuestion']);
 			$requete->bindValue(':baremeQuestion',$value['bareme']);
-			if (isset($value['valeurParfaite'])){
-				$requete->bindValue(':estValeurParfaite',1); //true
-			} else {
-				$requete->bindValue(':estValeurParfaite',0); //false
-			}
+			$requete->bindValue(':zoneTolerance',$value['zoneTolerance']); 
 
 			$requete->execute();
 			$i++;
