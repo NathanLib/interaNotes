@@ -475,7 +475,6 @@ if(!$listePromo) { ?>
 
     $examenManager->creerPoint($listePoints);
 
-    //marche pas
     foreach($_COOKIE as $key => $value) {
           if($key != "PHPSESSID") { ?>
             <script type="text/javascript">
