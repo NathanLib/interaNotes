@@ -67,9 +67,29 @@ $('input').blur(function(){
 // Page 'Creer un examen'
 
 
-function ouvrirBox(compteur) {
+function ouvrirBox(compteur,nombre) {
     $('#box'+compteur).toggle();
     changerNomBouton(compteur);
+
+    for (var i = 0 ; i < nombre ; i++) {
+
+            if(document.getElementById("parametre"+i).options.length != 0){
+                $('#buttonValider').removeAttr("disabled");
+                $('#buttonValider').css('opacity', '1');
+            }
+
+            if(document.getElementById("liste"+i).options.length != 0){
+                $('#buttonValider').removeAttr("disabled");
+                $('#buttonValider').css('opacity', '1');
+            }
+            
+            if(document.getElementById("parametre"+i).options.length == 0 && document.getElementById("liste"+i).options.length == 0) {
+              $('#buttonValider').attr('disabled',"disabled");
+              $('#buttonValider').css('opacity', '0.2');
+            }
+
+
+        }
 }
 
 function changerNomBouton(compteur) {
@@ -139,8 +159,10 @@ function ajouterValeurDeParametre(event,idValeur,idListe,idExposantValeur,idUnit
 
 
     var valeur = document.getElementById(idValeur);
+    var exposant = document.getElementById(idExposantValeur);
+    var exposantUnite = document.getElementById(idExposantUnite);
 
-    if(valeur.value == ""){
+    if(valeur.value == "" || exposant.value == "" || exposantUnite.value == ""){
         alert("Une ou plusieurs valeurs sont manquantes ou incorrectes !");
         return false;
     }
@@ -219,7 +241,6 @@ function supprimerValeur(i) {
         liste.options[optionIndex] = null;
     } else {
         i++;
-
     }
 }
 
@@ -232,7 +253,6 @@ function supprimerValeurIntervalle(i) {
         liste.options[optionIndex] = null;
     } else {
         i++;
-
     }
 }
 
@@ -282,7 +302,11 @@ function annulerSaisie(i){ //a completer
 //Gestion des questions
 
 $(document).ready(function() {
+
   var compteurQuestion = 0;
+
+  $('#buttonValider').attr('disabled',"disabled");
+  $('#buttonValider').css('opacity', '0.2');
 
   $('.add-one').click(function(){
     //Ajout d'une question
@@ -332,7 +356,7 @@ function recupSelect(compteur){ // rendre modulable via paramètre d'entrée ez 
 
 for (var i = 0; i <= compteur; i++) {
 
-    
+
     var listeUnique = document.getElementById('parametre'+i);
     var listeIntervalle = document.getElementById('liste'+i);
 
@@ -343,7 +367,7 @@ for (var i = 0; i <= compteur; i++) {
             var string = "point"+i+"="+point[0];
             for(var k = 1; k < point.length; k++)
                 var string = string+","+point[k];
-            
+
             document.cookie = string;
         }
     } else {
@@ -354,11 +378,11 @@ for (var i = 0; i <= compteur; i++) {
             var string = "point"+i+"="+point[0];
             for(var k = 1; k < point.length; k++)
                 var string = string+","+point[k];
-            
-            document.cookie = string;
-        }            
 
-    } 
-   
+            document.cookie = string;
+        }
+
+    }
+
 }
 }

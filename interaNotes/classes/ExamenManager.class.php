@@ -201,12 +201,12 @@ class ExamenManager{
 
 			foreach ($value as $clé => $valeur) {
 
-				if($valeur['valeur'] != null){
+				if(isset($valeur['valeur'])){
 					if (isset($valeur[0])) {
 						$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
 
 						foreach ($valeur as $key => $valeurPoint) {
-							
+
 							$requete = $this->db->prepare($sql);
 
 							$requete->bindValue(':idPoint',$i);

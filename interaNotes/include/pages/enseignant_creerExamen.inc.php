@@ -216,11 +216,14 @@ if(!$listePromo) { ?>
             <h4>Liste des paramètres de l'examen :</h4>
 
             <?php
+
+            $nombre = count($tableauParametres);
+
             foreach ($tableauParametres as $compteur => $parametre) { ?>
                 <p><?php echo $parametre ?> : </p>
 
                 <div class="choiceParameterSaisie">
-                    <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
+                    <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>,<?php echo $nombre; ?>)">Ajouter les valeurs</button>
 
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" id=<?php echo "catia".$compteur ?> name=<?php echo "catia".$compteur ?> class="custom-control-input" >
@@ -310,7 +313,7 @@ if(!$listePromo) { ?>
                                     <input class="btnSaisieValeur" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
                                 </div>
                                 <div class="col-5 d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.")"; ?> />
+                                    <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick="ouvrirBox(<?php echo $compteur ?>,<?php echo $nombre ?>)" />
                                 </div>
                             </div>
                         </div>
@@ -394,18 +397,18 @@ if(!$listePromo) { ?>
                                     <input class="btnSaisieValeur" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
                                 </div>
                                 <div class="col-5 d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.")"; ?> />
+                                    <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.",".$nombre.")"; ?> />
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <?php $nombre = $compteur;
+                <?php
             } ?>
         </div>
     </div>
-    <input class="btnValiderExamen" type="submit" onclick="recupSelect(<?php echo $nombre; ?>)"value="Valider">
+    <input class="btnValiderExamen" id="buttonValider" type="submit" onclick="recupSelect(<?php echo $nombre; ?>)"value="Valider">
 </form>
 
 
@@ -443,7 +446,7 @@ if(!$listePromo) { ?>
                 $listePoints[$point][$key2]['uniteExposant']=$donnees[3];
             } else {
                 $k=0;
-                for ($j = $donnees[0]*pow(10, $donnees[1]); $j <= $donnees[2]*pow(10, $donnees[3]); $j = $j + $donnees[4]) { 
+                for ($j = $donnees[0]*pow(10, $donnees[1]); $j <= $donnees[2]*pow(10, $donnees[3]); $j = $j + $donnees[4]) {
                    //fonction pour remettre des valeurs propres ?
                     $listePoints[$point][$key2][$k]['valeur']=$j;
                     $listePoints[$point][$key2][$k]['exposantValeur']=0;
@@ -451,11 +454,11 @@ if(!$listePromo) { ?>
                     $listePoints[$point][$key2][$k]['uniteExposant']=$donnees[6];
                     $k++;
                 }
-                
+
             }
         }
-        
-        if ($_POST['catia'.$i] == "on") {
+
+        if (isset($_POST['catia'.$i])) {
             $listePoints[$point]['estDonneesCatia'] = 1;
         } else {
             $listePoints[$point]['estDonneesCatia'] = 0;
