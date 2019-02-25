@@ -141,20 +141,13 @@ class ExamenManager{
 
 		$i = 0;
 		foreach ($questions as $key => $value) {
-
+			var_dump($questions);
 			switch ($key) {
 				case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
 				$question['intituleQuestion'] = $value;
 				break;
 				case 'bareme'.$tableauNumeroQuestion[$i]:
 				$question['bareme'] = $value;
-				if(!isset($questions['zoneTolerance'.$tableauNumeroQuestion[$i]])){
-					$listeQuestions[]=$question;
-					$i++;
-					$question['intituleQuestion']=null;
-					$question['bareme']=null;
-					$question['zoneTolerance']=null;
-				}
 				break;
 				case 'zoneTolerance'.$tableauNumeroQuestion[$i]:
 				$question['zoneTolerance'] = $value;

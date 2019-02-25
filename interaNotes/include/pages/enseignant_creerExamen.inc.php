@@ -165,7 +165,7 @@ if(!$listePromo) { ?>
                             </div>
                             <div class="col-6 col-md-3" style="padding-top:8px">
                                 <div class="custom-control">
-                                    <input type="number" class="form-control bareme" id="zoneTolerance0" name="zoneTolerance0" min=0 max=100 step="0.5">
+                                    <input type="number" class="form-control bareme" id="zoneTolerance0" name="zoneTolerance0" min=0 max=100 step="0.5" required>
                                     <label id="labelZoneTolerance" for="zoneTolerance">% de tolérance</label>
                                 </div>
                             </div>
@@ -188,7 +188,7 @@ if(!$listePromo) { ?>
                                 </div>
                                 <div class="col-6 col-md-3" style="padding-top:8px">
                                     <div class="custom-control">
-                                        <input type="number" class="form-control bareme" id="zoneTolerance" name="zoneTolerance" min=0 max=100 step="0.5">
+                                        <input type="number" class="form-control bareme" id="zoneTolerance" min=0 max=100 step="0.5">
                                         <label id="labelZoneTolerance" for="zoneTolerance">% de tolérance</label>
                                     </div>
                                 </div>
@@ -440,7 +440,7 @@ if(!$listePromo) { ?>
     $i=0;
     foreach ($points as $key => $value) {
         $listeDonnees = explode(",", $value);
-        $point=$_SESSION['tableauParametres'][$i];
+        $point = $_SESSION['tableauParametres'][$i];
 
         foreach ($listeDonnees as $key2 => $value) {
             $donnees = explode(" / ", $value);
@@ -475,13 +475,18 @@ if(!$listePromo) { ?>
 
     $examenManager->creerPoint($listePoints);
 
-
     //marche pas
-    /*foreach($_COOKIE as $key=>$value) {
-        if($key != "PHPSESSID"){
-            unset($_COOKIE[$key]);
-            setcookie($_COOKIE[$key], '', time() - 3600);
+    foreach($_COOKIE as $key => $value) {
+          if($key != "PHPSESSID") { ?>
+            <script type="text/javascript">
+            function delete_cookie(name) {
+                  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                  }
+
+                  delete_cookie(<?php echo '"'.$key.'"'; ?>);
+            </script>
+            <?php
         }
-    }*/
+    }
 }
 } ?>
