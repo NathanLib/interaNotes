@@ -59,7 +59,8 @@ if(!$listePromo) { ?>
                     </div>
 
                     <div class="col-12 form-group" >
-                        <div class="custom-control custom-radio custom-control-inline">
+                        <label for="">Numéro du semestre :</label><br>
+                        <div class="custom-control custom-radio custom-control-inline firstCheckBoxSemester">
                             <input type="radio" class="custom-control-input" id="customRadio" name="numSemestre" value="1" checked>
                             <label class="custom-control-label" for="customRadio">Semestre 1</label>
                         </div>
@@ -67,10 +68,10 @@ if(!$listePromo) { ?>
                             <input type="radio" class="custom-control-input" id="customRadio2" name="numSemestre" value="2">
                             <label class="custom-control-label" for="customRadio2">Semestre 2</label>
                         </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                          <label for="nameExam">Nombre d'essais :</label>
-                          <input class="form-control" id="nbEssai" name="nbEssai" type="number" placeholder="" min="1" step="1" required>
-                        </div>
+                    </div>
+                    <div class="col-12 form-group">
+                      <label for="nbEssai">Nombre d'essais :</label>
+                      <input class="form-control" id="nbEssai" name="nbEssai" type="number" placeholder="" min="1" step="1" required>
                     </div>
                 </div>
             </div>
@@ -167,10 +168,9 @@ if(!$listePromo) { ?>
                             <div class="col-4 col-md-2">
                                 <input type="number" id="bareme0" name="bareme0" class="form-control bareme" placeholder="Barème" step="0.25" min="0.25" max="20" required>
                             </div>
-                            <div class="col-6 col-md-3" style="padding-top:8px">
+                            <div class="col-6 col-md-3">
                                 <div class="custom-control">
-                                    <input type="number" class="form-control bareme" id="zoneTolerance0" name="zoneTolerance0" min=0 max=100 step="0.5" required>
-                                    <label id="labelZoneTolerance" for="zoneTolerance">% de tolérance</label>
+                                    <input type="number" class="form-control bareme" id="zoneTolerance0" name="zoneTolerance0" min=0 max=100 step="0.5" placeholder="% de tolérance" required>
                                 </div>
                             </div>
                         </div>
@@ -190,10 +190,9 @@ if(!$listePromo) { ?>
                                 <div class="col-4 col-md-2">
                                     <input disabled="disabled" type="number" id="bareme" name="bareme" class="form-control bareme" placeholder="Barème" step="0.25" min="0.25" max="20">
                                 </div>
-                                <div class="col-6 col-md-3" style="padding-top:8px">
+                                <div class="col-6 col-md-3">
                                     <div class="custom-control">
-                                        <input type="number" class="form-control bareme" id="zoneTolerance" min=0 max=100 step="0.5">
-                                        <label id="labelZoneTolerance" for="zoneTolerance">% de tolérance</label>
+                                        <input type="number" class="form-control bareme" id="zoneTolerance" placeholder="% de tolérance"  min=0 max=100 step="0.5">
                                     </div>
                                 </div>
 
