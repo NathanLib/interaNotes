@@ -34,7 +34,7 @@ class EleveManager{
 	}
 
 	public function getAllPromo() {
-		$sql = 'SELECT DISTINCT nomPromo FROM eleve e';
+		$sql = 'SELECT DISTINCT nomPromo, annee FROM eleve e';
 		$req = $this->db->prepare($sql);
 		$req->execute();
 

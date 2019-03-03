@@ -43,7 +43,7 @@ if(!$listePromo) { ?>
                         <label for="classExam">Promotion :</label>
                         <select class="form-control" id="classExam" name="classExam" required>
                             <?php foreach ($listePromo as $promo => $value) { ?>
-                                <option value="<?php echo $value->nomPromo ?>" > <?php echo $value->nomPromo ; ?></option>
+                                <option value="<?php echo $value->annee ?>" > <?php echo $value->nomPromo ; ?></option>
                             <?php } ?>
                         </select>
                     </div>
