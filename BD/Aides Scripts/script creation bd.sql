@@ -24,6 +24,9 @@ CREATE TABLE eleve (
 
 CREATE TABLE examen (
   idExamen INT NOT NULL AUTO_INCREMENT,
+  titreExamen VARCHAR(50) NOT NULL,
+  consigneExamen TEXT NOT NULL,
+  nbEssaiPossible INT NOT NULL,
   dateDepot DATETIME NOT NULL,
   anneeScolaire INT(4) NOT NULL,
   PRIMARY KEY (idExamen)
@@ -35,6 +38,7 @@ CREATE TABLE question (
   intituleQuestion TINYTEXT NOT NULL,
   baremeQuestion DECIMAL(4,2) NOT NULL,
   estValeurParfaite TINYINT(1) NOT NULL,
+  zoneTolerance INT NOT NULL,
   FOREIGN KEY (idExamen) REFERENCES examen(idExamen),
   PRIMARY KEY(idQuestion,idExamen)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -51,6 +55,7 @@ CREATE TABLE sujet (
   idEnonce INT NOT NULL,
   semestre TINYINT(1) NOT NULL,
   idExamen INT NOT NULL,
+  nbEssaiRealise INT NOT NULL,
   FOREIGN KEY (idEnonce) REFERENCES enonce(idEnonce),
   FOREIGN KEY (idExamen) REFERENCES examen(idExamen),
   PRIMARY KEY (idSujet,idEnonce)

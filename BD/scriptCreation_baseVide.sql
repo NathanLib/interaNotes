@@ -122,6 +122,9 @@ DROP TABLE IF EXISTS `examen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `examen` (
   `idExamen` int(11) NOT NULL AUTO_INCREMENT,
+  `titreExamen` varchar(50) NOT NULL,
+  `consigneExamen` text NOT NULL,
+  `nbEssaiPossible` int(11) NOT NULL,
   `dateDepot` datetime NOT NULL,
   `anneeScolaire` int(4) NOT NULL,
   PRIMARY KEY (`idExamen`)
@@ -283,6 +286,7 @@ CREATE TABLE `question` (
   `intituleQuestion` tinytext NOT NULL,
   `baremeQuestion` decimal(4,2) NOT NULL,
   `estValeurParfaite` tinyint(1) NOT NULL,
+  `zoneTolerance` int(11) NOT NULL,
   PRIMARY KEY (`idQuestion`,`idExamen`),
   KEY `idExamen` (`idExamen`),
   CONSTRAINT `question_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
@@ -377,6 +381,7 @@ CREATE TABLE `sujet` (
   `idEnonce` int(11) NOT NULL,
   `semestre` tinyint(1) NOT NULL,
   `idExamen` int(11) NOT NULL,
+  `nbEssaiRealise` int(11) NOT NULL,
   PRIMARY KEY (`idSujet`,`idEnonce`),
   KEY `idEnonce` (`idEnonce`),
   KEY `idExamen` (`idExamen`),
@@ -432,4 +437,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-05 14:08:57
+-- Dump completed on 2019-03-05 13:58:44

@@ -10,7 +10,7 @@ INSERT INTO `eleve` VALUES (1,2018, "Promo 1A 2018"),(3,2018, "Promo 1A 2018"),(
 
 INSERT INTO `enseignant` VALUES (2);
 
-INSERT INTO `examen` VALUES (1,'2019-01-30 00:00:00',2018);
+INSERT INTO `examen` VALUES (1,'Simulation d\'une fusée','En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de $destinationPlanète$ qui se situe à $distanceDestination$ Kms de notre chère Terre !<br><br>Nous savons que la fusée possède $nbMoteur$ moteur(s), la fusée peut aller à une vitesse de $vitesse$ Km/H et chaque moteur a une consommation de carburant qui vaut $consoCarburantParMoteurs$ Tonnes/1000 Kms !<br><br>A bord de cette fusée, l\'équipage est constitué de $nbPersonne$ personnes et chaque personne consomme $consoNourrituresParPersonneParJour$ Kgs de nourriture, $consoEauParPersonnesParJour$ L d\'eau et $consoO2ParPersonnesParJour$ L d\'O² par jour.','5','2019-01-30 00:00:00',2018);
 
 INSERT INTO `points` VALUES 
 (1,1,'nbMoteur', 0),
@@ -93,9 +93,9 @@ INSERT INTO `dependances` VALUES
 (38,22);
 
 INSERT INTO `question` VALUES
-(1,1,"Combien de jours seront nécessaires pour effectuer ce voyage ?",2,0)
-(2,1,"Indiquez la quantité d'O2 nécessaire pour effectuer ce voyage ?",2,0)
-(3,1,"Indiquez la quantité de carburant nécessaire pour effectuer ce voyage ?",2,0)
-(4,1,"Indiquez la quantité de nourriture nécessaire pour effectuer ce voyage ?",2,0)
-(5,1,"Indiquez la quantité d'eau nécessaire pour effectuer ce voyage ?",2,0)
+(1,1,"Combien de jours seront nécessaires pour effectuer ce voyage ?",2,0,95)
+(2,1,"Indiquez la quantité d'O2 nécessaire pour effectuer ce voyage ?",2,0,80)
+(3,1,"Indiquez la quantité de carburant nécessaire pour effectuer ce voyage ?",2,0,80)
+(4,1,"Indiquez la quantité de nourriture nécessaire pour effectuer ce voyage ?",2,0,75)
+(5,1,"Indiquez la quantité d'eau nécessaire pour effectuer ce voyage ?",2,0,80)
 

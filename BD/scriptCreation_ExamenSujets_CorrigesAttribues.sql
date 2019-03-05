@@ -126,6 +126,9 @@ DROP TABLE IF EXISTS `examen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `examen` (
   `idExamen` int(11) NOT NULL AUTO_INCREMENT,
+  `titreExamen` varchar(50) NOT NULL,
+  `consigneExamen` text NOT NULL,
+  `nbEssaiPossible` int(11) NOT NULL,
   `dateDepot` datetime NOT NULL,
   `anneeScolaire` int(4) NOT NULL,
   PRIMARY KEY (`idExamen`)
@@ -138,7 +141,7 @@ CREATE TABLE `examen` (
 
 LOCK TABLES `examen` WRITE;
 /*!40000 ALTER TABLE `examen` DISABLE KEYS */;
-INSERT INTO `examen` VALUES (1,'2019-01-30 00:00:00',2018);
+INSERT INTO `examen` VALUES (1,'Simulation d\'une fusée','En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de $destinationPlanète$ qui se situe à $distanceDestination$ Kms de notre chère Terre !<br><br>Nous savons que la fusée possède $nbMoteur$ moteur(s), la fusée peut aller à une vitesse de $vitesse$ Km/H et chaque moteur a une consommation de carburant qui vaut $consoCarburantParMoteurs$ Tonnes/1000 Kms !<br><br>A bord de cette fusée, l\'équipage est constitué de $nbPersonne$ personnes et chaque personne consomme $consoNourrituresParPersonneParJour$ Kgs de nourriture, $consoEauParPersonnesParJour$ L d\'eau et $consoO2ParPersonnesParJour$ L d\'O² par jour.',5,'2019-01-30 00:00:00',2018);
 /*!40000 ALTER TABLE `examen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,6 +295,7 @@ CREATE TABLE `question` (
   `intituleQuestion` tinytext NOT NULL,
   `baremeQuestion` decimal(4,2) NOT NULL,
   `estValeurParfaite` tinyint(1) NOT NULL,
+  `zoneTolerance` int(11) NOT NULL,
   PRIMARY KEY (`idQuestion`,`idExamen`),
   KEY `idExamen` (`idExamen`),
   CONSTRAINT `question_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
@@ -304,7 +308,7 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
-INSERT INTO `question` VALUES (1,1,'Combien de jours seront nécessaires pour effectuer ce voyage ?',2.00,0),(2,1,'Indiquez la quantité d\'O2 nécessaire pour effectuer ce voyage ?',2.00,0),(3,1,'Indiquez la quantité de carburant nécessaire pour effectuer ce voyage ?',2.00,0),(4,1,'Indiquez la quantité de nourriture nécessaire pour effectuer ce voyage ?',2.00,0),(5,1,'Indiquez la quantité d\'eau nécessaire pour effectuer ce voyage ?',2.00,0);
+INSERT INTO `question` VALUES (1,1,'Combien de jours seront nécessaires pour effectuer ce voyage ?',2.00,0,95),(2,1,'Indiquez la quantité d\'O2 nécessaire pour effectuer ce voyage ?',2.00,0,80),(3,1,'Indiquez la quantité de carburant nécessaire pour effectuer ce voyage ?',2.00,0,80),(4,1,'Indiquez la quantité de nourriture nécessaire pour effectuer ce voyage ?',2.00,0,75),(5,1,'Indiquez la quantité d\'eau nécessaire pour effectuer ce voyage ?',2.00,0,80);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -388,6 +392,7 @@ CREATE TABLE `sujet` (
   `idEnonce` int(11) NOT NULL,
   `semestre` tinyint(1) NOT NULL,
   `idExamen` int(11) NOT NULL,
+  `nbEssaiRealise` int(11) NOT NULL,
   PRIMARY KEY (`idSujet`,`idEnonce`),
   KEY `idEnonce` (`idEnonce`),
   KEY `idExamen` (`idExamen`),
@@ -402,7 +407,7 @@ CREATE TABLE `sujet` (
 
 LOCK TABLES `sujet` WRITE;
 /*!40000 ALTER TABLE `sujet` DISABLE KEYS */;
-INSERT INTO `sujet` VALUES (1,1,1,1),(2,2,1,1);
+INSERT INTO `sujet` VALUES (1,1,1,1,0),(2,2,1,1,0);
 /*!40000 ALTER TABLE `sujet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -445,4 +450,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-06 23:06:57
+-- Dump completed on 2019-03-05 14:02:50
