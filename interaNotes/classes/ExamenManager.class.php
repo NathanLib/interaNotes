@@ -9,7 +9,7 @@ class ExamenManager{
 	public function getAllExamens(){
 
 		$sql = 'SELECT idExamen, dateDepot, anneeScolaire FROM examen e
-						ORDER BY e.dateDepot DESC';
+		ORDER BY e.dateDepot DESC';
 
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
@@ -129,30 +129,33 @@ class ExamenManager{
 
 	public function creerQuestion($questions) {
 
-		$i = 0;
+
 		foreach ($questions as $key => $value) {
 
+				if (strpos($key, 'bareme') !== false) {
+					$tab = explode('areme',$key);
+					$tableauNumeroQuestion[] = $tab[1];
+				}
+
+		}
+
+		$i = 0;
+		foreach ($questions as $key => $value) {
+			var_dump($questions);
 			switch ($key) {
-				case 'intituleQuestion'.$i:
+				case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
 				$question['intituleQuestion'] = $value;
 				break;
-				case 'bareme'.$i:
+				case 'bareme'.$tableauNumeroQuestion[$i]:
 				$question['bareme'] = $value;
-				if(!isset($questions['valeurParfaite'.$i])){
-					$listeQuestions[]=$question;
-					$i++;
-					$question['intituleQuestion']=null;
-					$question['bareme']=null;
-					$question['valeurParfaite']=null;
-				}
 				break;
-				case 'valeurParfaite'.$i:
-				$question['valeurParfaite'] = $value;
+				case 'zoneTolerance'.$tableauNumeroQuestion[$i]:
+				$question['zoneTolerance'] = $value;
 				$listeQuestions[]=$question;
 				$i++;
 				$question['intituleQuestion']=null;
 				$question['bareme']=null;
-				$question['valeurParfaite']=null;
+				$question['zoneTolerance']=null;
 				break;
 				default:
 				break;
@@ -164,18 +167,14 @@ class ExamenManager{
 
 		foreach ($listeQuestions as $key => $value) {
 
-			$sql = 'INSERT INTO question(idQuestion,idExamen,intituleQuestion,baremeQuestion,estValeurParfaite) VALUES (:idQuestion,:idExamen,:intituleQuestion,:baremeQuestion,:estValeurParfaite)';
+			$sql = 'INSERT INTO question(idQuestion,idExamen,intituleQuestion,baremeQuestion,zoneTolerance) VALUES (:idQuestion,:idExamen,:intituleQuestion,:baremeQuestion,:zoneTolerance)';
 
 			$requete = $this->db->prepare($sql);
 			$requete->bindValue(':idQuestion',$i);
 			$requete->bindValue(':idExamen',$idExamen);
 			$requete->bindValue(':intituleQuestion',$value['intituleQuestion']);
 			$requete->bindValue(':baremeQuestion',$value['bareme']);
-			if (isset($value['valeurParfaite'])){
-				$requete->bindValue(':estValeurParfaite',1); //true
-			} else {
-				$requete->bindValue(':estValeurParfaite',0); //false
-			}
+			$requete->bindValue(':zoneTolerance',$value['zoneTolerance']); 
 
 			$requete->execute();
 			$i++;
@@ -186,7 +185,7 @@ class ExamenManager{
 	public function creerPoint($listePoints) {
 
 		$i = 1;
-		$idExamen = $this->db->lastInsertId();
+		$idExamen = $this->getLastExamenCree();
 
 		foreach ($listePoints as $key => $value) {
 			$sql = 'INSERT INTO points(idPoint,idExamen,nomPoint,estDonneesCatia) VALUES (:idPoint,:idExamen,:nomPoint,:estDonneesCatia)';
@@ -195,29 +194,58 @@ class ExamenManager{
 			$requete->bindValue(':idPoint',$i);
 			$requete->bindValue(':idExamen',$idExamen);
 			$requete->bindValue(':nomPoint',$key);
-			$requete->bindValue(':estDonneesCatia',0);
+			$requete->bindValue(':estDonneesCatia',$value['estDonneesCatia']);
 
 			$requete->execute();
 
 			foreach ($value as $clé => $valeur) {
 
-				$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
+				if(isset($valeur['valeur'])){
+					if (isset($valeur[0])) {
+						$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
 
-				$requete = $this->db->prepare($sql);
+						foreach ($valeur as $key => $valeurPoint) {
 
-				$requete->bindValue(':idPoint',$i);
-				$requete->bindValue(':valeur',$valeur['valeur']);
-				$requete->bindValue(':exposantValeur',$valeur['exposantValeur']);
-				$requete->bindValue(':uniteValeur',$valeur['uniteValeur']);
-				$requete->bindValue(':uniteExposant',$valeur['uniteExposant']);
+							$requete = $this->db->prepare($sql);
 
-				$requete->execute();
+							$requete->bindValue(':idPoint',$i);
+							$requete->bindValue(':valeur',$valeurPoint['valeur']);
+							$requete->bindValue(':exposantValeur',$valeurPoint['exposantValeur']);
+							$requete->bindValue(':uniteValeur',$valeurPoint['uniteValeur']);
+							$requete->bindValue(':uniteExposant',$valeurPoint['uniteExposant']);
 
+							$requete->execute();
+						}
+					} else {
+						$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
+
+						$requete = $this->db->prepare($sql);
+
+						$requete->bindValue(':idPoint',$i);
+						$requete->bindValue(':valeur',$valeur['valeur']);
+						$requete->bindValue(':exposantValeur',$valeur['exposantValeur']);
+						$requete->bindValue(':uniteValeur',$valeur['uniteValeur']);
+						$requete->bindValue(':uniteExposant',$valeur['uniteExposant']);
+
+						$requete->execute();
+					}
+				}
 			}
 			$i++;
 		}
 
 
 
+	}
+
+	public function getLastExamenCree(){
+		$sql = 'SELECT COUNT(idExamen) as nbExam FROM examen ';
+
+			$requete = $this->db->prepare($sql);
+			$requete->execute();
+
+			$res = $requete->fetch(PDO::FETCH_OBJ);
+
+			return($res->nbExam);
 	}
 }

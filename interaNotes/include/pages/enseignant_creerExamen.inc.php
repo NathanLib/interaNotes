@@ -43,7 +43,7 @@ if(!$listePromo) { ?>
                         <label for="classExam">Promotion :</label>
                         <select class="form-control" id="classExam" name="classExam" required>
                             <?php foreach ($listePromo as $promo => $value) { ?>
-                                <option value="<?php echo $value->nomPromo ?>" > <?php echo $value->nomPromo ; ?></option>
+                                <option value="<?php echo $value->annee ?>" > <?php echo $value->nomPromo ; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -59,7 +59,8 @@ if(!$listePromo) { ?>
                     </div>
 
                     <div class="col-12 form-group" >
-                        <div class="custom-control custom-radio custom-control-inline">
+                        <label for="">Numéro du semestre :</label><br>
+                        <div class="custom-control custom-radio custom-control-inline firstCheckBoxSemester">
                             <input type="radio" class="custom-control-input" id="customRadio" name="numSemestre" value="1" checked>
                             <label class="custom-control-label" for="customRadio">Semestre 1</label>
                         </div>
@@ -67,6 +68,10 @@ if(!$listePromo) { ?>
                             <input type="radio" class="custom-control-input" id="customRadio2" name="numSemestre" value="2">
                             <label class="custom-control-label" for="customRadio2">Semestre 2</label>
                         </div>
+                    </div>
+                    <div class="col-12 form-group">
+                      <label for="nbEssai">Nombre d'essais :</label>
+                      <input class="form-control" id="nbEssai" name="nbEssai" type="number" placeholder="" min="1" step="1" required>
                     </div>
                 </div>
             </div>
@@ -92,7 +97,14 @@ if(!$listePromo) { ?>
     $_SESSION['semestre'] = $_POST['numSemestre'];
 
     preg_match_all( '#\$(\w++)\$#', $_POST['enonceExam'], $tableauParametres);
+
     $tableauParametres = $tableauParametres[1]; //destruction des variables $var$
+
+    if(empty($tableauParametres)){
+      sleep(2);
+      header('Location: index.php?page=4');
+    }
+
     $_SESSION['tableauParametres'] = $tableauParametres;
     ?>
 
@@ -115,28 +127,28 @@ if(!$listePromo) { ?>
         <img class="helpIcon" src="image/help.svg" alt="help" title="Aide">
         Besoin d'aide ?
         <div class="popup">
-          </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
+        </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
 
-          <h5> La saisie de question :</h5>
-          <p id="text_info">Pour saisir une question, vous devez d'abord saisir l'intitulé de la question puis son barème. Si cette question représente 2pts sur 20, vous devez seulement saisir 2. Enfin, vous pouvez cocher la case "valeur parfaite" si vous souhaitez que l'élève doit saisir exactement la bonne réponse pour avoir les points sinon il n'aura aucun point. Dans le cas contraire, les points de l'élève dépendront de la différence entre son résultat et le résultat attentu</p>
+        <h5> La saisie de question :</h5>
+        <p id="text_info">Pour saisir une question, vous devez d'abord saisir l'intitulé de la question puis son barème. Si cette question représente 2pts sur 20, vous devez seulement saisir 2. Enfin, vous pouvez cocher la case "valeur parfaite" si vous souhaitez que l'élève doit saisir exactement la bonne réponse pour avoir les points sinon il n'aura aucun point. Dans le cas contraire, les points de l'élève dépendront de la différence entre son résultat et le résultat attentu</p>
 
-          <h5> La saisie des valeurs :</h5>
-          <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
-          <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
-          <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
-          </br>
-        </div>
-      </span>
+        <h5> La saisie des valeurs :</h5>
+        <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
+        <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
+        <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
+    </br>
+</div>
+</span>
+</div>
+
+<hr class="hr" style="width:80%">
+
+<div class="row enonceCreateExam">
+    <div class="col-12">
+        <h4>Enonce de l'examen</h4>
+        <p><?php echo $_SESSION['texteEnonce']?></p>
     </div>
-
-    <hr class="hr" style="width:80%">
-
-    <div class="row enonceCreateExam">
-        <div class="col-12">
-            <h4>Enonce de l'examen</h4>
-            <p><?php echo $_SESSION['texteEnonce']?></p>
-        </div>
-    </div>
+</div>
 
 <form method="post" action="index.php?page=4" id="createExam2">
 
@@ -156,12 +168,10 @@ if(!$listePromo) { ?>
                             <div class="col-4 col-md-2">
                                 <input type="number" id="bareme0" name="bareme0" class="form-control bareme" placeholder="Barème" step="0.25" min="0.25" max="20" required>
                             </div>
-                            <div class="col-6 col-md-3" style="padding-top:8px">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" id="valeurParfaite0" name="valeurParfaite0" class="custom-control-input">
-                                    <label class="custom-control-label" for="valeurParfaite0">Valeur parfaite</label>
+                            <div class="col-6 col-md-3">
+                                <div class="custom-control">
+                                    <input type="number" class="form-control bareme" id="zoneTolerance0" name="zoneTolerance0" min=0 max=100 step="0.5" placeholder="% de tolérance" required>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -180,10 +190,9 @@ if(!$listePromo) { ?>
                                 <div class="col-4 col-md-2">
                                     <input disabled="disabled" type="number" id="bareme" name="bareme" class="form-control bareme" placeholder="Barème" step="0.25" min="0.25" max="20">
                                 </div>
-                                <div class="col-6 col-md-3" style="padding-top:8px">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="valeurParfaite" name="valeurParfaite">
-                                        <label id="labelValeurParfaite" class="custom-control-label" for="valeurParfaite">Valeur parfaite</label>
+                                <div class="col-6 col-md-3">
+                                    <div class="custom-control">
+                                        <input type="number" class="form-control bareme" id="zoneTolerance" placeholder="% de tolérance"  min=0 max=100 step="0.5">
                                     </div>
                                 </div>
 
@@ -217,11 +226,14 @@ if(!$listePromo) { ?>
             <h4>Liste des paramètres de l'examen :</h4>
 
             <?php
+
+            $nombre = count($tableauParametres);
+
             foreach ($tableauParametres as $compteur => $parametre) { ?>
                 <p><?php echo $parametre ?> : </p>
 
                 <div class="choiceParameterSaisie">
-                    <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>)">Ajouter les valeurs</button>
+                    <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>,<?php echo $nombre; ?>)">Ajouter les valeurs</button>
 
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" id=<?php echo "catia".$compteur ?> name=<?php echo "catia".$compteur ?> class="custom-control-input" >
@@ -311,7 +323,7 @@ if(!$listePromo) { ?>
                                     <input class="btnSaisieValeur" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
                                 </div>
                                 <div class="col-5 d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.")"; ?> />
+                                    <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick="ouvrirBox(<?php echo $compteur ?>,<?php echo $nombre ?>)" />
                                 </div>
                             </div>
                         </div>
@@ -395,18 +407,18 @@ if(!$listePromo) { ?>
                                     <input class="btnSaisieValeur" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
                                 </div>
                                 <div class="col-5 d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.")"; ?> />
+                                    <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.",".$nombre.")"; ?> />
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <?php $nombre = $compteur;
+                <?php
             } ?>
         </div>
     </div>
-    <input class="btnValiderExamen" type="submit" onclick="recupSelect(<?php echo $nombre; ?>)"value="Valider">
+    <input class="btnValiderExamen" id="buttonValider" type="submit" onclick="recupSelect(<?php echo $nombre; ?>)"value="Valider">
 </form>
 
 
@@ -423,7 +435,7 @@ if(!$listePromo) { ?>
     $examenManager->creerQuestion($questions);
 
     foreach($_COOKIE as $key=>$value) {
-        if($key != "PHPSESSID"){
+        if($key != "PHPSESSID" && $key != null){
             $points[$key]=$value;
         }
     }
@@ -431,26 +443,52 @@ if(!$listePromo) { ?>
     $i=0;
     foreach ($points as $key => $value) {
         $listeDonnees = explode(",", $value);
-        $point=$_SESSION['tableauParametres'][$i];
+        $point = $_SESSION['tableauParametres'][$i];
 
-        foreach ($listeDonnees as $key => $value) {
+        foreach ($listeDonnees as $key2 => $value) {
             $donnees = explode(" / ", $value);
 
             if(count($donnees) === 4){
 
-                $listePoints[$point][$key]['valeur']=$donnees[0];
-                $listePoints[$point][$key]['exposantValeur']=$donnees[1];
-                $listePoints[$point][$key]['uniteValeur']=$donnees[2];
-                $listePoints[$point][$key]['uniteExposant']=$donnees[3];
+                $listePoints[$point][$key2]['valeur']=$donnees[0];
+                $listePoints[$point][$key2]['exposantValeur']=$donnees[1];
+                $listePoints[$point][$key2]['uniteValeur']=$donnees[2];
+                $listePoints[$point][$key2]['uniteExposant']=$donnees[3];
             } else {
-                //intervalles HELP
+                $k=0;
+                for ($j = $donnees[0]*pow(10, $donnees[1]); $j <= $donnees[2]*pow(10, $donnees[3]); $j = $j + $donnees[4]) {
+                   //fonction pour remettre des valeurs propres ?
+                    $listePoints[$point][$key2][$k]['valeur']=$j;
+                    $listePoints[$point][$key2][$k]['exposantValeur']=0;
+                    $listePoints[$point][$key2][$k]['uniteValeur']=$donnees[5];
+                    $listePoints[$point][$key2][$k]['uniteExposant']=$donnees[6];
+                    $k++;
+                }
+
             }
         }
-        $i++;
 
+        if (isset($_POST['catia'.$i])) {
+            $listePoints[$point]['estDonneesCatia'] = 1;
+        } else {
+            $listePoints[$point]['estDonneesCatia'] = 0;
+        }
+        $i++;
     }
+
     $examenManager->creerPoint($listePoints);
 
+    foreach($_COOKIE as $key => $value) {
+          if($key != "PHPSESSID") { ?>
+            <script type="text/javascript">
+            function delete_cookie(name) {
+                  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                  }
 
-  }
+                  delete_cookie(<?php echo '"'.$key.'"'; ?>);
+            </script>
+            <?php
+        }
+    }
+}
 } ?>
