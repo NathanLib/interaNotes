@@ -12,6 +12,9 @@ $noteManager = new NoteManager($pdo);
 $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']); // WARNING si plusieurs sujets
 $sujet = $sujetManager->getSujet($idSujet);
 $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
+$idEleve = $eleveManager->getIdEleveByLogin($_SESSION['eleve']);
+$nbEssaiRestant = $examenManager->getNbEssaiRestant($idEleve,$sujet->getIdExamenOfSujet());
+
 
 if(!$idSujet){
     ?>
@@ -21,6 +24,7 @@ if(!$idSujet){
     </div>
     <?php
 } else {
+
     $dateLimite=$examenManager->getDateLimitebySujet($idSujet);
 
     if($examenManager->dateLimiteEstDepassee($dateLimite)) { ?>
@@ -30,7 +34,12 @@ if(!$idSujet){
             <p>La date limite pour envoyer les réponses a été dépassée !</p>
         </div>
 
-    <?php } else {
+    <?php } elseif($nbEssaiRestant==0) { ?>
+      <div class="msgErrorTitre">
+          <h3>Plus d'essai</h3>
+          <p>Vous avez utilisé tous vos essais ! Prenez contact avec votre professeur.</p>
+      </div>
+  <?php  } else {
 
         if (empty($_POST['reponse1'])) { ?>
 

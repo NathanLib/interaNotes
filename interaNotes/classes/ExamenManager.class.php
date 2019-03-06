@@ -263,4 +263,25 @@ class ExamenManager{
 
 			return($res->nbExam);
 	}
+
+	public function getNbEssaiRestant($idEleve,$idExamen) {
+		$sql = 'SELECT nbEssaiPossible FROM examen WHERE idExamen=:idExamen ';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idExamen',$idExamen);
+
+		$requete->execute();
+		$res = $requete->fetch(PDO::FETCH_OBJ);
+	  $nbEssaiPossible = $res->nbEssaiPossible;
+
+		$sql = 'SELECT COUNT(DISTINCT dateResult) as nbEssaiUtilise FROM `resultatseleves` WHERE idEleve=:idEleve';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idEleve',$idEleve);
+
+		$requete->execute();
+		$res = $requete->fetch(PDO::FETCH_OBJ);
+
+		return $nbEssaiPossible - $res->nbEssaiUtilise;
+	}
 }
