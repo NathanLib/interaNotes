@@ -80,11 +80,11 @@ if(!$listePromo) { ?>
                 <div class="row">
                     <div class="col-12 form-group">
                         <label for="enonceExam">Enoncé :</label>
-                        <textarea class="form-control" id="enonceExam" name="enonceExam" onkeyup="adjustHeightTextArea(this)" placeholder='Veuillez écrire vos variables de la manière suivante : $maVariables$' maxlength="65535" style="min-height:210px !important;" required></textarea>
+                        <textarea class="form-control" id="enonceExam" name="enonceExam" onkeyup="adjustHeightTextArea(this)" placeholder='Veuillez écrire vos variables de la manière suivante : $maVariable$' maxlength="65535" style="min-height:210px !important;" required></textarea>
                     </div>
                 </div>
             </div>
-            <input type="submit" class="createClassSubmit" name="Submit" value="Suivant">
+            <input type="submit" name="Submit" value="Suivant">
         </form>
     </div>
 

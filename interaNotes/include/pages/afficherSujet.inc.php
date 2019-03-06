@@ -149,7 +149,7 @@ if(isset($_GET['idSujet'])){
                             <?php
                             if (isset($_SESSION['eleve']) && !$examenSujet->estFini()) { ?>
                                 <div class="col-12 col-md-3 d-flex justify-content-around">
-                                    <div class="boutonCorrection">
+                                    <div class="">
                                         <a href="index.php?page=19">
                                             <input type=button value="Saisir réponses"></input>
                                         </a>
@@ -160,7 +160,7 @@ if(isset($_GET['idSujet'])){
 
 
                             <div class="col-12 col-md-3 d-flex justify-content-center">
-                                <div class="boutonCorrection">
+                                <div class="">
                                     <a href="index.php?page=46&amp;idSujet=<?php echo $idSujet;?>">
                                         <input type=button value="Voir réponses saisies"></input>
                                     </a>
@@ -168,7 +168,7 @@ if(isset($_GET['idSujet'])){
                             </div>
 
                             <div class="col-12 col-md-3 d-flex justify-content-center">
-                                <div class="boutonTelecharger">
+                                <div class="">
                                     <?php
                                     $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $dateDepot, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
                                     ?>
