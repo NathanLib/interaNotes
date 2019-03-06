@@ -24,7 +24,7 @@
 
                 <div class="row">
                     <div class="col-12 importStudent">
-                        <div class="box">
+                        <div class="">
                             <input type="file" name="file" id="file-3" class="inputfile inputfile-3" accept=".xls,.xlsx,.csv" required/>
                             <label for="file-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" class="createClassSubmit" name="Submit" value="Importer">
+                <input type="submit" name="Submit" value="Importer">
             </div>
         </form>
     </div>

@@ -263,4 +263,54 @@ class ExamenManager{
 
 			return($res->nbExam);
 	}
+
+	public function getNbEssaiRestant($idSujet,$idExamen) {
+		$sql = 'SELECT nbEssaiPossible FROM examen WHERE idExamen=:idExamen ';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idExamen',$idExamen);
+
+		$requete->execute();
+		$res = $requete->fetch(PDO::FETCH_OBJ);
+	  $nbEssaiPossible = $res->nbEssaiPossible;
+
+		$sql = 'SELECT nbEssaiRealise as nbEssaiUtilise FROM `sujet` WHERE idSujet=:idSujet';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idSujet',$idSujet);
+
+		$requete->execute();
+		$res = $requete->fetch(PDO::FETCH_OBJ);
+
+		return $nbEssaiPossible - $res->nbEssaiUtilise;
+	}
+
+	public function addOneTry($idSujet,$idExamen) {
+		$sql = "
+							UPDATE sujet
+							  SET nbEssaiRealise = nbEssaiRealise + 1
+							  WHERE idSujet = :idSujet AND idExamen = :idExamen";
+
+								$requete = $this->db->prepare($sql);
+								$requete->bindValue(':idExamen',$idExamen);
+								$requete->bindValue(':idSujet',$idSujet);
+
+								$requete->execute();
+
+	}
+
+	public function updateTries($nbEssaieRealise,$idSujet,$idExamen) {
+		$sql = "
+							UPDATE sujet
+							  SET nbEssaiRealise = nbEssaiRealise - :nbEssaiRealise
+							  WHERE idSujet = :idSujet AND idExamen = :idExamen";
+
+								$requete = $this->db->prepare($sql);
+								$requete->bindValue(':nbEssaiRealise',$nbEssaieRealise);
+								$requete->bindValue(':idExamen',$idExamen);
+								$requete->bindValue(':idSujet',$idSujet);
+
+								$requete->execute();
+
+	}
 }
