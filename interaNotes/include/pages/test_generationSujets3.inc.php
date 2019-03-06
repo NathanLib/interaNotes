@@ -7,17 +7,14 @@ $pdo = new Mypdo();
   <div class="genererSujet">
     <?php
 
-    $dependanceManager = new DependanceManager($pdo);
-    $listeDependances = $dependanceManager->getAllDependances();
-
     $sujetManager = new SujetManager($pdo);
     $idPremierSujet = $sujetManager->getIdSujetPossible();
 
     $generationManager = new GenerationManager3($pdo);
-    $listeExerciceGenere = $generationManager->genererExerciceFusee($listeDependances, $idPremierSujet);
+    $listeExercicesGeneres = $generationManager->genererExercice(1, $idPremierSujet);
 
     echo "<pre>";
-    var_dump($listeExerciceGenere);
+    var_dump(count($listeExercicesGeneres));
     echo "</pre>";
 
 

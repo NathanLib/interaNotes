@@ -87,7 +87,7 @@
 		// WARNING: PARTIE TEST
 
 		case 22:
-		include_once('pages/test_generationSujets.inc.php');
+		include_once('pages/test_generationSujets3.inc.php');
 		break;
 
 		case 27:
