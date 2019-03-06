@@ -285,7 +285,6 @@ CREATE TABLE `question` (
   `idExamen` int(11) NOT NULL,
   `intituleQuestion` tinytext NOT NULL,
   `baremeQuestion` decimal(4,2) NOT NULL,
-  `estValeurParfaite` tinyint(1) NOT NULL,
   `zoneTolerance` int(11) NOT NULL,
   PRIMARY KEY (`idQuestion`,`idExamen`),
   KEY `idExamen` (`idExamen`),
@@ -437,4 +436,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-05 13:58:44
+-- Dump completed on 2019-03-06 13:08:27
