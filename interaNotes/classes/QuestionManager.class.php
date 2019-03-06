@@ -7,11 +7,12 @@ class QuestionManager{
 		$this->db = $db;
 	}
 
-  public function getAllQuestion($idSujet){
-    $sql = 'SELECT q.idQuestion, intituleQuestion, resultat, exposantUnite, resultatUnite, baremeQuestion , resultatExposant FROM resultatsattendus r JOIN Question q ON q.idQuestion=r.idQuestion WHERE idSujet=:idSujet';
+  public function getAllQuestion($idExamen,$idSujet){
+    $sql = 'SELECT q.idQuestion, intituleQuestion, resultat, exposantUnite, resultatUnite, baremeQuestion , resultatExposant FROM resultatsattendus r JOIN Question q ON q.idQuestion=r.idQuestion WHERE idSujet=:idSujet AND idExamen=:idExamen';
 
     $requete = $this->db->prepare($sql);
     $requete->bindValue(':idSujet', $idSujet);
+    $requete->bindValue(':idExamen', $idExamen);
     $requete->execute();
 
     while($question = $requete->fetch(PDO::FETCH_OBJ)){

@@ -30,7 +30,7 @@ if(isset($_GET['idSujet'])){
 
         $titre = $enonceSujet->getTitreEnonce();
         $enonce = $enonceSujet->getConsigneEnonce();
-        $question = $questionManager->getAllQuestion($idSujet);
+        $question = $questionManager->getAllQuestion($sujet->getIdExamenOfSujet(),$idSujet);
 
         $image1 = "image/examen".$_SESSION['examen']->getIdExamen()."/sujet".$idSujet."/FuséeMoteur".$valeurs[0]->getValeur().".jpg";
         $image2 = "image/examen".$_SESSION['examen']->getIdExamen()."/sujet".$idSujet."/Astronaute".$valeurs[2]->getValeur().".jpg"; ?>
