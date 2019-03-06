@@ -298,4 +298,19 @@ class ExamenManager{
 								$requete->execute();
 
 	}
+
+	public function updateTries($nbEssaieRealise,$idSujet,$idExamen) {
+		$sql = "
+							UPDATE sujet
+							  SET nbEssaiRealise = nbEssaiRealise - :nbEssaiRealise
+							  WHERE idSujet = :idSujet AND idExamen = :idExamen";
+
+								$requete = $this->db->prepare($sql);
+								$requete->bindValue(':nbEssaiRealise',$nbEssaieRealise);
+								$requete->bindValue(':idExamen',$idExamen);
+								$requete->bindValue(':idSujet',$idSujet);
+
+								$requete->execute();
+
+	}
 }
