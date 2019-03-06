@@ -55,6 +55,11 @@ if(isset($_GET['id'])){
                         <input type="button" name="" value="Voir les réponses">
                       </a>
                   </div>
+                  <div class="col-12 col-sm-3 col-lg-2 buttonConsulter">
+                      <a href="index.php?page=6">
+                        <input type="button" name="" value="Ajouter Essai">
+                      </a>
+                  </div>
               </div>
           <?php }
       }

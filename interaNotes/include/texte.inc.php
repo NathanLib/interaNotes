@@ -36,7 +36,7 @@
 		break;
 
 		case 6:
-		//
+		include_once('pages/enseignant_AjouterEssai.inc.php');
 		break;
 
 		case 7:

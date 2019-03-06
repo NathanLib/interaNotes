@@ -13,7 +13,7 @@ $idSujet = $sujetManager->getIdSujetByLogin($_SESSION['eleve']); // WARNING si p
 $sujet = $sujetManager->getSujet($idSujet);
 $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
 $idEleve = $eleveManager->getIdEleveByLogin($_SESSION['eleve']);
-$nbEssaiRestant = $examenManager->getNbEssaiRestant($idEleve,$sujet->getIdExamenOfSujet());
+$nbEssaiRestant = $examenManager->getNbEssaiRestant($idSujet,$sujet->getIdExamenOfSujet());
 
 
 if(!$idSujet){
@@ -228,6 +228,8 @@ if(!$idSujet){
             $noteManager->updateNote($idSujet, $idEleve, $noteTotal);
         }
 
+
+        $examenManager->addOneTry($idSujet,$sujet->getIdExamenOfSujet());
         ?>
 
         <div class="messageEnvoiValide">
