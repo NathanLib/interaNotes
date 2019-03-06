@@ -183,16 +183,14 @@ footer .text-uppercase {
     margin: 0;
     padding: 10px 0;
 }
-.listerSujet .row {
-    margin : 0 12%;
-}
 .listerSujet input {
+    border: solid #333 thin;
+    border-radius: 5px;
+    padding: 3px 10px;
     margin: 10px 0;
-    width: 135px;
-    border: 0;
-    border-radius: 10px;
-    background-color: #333;
+    background: #333;
     color: white;
+    min-width: 135px;
 }
 .boutonsListerSujetProf {
     display: flex;
@@ -915,7 +913,7 @@ span#text_info, p#text_info {
         padding-bottom: 5px;
     }
     .contenuListeSujet {
-        margin: 2% 0;
+        margin: 20px 0;
     }
 
     /* Page détail compte */
@@ -1009,7 +1007,7 @@ span#text_info, p#text_info {
 
     /* Page Prof Lister sujets */
     .contenuListeSujet {
-        margin: 1% 0;
+        margin: 20px 0;
     }
 
     /* Page enseignant creer classe */

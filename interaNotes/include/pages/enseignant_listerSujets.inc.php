@@ -44,18 +44,18 @@ if(isset($_GET['id'])){
                   </div>
 
                   <!--Boutons d'actions sur chaque sujet-->
-                  <div class="col-12 col-sm-3 col-lg-2 buttonConsulter">
+                  <div class="col-12 col-sm-3 col-lg-2">
                       <a href="index.php?page=45&amp;idSujet=<?php echo $sujet->getIdSujet();?>">
                           <input type="button" name="" value="Consulter">
                       </a>
                   </div>
 
-                  <div class="col-12 col-sm-3 col-lg-2 buttonConsulter">
+                  <div class="col-12 col-sm-3 col-lg-2">
                       <a href="index.php?page=46&amp;idSujet=<?php echo $sujet->getIdSujet();?>">
                         <input type="button" name="" value="Voir les réponses">
                       </a>
                   </div>
-                  <div class="col-12 col-sm-3 col-lg-2 buttonConsulter">
+                  <div class="col-12 col-sm-3 col-lg-2">
                       <a href="index.php?page=6?&amp;id=<?php echo $sujet->getIdSujet();?>">
                         <input type="button" name="" value="Ajouter Essai">
                       </a>
