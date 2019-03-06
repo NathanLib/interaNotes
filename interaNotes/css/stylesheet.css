@@ -224,6 +224,23 @@ footer .text-uppercase {
 .contenuListe {
     margin: 3% 0;
 }
+.modifierNbEssais {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.modifierNbEssais input[type=number] {
+    border-radius: 5px;
+    border: solid #333 thin;
+    padding: 2px 10px;
+}
+.modifierNbEssais input[type=submit] {
+    background: #333;
+    border: solid #333 thin;
+    border-radius: 5px;
+    color: white;
+    padding: 2px 10px;
+}
+
 
 /* Page enseignant creer classe */
 .createClass {
@@ -619,6 +636,10 @@ span#text_info, p#text_info {
 .msgErrorTitre {
     margin: 50px 50px;
 }
+.msgConfirmTitre {
+    margin: 50px 50px;
+}
+
 
 #phMail::placeholder {
     color: #999;
