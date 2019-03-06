@@ -116,12 +116,16 @@ class ExamenManager{
 
 	}
 
-	public function creerExamen($dateLimite,$anneeScolaire) {
-		$sql = 'INSERT INTO examen(dateDepot,anneeScolaire) VALUES (:dateDepot,:anneeScolaire)';
+	public function creerExamen($dateLimite,$anneeScolaire,$titreExamen,$consigneExamen,$nbEssaiPossible) {
+		$sql = 'INSERT INTO examen(dateDepot,anneeScolaire,titreExamen,consigneExamen,nbEssaiPossible) VALUES (:dateDepot,:anneeScolaire,:titreExamen,:consigneExamen,:nbEssaiPossible)';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':dateDepot',$dateLimite);
-		$requete->bindValue(':anneeScolaire',2018);
+		$requete->bindValue(':anneeScolaire',$anneeScolaire);
+		$requete->bindValue(':titreExamen',$titreExamen);
+		$requete->bindValue(':consigneExamen',$consigneExamen);
+		$requete->bindValue(':nbEssaiPossible',$nbEssaiPossible);
+
 		$requete->execute();
 
 		$requete->closeCursor();
@@ -141,7 +145,7 @@ class ExamenManager{
 
 		$i = 0;
 		foreach ($questions as $key => $value) {
-			var_dump($questions);
+
 			switch ($key) {
 				case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
 				$question['intituleQuestion'] = $value;
@@ -151,12 +155,23 @@ class ExamenManager{
 				break;
 				case 'zoneTolerance'.$tableauNumeroQuestion[$i]:
 				$question['zoneTolerance'] = $value;
-				$listeQuestions[]=$question;
-				$i++;
-				$question['intituleQuestion']=null;
-				$question['bareme']=null;
-				$question['zoneTolerance']=null;
+
+				if(!isset($questions['catia'.$tableauNumeroQuestion[$i]])){
+					$listeQuestions[]=$question;
+					$i++;
+					$question['intituleQuestion']=null;
+					$question['bareme']=null;
+					$question['zoneTolerance']=null;
+				}
+
 				break;
+				case 'catia'.$tableauNumeroQuestion[$i]:
+					$listeQuestions[]=$question;
+					$i++;
+					$question['intituleQuestion']=null;
+					$question['bareme']=null;
+					$question['zoneTolerance']=null;
+					break;
 				default:
 				break;
 			}
@@ -174,7 +189,7 @@ class ExamenManager{
 			$requete->bindValue(':idExamen',$idExamen);
 			$requete->bindValue(':intituleQuestion',$value['intituleQuestion']);
 			$requete->bindValue(':baremeQuestion',$value['bareme']);
-			$requete->bindValue(':zoneTolerance',$value['zoneTolerance']); 
+			$requete->bindValue(':zoneTolerance',$value['zoneTolerance']);
 
 			$requete->execute();
 			$i++;

@@ -95,6 +95,7 @@ if(!$listePromo) { ?>
     $_SESSION['titreExamen'] = $_POST['nameExam'];
     $_SESSION['texteEnonce'] = $_POST['enonceExam'];
     $_SESSION['semestre'] = $_POST['numSemestre'];
+    $_SESSION['nbEssaiPossible'] = $_POST['nbEssai'];
 
     preg_match_all( '#\$(\w++)\$#', $_POST['enonceExam'], $tableauParametres);
 
@@ -428,7 +429,7 @@ if(!$listePromo) { ?>
     <?php
     $examenManager = new ExamenManager($db);
 
-    $examenManager->creerExamen($_SESSION['dateLimite'],$_SESSION['nomPromotion']);
+    $examenManager->creerExamen($_SESSION['dateLimite'],$_SESSION['nomPromotion'],$_SESSION['titreExamen'],$_SESSION['texteEnonce'],$_SESSION['nbEssaiPossible']);
 
     $idExamen = $db->lastInsertId();
     $questions = $_POST;
@@ -477,6 +478,13 @@ if(!$listePromo) { ?>
     }
 
     $examenManager->creerPoint($listePoints);
+
+    unset($_SESSION['nomPromotion']);
+    unset($_SESSION['dateLimite']);
+    unset($_SESSION['titreExamen']);
+    unset($_SESSION['texteEnonce']);
+    unset($_SESSION['semestre']);
+    unset($_SESSION['nbEssaiPossible']);
 
     foreach($_COOKIE as $key => $value) {
           if($key != "PHPSESSID") { ?>
