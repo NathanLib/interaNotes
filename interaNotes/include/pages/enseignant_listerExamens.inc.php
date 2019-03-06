@@ -22,11 +22,11 @@ if (!$listeExamens){ ?>
         foreach ($listeExamens as $compteur=>$examen) {
             $examenEstAttribue = in_array($examen->getIdExamen(), $listeExamensAttribues);
             $statutExamen = $examen->getStatut($examenEstAttribue);?>
-
+          
             <div class="row text-center">
                 <!-- Numero examen -->
                 <div class="col-6 col-sm-3 col-lg-3">
-                    <p>Examen n°<?php echo $compteur +1 ?> : Titre examen</p>
+                    <p>Examen n°<?php echo $examen->getIdExamen() ?> : <?php echo $examen->getTitreExamen() ?></p>
                 </div>
 
                 <!-- statut -->

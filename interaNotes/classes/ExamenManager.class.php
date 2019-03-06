@@ -8,7 +8,7 @@ class ExamenManager{
 
 	public function getAllExamens(){
 
-		$sql = 'SELECT idExamen, dateDepot, anneeScolaire FROM examen e
+		$sql = 'SELECT idExamen, dateDepot, anneeScolaire, titreExamen, consigneExamen  FROM examen e
 		ORDER BY e.dateDepot DESC';
 
 		$requete = $this->db->prepare($sql);
