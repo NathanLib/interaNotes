@@ -3,6 +3,9 @@ class Examen{
 	private $idExamen;
 	private $dateDepot;
   private $anneeScolaire;
+	private $titreExamen;
+	private $consigneExamen;
+	private $nbEssaiPossible;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -24,6 +27,12 @@ class Examen{
 
         case 'anneeScolaire' :
 					$this->setAnneeScolaireExamen($valeur);
+					break;
+				case 'titreExamen' :
+					$this->setTitreExamen($valeur);
+					break;
+				case 'enonceExamen' :
+					$this->setConsigneExamen($valeur);
 					break;
 			}
 		}
@@ -55,6 +64,22 @@ class Examen{
     if(is_numeric($anneeScolaire)){
 			$this->anneeScolaire = $anneeScolaire;
 		}
+	}
+
+	public function getTitreExamen(){
+		return $this->titreExamen;
+	}
+
+	public function setTitreExamen($titreExamen){
+		$this->titreExamen = $titreExamen;
+	}
+
+	public function getConsigneExamen(){
+		return $this->consigneExamen;
+	}
+
+	public function setConsigneExamen($consigneExamen){
+		$this->consigneExamen = $consigneExamen;
 	}
 
 	public function getStatut($estAttribue){

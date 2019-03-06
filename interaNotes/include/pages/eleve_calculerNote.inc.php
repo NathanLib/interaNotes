@@ -5,7 +5,7 @@ $noteManager = new NoteManager($db);
 $reponseEleveManager = new ReponseEleveManager($db);
 $questionManager = new QuestionManager($db);
 
-$questions = $questionManager->getAllQuestion(1);//WARNING: utiliser l'idSujet de l'élève
+$questions = $questionManager->getAllQuestion(1,1);//WARNING: utiliser l'idSujet de l'élève
 
 $noteTotal=0;
 ?>

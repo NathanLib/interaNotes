@@ -14,10 +14,10 @@ if(isset($idSujet)) {
 		$personneManager = new PersonneManager($db);
 		$personne = $personneManager->getNomPrenomParSujet($idSujet);
 
-		$questions = $questionManager->getAllQuestion($idSujet);
-
 		$sujet = $sujetManager->getSujet($idSujet);
 		$examenSujet = $examenManager->getExamen($sujet->getIdExamenOfSujet());
+
+		$questions = $questionManager->getAllQuestion($sujet->getIdExamenOfSujet(),$idSujet);
 
 		$listeReponses = $reponseEleveManager->getAllReponseEleve($idSujet);
 
