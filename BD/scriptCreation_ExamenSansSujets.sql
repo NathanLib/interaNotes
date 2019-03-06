@@ -291,7 +291,6 @@ CREATE TABLE `question` (
   `idExamen` int(11) NOT NULL,
   `intituleQuestion` tinytext NOT NULL,
   `baremeQuestion` decimal(4,2) NOT NULL,
-  `estValeurParfaite` tinyint(1) NOT NULL,
   `zoneTolerance` int(11) NOT NULL,
   PRIMARY KEY (`idQuestion`,`idExamen`),
   KEY `idExamen` (`idExamen`),
@@ -305,7 +304,7 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
-INSERT INTO `question` VALUES (1,1,'Combien de jours seront nécessaires pour effectuer ce voyage ?',2.00,0,95),(2,1,'Indiquez la quantité d\'O2 nécessaire pour effectuer ce voyage ?',2.00,0,80),(3,1,'Indiquez la quantité de carburant nécessaire pour effectuer ce voyage ?',2.00,0,80),(4,1,'Indiquez la quantité de nourriture nécessaire pour effectuer ce voyage ?',2.00,0,75),(5,1,'Indiquez la quantité d\'eau nécessaire pour effectuer ce voyage ?',2.00,0,80);
+INSERT INTO `question` VALUES (1,1,'Combien de jours seront nécessaires pour effectuer ce voyage ?',2.00,95),(2,1,'Indiquez la quantité d\'O2 nécessaire pour effectuer ce voyage ?',2.00,80),(3,1,'Indiquez la quantité de carburant nécessaire pour effectuer ce voyage ?',2.00,80),(4,1,'Indiquez la quantité de nourriture nécessaire pour effectuer ce voyage ?',2.00,75),(5,1,'Indiquez la quantité d\'eau nécessaire pour effectuer ce voyage ?',2.00,80);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -445,4 +444,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-05 14:00:37
+-- Dump completed on 2019-03-06 13:10:31

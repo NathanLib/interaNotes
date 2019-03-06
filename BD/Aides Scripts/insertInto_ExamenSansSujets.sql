@@ -93,9 +93,9 @@ INSERT INTO `dependances` VALUES
 (38,22);
 
 INSERT INTO `question` VALUES
-(1,1,"Combien de jours seront nécessaires pour effectuer ce voyage ?",2,0,95)
-(2,1,"Indiquez la quantité d'O2 nécessaire pour effectuer ce voyage ?",2,0,80)
-(3,1,"Indiquez la quantité de carburant nécessaire pour effectuer ce voyage ?",2,0,80)
-(4,1,"Indiquez la quantité de nourriture nécessaire pour effectuer ce voyage ?",2,0,75)
-(5,1,"Indiquez la quantité d'eau nécessaire pour effectuer ce voyage ?",2,0,80)
+(1,1,"Combien de jours seront nécessaires pour effectuer ce voyage ?",2,95)
+(2,1,"Indiquez la quantité d'O2 nécessaire pour effectuer ce voyage ?",2,80)
+(3,1,"Indiquez la quantité de carburant nécessaire pour effectuer ce voyage ?",2,80)
+(4,1,"Indiquez la quantité de nourriture nécessaire pour effectuer ce voyage ?",2,75)
+(5,1,"Indiquez la quantité d'eau nécessaire pour effectuer ce voyage ?",2,80)
 

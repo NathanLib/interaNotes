@@ -37,7 +37,6 @@ CREATE TABLE question (
   idExamen INT NOT NULL,
   intituleQuestion TINYTEXT NOT NULL,
   baremeQuestion DECIMAL(4,2) NOT NULL,
-  estValeurParfaite TINYINT(1) NOT NULL,
   zoneTolerance INT NOT NULL,
   FOREIGN KEY (idExamen) REFERENCES examen(idExamen),
   PRIMARY KEY(idQuestion,idExamen)
