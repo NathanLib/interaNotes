@@ -7,6 +7,7 @@ class GenerationManager3{
   private $idSujet;
 
   private $listeExercicesGeneres;
+  private $listeDesEnonces;
 
   public function __construct($db){
 		$this->db = $db;
@@ -27,7 +28,7 @@ class GenerationManager3{
     $listeValeursTemporaires = array();
     $this->genererSujetAvecNouveauParametre(count($listeDesPoints) -1, 0, $listeValeursDesPoints, $listeValeursTemporaires);
 
-    $this->extractionDesDonnees(count($listeDesPoints));
+    $this->extractionDesDonnees($examen, $listeDesPoints);
     return $this->constructionSujet;
   }
 
@@ -56,18 +57,24 @@ class GenerationManager3{
     }
   }
 
-  private function extractionDesDonnees($nombrePoints){
+  private function extractionDesDonnees($examen, $listeDesPoints){
 
-    $nbSujets = count($this->constructionSujet);
-    foreach ($this->constructionSujet as $idSujet => $point) {
-      foreach($point as $valeur){
-        $this->listeExercicesGeneres[] = new ExerciceGenere($idSujet, $valeur->getIdValeur());
-      }
+    foreach ($listeDesPoints as $point) {
+      $nomDesPoints[$point->getIdPoint()] = "$".$point->getNomPoint()."$";
     }
 
-    echo "<pre>";
-    var_dump($this->listeExercicesGeneres);
-    echo "</pre>";
+    $valeurDesPointsDuSujet = array();
+    $enonceExamen = $examen->getConsigneExamen();
+
+    foreach ($this->constructionSujet as $idSujet => $point) {
+
+      foreach($point as $valeur){
+        $this->listeExercicesGeneres[] = new ExerciceGenere($idSujet, $valeur->getIdValeur());
+        $valeurDesPointsDuSujet[$valeur->getIdPointOfValeur()] = $valeur->getValeur();
+      }
+
+      $this->listeDesEnonces[] = str_replace($nomDesPoints, $valeurDesPointsDuSujet, $enonceExamen);
+    }
   }
 
 }

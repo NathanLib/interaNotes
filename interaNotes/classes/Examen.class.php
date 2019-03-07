@@ -28,9 +28,15 @@ class Examen{
         case 'anneeScolaire' :
 					$this->setAnneeScolaireExamen($valeur);
 					break;
+
 				case 'titreExamen' :
 					$this->setTitreExamen($valeur);
 					break;
+
+				case 'consigneExamen' :
+					$this->setConsigneExamen($valeur);
+					break;
+
 				case 'enonceExamen' :
 					$this->setConsigneExamen($valeur);
 					break;
