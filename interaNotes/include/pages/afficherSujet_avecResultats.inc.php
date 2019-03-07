@@ -85,10 +85,17 @@ if(isset($idSujet)) {
 			<?php
 			if(!$listeReponses){ ?>
 
+<<<<<<< HEAD
 				<div class="msgErrorTitre">
 			        <h3>Erreur saisie</h3>
 			        <p>Aucune réponse saisie par l'élève !</p>
 			    </div>
+=======
+				<p style="text-align:center;font-weight:bold; margin:10% 0;">
+					<img src="image/erreur.png" alt="erreur">
+					Aucune réponse saisie par l'étudiant
+				</p>
+>>>>>>> 5ceaa2be12116c9ae66837a2e91ace7ae0064055
 
 			<?php
 			} else { ?>
