@@ -19,10 +19,20 @@ $attributionManager = new AttributionManager($pdo);
 
   $retour = $attributionManager->insererTableauAttribution($listeEleves, $listeSujets);
   if($retour){
-    echo "<p style='text-align:center;font-weight:bold; margin:10% 0;'><img class='icone' src='image/valid.png' alt='Validation attribution'> Les sujets ont été attribués";
+      ?>
+      <div class="msgConfirmTitre">
+          <h3>Message de confirmation</h3>
+          <p>Les sujets ont été attribué ! </p>
+      </div>
+      <?php
 
   }else{
-    echo "<p style='text-align:center;font-weight:bold; margin:10% 0;'><img class='icone' src='image/erreur.png' alt='Erreur attribution'>Erreur interne lors de l'attribution des sujets";
+      ?>
+      <div class="msgErrorTitre">
+          <h3>Erreur interne</h3>
+          <p>Echec de l'attribution des sujets ! </p>
+      </div>
+      <?php
   }
 
    ?>
