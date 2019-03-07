@@ -16,7 +16,7 @@
             </div>
 
             <div class="form-group divMdpButton">
-              <input class="detailMdpButton" type="submit" value="Valider" class="btn"/>
+              <input type="submit" value="Valider" class="btn"/>
             </div>
 
         </form>
