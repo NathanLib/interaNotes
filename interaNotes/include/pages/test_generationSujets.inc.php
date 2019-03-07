@@ -32,10 +32,20 @@ $pdo = new Mypdo();
 
     if($retour){
       $nbSujets = count($listeExerciceGenere['sujets']);
-      echo "<p style='text-align:center;font-weight:bold; margin:10% 0;'><img class='icone' src='image/valid.png' alt='Validation génération'> ".$nbSujets." sujets ont été générés";
 
+      ?>
+      <div class="msgConfirmTitre">
+          <h3>Message de confirmation</h3>
+          <p><?php echo $nbSujets; ?> sujets ont été générés ! </p>
+      </div>
+      <?php
     }else{
-      echo "<p style='text-align:center;font-weight:bold; margin:10% 0;'><img class='icone' src='image/erreur.png' alt='Erreur génération'>Erreur interne lors de la génération";
+        ?>
+        <div class="msgErrorTitre">
+            <h3>Erreur interne</h3>
+            <p>Aucun sujet n'a pu être généré ! </p>
+        </div>
+        <?php
     }
 
      ?>
