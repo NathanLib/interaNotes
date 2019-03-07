@@ -40,7 +40,7 @@
 		break;
 
 		case 7:
-		//
+		include_once('pages/test_Correction.inc.php');
 		break;
 
 		// WARNING: PARTIE ELEVE
@@ -91,7 +91,7 @@
 		break;
 
 		case 27:
-		include_once('pages/test_Correction.inc.php');
+		//test
 		break;
 
 		case 28:

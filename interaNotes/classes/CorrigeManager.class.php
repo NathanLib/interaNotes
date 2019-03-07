@@ -26,12 +26,12 @@ class CorrigeManager {
 		return $valeursSujet;
 	}
 
-	public function calculerCorrection($idSujet){ 
-		
+	public function calculerCorrection($idSujet,$isTest){
+
 		$tableauPoint = $this->getSujetValeur($idSujet); //NE PAS TOUCHER
 
 		//REDEFINIR VARIABLES PLUS CLAIREMENT
-		
+
 		$nbMoteur = $tableauPoint[0]['valeur']*pow(10, $tableauPoint[0]['exposantValeur']+$tableauPoint[0]['uniteExposant']);
 
 		$vitesse = $tableauPoint[1]['valeur']*pow(10, $tableauPoint[1]['exposantValeur']+$tableauPoint[1]['uniteExposant']);
@@ -40,16 +40,16 @@ class CorrigeManager {
 
 		$distanceDestination = $tableauPoint[4]['valeur']*pow(10, $tableauPoint[4]['exposantValeur']+$tableauPoint[4]['uniteExposant']);
 
-		$consommationCarburantDistance = $tableauPoint[5]['valeur']*pow(10, $tableauPoint[5]['exposantValeur']+$tableauPoint[5]['uniteExposant']); 
+		$consommationCarburantDistance = $tableauPoint[5]['valeur']*pow(10, $tableauPoint[5]['exposantValeur']+$tableauPoint[5]['uniteExposant']);
 
 		$consommationCarburantQuantité = $tableauPoint[5]['valeur']*pow(10, $tableauPoint[5]['exposantValeur']+$tableauPoint[5]['uniteExposant'])*10; //ALERTE
 
-		$consoEau = $tableauPoint[6]['valeur']*pow(10, $tableauPoint[6]['exposantValeur']+$tableauPoint[6]['uniteExposant']);		
+		$consoEau = $tableauPoint[6]['valeur']*pow(10, $tableauPoint[6]['exposantValeur']+$tableauPoint[6]['uniteExposant']);
 
 		$consoNourriture = $tableauPoint[7]['valeur']*pow(10, $tableauPoint[7]['exposantValeur']+$tableauPoint[7]['uniteExposant']);
 
 		$consoO2 = $tableauPoint[8]['valeur']*pow(10, $tableauPoint[8]['exposantValeur']+$tableauPoint[8]['uniteExposant']);
-		
+
 		//OPERATIONS
 
 		$nbConso = $distanceDestination / $consommationCarburantDistance; // nombre de consommation (1000km) = [[distanceDestination]]/ [[nbMoteur]] (vient de l'unité de consommation carburant)
@@ -73,12 +73,14 @@ class CorrigeManager {
 		$resultatsattendus[3] = array('idSujet'=>$idSujet, 'idQuestion' => 4, 'resultat' => $qteEau, 'resultatExposant' =>0, 'resultatUnite' => "g", 'exposantUnite' => 12);
 		$resultatsattendus[4] = array('idSujet'=>$idSujet, 'idQuestion' => 5, 'resultat' => $qteNourriture, 'resultatExposant' =>0, 'resultatUnite' => "g", 'exposantUnite' => 3);
 
-		$this->importerCorrection($resultatsattendus);
+		if($isTest)
+				$this->importerCorrection($resultatsattendus);
+
 	}
 
 	public function importerCorrection($resultatsattendus){
 		$sql = 'INSERT INTO resultatsattendus(idSujet,idQuestion,resultat,resultatExposant,resultatUnite,exposantUnite) VALUES (:idSujet,:idQuestion,:resultat,:resultatExposant,:resultatUnite,:exposantUnite)';
-		
+
 
 		foreach ($resultatsattendus as $reponseQuestion => $value) { // a optimiser
 			$requete = $this->db->prepare($sql);
@@ -94,5 +96,5 @@ class CorrigeManager {
 
 	}
 
-	
+
 }

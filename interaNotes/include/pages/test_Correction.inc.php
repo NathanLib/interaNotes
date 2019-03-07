@@ -8,7 +8,7 @@ $idExamen = $_SESSION['examen']->getIdExamen(); //WARNING : utiliser la var de s
 
 $listeSujet = $reponsesAttendusManager->getlisteDesSujets($idExamen);
 foreach ($listeSujet as $idSujet) {
-	$listeCorrectionSujet[] = $correctionManager->calculerCorrection($idSujet);
+	$listeCorrectionSujet[] = $correctionManager->calculerCorrection($idSujet,true);
 }
 
 var_dump($listeCorrectionSujet);
