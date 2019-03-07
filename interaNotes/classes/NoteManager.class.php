@@ -22,9 +22,13 @@ class NoteManager{
 
 	public function calculerNotePourUneQuestion($question, $reponsesEleve){
 		$bareme = $question->getBaremeQuestion();
+		$zoneTolerance = $question->getZoneTolerance();
 		$precision = $reponsesEleve->getPrecisionReponse();
-
-		$note=round(($bareme*$precision)/100, 2);
+		if ($precision >= $zoneTolerance) {
+			$note = $bareme;
+		}else{
+			$note= round(($precision*$bareme)/100,2);
+		}
 		return $note;
 	}
 

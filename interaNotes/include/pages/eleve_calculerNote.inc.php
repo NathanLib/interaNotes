@@ -15,6 +15,7 @@ $noteTotal=0;
 		<tr>
 			<th scope="col" style="border-radius: 20px 0 0 0;">Question</th>
 			<th scope="col">Présision réponse</th>
+			<th scope="col">Zone de tolérance</th>
 			<th scope="col">Barème</th>
 			<th scope="col" style="border-radius: 0 20px 0 0;">Note</th>
 		</tr>
@@ -36,6 +37,13 @@ $noteTotal=0;
 					$precision = $reponse->getPrecisionReponse();?>
 
 					<p><?php echo $precision."%" ?></p>
+				<?php } ?>
+			</td>
+			<td>
+				<?php foreach ($questions as $question) {
+					$zoneTolerance = $question->getZoneTolerance();?>
+
+					<p><?php echo $zoneTolerance."%" ?></p>
 				<?php } ?>
 			</td>
 			<td>

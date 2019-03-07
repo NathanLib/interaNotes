@@ -7,8 +7,8 @@ class QuestionManager{
 		$this->db = $db;
 	}
 
-  public function getAllQuestion($idExamen,$idSujet){
-    $sql = 'SELECT q.idQuestion, intituleQuestion, resultat, exposantUnite, resultatUnite, baremeQuestion , resultatExposant FROM resultatsattendus r JOIN Question q ON q.idQuestion=r.idQuestion WHERE idSujet=:idSujet AND idExamen=:idExamen';
+  public function getAllQuestion($idSujet){
+    $sql = 'SELECT q.idQuestion, intituleQuestion, resultat, exposantUnite, resultatUnite, baremeQuestion , resultatExposant, zoneTolerance FROM resultatsattendus r JOIN Question q ON q.idQuestion=r.idQuestion WHERE idSujet=:idSujet';
 
     $requete = $this->db->prepare($sql);
     $requete->bindValue(':idSujet', $idSujet);
