@@ -87,7 +87,7 @@ if(isset($idSujet)) {
 
 				<p style="text-align:center;font-weight:bold; margin:10% 0;">
 					<img src="image/erreur.png" alt="erreur">
-					Aucune réponse saisie par l'élève
+					Aucune réponse saisie par l'étudiant
 				</p>
 
 			<?php
