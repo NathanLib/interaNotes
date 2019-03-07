@@ -80,7 +80,7 @@ if(isset($idSujet)) {
 			<?php
 		} ?>
 
-			<h4> Résultats saisis par l'élève : </h4>
+			<h4> Résultats saisis par l'étudiant : </h4>
 
 			<?php
 			if(!$listeReponses){ ?>

@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="tictacBas">
-                    Mes élèves
+                    Mes étudiants
                 </div>
             </div>
         </a>
