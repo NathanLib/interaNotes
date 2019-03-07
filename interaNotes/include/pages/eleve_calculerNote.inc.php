@@ -68,6 +68,7 @@ $noteTotal=0;
 			<tr>
 				<td><p>Note totale : </p></td>
 				<td><p>/</p></td>
+				<td><p>/</p></td>
 				<td><p>10</p></td>
 				<td><p><?php echo $noteTotal; ?></p></td>
 			</tr>
