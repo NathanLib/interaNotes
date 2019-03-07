@@ -44,7 +44,7 @@
                     </li>
                 <?php } elseif (isset($_SESSION['eleve'])) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=10">Accueil élève</a>
+                        <a class="nav-link" href="index.php?page=10">Accueil étudiant</a>
                     </li>
                 <?php } if(isset($_SESSION['enseignant']) || isset($_SESSION['eleve'])) {?>
                     <li class="nav-item">
