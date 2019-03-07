@@ -13,6 +13,7 @@ if(isset($_GET['idSujet'])){
         $enonceManager = new EnonceManager($pdo);
         $questionManager = new QuestionManager($pdo);
         $valeurManager = new ValeurManager($pdo);
+        $pointManager = new PointManager($pdo);
         $personneManager = new PersonneManager($pdo);
         $eleveManager = new EleveManager($pdo);
         $attributionManager = new AttributionManager($pdo);
@@ -81,35 +82,15 @@ if(isset($_GET['idSujet'])){
 
             <table>
                 <tr>
-                    <th style="border: thin solid black; text-align: center;">
-                        Nombre moteurs
-                    </th>
-                    <th style="border: thin solid black; text-align: center;">
-                        Vitesse de la fusée
-                    </th>
-                    <th style="border: thin solid black; text-align: center;">
-                        Nombre de personnes
-                    </th>
-                    <th style="border: thin solid black; text-align: center;">
-                        Destination
-                    </th>
-                    <th style="border: thin solid black; text-align: center;">
-                        Distance
-                    </th>
-                    <th style="border: thin solid black; text-align: center;">
-                        Consommation de carburant
-                    </th>
-                    <th style="border: thin solid black; text-align: center;">
-                        Consommation d'eau
-                    </th>
-                    <th style="border: thin solid black; text-align: center;">
-                        Consommation de nourriture
-                    </th>
-                    <th style="border: thin solid black; text-align: center;">
-                        Consommation d'oxygène
-                    </th>
+                    <?php foreach ($valeurs as $val) { ?>
+                        <?php $idPoint = $val->getIdPointOfValeur(); 
+                              $point = $pointManager->getPoint($idPoint);
+                        ?>
+                        <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
+                            <?php echo($point->getNomPoint())  ?>
+                        </th>
+                    <?php } ?>
                 </tr>
-
                 <tr>
                     <?php foreach ($valeurs as $val) { ?>
                         <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
