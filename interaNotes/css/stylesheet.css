@@ -48,7 +48,7 @@ footer i {
 }
 
 .footer-copyright {
-    background-color: #646464;
+    background-color: #333;
     padding: 15px;
     color: #ededed;
 }
@@ -511,13 +511,13 @@ div.subjectTitle {
 }
 
 .sendSaisie {
-    margin: 0 10% 5% 10%;
-    border: 0;
-    border-radius: 50px;
-    background-color: #333;
-    color: #ededed;
-    padding : 5px 10px;
-    width: 80%;
+    border: solid #333 thin;
+    border-radius: 5px;
+    padding: 3.5px 10px;
+    margin: 10px 0;
+    background: #333;
+    color: white;
+    min-width: 135px;
     cursor: pointer;
 }
 .messageEnvoiValide {
@@ -636,6 +636,9 @@ span#text_info, p#text_info {
 }
 
 /* Autres pages */
+.tableNotesEleve {
+    margin: 50px 20px;
+}
 .boutonVoirCorrection {
     color: white;
     background-color: #333;
@@ -731,7 +734,18 @@ span#text_info, p#text_info {
 .divMdpButton {
     display:flex;
     justify-content:center;
-    margin-bottom: 0;
+    margin-bottom: -20px;
+    margin-top: 20px;
+}
+.divMdpButton input[type=submit] {
+    border: solid #333 thin;
+    border-radius: 5px;
+    padding: 3.5px 10px;
+    margin: 10px 0;
+    background: #333;
+    color: white;
+    min-width: 135px;
+    cursor: pointer;
 }
 
 .afficherMsgErreur {
@@ -954,10 +968,6 @@ span#text_info, p#text_info {
     }
 
     /* Page élève saisie réponse */
-    .sendSaisie {
-        width: 50%;
-        margin: 0 25% 5% 25%;
-    }
     .more_info .popup {
         width: 300%;
         left: -100%;
@@ -992,10 +1002,6 @@ span#text_info, p#text_info {
     }
 
     /* Page élève saisie réponse */
-    .sendSaisie {
-        width: 35%;
-        margin: 0 32.5% 5% 32.5%;
-    }
     .messageEnvoiValide {
         margin: 10%;
     }
