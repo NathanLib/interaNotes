@@ -96,9 +96,41 @@ if(isset($_GET['idSujet'])){
                         <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
                             <?php echo($val->getValeur()); ?>
                         </th>
-                    <?php } ?>
-                </tr>
-            </table>
+                        <th style="border: thin solid black; text-align: center;">
+                            Vitesse de la fusée
+                        </th>
+                        <th style="border: thin solid black; text-align: center;">
+                            Nombre de personnes
+                        </th>
+                        <th style="border: thin solid black; text-align: center;">
+                            Destination
+                        </th>
+                        <th style="border: thin solid black; text-align: center;">
+                            Distance
+                        </th>
+                        <th style="border: thin solid black; text-align: center;">
+                            Consommation de carburant
+                        </th>
+                        <th style="border: thin solid black; text-align: center;">
+                            Consommation d'eau
+                        </th>
+                        <th style="border: thin solid black; text-align: center;">
+                            Consommation de nourriture
+                        </th>
+                        <th style="border: thin solid black; text-align: center;">
+                            Consommation d'oxygène
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <?php foreach ($valeurs as $val) { ?>
+                            <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
+                                <?php echo($val->getValeur()); ?>
+                            </th>
+                        <?php } ?>
+                    </tr>
+                </table>
+            </div>
 
             <div class="row" style="width: 100%;">
                 <div class="col-12 subjectTitle">
