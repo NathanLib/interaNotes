@@ -10,8 +10,11 @@ $pdo = new Mypdo();
     $sujetManager = new SujetManager($pdo);
     $idPremierSujet = $sujetManager->getIdSujetPossible();
 
+    $examenManager = new ExamenManager($pdo);
+    $examen = $examenManager->getExamen(1);
+
     $generationManager = new GenerationManager3($pdo);
-    $listeExercicesGeneres = $generationManager->genererExercice(1, $idPremierSujet);
+    $listeExercicesGeneres = $generationManager->genererExercice($examen, $idPremierSujet);
 
     echo "<pre>";
     var_dump(count($listeExercicesGeneres));

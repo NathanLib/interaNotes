@@ -13,11 +13,11 @@ class GenerationManager3{
 	}
 
   //WARNING : faire var pour nbPoints
-  public function genererExercice($idExamen, $idSujetDepart){
+  public function genererExercice($examen, $idSujetDepart){
     $pointManager = new PointManager($this->db);
     $valeurManager = new ValeurManager($this->db);
 
-    $listeDesPoints = $pointManager->getAllPointsOfExamens($idExamen);
+    $listeDesPoints = $pointManager->getAllPointsOfExamens($examen->getIdExamen());
     $this->idSujet = $idSujetDepart;
 
     foreach ($listeDesPoints as $index => $point) {
@@ -57,7 +57,6 @@ class GenerationManager3{
   }
 
   private function extractionDesDonnees($nombrePoints){
-
 
     $nbSujets = count($this->constructionSujet);
     foreach ($this->constructionSujet as $idSujet => $point) {

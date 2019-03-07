@@ -59,7 +59,7 @@ class ExamenManager{
 
 	public function getExamen($idExamen){
 
-		$sql = 'SELECT idExamen, dateDepot, anneeScolaire FROM examen e
+		$sql = 'SELECT idExamen, dateDepot, anneeScolaire, titreExamen, consigneExamen FROM examen e
 		WHERE e.idExamen=:idExamen';
 
 		$requete = $this->db->prepare($sql);
