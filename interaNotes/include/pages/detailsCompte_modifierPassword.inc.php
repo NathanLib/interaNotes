@@ -59,7 +59,11 @@ if (isset($_SESSION['eleve']) || isset($_SESSION['enseignant'])){
                 $retour = $personneManager->updatePasswordOfPersonne($personne->getIdPersonne(), createProtectedPassword($_POST['new_password']));
 
                 if($retour){?>
-                    <p><img class='icone' src='image/valid.png' alt='Validation mise à jour du mot de passe'> Votre mot de passe a bien été modifié</p>
+
+                    <div class="msgConfirmTitre">
+                        <h3>Message de confirmation</h3>
+                        <p>Votre mot de passe a bien été modifié !</p>
+                    </div>
 
                     <?php
                 }else{
