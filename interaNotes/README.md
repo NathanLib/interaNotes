@@ -10,7 +10,8 @@ Module de maths :
 
 
 Texte d'exam :
-La course se déroulant sur le circuit $circuit$, d'une distance de $kms$ kms à la date du $date$ accueillera les ecuries $ecuries$
+La course se déroulant sur le circuit $circuit$, d'une distance de $kms$ kms aura le 12/04/2019 accueillera les ecuries $ecuries$.
+Une moto consomme $litreEssence$ Litres au 100 km/h
 
 Qui va gagner ?
 Combien de litres de carburant aura besoin Dani Pedrosa pour terminer sa course ?
