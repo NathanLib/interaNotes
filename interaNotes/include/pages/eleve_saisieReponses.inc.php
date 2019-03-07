@@ -232,12 +232,11 @@ if(!$idSujet){
         $examenManager->addOneTry($idSujet,$sujet->getIdExamenOfSujet());
         ?>
 
-        <div class="messageEnvoiValide">
-          <p>
-            <img src="image/valid.png">
-            Vos réponses ont été envoyées au professeur !
-          </p>
+        <div class="msgConfirmTitre">
+            <h3>Message de confirmation</h3>
+            <p>Vos réponses ont été envoyées au professeur !</p>
         </div>
+
     <?php
     }
   }
