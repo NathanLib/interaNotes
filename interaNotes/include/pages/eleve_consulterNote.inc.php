@@ -29,7 +29,7 @@ if (!$tabSujetTermines){ ?>
         </div>
 
         <?php
-        foreach ($tabSujetTerminés as $sujet) {
+        foreach ($tabSujetTermines as $sujet) {
         	$sujetComplet = $sujetManager->getSujet($sujet);	?>
 
           <div class="row justify-content-center text-center contenuListeSujet">

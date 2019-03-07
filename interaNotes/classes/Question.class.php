@@ -8,6 +8,7 @@ class Question{
 	private $baremeQuestions;
 	private $exposantUnite;
 	private $exposantResultat;
+	private $zoneTolerance;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -44,6 +45,9 @@ class Question{
 					break;
 				case 'resultatExposant' :
 					$this->setExposantResultat($valeur);
+					break;
+				case 'zoneTolerance' :
+					$this->setZoneTolerance($valeur);
 					break;
 			}
 		}
@@ -113,5 +117,13 @@ class Question{
 
 	public function setExposantResultat($exposantResultat){
 		$this->exposantResultat = $exposantResultat;
+	}
+
+	public function getZoneTolerance(){
+		return $this->zoneTolerance;
+	}
+
+	public function setZoneTolerance($zoneTolerance){
+		$this->zoneTolerance = $zoneTolerance;
 	}
 }
