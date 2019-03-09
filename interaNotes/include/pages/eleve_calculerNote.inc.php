@@ -5,8 +5,8 @@ $noteManager = new NoteManager($db);
 $reponseEleveManager = new ReponseEleveManager($db);
 $questionManager = new QuestionManager($db);
 
-$questions = $questionManager->getAllQuestion(1,$_GET["id"]);//WARNING: utiliser l'idSujet de l'élève
-$reponses = $reponseEleveManager->getAllReponseEleve($_GET['id']);
+$questions = $questionManager->getAllQuestion($_GET["ide"],$_GET["ids"]);//WARNING: utiliser l'idSujet de l'élève
+$reponses = $reponseEleveManager->getAllReponseEleve($_GET["ids"]);
 $noteTotal=0;
 
 if (!$questions) {
@@ -40,7 +40,7 @@ if (!$questions) {
 						<td>
 							<?php foreach ($questions as $question) {
 								$idQuestion = $question->getIdQuestion();
-								$reponse = $reponseEleveManager->getReponseEleveByIdQuestion($idQuestion, $_GET["id"]);
+								$reponse = $reponseEleveManager->getReponseEleveByIdQuestion($idQuestion, $_GET["ids"]);
 								$precision = $reponse->getPrecisionReponse();?>
 
 								<p><?php echo $precision."%" ?></p>
@@ -63,7 +63,7 @@ if (!$questions) {
 						<td>
 							<?php foreach ($questions as $question) {
 								$idQuestion = $question->getIdQuestion();
-								$reponse = $reponseEleveManager->getReponseEleveByIdQuestion($idQuestion, $_GET["id"]);
+								$reponse = $reponseEleveManager->getReponseEleveByIdQuestion($idQuestion, $_GET["ids"]);
 								$note = $noteManager->calculerNotePourUneQuestion($question, $reponse);
 								$noteTotal=$noteTotal+$note;
 								?>

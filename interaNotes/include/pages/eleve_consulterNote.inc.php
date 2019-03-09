@@ -48,7 +48,7 @@ if (!$tabSujetTermines){ ?>
             </div>
 
             <div class="col-6 col-sm-3 col-lg-2">
-              <a href="index.php?page=18&amp;id=<?php echo $sujet;?>">
+              <a href="index.php?page=18&amp;ids=<?php echo $sujet;?>&amp;ide=<?php echo $sujetComplet->getIdExamenOfSujet();?>">
                 <input type="button" name="" value="Détails">
               </a>
             </div>
