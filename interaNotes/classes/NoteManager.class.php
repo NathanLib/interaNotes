@@ -20,6 +20,12 @@ class NoteManager{
 		return new Note($note);
 	}
 
+	public function calculerNoteSur20($note, $bareme){
+		$noteSur20 = ($note*20)/$bareme;
+
+		return $noteSur20;
+	}
+
 	public function calculerNotePourUneQuestion($question, $reponsesEleve){
 		$bareme = $question->getBaremeQuestion();
 		$zoneTolerance = $question->getZoneTolerance();
