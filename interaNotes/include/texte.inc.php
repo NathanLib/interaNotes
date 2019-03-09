@@ -43,6 +43,10 @@
 		include_once('pages/test_Correction.inc.php');
 		break;
 
+		case 8:
+		include_once('pages/enseignant_AjouterImage.inc.php');
+		break;
+
 		// WARNING: PARTIE ELEVE
 		case 10:
 		include_once('pages/eleve_accueil.inc.php');
