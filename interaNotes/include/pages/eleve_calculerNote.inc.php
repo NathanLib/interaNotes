@@ -20,7 +20,7 @@ if (!$questions) {
 	if(!$reponses){ ?>
 		<div class="msgErrorTitre">
             <h3>Erreur réponse</h3>
-            <p>Aucune réponse n'a été saisi pour ce sujet !</p>
+            <p>Aucune réponse n'a été saisie pour ce sujet !</p>
         </div>
 	<?php }else { ?>
 
