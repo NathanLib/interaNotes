@@ -34,15 +34,25 @@ if(isset($idSujet)) {
 					<table class="table table-hover">
 						<thead class="thead-dark">
 							<tr>
-								<th scope="col" style="border-radius: 20px 0 0 0;">Question</th>
+								<th scope="col" style="border-radius: 20px 0 0 0;">Question n°</th>
+								<th scope="col">Intitulé de la question</th>
 								<th scope="col">Réponse</th>
-								<th scope="col">Exposant</th>
-								<th scope="col" style="border-radius: 0 20px 0 0;">Unité</th>
+								<th scope="col">Exposant du résultat</th>
+								<th scope="col">Unité</th>
+								<th scope="col">Exposant de l'unité</th>
+								<th scope="col" style="border-radius: 0 20px 0 0;">Zone de tolérance</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr>
+								<td>
+									<?php foreach ($questions as $question) {
+										$idQuestion = $question->getIdQuestion();?>
+
+										<p><?php echo $idQuestion; ?></p>
+									<?php } ?>
+								</td>
 								<td>
 									<?php foreach ($questions as $question) {
 										$intitule = $question->getIntituleQuestion();?>
@@ -59,9 +69,9 @@ if(isset($idSujet)) {
 								</td>
 								<td>
 									<?php foreach ($questions as $question) {
-										$exposant = $question->getExposantUnite();?>
+										$exposantResultat = $question->getExposantResultat();?>
 
-										<p><?php echo $exposant; ?></p>
+										<p><?php echo $exposantResultat; ?></p>
 									<?php } ?>
 								</td>
 								<td>
@@ -69,6 +79,20 @@ if(isset($idSujet)) {
 										$unite = $question->getResultatUnite();?>
 
 										<p><?php echo $unite; ?></p>
+									<?php } ?>
+								</td>
+								<td>
+									<?php foreach ($questions as $question) {
+										$exposant = $question->getExposantUnite();?>
+
+										<p><?php echo $exposant; ?></p>
+									<?php } ?>
+								</td>
+								<td>
+									<?php foreach ($questions as $question) {
+										$zoneTolerance= $question->getZoneTolerance();?>
+
+										<p><?php echo $zoneTolerance; ?>%</p>
 									<?php } ?>
 								</td>
 							</tr>
@@ -103,7 +127,11 @@ if(isset($idSujet)) {
 							<th scope="col">Exposant du résultat</th>
 							<th scope="col">Unité</th>
 							<th scope="col">Exposant de l'unité</th>
-							<th scope="col" <?php if (!$examenSujet->estFini()){ ?> style="border-radius: 0 20px 0 0;"<?php } ?> >Justification</th>
+							<th scope="col" <?php if (!$examenSujet->estFini()){ ?> 
+								style="border-radius: 0 20px 0 0;"<?php }?>>
+							Justification</th>
+
+
 							<?php if ($examenSujet->estFini()){ ?>
 								<th scope="col" style="border-radius: 0 20px 0 0;">Précision</th>
 							<?php } ?>
