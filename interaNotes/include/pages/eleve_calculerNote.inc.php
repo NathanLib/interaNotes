@@ -10,10 +10,18 @@ $reponses = $reponseEleveManager->getAllReponseEleve($_GET["ids"]);
 $noteTotal=0;
 
 if (!$questions) {
-	echo "Erreur, ce sujet n'existe pas";
+	?>
+	<div class="msgErrorTitre">
+		<h3>Erreur sujet</h3>
+		<p>Ce sujet n'existe pas !</p>
+	</div>
+	<?php
 }else{
 	if(!$reponses){ ?>
-		<p>Erreur, aucune réponse n'a été saisie</p>
+		<div class="msgErrorTitre">
+            <h3>Erreur réponse</h3>
+            <p>Aucune réponse n'a été saisi pour ce sujet !</p>
+        </div>
 	<?php }else { ?>
 
 		<div class="tableNotesEleve">
