@@ -27,7 +27,7 @@ class NoteManager{
 		if ($precision >= $zoneTolerance) {
 			$note = $bareme;
 		}else{
-			$note= round(($precision*$bareme)/100,2);
+			$note= 0;
 		}
 		return $note;
 	}

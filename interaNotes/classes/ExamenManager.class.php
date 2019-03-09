@@ -136,10 +136,10 @@ class ExamenManager{
 
 		foreach ($questions as $key => $value) {
 
-				if (strpos($key, 'bareme') !== false) {
-					$tab = explode('areme',$key);
-					$tableauNumeroQuestion[] = $tab[1];
-				}
+			if (strpos($key, 'bareme') !== false) {
+				$tab = explode('areme',$key);
+				$tableauNumeroQuestion[] = $tab[1];
+			}
 
 		}
 
@@ -166,12 +166,12 @@ class ExamenManager{
 
 				break;
 				case 'catia'.$tableauNumeroQuestion[$i]:
-					$listeQuestions[]=$question;
-					$i++;
-					$question['intituleQuestion']=null;
-					$question['bareme']=null;
-					$question['zoneTolerance']=null;
-					break;
+				$listeQuestions[]=$question;
+				$i++;
+				$question['intituleQuestion']=null;
+				$question['bareme']=null;
+				$question['zoneTolerance']=null;
+				break;
 				default:
 				break;
 			}
@@ -256,12 +256,12 @@ class ExamenManager{
 	public function getLastExamenCree(){
 		$sql = 'SELECT COUNT(idExamen) as nbExam FROM examen ';
 
-			$requete = $this->db->prepare($sql);
-			$requete->execute();
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
 
-			$res = $requete->fetch(PDO::FETCH_OBJ);
+		$res = $requete->fetch(PDO::FETCH_OBJ);
 
-			return($res->nbExam);
+		return($res->nbExam);
 	}
 
 	public function getNbEssaiRestant($idSujet,$idExamen) {
@@ -272,7 +272,7 @@ class ExamenManager{
 
 		$requete->execute();
 		$res = $requete->fetch(PDO::FETCH_OBJ);
-	  $nbEssaiPossible = $res->nbEssaiPossible;
+		$nbEssaiPossible = $res->nbEssaiPossible;
 
 		$sql = 'SELECT nbEssaiRealise as nbEssaiUtilise FROM `sujet` WHERE idSujet=:idSujet';
 
@@ -287,30 +287,30 @@ class ExamenManager{
 
 	public function addOneTry($idSujet,$idExamen) {
 		$sql = "
-							UPDATE sujet
-							  SET nbEssaiRealise = nbEssaiRealise + 1
-							  WHERE idSujet = :idSujet AND idExamen = :idExamen";
+		UPDATE sujet
+		SET nbEssaiRealise = nbEssaiRealise + 1
+		WHERE idSujet = :idSujet AND idExamen = :idExamen";
 
-								$requete = $this->db->prepare($sql);
-								$requete->bindValue(':idExamen',$idExamen);
-								$requete->bindValue(':idSujet',$idSujet);
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idExamen',$idExamen);
+		$requete->bindValue(':idSujet',$idSujet);
 
-								$requete->execute();
+		$requete->execute();
 
 	}
 
 	public function updateTries($nbEssaieRealise,$idSujet,$idExamen) {
 		$sql = "
-							UPDATE sujet
-							  SET nbEssaiRealise = nbEssaiRealise - :nbEssaiRealise
-							  WHERE idSujet = :idSujet AND idExamen = :idExamen";
+		UPDATE sujet
+		SET nbEssaiRealise = nbEssaiRealise - :nbEssaiRealise
+		WHERE idSujet = :idSujet AND idExamen = :idExamen";
 
-								$requete = $this->db->prepare($sql);
-								$requete->bindValue(':nbEssaiRealise',$nbEssaieRealise);
-								$requete->bindValue(':idExamen',$idExamen);
-								$requete->bindValue(':idSujet',$idSujet);
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':nbEssaiRealise',$nbEssaieRealise);
+		$requete->bindValue(':idExamen',$idExamen);
+		$requete->bindValue(':idSujet',$idSujet);
 
-								$requete->execute();
+		$requete->execute();
 
 	}
 }

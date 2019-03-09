@@ -5,9 +5,12 @@ $noteManager = new NoteManager($db);
 $reponseEleveManager = new ReponseEleveManager($db);
 $questionManager = new QuestionManager($db);
 
-$questions = $questionManager->getAllQuestion(1,1);//WARNING: utiliser l'idSujet de l'élève
-
+$questions = $questionManager->getAllQuestion(1,$_GET["id"]);//WARNING: utiliser l'idSujet de l'élève
 $noteTotal=0;
+
+if (!$questions) {
+	echo "erreur";
+}else{
 ?>
 
 <div class="tableNotesEleve">
@@ -75,3 +78,4 @@ $noteTotal=0;
 		</tbody>
 	</table>
 </div>
+<?php } ?>
