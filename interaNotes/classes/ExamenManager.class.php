@@ -136,7 +136,7 @@ class ExamenManager{
 
 		foreach ($questions as $key => $value) {
 
-			if (strpos($key, 'bareme') !== false) {
+			if (strpos($key, 'bareme') !== false ) {
 				$tab = explode('areme',$key);
 				$tableauNumeroQuestion[] = $tab[1];
 			}
@@ -145,36 +145,38 @@ class ExamenManager{
 
 		$i = 0;
 		foreach ($questions as $key => $value) {
+			if(!strpos($key,'catia')){
+				switch ($key) {
+					case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
+					$question['intituleQuestion'] = $value;
+					break;
+					case 'bareme'.$tableauNumeroQuestion[$i]:
+					$question['bareme'] = $value;
+					break;
+					case 'zoneTolerance'.$tableauNumeroQuestion[$i]:
+					$question['zoneTolerance'] = $value;
 
-			switch ($key) {
-				case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
-				$question['intituleQuestion'] = $value;
-				break;
-				case 'bareme'.$tableauNumeroQuestion[$i]:
-				$question['bareme'] = $value;
-				break;
-				case 'zoneTolerance'.$tableauNumeroQuestion[$i]:
-				$question['zoneTolerance'] = $value;
+					if(!isset($questions['catia'.$tableauNumeroQuestion[$i]])){
+						$listeQuestions[]=$question;
+						$i++;
+						$question['intituleQuestion']=null;
+						$question['bareme']=null;
+						$question['zoneTolerance']=null;
+					}
 
-				if(!isset($questions['catia'.$tableauNumeroQuestion[$i]])){
+					break;
+					case 'catia'.$tableauNumeroQuestion[$i]:
 					$listeQuestions[]=$question;
 					$i++;
 					$question['intituleQuestion']=null;
 					$question['bareme']=null;
 					$question['zoneTolerance']=null;
+					break;
+					default:
+					break;
 				}
-
-				break;
-				case 'catia'.$tableauNumeroQuestion[$i]:
-				$listeQuestions[]=$question;
-				$i++;
-				$question['intituleQuestion']=null;
-				$question['bareme']=null;
-				$question['zoneTolerance']=null;
-				break;
-				default:
-				break;
 			}
+
 		}
 
 		$idExamen = $this->db->lastInsertId();
