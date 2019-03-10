@@ -193,6 +193,29 @@ LOCK TABLES `exercicegenere` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `images`
+--
+
+DROP TABLE IF EXISTS `images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `images` (
+  `idImage` int(11) NOT NULL AUTO_INCREMENT,
+  `cheminImage` text NOT NULL,
+  PRIMARY KEY (`idImage`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `images`
+--
+
+LOCK TABLES `images` WRITE;
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `note`
 --
 
@@ -258,6 +281,8 @@ CREATE TABLE `points` (
   `idExamen` int(11) NOT NULL,
   `nomPoint` varchar(50) NOT NULL,
   `estDonneesCatia` tinyint(1) NOT NULL,
+  `idSymboleMathematique` int(11) NOT NULL,
+  `idFormuleMathematique` int(11) NOT NULL,
   PRIMARY KEY (`idPoint`,`idExamen`),
   KEY `idExamen` (`idExamen`),
   CONSTRAINT `points_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
@@ -436,4 +461,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-06 13:08:27
+-- Dump completed on 2019-03-10 16:56:50
