@@ -260,7 +260,7 @@ if(!$listePromo) { ?>
                       <select class="form-control" name="formule<?php echo $compteur;?>">
                         <option value="0"> Aucune </option>
                         <?php foreach ($listeImages as $image) { ?>
-                          <option value="<?php echo $image->idImage;?>" > <?php echo $image->chemin; ?> </option>
+                          <option value="<?php echo $image->getIdImage();?>" > <?php echo $image->getCheminImage() ?> </option>
                       <?php  } ?>
                       </select>
                     </div>
