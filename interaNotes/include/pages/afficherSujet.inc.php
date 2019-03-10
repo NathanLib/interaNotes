@@ -33,190 +33,177 @@ if(isset($_GET['idSujet'])){
     <div class="row w-100 d-flex justify-content-center headAfficherSujet">
       <div class="col-12 col-md-4">
         <p>N° étudiant : <span><?php echo $personneEleve->getIdPersonne(); ?></span> </p>
-      </div>
-      <div class="col-12 col-md-4">
-        <p>N° Sujet : <span><?php echo $idSujet; ?></span> </p>
-      </div>
-      <div class="col-12 col-md-4">
-        <p>Sujet de : <span><?php echo $personneEleve->getNomPersonne().' '.$personneEleve->getPrenomPersonne(); ?></span> </p>
-      </div>
     </div>
+    <div class="col-12 col-md-4">
+        <p>N° Sujet : <span><?php echo $idSujet; ?></span> </p>
+    </div>
+    <div class="col-12 col-md-4">
+        <p>Sujet de : <span><?php echo $personneEleve->getNomPersonne().' '.$personneEleve->getPrenomPersonne(); ?></span> </p>
+    </div>
+</div>
 
-    <hr class="hr" style="width:100%; border:solid #333 1px; border-collapse: collapse; margin-top: 2%;">
+<hr class="hr" style="width:100%; border:solid #333 1px; border-collapse: collapse; margin-top: 2%;">
 
-    <div class="row mySubject">
-      <div class="row">
-        <div class="col-12">
-          <p>
-            <h1 style="text-align: center;"><?php echo $titre.' - '.$eleve->getNomPromotion().' - '.$eleve->getAnneeInscription(); ?></h1>
-          </p>
-        </div>
-      </div>
+<div class="row mySubject">
+  <div class="row">
+    <div class="col-12">
+      <p>
+        <h1 style="text-align: center;"><?php echo $titre.' - '.$eleve->getNomPromotion().' - '.$eleve->getAnneeInscription(); ?></h1>
+    </p>
+</div>
+</div>
 
-      <div class="row" style="clear: both; width: 100%;" >
-        <div class="col-12 subjectTitle">
-          <div>
-            <span id="subjectTitle">Enoncé :</span>
-            <br>
-            <p style="margin-left: 18px;"class="textSubject">
-              <?php echo $enonce; ?>
-            </p>
-          </div>
-        </div>
-      </div>
+<div class="row" style="clear: both; width: 100%;" >
+    <div class="col-12 subjectTitle">
+      <div>
+        <span id="subjectTitle">Enoncé :</span>
+        <br>
+        <p style="margin-left: 18px;"class="textSubject">
+          <?php echo $enonce; ?>
+      </p>
+  </div>
+</div>
+</div>
 
-      <div class="row" style="clear: both; width: 100%;" >
-        <div class="col-12 subjectTitle">
-          <div>
-            <span id="subjectTitle">Valeurs :</span>
-            <br>
-          </div>
-        </div>
-      </div>
+<div class="row" style="clear: both; width: 100%;" >
+    <div class="col-12 subjectTitle">
+      <div>
+        <span id="subjectTitle">Valeurs :</span>
+        <br>
+    </div>
+</div>
+</div>
 
-      <div class="table-responsive">
-        <table class="table">
-          <tr>
-            <?php
-              foreach ($valeurs as $val) {
-                $idPoint = $val->getIdPointOfValeur();
-                $point = $pointManager->getPoint($idPoint);?>
+<div>
+    <ul>
+        <?php
+        foreach ($valeurs as $val) {
+            $idPoint = $val->getIdPointOfValeur();
+            $point = $pointManager->getPoint($idPoint);?>
 
-                <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
-                  <?php echo($point->getNomPoint())  ?>
-                </th>
-            <?php } ?>
-          </tr>
+            <li>
+              <?php echo($point->getNomPoint())  ?> : 
 
-          <tr>
-            <?php
-            foreach ($valeurs as $val) {
-              $idPoint = $val->getIdPointOfValeur();
-              $point = $pointManager->getPoint($idPoint);
-
+              <?php
               if($point->aUnSymboleMathematique()) {
                 $cheminSymbole = $pointManager->getCheminOfSymboleMathematique($point);
-              }
+            }
 
-              if($point->aUneFormuleMathematique()) {
+            if($point->aUneFormuleMathematique()) {
                 $cheminFormule = $pointManager->getCheminOfFormuleMathematique($point);
-              }
+            }
 
-              if(isset($cheminSymbole) || isset($cheminFormule)) { ?>
-                <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
-
-                <?php
+            if(isset($cheminSymbole) || isset($cheminFormule)) { 
                 if(isset($cheminSymbole)) { ?>
                   <img class="vecteur" alt="vecteur" src="image/vecteurs/<?php echo $cheminSymbole ?>"> =
-                <?php
-                }
-
-                if(isset($cheminFormule)){ ?>
-                  <img class="vecteur" alt="vecteur" src="image/vecteurs/<?php echo $cheminFormule ?>">
-                <?php
-                }
-
-                echo $val->getValeur(); ?>
-                </th>
-                <?php
-                unset($cheminSymbole);
-                unset($cheminFormule);
-
-              } else { ?>
-                <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
-                  <?php echo $val->getValeur(); ?>
-                </th>
-              <?php
-              }
-            } ?>
-          </tr>
-        </table>
-      </div>
-
-      <div class="row" style="width: 100%;">
-        <div class="col-12 subjectTitle">
-          <div>
-            <span id="subjectTitle">Questions :</span>
-
-            <p class="textSubject">
-              <ul style="list-style-type: decimal;">
-                <?php foreach ($question as $numQuestion) { ?>
-                  <li><?php echo $numQuestion->getIntituleQuestion(); ?></li>
-                <?php } ?>
-              </ul>
-            </p>
-
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12 subjectTitle">
-            <span id="subjectTitle">Images :</span>
-
-            <div class="row justify-content-around">
-              <img style="border:solid #333 1px; border-collapse: collapse; padding: 0;"  class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureOne" src=<?php echo $image1; ?> >
-
-              <img style="border:solid #333 1px; border-collapse: collapse; padding: 0;"  class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureTwo" src=<?php echo $image2; ?> >
-            </div>
-
-            <div class="row mesBtnSujet">
-              <?php
-              if (isset($_SESSION['eleve']) && !$examenSujet->estFini()) { ?>
-                <div class="col-12 col-md-3 d-flex justify-content-around">
-                  <div class="">
-                    <a href="index.php?page=19">
-                      <input type=button value="Saisir réponses"></input>
-                    </a>
-                  </div>
-                </div>
-                <?php
-              } ?>
-
-
-              <div class="col-12 col-md-3 d-flex justify-content-center">
-                <div class="">
-                  <a href="index.php?page=46&amp;idSujet=<?php echo $idSujet;?>">
-                    <input type=button value="Voir réponses saisies"></input>
-                  </a>
-                </div>
-              </div>
-
-              <div class="col-12 col-md-3 d-flex justify-content-center">
-                <div class="">
                   <?php
-                  $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $dateDepot, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
-                  ?>
-                  <a href="include/pages/obtenirPdfSujet.inc.php" target="_blank">
-                    <input type=button value="Télécharger"></input>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+              }
 
-          <hr class="hr" style="width:100%; border:solid #333 1px; border-collapse: collapse; margin-top: 2%;">
+              if(isset($cheminFormule)){ ?>
+                  <img class="vecteur" alt="vecteur" src="image/vecteurs/<?php echo $cheminFormule ?>">
+                  <?php
+              }
 
-          <div class="row d-flex justify-content-center w-100 headCreateExam">
-            <div class="col-12 col-md-4">
-              <p>Pierre CARRILLO </p>
-            </div>
+              echo $val->getValeur(); ?>
 
-            <div class="col-12 col-md-4">
-              <p>IUT du Limousin - GMP</p>
-            </div>
+              <?php
+              unset($cheminSymbole);
+              unset($cheminFormule);
 
-            <div class="col-12 col-md-4">
-              <p>Page 1/1</p>
-            </div>
-          </div>
-        </div>
+          } else { ?>
+              <?php echo $val->getValeur(); ?>
+
+              <?php
+          }
+      } ?>
+  </li>
+</ul>
+</div>
+
+<div class="row" style="width: 100%;">
+    <div class="col-12 subjectTitle">
+      <div>
+        <span id="subjectTitle">Questions :</span>
+
+        <p class="textSubject">
+          <ul style="list-style-type: decimal;">
+            <?php foreach ($question as $numQuestion) { ?>
+              <li><?php echo $numQuestion->getIntituleQuestion(); ?></li>
+          <?php } ?>
+      </ul>
+  </p>
+
+</div>
+</div>
+
+<div class="row">
+  <div class="col-12 subjectTitle">
+    <span id="subjectTitle">Images :</span>
+
+    <div class="row justify-content-around">
+      <img style="border:solid #333 1px; border-collapse: collapse; padding: 0;"  class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureOne" src=<?php echo $image1; ?> >
+
+      <img style="border:solid #333 1px; border-collapse: collapse; padding: 0;"  class="col-12 col-sm-6 col-md-4 col-lg-2 rounded subjectPictureTwo" src=<?php echo $image2; ?> >
+  </div>
+
+  <div class="row mesBtnSujet">
+      <?php
+      if (isset($_SESSION['eleve']) && !$examenSujet->estFini()) { ?>
+        <div class="col-12 col-md-3 d-flex justify-content-around">
+          <div class="">
+            <a href="index.php?page=19">
+              <input type=button value="Saisir réponses"></input>
+          </a>
       </div>
-    </div>
+  </div>
+  <?php
+} ?>
 
-    <?php
-  }else{
+
+<div class="col-12 col-md-3 d-flex justify-content-center">
+    <div class="">
+      <a href="index.php?page=46&amp;idSujet=<?php echo $idSujet;?>">
+        <input type=button value="Voir réponses saisies"></input>
+    </a>
+</div>
+</div>
+
+<div class="col-12 col-md-3 d-flex justify-content-center">
+    <div class="">
+      <?php
+      $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $dateDepot, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
+      ?>
+      <a href="include/pages/obtenirPdfSujet.inc.php" target="_blank">
+        <input type=button value="Télécharger"></input>
+    </a>
+</div>
+</div>
+</div>
+</div>
+
+<hr class="hr" style="width:100%; border:solid #333 1px; border-collapse: collapse; margin-top: 2%;">
+
+<div class="row d-flex justify-content-center w-100 headCreateExam">
+    <div class="col-12 col-md-4">
+      <p>Pierre CARRILLO </p>
+  </div>
+
+  <div class="col-12 col-md-4">
+      <p>IUT du Limousin - GMP</p>
+  </div>
+
+  <div class="col-12 col-md-4">
+      <p>Page 1/1</p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<?php
+}else{
     header('Location: index.php?page=3');
-  }
+}
 }else{
   header('Location: index.php?page=3');
 }?>
