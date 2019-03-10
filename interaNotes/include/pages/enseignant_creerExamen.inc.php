@@ -245,7 +245,7 @@ if(!$listePromo) { ?>
                       <label>Symbole du paramètre : </label>
                       <select class="form-control" name="symbole<?php echo $compteur;?>">
                         <option value="0"> Aucune </option>
-                        <?php $listeImages = $imageManager->getAllImage();
+                        <?php $listeImages = $imageManager->getAllImages();
                         foreach ($listeImages as $key => $value) { ?>
                           <option value="<?php echo $value->idImage;?>" > <?php echo $value->chemin; ?> </option>
                       <?php  } ?>
