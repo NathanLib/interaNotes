@@ -392,3 +392,18 @@ for (var i = 0; i <= compteur; i++) {
 
 }
 }
+
+function desactiverFormulaire() {
+
+    var ajouter = document.getElementById("chemin");
+    var supprimer = document.getElementById("supprimer");
+
+    if(ajouter.value !=undefined){
+      if(ajouter.value!="")
+      supprimer.disabled=true;
+    }
+    if(supprimer.options.selectedIndex != 0){
+      ajouter.disabled = true;
+    }
+    
+}

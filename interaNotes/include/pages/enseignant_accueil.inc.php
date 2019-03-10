@@ -48,7 +48,7 @@
         <a href="index.php?page=8">
             <div class="tictac">
                 <div class="tictacHaut">
-                    <img class="iconTictac" src="image/questions.png" alt="exam" title="Questions reçues">
+                    <img class="iconTictac" src="image/formula.png" alt="exam" title="Questions reçues">
                 </div>
 
                 <div class="tictacBas">

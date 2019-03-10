@@ -30,4 +30,25 @@ class ImageManager{
     return $listeImage;
   }
 
+  public function supprimerImage($idImage){
+
+    $sql = "UPDATE `points` SET `formuleMathematique` = '0' WHERE formuleMathematique=:idImage";
+    $requete = $this->db->prepare($sql);
+    $requete->bindValue(':idImage', $idImage);
+    $requete->execute();
+    $requete->closeCursor();
+
+    $sql = "UPDATE `points` SET `symboleMathematique` = '0' WHERE symboleMathematique=:idImage";
+    $requete = $this->db->prepare($sql);
+    $requete->bindValue(':idImage', $idImage);
+    $requete->execute();
+    $requete->closeCursor();
+
+    $sql = "DELETE FROM `images` WHERE `images`.`idImage` = :idImage;";
+
+    $requete = $this->db->prepare($sql);
+    $requete->bindValue(':idImage', $idImage);
+    $requete->execute();
+    $requete->closeCursor();
+  }
 }
