@@ -23,7 +23,7 @@ class PointManager{
 	}
 
 	public function getPoint($idPoint){
-		$sql = 'SELECT idPoint, idExamen, nomPoint FROM points WHERE idPoint=:idPoint';
+		$sql = 'SELECT idPoint, idExamen, nomPoint, estDonneesCatia, idImage FROM points WHERE idPoint=:idPoint';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idPoint', $idPoint);
@@ -34,5 +34,19 @@ class PointManager{
 		$requete->closeCursor();
 
 		return new Point($point);
+	}
+
+	public function getCheminOfPoint($point){
+		$sql = 'SELECT chemin FROM images WHERE idImage=:idImage';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idImage', $point->getIdImage());
+		$requete->execute();
+
+		$image = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+
+		return $image->chemin;
 	}
 }

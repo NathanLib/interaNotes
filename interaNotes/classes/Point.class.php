@@ -3,6 +3,8 @@ class Point{
 	private $idPoint;
 	private $idExamen;
   private $nomPoint;
+	private $estDonneesCatia;
+	private $idImage;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -25,6 +27,14 @@ class Point{
         case 'nomPoint' :
 					$this->setNomPoint($valeur);
 					break;
+
+				case 'estDonneesCatia' :
+						$this->setEstDonneesCatia($valeur);
+						break;
+
+				case 'idImage' :
+		  			$this->setIdImage($valeur);
+						break;
 			}
 		}
 	}
@@ -53,6 +63,22 @@ class Point{
 
 	public function setNomPoint($nomPoint){
 		$this->nomPoint = $nomPoint;
+	}
+
+	public function getEstDonneesCatia(){
+		return $this->estDonneesCatia;
+	}
+
+	public function setEstDonneesCatia($estDonneesCatia){
+		$this->estDonneesCatia = $estDonneesCatia;
+	}
+
+	public function getIdImage(){
+		return $this->idImage;
+	}
+
+	public function setIdImage($idImage){
+		$this->idImage = $idImage;
 	}
 
 }

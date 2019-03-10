@@ -83,11 +83,23 @@ if(isset($_GET['idSujet'])){
                         <?php } ?>
                     </tr>
                     <tr>
-                        <?php foreach ($valeurs as $val) { ?>
+                        <?php foreach ($valeurs as $val) {
+                          $idPoint = $val->getIdPointOfValeur();
+                                $point = $pointManager->getPoint($idPoint);
+                                if($point->getIdImage() != 0) {
+                                $chemin = $pointManager->getCheminOfPoint($point);
+                              }
+                          if(isset($chemin)){ ?>
+                            <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
+                                <img class="vecteur" alt="vecteur" src="image/vecteurs/<?php echo $chemin ?>"> = <?php echo($val->getValeur()); ?>
+                            </th>
+                          <?php unset($chemin);
+                        } else { ?>
                             <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
                                 <?php echo($val->getValeur()); ?>
                             </th>
-                        <?php } ?>
+                        <?php  }
+                         } ?>
                     </tr>
                 </table>
             </div>
