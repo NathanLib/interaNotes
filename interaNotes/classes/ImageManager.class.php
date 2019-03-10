@@ -25,11 +25,11 @@ class ImageManager{
     $requete->execute();
 
     while($image = $requete->fetch(PDO::FETCH_OBJ)){
-			$listeImage[] = $image;
+			$listeImages[] = new Image($image);
 		}
     $requete->closeCursor();
 
-    return $listeImage;
+    return $listeImages;
   }
 
 }

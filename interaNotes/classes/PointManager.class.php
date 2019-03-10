@@ -37,7 +37,7 @@ class PointManager{
 	}
 
 	public function getCheminOfSymboleMathematique($point){
-		$sql = 'SELECT chemin FROM images WHERE idImage=:idImage';
+		$sql = 'SELECT cheminImage FROM images WHERE idImage=:idImage';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idImage', $point->getIdSymboleMathematique());
@@ -47,7 +47,7 @@ class PointManager{
 
 		$requete->closeCursor();
 
-		return $image->chemin;
+		return $image->cheminImage;
 	}
 
 	public function getCheminOfFormuleMathematique($point){

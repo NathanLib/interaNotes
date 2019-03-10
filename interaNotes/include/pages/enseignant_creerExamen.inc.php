@@ -241,22 +241,26 @@ if(!$listePromo) { ?>
                         <input type="checkbox" id=<?php echo "catia".$compteur ?> name=<?php echo "catia".$compteur ?> class="custom-control-input" >
                         <label class="custom-control-label" for=<?php echo "catia".$compteur ?>>Catia</label>
                     </div>
+
                     <div>
+                      <?php $listeImages = $imageManager->getAllImages();?>
+
                       <label>Symbole du paramètre : </label>
                       <select class="form-control" name="symbole<?php echo $compteur;?>">
                         <option value="0"> Aucune </option>
-                        <?php $listeImages = $imageManager->getAllImages();
-                        foreach ($listeImages as $key => $value) { ?>
-                          <option value="<?php echo $value->idImage;?>" > <?php echo $value->chemin; ?> </option>
+                        <?php
+                        foreach ($listeImages as $image) { ?>
+                          <option value="<?php echo $image->getIdImage();?>" > <?php echo $image->getCheminImage(); ?> </option>
                       <?php  } ?>
                       </select>
                     </div>
+
                     <div>
                       <label>Formule du paramètre : </label>
                       <select class="form-control" name="formule<?php echo $compteur;?>">
                         <option value="0"> Aucune </option>
-                        <?php foreach ($listeImages as $key => $value) { ?>
-                          <option value="<?php echo $value->idImage;?>" > <?php echo $value->chemin; ?> </option>
+                        <?php foreach ($listeImages as $image) { ?>
+                          <option value="<?php echo $image->idImage;?>" > <?php echo $image->chemin; ?> </option>
                       <?php  } ?>
                       </select>
                     </div>

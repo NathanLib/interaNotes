@@ -95,11 +95,11 @@ class Point{
 	}
 
 	public function aUnSymboleMathematique(){
-		return $this->getSymboleMathematique() != 0;
+		return $this->getIdSymboleMathematique() != 0;
 	}
 
 	public function aUneFormuleMathematique(){
-		return $this->getFormuleMathematique() != 0;
+		return $this->getIdFormuleMathematique() != 0;
 	}
 
 }

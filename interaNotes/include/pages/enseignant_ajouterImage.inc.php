@@ -1,13 +1,15 @@
-<?php if(!isset($_POST["chemin"])) { ?>
+<?php if(!isset($_POST["cheminImage"])) { ?>
   <form method="post" action="index.php?page=8">
-    <input type="file" name="chemin" required>
+    <label for="cheminImage">Image à importer :</label>
+    <input type="file" name="cheminImage" required>
+
     <input type="submit" value="Valider">
   </form>
 
 <?php } else {
   $db = new Mypdo();
   $imageManager = new ImageManager($db);
-  $importationReussie = $imageManager->ajouterImage($_POST["chemin"]);
+  $importationReussie = $imageManager->ajouterImage($_POST["cheminImage"]);
 
   if($importationReussie){ ?>
     <p> Votre photo a été ajoutée sur Intera Notes ! </p>
