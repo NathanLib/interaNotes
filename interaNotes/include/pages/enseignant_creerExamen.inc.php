@@ -4,6 +4,7 @@
 
 $db = new Mypdo();
 $eleveManager = new EleveManager($db);
+$imageManager = new ImageManager($db);
 
 $listePromo = $eleveManager->getAllPromo();
 
@@ -240,6 +241,16 @@ if(!$listePromo) { ?>
                         <input type="checkbox" id=<?php echo "catia".$compteur ?> name=<?php echo "catia".$compteur ?> class="custom-control-input" >
                         <label class="custom-control-label" for=<?php echo "catia".$compteur ?>>Catia</label>
                     </div>
+                    <div>
+                      <label>Image du paramètre : </label>
+                      <select class="form-control" name="idImage<?php echo $compteur;?>">
+                        <option value="0"> Aucune </option>
+                        <?php $listeImages = $imageManager->getAllImage();
+                        foreach ($listeImages as $key => $value) { ?>
+                          <option value="<?php echo $value->idImage;?>" > <?php echo $value->chemin; ?> </option>
+                      <?php  } ?>
+                      </select>
+                    </div>
                 </div>
 
 
@@ -301,7 +312,6 @@ if(!$listePromo) { ?>
                                     ?>
                                 </select>
                             </div>
-
                             <div class="row">
                                 <div class="col d-flex justify-content-center">
                                     <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" name=<?php echo "'saisieParametre".$compteur."'" ?> />
@@ -385,7 +395,6 @@ if(!$listePromo) { ?>
                                     ?>
                                 </select>
                             </div>
-
                             <div class="row">
                                 <div class="col d-flex justify-content-center">
                                     <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametreIntervalle(event,<?php echo "'saisieValeurMinimale".$compteur."'" ?>,<?php echo "'saisieValeurMaximale".$compteur."'" ?>,<?php echo "'pas".$compteur."'" ?>,<?php echo "'liste".$compteur."'" ?>,<?php echo "'puissanceValeurIntervalle".$compteur."'" ?>,<?php echo "'puissanceValeurIntervalle2".$compteur."'" ?>,<?php echo "'uniteValeurIntervalle".$compteur."'" ?>,<?php echo "'exposantValeurIntervalle".$compteur."'" ?>)" />
@@ -427,6 +436,8 @@ if(!$listePromo) { ?>
 
     <p>L'examen a été créé !</p>
     <?php
+
+    var_dump($_POST);
     $examenManager = new ExamenManager($db);
 
     $examenManager->creerExamen($_SESSION['dateLimite'],$_SESSION['nomPromotion'],$_SESSION['titreExamen'],$_SESSION['texteEnonce'],$_SESSION['nbEssaiPossible']);
@@ -474,6 +485,9 @@ if(!$listePromo) { ?>
         } else {
             $listePoints[$point]['estDonneesCatia'] = 0;
         }
+
+        $listePoints[$point]['idImage'] = $_POST['idImage'.$i];
+
         $i++;
     }
 

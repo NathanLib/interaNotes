@@ -145,7 +145,8 @@ class ExamenManager{
 
 		$i = 0;
 		foreach ($questions as $key => $value) {
-			if(!strpos($key,'catia')){
+
+			if(!strpos($key,'catia') && !strpos($key,'idImage'.$i)){
 				switch ($key) {
 					case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
 					$question['intituleQuestion'] = $value;
@@ -155,17 +156,10 @@ class ExamenManager{
 					break;
 					case 'zoneTolerance'.$tableauNumeroQuestion[$i]:
 					$question['zoneTolerance'] = $value;
-
-					if(!isset($questions['catia'.$tableauNumeroQuestion[$i]])){
-						$listeQuestions[]=$question;
-						$i++;
-						$question['intituleQuestion']=null;
-						$question['bareme']=null;
-						$question['zoneTolerance']=null;
-					}
-
 					break;
 					case 'catia'.$tableauNumeroQuestion[$i]:
+					break;
+					case 'idImage'.$tableauNumeroQuestion[$i]:
 					$listeQuestions[]=$question;
 					$i++;
 					$question['intituleQuestion']=null;
@@ -205,13 +199,14 @@ class ExamenManager{
 		$idExamen = $this->getLastExamenCree();
 
 		foreach ($listePoints as $key => $value) {
-			$sql = 'INSERT INTO points(idPoint,idExamen,nomPoint,estDonneesCatia) VALUES (:idPoint,:idExamen,:nomPoint,:estDonneesCatia)';
+			$sql = 'INSERT INTO points(idPoint,idExamen,nomPoint,estDonneesCatia,idImage) VALUES (:idPoint,:idExamen,:nomPoint,:estDonneesCatia,:idImage)';
 
 			$requete = $this->db->prepare($sql);
 			$requete->bindValue(':idPoint',$i);
 			$requete->bindValue(':idExamen',$idExamen);
 			$requete->bindValue(':nomPoint',$key);
 			$requete->bindValue(':estDonneesCatia',$value['estDonneesCatia']);
+			$requete->bindValue(':idImage',$value['idImage']);
 
 			$requete->execute();
 
