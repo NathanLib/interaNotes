@@ -4,7 +4,8 @@ class Point{
 	private $idExamen;
   private $nomPoint;
 	private $estDonneesCatia;
-	private $idImage;
+	private $symboleMathematique;
+	private $formuleMathematique;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -32,8 +33,12 @@ class Point{
 						$this->setEstDonneesCatia($valeur);
 						break;
 
-				case 'idImage' :
-		  			$this->setIdImage($valeur);
+				case 'symboleMathematique' :
+		  			$this->setSymboleMathematique($valeur);
+						break;
+
+				case 'formuleMathematique' :
+			 			$this->setFormuleMathematique($valeur);
 						break;
 			}
 		}
@@ -73,12 +78,20 @@ class Point{
 		$this->estDonneesCatia = $estDonneesCatia;
 	}
 
-	public function getIdImage(){
-		return $this->idImage;
+	public function getSymboleMathematique(){
+		return $this->symboleMathematique;
 	}
 
-	public function setIdImage($idImage){
-		$this->idImage = $idImage;
+	public function setSymboleMathematique($symboleMathematique){
+		$this->symboleMathematique = $symboleMathematique;
+	}
+
+	public function getFormuleMathematique(){
+		return $this->formuleMathematique;
+	}
+
+	public function setFormuleMathematique($formuleMathematique){
+		$this->formuleMathematique = $formuleMathematique;
 	}
 
 }
