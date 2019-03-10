@@ -159,7 +159,9 @@ class ExamenManager{
 					break;
 					case 'catia'.$tableauNumeroQuestion[$i]:
 					break;
-					case 'idImage'.$tableauNumeroQuestion[$i]:
+					case 'symbole'.$tableauNumeroQuestion[$i]:
+					break;
+					case 'formule'.$tableauNumeroQuestion[$i]:
 					$listeQuestions[]=$question;
 					$i++;
 					$question['intituleQuestion']=null;
@@ -199,14 +201,15 @@ class ExamenManager{
 		$idExamen = $this->getLastExamenCree();
 
 		foreach ($listePoints as $key => $value) {
-			$sql = 'INSERT INTO points(idPoint,idExamen,nomPoint,estDonneesCatia,idImage) VALUES (:idPoint,:idExamen,:nomPoint,:estDonneesCatia,:idImage)';
+			$sql = 'INSERT INTO points(idPoint,idExamen,nomPoint,estDonneesCatia,symboleMathematique,formuleMathematique) VALUES (:idPoint,:idExamen,:nomPoint,:estDonneesCatia,:symboleMathematique,:formuleMathematique)';
 
 			$requete = $this->db->prepare($sql);
 			$requete->bindValue(':idPoint',$i);
 			$requete->bindValue(':idExamen',$idExamen);
 			$requete->bindValue(':nomPoint',$key);
 			$requete->bindValue(':estDonneesCatia',$value['estDonneesCatia']);
-			$requete->bindValue(':idImage',$value['idImage']);
+			$requete->bindValue(':symboleMathematique',$value['symboleMathematique']);
+			$requete->bindValue(':formuleMathematique',$value['formuleMathematique']);
 
 			$requete->execute();
 

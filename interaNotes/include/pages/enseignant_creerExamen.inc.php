@@ -242,11 +242,20 @@ if(!$listePromo) { ?>
                         <label class="custom-control-label" for=<?php echo "catia".$compteur ?>>Catia</label>
                     </div>
                     <div>
-                      <label>Image du paramètre : </label>
-                      <select class="form-control" name="idImage<?php echo $compteur;?>">
+                      <label>Symbole du paramètre : </label>
+                      <select class="form-control" name="symbole<?php echo $compteur;?>">
                         <option value="0"> Aucune </option>
                         <?php $listeImages = $imageManager->getAllImage();
                         foreach ($listeImages as $key => $value) { ?>
+                          <option value="<?php echo $value->idImage;?>" > <?php echo $value->chemin; ?> </option>
+                      <?php  } ?>
+                      </select>
+                    </div>
+                    <div>
+                      <label>Formule du paramètre : </label>
+                      <select class="form-control" name="formule<?php echo $compteur;?>">
+                        <option value="0"> Aucune </option>
+                        <?php foreach ($listeImages as $key => $value) { ?>
                           <option value="<?php echo $value->idImage;?>" > <?php echo $value->chemin; ?> </option>
                       <?php  } ?>
                       </select>
@@ -437,7 +446,6 @@ if(!$listePromo) { ?>
     <p>L'examen a été créé !</p>
     <?php
 
-    var_dump($_POST);
     $examenManager = new ExamenManager($db);
 
     $examenManager->creerExamen($_SESSION['dateLimite'],$_SESSION['nomPromotion'],$_SESSION['titreExamen'],$_SESSION['texteEnonce'],$_SESSION['nbEssaiPossible']);
@@ -486,7 +494,8 @@ if(!$listePromo) { ?>
             $listePoints[$point]['estDonneesCatia'] = 0;
         }
 
-        $listePoints[$point]['idImage'] = $_POST['idImage'.$i];
+        $listePoints[$point]['symboleMathematique'] = $_POST['symbole'.$i];
+        $listePoints[$point]['formuleMathematique'] = $_POST['formule'.$i];
 
         $i++;
     }
