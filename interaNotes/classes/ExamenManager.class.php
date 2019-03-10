@@ -149,27 +149,33 @@ class ExamenManager{
 			if(!strpos($key,'catia') && !strpos($key,'idImage'.$i)){
 				switch ($key) {
 					case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
-					$question['intituleQuestion'] = $value;
-					break;
+						$question['intituleQuestion'] = $value;
+						break;
+
 					case 'bareme'.$tableauNumeroQuestion[$i]:
-					$question['bareme'] = $value;
-					break;
+						$question['bareme'] = $value;
+						break;
+
 					case 'zoneTolerance'.$tableauNumeroQuestion[$i]:
-					$question['zoneTolerance'] = $value;
-					break;
+						$question['zoneTolerance'] = $value;
+						break;
+
 					case 'catia'.$tableauNumeroQuestion[$i]:
-					break;
+						break;
+
 					case 'symbole'.$tableauNumeroQuestion[$i]:
-					break;
+						break;
+
 					case 'formule'.$tableauNumeroQuestion[$i]:
-					$listeQuestions[]=$question;
-					$i++;
-					$question['intituleQuestion']=null;
-					$question['bareme']=null;
-					$question['zoneTolerance']=null;
-					break;
+						$listeQuestions[]=$question;
+						$i++;
+						$question['intituleQuestion']=null;
+						$question['bareme']=null;
+						$question['zoneTolerance']=null;
+						break;
+
 					default:
-					break;
+						break;
 				}
 			}
 

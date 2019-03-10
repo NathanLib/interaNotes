@@ -1,8 +1,10 @@
 <?php
 if(isset($_GET['idSujet'])){
   $idSujet = $_GET['idSujet'];
+
   $pdo = new Mypdo();
   $sujetManager = new SujetManager($pdo);
+
   if($sujetManager->exists($idSujet)){
     $examenManager = new ExamenManager($pdo);
     $enonceManager = new EnonceManager($pdo);
@@ -12,14 +14,16 @@ if(isset($_GET['idSujet'])){
     $personneManager = new PersonneManager($pdo);
     $eleveManager = new EleveManager($pdo);
     $attributionManager = new AttributionManager($pdo);
+
     $idEleve = $attributionManager->getIdEleveByIdSujet($idSujet);
     $sujet = $sujetManager->getSujet($idSujet);
     $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
     $examenSujet = $examenManager->getExamen($sujet->getIdExamenOfSujet());
-    $dateDepot = $examenSujet->getDateDepotExamen();
     $personneEleve = $personneManager->getPersonneById($idEleve);
     $eleve = $eleveManager->getEleve($personneEleve);
     $valeurs = $valeurManager->getValeursSujet($idSujet);
+
+    $dateDepot = $examenSujet->getDateDepotExamen();
     $titre = $enonceSujet->getTitreEnonce();
     $enonce = $enonceSujet->getConsigneEnonce();
     $question = $questionManager->getAllQuestion($sujet->getIdExamenOfSujet(),$idSujet);
@@ -73,42 +77,57 @@ if(isset($_GET['idSujet'])){
       <div class="table-responsive">
         <table class="table">
           <tr>
-            <?php foreach ($valeurs as $val) { ?>
-              <?php $idPoint = $val->getIdPointOfValeur();
-              $point = $pointManager->getPoint($idPoint);
-              ?>
-              <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
-                <?php echo($point->getNomPoint())  ?>
-              </th>
+            <?php
+              foreach ($valeurs as $val) {
+                $idPoint = $val->getIdPointOfValeur();
+                $point = $pointManager->getPoint($idPoint);?>
+
+                <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
+                  <?php echo($point->getNomPoint())  ?>
+                </th>
             <?php } ?>
           </tr>
+
           <tr>
-            <?php foreach ($valeurs as $val) {
+            <?php
+            foreach ($valeurs as $val) {
               $idPoint = $val->getIdPointOfValeur();
               $point = $pointManager->getPoint($idPoint);
-              if($point->getSymboleMathematique() != 0) {
+
+              if($point->aUnSymboleMathematique()) {
                 $cheminSymbole = $pointManager->getCheminOfSymboleMathematique($point);
               }
-              if($point->getFormuleMathematique() != 0) {
+
+              if($point->aUneFormuleMathematique()) {
                 $cheminFormule = $pointManager->getCheminOfFormuleMathematique($point);
               }
+
               if(isset($cheminSymbole) || isset($cheminFormule)) { ?>
                 <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
-                  <?php if(isset($cheminSymbole)) { ?>
-                    <img class="vecteur" alt="vecteur" src="image/vecteurs/<?php echo $cheminSymbole ?>"> =
-                  <?php }
-                  if(isset($cheminFormule)){ ?>
-                    <img class="vecteur" alt="vecteur" src="image/vecteurs/<?php echo $cheminFormule ?>">
-              <?php    }
-               echo($val->getValeur()); ?>
+
+                <?php
+                if(isset($cheminSymbole)) { ?>
+                  <img class="vecteur" alt="vecteur" src="image/vecteurs/<?php echo $cheminSymbole ?>"> =
+                <?php
+                }
+
+                if(isset($cheminFormule)){ ?>
+                  <img class="vecteur" alt="vecteur" src="image/vecteurs/<?php echo $cheminFormule ?>">
+                <?php
+                }
+
+                echo $val->getValeur(); ?>
                 </th>
-                <?php unset($cheminSymbole);
+                <?php
+                unset($cheminSymbole);
                 unset($cheminFormule);
+
               } else { ?>
                 <th style="border: thin solid black; text-align: center; margin: 5px 15px 5px 15px;">
-                  <?php echo($val->getValeur()); ?>
+                  <?php echo $val->getValeur(); ?>
                 </th>
-              <?php  }
+              <?php
+              }
             } ?>
           </tr>
         </table>
