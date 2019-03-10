@@ -45,14 +45,14 @@
     </div>
 
     <div class="col-6 col-sm-4 col-lg-2 TicTacAccueil">
-        <a href="#">
+        <a href="index.php?page=8">
             <div class="tictac">
                 <div class="tictacHaut">
                     <img class="iconTictac" src="image/questions.png" alt="exam" title="Questions reçues">
                 </div>
 
                 <div class="tictacBas">
-                    Questions reçues
+                    Mes images
                 </div>
             </div>
         </a>
