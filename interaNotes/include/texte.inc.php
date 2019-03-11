@@ -52,10 +52,6 @@
 		include_once('pages/eleve_accueil.inc.php');
 		break;
 
-		case 11:
-		//
-		break;
-
 		case 12:
 		include_once('pages/eleve_poserQuestion.inc.php');
 		break;
@@ -66,14 +62,6 @@
 
 		case 14:
 		include_once('pages/eleve_listerSujetsTermines.inc.php');
-		break;
-
-		case 15:
-		//
-		break;
-
-		case 16:
-		//
 		break;
 
 		case 17:
@@ -92,10 +80,6 @@
 
 		case 22:
 		include_once('pages/test_generationSujets.inc.php');
-		break;
-
-		case 27:
-		//test
 		break;
 
 		case 28:

@@ -14,7 +14,7 @@
     <select class="form-control" name="supprimer" id="supprimer" onchange="desactiverFormulaire()" required>
       <option hidden selected></option>
       <?php $listeImages = $imageManager->getAllImages();
-      foreach ($listeImages as $key => $value) { ?>
+      foreach ($listeImages as $key => $value) { ?> 
         <option value="<?php echo $value->getIdImage();?>" > <?php echo $value->getCheminImage(); ?> </option>
     <?php  } ?>
     </select>
