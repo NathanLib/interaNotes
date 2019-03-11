@@ -927,8 +927,8 @@ span#text_info, p#text_info {
 }
 
 .vecteur {
-  max-width: 30px;
-  max-height: 30px;
+    max-width: 30px;
+    max-height: 30px;
 }
 .ajoutImageParametre label {
     margin-bottom: 1rem;
@@ -943,11 +943,11 @@ span#text_info, p#text_info {
 }
 
 /* Page enseignant - importer une image */
-.importerUneImage{
-    margin-top: 50px;
-    margin-left: 50px;
+.headGestionImage{
+    margin-top:1rem;
+    text-align: center;
 }
-.importerUneImage input[type=submit] {
+.bodyGestionImage input[type=submit] {
     border: solid #333 thin;
     border-radius: 5px;
     padding: 3.5px 10px;
@@ -956,6 +956,13 @@ span#text_info, p#text_info {
     color: white;
     min-width: 110px;
     cursor: pointer;
+}
+.bodyGestionImage label[for=chemin] span {
+    font-size: medium;
+    font-weight: normal;
+}
+.bodyGestionImage input[type=submit] {
+    margin: 0;
 }
 
 
