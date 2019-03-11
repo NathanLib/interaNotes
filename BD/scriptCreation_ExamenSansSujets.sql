@@ -197,6 +197,30 @@ LOCK TABLES `exercicegenere` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `images`
+--
+
+DROP TABLE IF EXISTS `images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `images` (
+  `idImage` int(11) NOT NULL AUTO_INCREMENT,
+  `cheminImage` text NOT NULL,
+  PRIMARY KEY (`idImage`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `images`
+--
+
+LOCK TABLES `images` WRITE;
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+INSERT INTO `images` VALUES (1,'sigma.png');
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `note`
 --
 
@@ -263,6 +287,8 @@ CREATE TABLE `points` (
   `idExamen` int(11) NOT NULL,
   `nomPoint` varchar(50) NOT NULL,
   `estDonneesCatia` tinyint(1) NOT NULL,
+  `idSymboleMathematique` int(11) NOT NULL,
+  `idFormuleMathematique` int(11) NOT NULL,
   PRIMARY KEY (`idPoint`,`idExamen`),
   KEY `idExamen` (`idExamen`),
   CONSTRAINT `points_ibfk_1` FOREIGN KEY (`idExamen`) REFERENCES `examen` (`idExamen`)
@@ -275,7 +301,7 @@ CREATE TABLE `points` (
 
 LOCK TABLES `points` WRITE;
 /*!40000 ALTER TABLE `points` DISABLE KEYS */;
-INSERT INTO `points` VALUES (1,1,'nbMoteur',0),(2,1,'vitesse',0),(3,1,'nbPersonne',1),(4,1,'destinationPlanète',0),(5,1,'distanceDestination',1),(6,1,'consoCarburantParMoteurs',0),(7,1,'consoEauParPersonnesParJour',0),(8,1,'consoNourrituresParPersonneParJour',0),(9,1,'consoO2ParPersonnesParJour',0);
+INSERT INTO `points` VALUES (1,1,'nbMoteur',0,0,0),(2,1,'vitesse',0,0,0),(3,1,'nbPersonne',1,0,0),(4,1,'destinationPlanète',0,0,0),(5,1,'distanceDestination',1,1,0),(6,1,'consoCarburantParMoteurs',0,0,0),(7,1,'consoEauParPersonnesParJour',0,0,0),(8,1,'consoNourrituresParPersonneParJour',0,0,0),(9,1,'consoO2ParPersonnesParJour',0,0,0);
 /*!40000 ALTER TABLE `points` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,4 +470,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-06 13:10:31
+-- Dump completed on 2019-03-10 16:57:28

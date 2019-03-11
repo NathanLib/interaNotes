@@ -36,7 +36,7 @@
 		break;
 
 		case 6:
-		include_once('pages/enseignant_AjouterEssai.inc.php');
+		include_once('pages/enseignant_ajouterEssai.inc.php');
 		break;
 
 		case 7:
@@ -44,7 +44,7 @@
 		break;
 
 		case 8:
-		include_once('pages/enseignant_AjouterImage.inc.php');
+		include_once('pages/enseignant_ajouterImage.inc.php');
 		break;
 
 		// WARNING: PARTIE ELEVE

@@ -77,11 +77,19 @@ CREATE TABLE note (
   PRIMARY KEY (idEleve,idSujet)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE images (
+  idImage INT NOT NULL AUTO_INCREMENT,
+  cheminImage TEXT NOT NULL,
+  PRIMARY KEY (idImage)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE points (
   idPoint INT NOT NULL,
   idExamen INT NOT NULL,
   nomPoint VARCHAR(50) NOT NULL,
   estDonneesCatia TINYINT(1) NOT NULL,
+  idSymboleMathematique INT NOT NULL,
+  idFormuleMathematique INT NOT NULL,
   FOREIGN KEY (idExamen) REFERENCES examen(idExamen),
   PRIMARY KEY (idPoint, idExamen)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -7,27 +7,29 @@ class ImageManager{
 		$this->db = $db;
 	}
 
-  public function ajouterImage($chemin){
-    $sql = "INSERT INTO `images` (`chemin`) VALUES (:chemin);";
+  public function ajouterImage($cheminImage){
+    $sql = "INSERT INTO images (cheminImage) VALUES (:cheminImage);";
 
     $requete = $this->db->prepare($sql);
-    $requete->bindValue(':chemin', $chemin);
-    $requete->execute();
+    $requete->bindValue(':cheminImage', $cheminImage);
+    $resultat = $requete->execute();
     $requete->closeCursor();
+
+    return $resultat;
   }
 
-  public function getAllImage(){
-    $sql = "SELECT idImage,chemin FROM images";
+  public function getAllImages(){
+    $sql = "SELECT idImage, cheminImage FROM images";
 
     $requete = $this->db->prepare($sql);
     $requete->execute();
 
     while($image = $requete->fetch(PDO::FETCH_OBJ)){
-			$listeImage[] = $image;
+			$listeImages[] = new Image($image);
 		}
     $requete->closeCursor();
 
-    return $listeImage;
+    return $listeImages;
   }
 
   public function supprimerImage($idImage){

@@ -71,8 +71,8 @@ if(!$listePromo) { ?>
                         </div>
                     </div>
                     <div class="col-12 form-group">
-                      <label for="nbEssai">Nombre d'essais :</label>
-                      <input class="form-control" id="nbEssai" name="nbEssai" type="number" placeholder="" min="1" step="1" required>
+                        <label for="nbEssai">Nombre d'essais :</label>
+                        <input class="form-control" id="nbEssai" name="nbEssai" type="number" placeholder="" min="1" step="1" required>
                     </div>
                 </div>
             </div>
@@ -103,8 +103,8 @@ if(!$listePromo) { ?>
     $tableauParametres = $tableauParametres[1]; //destruction des variables $var$
 
     if(empty($tableauParametres)){
-      sleep(2);
-      header('Location: index.php?page=4');
+        sleep(2);
+        header('Location: index.php?page=4');
     }
 
     $_SESSION['tableauParametres'] = $tableauParametres;
@@ -125,21 +125,21 @@ if(!$listePromo) { ?>
     <hr class="hr" style="width:80%">
 
     <div class="col-12 d-flex justify-content-center" id="needHelp">
-      <span class="more_info" id="text_info">
-        <img class="helpIcon" src="image/help.svg" alt="help" title="Aide">
-        Besoin d'aide ?
-        <div class="popup">
-        </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
+        <span class="more_info" id="text_info">
+            <img class="helpIcon" src="image/help.svg" alt="help" title="Aide">
+            Besoin d'aide ?
+            <div class="popup">
+            </br> <h4>Comment&nbspremplir cette&nbsppage ?</h4>
 
-        <h5> La saisie de question :</h5>
-        <p id="text_info">Pour saisir une question, vous devez d'abord saisir l'intitulé de la question puis son barème. Si cette question représente 2pts sur 20, vous devez seulement saisir 2. Enfin, vous pouvez cocher la case "valeur parfaite" si vous souhaitez que l'étudiant doit saisir exactement la bonne réponse pour avoir les points sinon il n'aura aucun point. Dans le cas contraire, les points de l'étudiant dépendront de la différence entre son résultat et le résultat attentu</p>
+            <h5> La saisie de question :</h5>
+            <p id="text_info">Pour saisir une question, vous devez d'abord saisir l'intitulé de la question puis son barème. Si cette question représente 2pts sur 20, vous devez seulement saisir 2. Enfin, vous pouvez cocher la case "valeur parfaite" si vous souhaitez que l'étudiant doit saisir exactement la bonne réponse pour avoir les points sinon il n'aura aucun point. Dans le cas contraire, les points de l'étudiant dépendront de la différence entre son résultat et le résultat attentu</p>
 
-        <h5> La saisie des valeurs :</h5>
-        <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
-        <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
-        <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
-    </br>
-</div>
+            <h5> La saisie des valeurs :</h5>
+            <p id="text_info">A chaque paramètre saisie dans l'énoncé, vous retrouverez un bouton pour ajouter les valeurs que peut prendre cette variable. Les variables peuvent prendre soit des valeurs uniques ou alors des intervalles. Pour saisir des intervalles, vous saisissez une valeur minimale et une maximale ainsi que leur puissance et un pas. Dans les deux cas, vous devez ensuite saisir l'unité (SI) de la valeur et l'exposant de cette unité.</p>
+            <i>Exemple : Pour avoir un résultat en 'km', vous devez sélectionner l'unité 'm' (mètre) dans unité du résultat puis 3 dans Exposant de l'unité </i>
+            <p>Vous pouvez retrouver toutes les valeurs ou intervalles déjà saisis dans la liste en dessous. Pour supprimer une ligne, vous devez la sélectionner la ligne dans la liste puis cliquer sur la poubelle.</p>
+        </br>
+    </div>
 </span>
 </div>
 
@@ -156,7 +156,7 @@ if(!$listePromo) { ?>
 
     <div class="row">
         <div class="col-12">
-            <h4>Liste des questions de l'examen :</h4>
+            <h4>Liste des questions de l'examen&nbsp:</h4>
 
             <div class="form-container">
                 <fieldset>
@@ -224,217 +224,234 @@ if(!$listePromo) { ?>
 
 
     <div class="row saisieValeursParametre">
-        <div class="col-12">
+        <div class="col">
             <h4>Liste des paramètres de l'examen :</h4>
+
 
             <?php
 
             $nombre = count($tableauParametres);
 
             foreach ($tableauParametres as $compteur => $parametre) { ?>
-                <p><?php echo $parametre ?> : </p>
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <p><?php echo $parametre ?> : </p>
 
-                <div class="choiceParameterSaisie">
-                    <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>,<?php echo $nombre; ?>)">Ajouter les valeurs</button>
+                        <div class="choiceParameterSaisie">
+                            <button id="<?php echo "btnAjout".$compteur; ?>" class="btn btn-primary popUp" type="button" name="button" onclick="ouvrirBox(<?php echo $compteur; ?>,<?php echo $nombre; ?>)">Ajouter les valeurs</button>
 
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" id=<?php echo "catia".$compteur ?> name=<?php echo "catia".$compteur ?> class="custom-control-input" >
-                        <label class="custom-control-label" for=<?php echo "catia".$compteur ?>>Catia</label>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" id=<?php echo "catia".$compteur ?> name=<?php echo "catia".$compteur ?> class="custom-control-input" >
+                                <label class="custom-control-label" for=<?php echo "catia".$compteur ?>>Catia</label>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                      <label>Symbole du paramètre : </label>
-                      <select class="form-control" name="symbole<?php echo $compteur;?>">
-                        <option value="0"> Aucune </option>
-                        <?php $listeImages = $imageManager->getAllImage();
-                        foreach ($listeImages as $key => $value) { ?>
-                          <option value="<?php echo $value->idImage;?>" > <?php echo $value->chemin; ?> </option>
-                      <?php  } ?>
-                      </select>
+
+                    <div class="ajoutImageParametre col-12 col-lg-8">
+                        <div class="row">
+                            <div class="col-12 col-lg-5">
+                                <?php $listeImages = $imageManager->getAllImages();?>
+
+                                <label>Symbole du paramètre : </label>
+                                <select class="form-control" name="symbole<?php echo $compteur;?>">
+                                    <option value="0"> Aucune </option>
+                                    <?php
+                                    foreach ($listeImages as $image) { ?>
+                                        <option value="<?php echo $image->getIdImage();?>" > <?php echo $image->getCheminImage(); ?> </option>
+                                    <?php  } ?>
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-lg-5">
+                                <label>Formule du paramètre : </label>
+                                <select class="form-control" name="formule<?php echo $compteur;?>">
+                                    <option value="0"> Aucune </option>
+                                    <?php foreach ($listeImages as $image) { ?>
+                                        <option value="<?php echo $image->getIdImage();?>" > <?php echo $image->getCheminImage() ?> </option>
+                                    <?php  } ?>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                      <label>Formule du paramètre : </label>
-                      <select class="form-control" name="formule<?php echo $compteur;?>">
-                        <option value="0"> Aucune </option>
-                        <?php foreach ($listeImages as $key => $value) { ?>
-                          <option value="<?php echo $value->idImage;?>" > <?php echo $value->chemin; ?> </option>
-                      <?php  } ?>
-                      </select>
+
+
+                    <div class="box mesParametresSaisie" id=<?php echo "box".$compteur ;?> >
+                        <div class="form-wrapper">
+                            <h4><?php echo $parametre ?></h4>
+
+                            <div class="row d-flex justify-content-around choixTypesValeurs">
+                                <div class="col-5 d-flex justify-content-center">
+                                    <input id=<?php echo "boutonUnique".$compteur ; ?> type="button" value="Valeurs Uniques" onclick="affichageSaisieValeurUnique(<?php echo $compteur; ?>)">
+                                </div>
+
+                                <div class="col-5 d-flex justify-content-center">
+                                    <input id=<?php echo "boutonIntervalle".$compteur ; ?> type="button" onclick="affichageSaisieIntervalle(<?php echo $compteur; ?>)" value="Intervalles">
+                                </div>
+                            </div>
+
+                            <div class="blockValeurUnique" id=<?php echo "valeursUniques".$compteur ;?> style="display : none">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="">Nouvelle valeur :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" >
+                                    </div>
+                                    <div class="col-5 form-group divPuissanceResult d-flex">
+                                        <span id="puissanceValeur">x10</span>
+                                        <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="uniteAnswer">Unité de la valeur :</label>
+                                    <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                        <?php
+                                        $listeUnites = Unites::getConstants();
+                                        foreach ($listeUnites as $unite => $abreviation) { ?>
+                                            <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exposantAnswer">Exposant de l'unité :</label>
+                                    <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                        <?php
+                                        $listeExposants = Exposants::getConstants();
+                                        $defautExposant = Exposants::getExposantParDefaut();
+
+                                        foreach ($listeExposants as $exposant) { ?>
+                                            <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" name=<?php echo "'saisieParametre".$compteur."'" ?> />
+                                    </div>
+                                </div>
+
+                                <div class="row d-flex justify-content-between divListeValeursTrash">
+                                    <div class="col-8 d-flex justify-content-center listeValeur">
+                                        <select class="form-control" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
+                                    </div>
+                                    <div class="col-3 d-flex jsutify-content-center">
+                                        <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.",0)"; ?> type="button" value="Supprimer">
+                                            <img src="image/delete.png" alt="delete">
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group divMdpButton d-flex justify-content-around">
+                                    <div class="col-5 d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
+                                    </div>
+                                    <div class="col-5 d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick="ouvrirBox(<?php echo $compteur ?>,<?php echo $nombre ?>)" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="blockIntervalle" id=<?php echo "intervalle".$compteur ;?> style="display : none">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="">Nouvel intervalle :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <input class="form-control" id="<?php echo 'saisieValeurMinimale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur manimale">
+                                    </div>
+                                    <div class="col-5 form-group divPuissanceResult d-flex">
+                                        <span id="puissanceValeur">x10</span>
+                                        <input id=<?php echo "puissanceValeurIntervalle".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
+                                    </div>
+
+                                    <div class="col-7">
+                                        <input class="form-control" id="<?php echo 'saisieValeurMaximale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur maximale">
+                                    </div>
+                                    <div class="col-5 form-group divPuissanceResult d-flex">
+                                        <span id="puissanceValeur">x10</span>
+                                        <input id=<?php echo "puissanceValeurIntervalle2".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
+
+                                    </div>
+
+                                    <div class="col-12">
+                                        <input class="form-control" id="<?php echo 'pas'.$compteur ?>" type="number" min="0.0001" step="0.0001" placeholder="Pas">
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="margin-top:15px">
+                                    <label for="uniteAnswer">Unité de la valeur :</label>
+                                    <select class="form-control" id=<?php echo "uniteValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                        <?php
+                                        $listeUnites = Unites::getConstants();
+
+                                        foreach ($listeUnites as $unite => $abreviation) { ?>
+                                            <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exposantAnswer">Exposant de l'unité :</label>
+                                    <select class="form-control" id=<?php echo "exposantValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                        <?php
+                                        $listeExposants = Exposants::getConstants();
+                                        $defautExposant = Exposants::getExposantParDefaut();
+
+                                        foreach ($listeExposants as $exposant) { ?>
+                                            <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametreIntervalle(event,<?php echo "'saisieValeurMinimale".$compteur."'" ?>,<?php echo "'saisieValeurMaximale".$compteur."'" ?>,<?php echo "'pas".$compteur."'" ?>,<?php echo "'liste".$compteur."'" ?>,<?php echo "'puissanceValeurIntervalle".$compteur."'" ?>,<?php echo "'puissanceValeurIntervalle2".$compteur."'" ?>,<?php echo "'uniteValeurIntervalle".$compteur."'" ?>,<?php echo "'exposantValeurIntervalle".$compteur."'" ?>)" />
+                                    </div>
+                                </div>
+
+                                <div class="row d-flex justify-content-between divListeValeursTrash">
+                                    <div class="col-8 d-flex justify-content-center listeValeur">
+                                        <select class="form-control" id="<?php echo 'liste'.$compteur ?>" multiple></select>
+                                    </div>
+                                    <div class="col-3 d-flex jsutify-content-center">
+                                        <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeurIntervalle(".$compteur.",1)"; ?> type="button" value="Supprimer">
+                                            <img src="image/delete.png" alt="delete">
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group divMdpButton d-flex justify-content-around">
+                                    <div class="col-5 d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
+                                    </div>
+                                    <div class="col-5 d-flex justify-content-center">
+                                        <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.",".$nombre.")"; ?> />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
+                <hr class="sptVariableExam">
 
-                <div class="box mesParametresSaisie" id=<?php echo "box".$compteur ;?> >
-                    <div class="form-wrapper">
-                        <h4><?php echo $parametre ?></h4>
-
-                        <div class="row d-flex justify-content-around choixTypesValeurs">
-                            <div class="col-5 d-flex justify-content-center">
-                                <input id=<?php echo "boutonUnique".$compteur ; ?> type="button" value="Valeurs Uniques" onclick="affichageSaisieValeurUnique(<?php echo $compteur; ?>)">
-                            </div>
-
-                            <div class="col-5 d-flex justify-content-center">
-                                <input id=<?php echo "boutonIntervalle".$compteur ; ?> type="button" onclick="affichageSaisieIntervalle(<?php echo $compteur; ?>)" value="Intervalles">
-                            </div>
-                        </div>
-
-                        <div class="blockValeurUnique" id=<?php echo "valeursUniques".$compteur ;?> style="display : none">
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="">Nouvelle valeur :</label>
-                                </div>
-                                <div class="col-7">
-                                    <input class="form-control" id="<?php echo 'saisieParametre'.$compteur ?>" type="text" >
-                                </div>
-                                <div class="col-5 form-group divPuissanceResult d-flex">
-                                    <span id="puissanceValeur">x10</span>
-                                    <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label for="uniteAnswer">Unité de la valeur :</label>
-                                <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
-                                    <?php
-                                    $listeUnites = Unites::getConstants();
-                                    foreach ($listeUnites as $unite => $abreviation) { ?>
-                                        <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exposantAnswer">Exposant de l'unité :</label>
-                                <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
-                                    <?php
-                                    $listeExposants = Exposants::getConstants();
-                                    $defautExposant = Exposants::getExposantParDefaut();
-
-                                    foreach ($listeExposants as $exposant) { ?>
-                                        <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="col d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametre(event,<?php echo "'saisieParametre".$compteur."'" ?>,<?php echo "'parametre".$compteur."'" ?>,<?php echo "'puissanceValeur".$compteur."'" ?>,<?php echo "'uniteValeur".$compteur."'" ?>,<?php echo "'exposantValeur".$compteur."'" ?>)" name=<?php echo "'saisieParametre".$compteur."'" ?> />
-                                </div>
-                            </div>
-
-                            <div class="row d-flex justify-content-between divListeValeursTrash">
-                                <div class="col-8 d-flex justify-content-center listeValeur">
-                                    <select class="form-control" id="<?php echo 'parametre'.$compteur ?>" multiple></select>
-                                </div>
-                                <div class="col-3 d-flex jsutify-content-center">
-                                    <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeur(".$compteur.",0)"; ?> type="button" value="Supprimer">
-                                        <img src="image/delete.png" alt="delete">
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="row form-group divMdpButton d-flex justify-content-around">
-                                <div class="col-5 d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
-                                </div>
-                                <div class="col-5 d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick="ouvrirBox(<?php echo $compteur ?>,<?php echo $nombre ?>)" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="blockIntervalle" id=<?php echo "intervalle".$compteur ;?> style="display : none">
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="">Nouvel intervalle :</label>
-                                </div>
-                                <div class="col-7">
-                                    <input class="form-control" id="<?php echo 'saisieValeurMinimale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur manimale">
-                                </div>
-                                <div class="col-5 form-group divPuissanceResult d-flex">
-                                    <span id="puissanceValeur">x10</span>
-                                    <input id=<?php echo "puissanceValeurIntervalle".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
-                                </div>
-
-                                <div class="col-7">
-                                    <input class="form-control" id="<?php echo 'saisieValeurMaximale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur maximale">
-                                </div>
-                                <div class="col-5 form-group divPuissanceResult d-flex">
-                                    <span id="puissanceValeur">x10</span>
-                                    <input id=<?php echo "puissanceValeurIntervalle2".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
-
-                                </div>
-
-                                <div class="col-12">
-                                    <input class="form-control" id="<?php echo 'pas'.$compteur ?>" type="number" min="0.0001" step="0.0001" placeholder="Pas">
-                                </div>
-                            </div>
-
-                            <div class="form-group" style="margin-top:15px">
-                                <label for="uniteAnswer">Unité de la valeur :</label>
-                                <select class="form-control" id=<?php echo "uniteValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
-                                    <?php
-                                    $listeUnites = Unites::getConstants();
-
-                                    foreach ($listeUnites as $unite => $abreviation) { ?>
-                                        <option value="<?php echo $abreviation ?>"><?php echo $abreviation ?></option>";
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exposantAnswer">Exposant de l'unité :</label>
-                                <select class="form-control" id=<?php echo "exposantValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
-                                    <?php
-                                    $listeExposants = Exposants::getConstants();
-                                    $defautExposant = Exposants::getExposantParDefaut();
-
-                                    foreach ($listeExposants as $exposant) { ?>
-                                        <option <?php if($exposant==$defautExposant){ echo "selected ";} ?>value="<?php echo $exposant ?>"><?php echo $exposant ?></option>";
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="col d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Valider valeur" class="btn" onclick="return ajouterValeurDeParametreIntervalle(event,<?php echo "'saisieValeurMinimale".$compteur."'" ?>,<?php echo "'saisieValeurMaximale".$compteur."'" ?>,<?php echo "'pas".$compteur."'" ?>,<?php echo "'liste".$compteur."'" ?>,<?php echo "'puissanceValeurIntervalle".$compteur."'" ?>,<?php echo "'puissanceValeurIntervalle2".$compteur."'" ?>,<?php echo "'uniteValeurIntervalle".$compteur."'" ?>,<?php echo "'exposantValeurIntervalle".$compteur."'" ?>)" />
-                                </div>
-                            </div>
-
-                            <div class="row d-flex justify-content-between divListeValeursTrash">
-                                <div class="col-8 d-flex justify-content-center listeValeur">
-                                    <select class="form-control" id="<?php echo 'liste'.$compteur ?>" multiple></select>
-                                </div>
-                                <div class="col-3 d-flex jsutify-content-center">
-                                    <button class="myTrash" id="<?php echo "bouton".$compteur; ?>" onclick=<?php echo "supprimerValeurIntervalle(".$compteur.",1)"; ?> type="button" value="Supprimer">
-                                        <img src="image/delete.png" alt="delete">
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="row form-group divMdpButton d-flex justify-content-around">
-                                <div class="col-5 d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Annuler" class="btn" onclick=" annulerSaisie(<?php echo $compteur; ?>) " />
-                                </div>
-                                <div class="col-5 d-flex justify-content-center">
-                                    <input class="btnSaisieValeur" type="button" value="Valider" class="btn" onclick=<?php echo "ouvrirBox(".$compteur.",".$nombre.")"; ?> />
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
                 <?php
             } ?>
+
         </div>
     </div>
     <input class="btnValiderExamen" id="buttonValider" type="submit" onclick="recupSelect(<?php echo $nombre; ?>)"value="Valider">
@@ -477,7 +494,7 @@ if(!$listePromo) { ?>
             } else {
                 $k=0;
                 for ($j = $donnees[0]*pow(10, $donnees[1]); $j <= $donnees[2]*pow(10, $donnees[3]); $j = $j + $donnees[4]) {
-                   //fonction pour remettre des valeurs propres ?
+                    //fonction pour remettre des valeurs propres ?
                     $listePoints[$point][$key2][$k]['valeur']=$j;
                     $listePoints[$point][$key2][$k]['exposantValeur']=0;
                     $listePoints[$point][$key2][$k]['uniteValeur']=$donnees[5];
@@ -510,13 +527,13 @@ if(!$listePromo) { ?>
     unset($_SESSION['nbEssaiPossible']);
 
     foreach($_COOKIE as $key => $value) {
-          if($key != "PHPSESSID") { ?>
+        if($key != "PHPSESSID") { ?>
             <script type="text/javascript">
             function delete_cookie(name) {
-                  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-                  }
+                document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
 
-                  delete_cookie(<?php echo '"'.$key.'"'; ?>);
+            delete_cookie(<?php echo '"'.$key.'"'; ?>);
             </script>
             <?php
         }
