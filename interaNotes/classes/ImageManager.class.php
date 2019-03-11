@@ -34,13 +34,13 @@ class ImageManager{
 
   public function supprimerImage($idImage){
 
-    $sql = "UPDATE `points` SET `formuleMathematique` = '0' WHERE formuleMathematique=:idImage";
+    $sql = "UPDATE `points` SET `idFormuleMathematique` = '0' WHERE idFormuleMathematique=:idImage";
     $requete = $this->db->prepare($sql);
     $requete->bindValue(':idImage', $idImage);
     $requete->execute();
     $requete->closeCursor();
 
-    $sql = "UPDATE `points` SET `symboleMathematique` = '0' WHERE symboleMathematique=:idImage";
+    $sql = "UPDATE `points` SET `idSymboleMathematique` = '0' WHERE idSymboleMathematique=:idImage";
     $requete = $this->db->prepare($sql);
     $requete->bindValue(':idImage', $idImage);
     $requete->execute();
