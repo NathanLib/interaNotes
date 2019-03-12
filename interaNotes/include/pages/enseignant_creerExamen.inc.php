@@ -254,7 +254,7 @@ if(!$listePromo) { ?>
 
                                 <label>Symbole du paramètre : </label>
                                 <select class="form-control" name="symbole<?php echo $compteur;?>">
-                                    <option value="0"> Aucune </option>
+                                    <option value="0"> Aucun </option>
                                     <?php
                                     foreach ($listeImages as $image) { ?>
                                         <option value="<?php echo $image->getIdImage();?>" > <?php echo $image->getCheminImage(); ?> </option>
