@@ -145,7 +145,7 @@ class ExamenManager{
 
 		$i = 0;
 		foreach ($questions as $key => $value) {
-
+      
 			if(!strpos($key,'catia') && !strpos($key,'idImage'.$i)){
 				switch ($key) {
 					case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
@@ -158,21 +158,23 @@ class ExamenManager{
 
 					case 'zoneTolerance'.$tableauNumeroQuestion[$i]:
 						$question['zoneTolerance'] = $value;
+						$listeQuestions[]=$question;
+						if(sizeof($tableauNumeroQuestion) != $i+1){
+							$i++;
+						}
+						$question['intituleQuestion']=null;
+						$question['bareme']=null;
+						$question['zoneTolerance']=null;
 						break;
 
-					case 'catia'.$tableauNumeroQuestion[$i]:
+		/*			case 'catia'.$tableauNumeroQuestion[$i]:
 						break;
 
 					case 'symbole'.$tableauNumeroQuestion[$i]:
 						break;
 
 					case 'formule'.$tableauNumeroQuestion[$i]:
-						$listeQuestions[]=$question;
-						$i++;
-						$question['intituleQuestion']=null;
-						$question['bareme']=null;
-						$question['zoneTolerance']=null;
-						break;
+						break; */
 
 					default:
 						break;
@@ -180,7 +182,7 @@ class ExamenManager{
 			}
 
 		}
-
+    var_dump($listeQuestions);
 		$idExamen = $this->db->lastInsertId();
 		$i = 1;
 
@@ -207,7 +209,7 @@ class ExamenManager{
 		$idExamen = $this->getLastExamenCree();
 
 		foreach ($listePoints as $key => $value) {
-			$sql = 'INSERT INTO points(idPoint,idExamen,nomPoint,estDonneesCatia,symboleMathematique,formuleMathematique) VALUES (:idPoint,:idExamen,:nomPoint,:estDonneesCatia,:symboleMathematique,:formuleMathematique)';
+			$sql = 'INSERT INTO points(idPoint,idExamen,nomPoint,estDonneesCatia,idSymboleMathematique,idFormuleMathematique) VALUES (:idPoint,:idExamen,:nomPoint,:estDonneesCatia,:symboleMathematique,:formuleMathematique)';
 
 			$requete = $this->db->prepare($sql);
 			$requete->bindValue(':idPoint',$i);

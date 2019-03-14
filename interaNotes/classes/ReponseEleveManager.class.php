@@ -26,24 +26,22 @@ class ReponseEleveManager{
 
 	public function getAllReponseEleve($idSujet){
 
-    $donnee[0] = $idSujet;
-
-    $sujet = new Sujet($donnee)
-
-    $sql = 'SELECT COUNT(idQuestion) as nbQuestion FROM question WHERE idExamen=:idExamen '
+    $sql = 'SELECT COUNT(idQuestion) as nbQuestion FROM question q JOIN sujet s ON s.idExamen=q.idExamen WHERE idsujet=:idSujet ';
 		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idExamen', $ujet->getIdExamenOfSujet($sujet));
+		$requete->bindValue(':idSujet', $idSujet);
+
 		$requete->execute();
 
-    $res = $requete->fetch(PDO::FETCH_OBJ)
+    $res = $requete->fetch(PDO::FETCH_OBJ);
 		$nbQuestion = $res->nbQuestion;
 
 		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS*/
-		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT :nbQuestion';
+		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT :nbQuestion ';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
-		$requete->bindValue(':nbQuestion', $nbQuestion);
+		$requete->bindValue(':nbQuestion',(int)$nbQuestion, PDO::PARAM_INT);
+
 		$requete->execute();
 
 		while($res = $requete->fetch(PDO::FETCH_OBJ)){
