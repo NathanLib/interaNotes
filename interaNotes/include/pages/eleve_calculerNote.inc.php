@@ -5,7 +5,7 @@ $noteManager = new NoteManager($db);
 $reponseEleveManager = new ReponseEleveManager($db);
 $questionManager = new QuestionManager($db);
 
-$questions = $questionManager->getAllQuestion($_GET["ide"],$_GET["ids"]);//WARNING: utiliser l'idSujet de l'élève
+$questions = $questionManager->getAllQuestion($_GET["ide"],$_GET["ids"]);
 $reponses = $reponseEleveManager->getAllReponseEleve($_GET["ids"]);
 $noteTotal=0;
 

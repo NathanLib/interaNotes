@@ -4,6 +4,7 @@ class Sujet {
 	private $idEnonce;
 	private $semestre;
 	private $idExamen;
+	private $nbEssaiRealise;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -31,6 +32,10 @@ class Sujet {
 				case 'idExamen' :
 				$this->setIdExamen($valeur);
 				break;
+
+				case 'nbEssaiRealise' :
+				$this->setNbEssaiRealise($valeur);
+				break;
 			}
 		}
 	}
@@ -53,7 +58,6 @@ class Sujet {
 		$this->idEnonce = $idEnonce;
 	}
 
-
 	public function getSemestreOfSujet(){
 		return $this->semestre;
 	}
@@ -72,5 +76,13 @@ class Sujet {
 		if(is_numeric($idExamen)){
 			$this->idExamen = $idExamen;
 		}
+	}
+
+	public function getNbEssaiRealise(){
+		return $this->nbEssaiRealise;
+	}
+
+	public function setNbEssaiRealise($nbEssaiRealise){
+		$this->nbEssaiRealise = $nbEssaiRealise;
 	}
 }
