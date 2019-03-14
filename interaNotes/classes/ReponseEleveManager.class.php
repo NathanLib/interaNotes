@@ -25,13 +25,25 @@ class ReponseEleveManager{
 	}
 
 	public function getAllReponseEleve($idSujet){
-		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS
-		WARNING
-		*/
-		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT 5';
+
+    $donnee[0] = $idSujet;
+
+    $sujet = new Sujet($donnee)
+
+    $sql = 'SELECT COUNT(idQuestion) as nbQuestion FROM question WHERE idExamen=:idExamen '
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idExamen', $ujet->getIdExamenOfSujet($sujet));
+		$requete->execute();
+
+    $res = $requete->fetch(PDO::FETCH_OBJ)
+		$nbQuestion = $res->nbQuestion;
+
+		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS*/
+		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT :nbQuestion';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
+		$requete->bindValue(':nbQuestion', $nbQuestion);
 		$requete->execute();
 
 		while($res = $requete->fetch(PDO::FETCH_OBJ)){
