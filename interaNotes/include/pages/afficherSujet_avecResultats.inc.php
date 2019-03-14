@@ -4,6 +4,7 @@ $questionManager = new QuestionManager($db);
 $sujetManager = new SujetManager($db);
 $examenManager = new ExamenManager($db);
 $reponseEleveManager = new ReponseEleveManager($db);
+$resultatAttendusManager = new ResultatsAttendusManager($db);
 
 $idSujet = $_GET['idSujet'];
 
@@ -62,28 +63,36 @@ if(isset($idSujet)) {
 								</td>
 								<td>
 									<?php foreach ($questions as $question) {
-										$resultat = $question->getResultat();?>
+										$idQuestion = $question->getIdQuestion();
+										$resultatAttendus = $resultatAttendusManager->getResultatAttendusByQuestion($idSujet, $idQuestion);
+										$resultat = $resultatAttendus->getResultat();?>
 
 										<p><?php echo $resultat; ?></p>
 									<?php } ?>
 								</td>
 								<td>
 									<?php foreach ($questions as $question) {
-										$exposantResultat = $question->getExposantResultat();?>
+										$idQuestion = $question->getIdQuestion();
+										$resultatAttendus = $resultatAttendusManager->getResultatAttendusByQuestion($idSujet, $idQuestion);
+										$exposantResultat = $resultatAttendus->getResultatExposant();?>
 
 										<p><?php echo $exposantResultat; ?></p>
 									<?php } ?>
 								</td>
 								<td>
 									<?php foreach ($questions as $question) {
-										$unite = $question->getResultatUnite();?>
+										$idQuestion = $question->getIdQuestion();
+										$resultatAttendus = $resultatAttendusManager->getResultatAttendusByQuestion($idSujet, $idQuestion);
+										$unite = $resultatAttendus->getResultatUnite();?>
 
 										<p><?php echo $unite; ?></p>
 									<?php } ?>
 								</td>
 								<td>
 									<?php foreach ($questions as $question) {
-										$exposant = $question->getExposantUnite();?>
+										$idQuestion = $question->getIdQuestion();
+										$resultatAttendus = $resultatAttendusManager->getResultatAttendusByQuestion($idSujet, $idQuestion);
+										$exposant = $resultatAttendus->getExposantUnite();?>
 
 										<p><?php echo $exposant; ?></p>
 									<?php } ?>

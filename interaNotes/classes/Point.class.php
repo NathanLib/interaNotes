@@ -2,7 +2,7 @@
 class Point{
 	private $idPoint;
 	private $idExamen;
-  private $nomPoint;
+	private $nomPoint;
 	private $estDonneesCatia;
 	private $idSymboleMathematique;
 	private $idFormuleMathematique;
@@ -18,28 +18,28 @@ class Point{
 
 			switch($attribut){
 				case 'idPoint' :
-					$this->setIdPoint($valeur);
-					break;
+				$this->setIdPoint($valeur);
+				break;
 
 				case 'idExamen' :
-					$this->setIdExamenPoint($valeur);
-					break;
+				$this->setIdExamenPoint($valeur);
+				break;
 
-        case 'nomPoint' :
-					$this->setNomPoint($valeur);
-					break;
+				case 'nomPoint' :
+				$this->setNomPoint($valeur);
+				break;
 
 				case 'estDonneesCatia' :
-						$this->setEstDonneesCatia($valeur);
-						break;
+				$this->setEstDonneesCatia($valeur);
+				break;
 
 				case 'idSymboleMathematique' :
-		  			$this->setIdSymboleMathematique($valeur);
-						break;
+				$this->setIdSymboleMathematique($valeur);
+				break;
 
 				case 'idFormuleMathematique' :
-			 			$this->setIdFormuleMathematique($valeur);
-						break;
+				$this->setIdFormuleMathematique($valeur);
+				break;
 			}
 		}
 	}
@@ -62,7 +62,7 @@ class Point{
 		$this->idExamen = $idExamen;
 	}
 
-  public function getNomPoint(){
+	public function getNomPoint(){
 		return $this->nomPoint;
 	}
 

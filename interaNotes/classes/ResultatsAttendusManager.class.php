@@ -40,4 +40,18 @@ class ResultatsAttendusManager {
 		$requete->closeCursor();
 		return $resultat;
 	}
+
+	public function getResultatAttendusByQuestion($idSujet, $idQuestion){
+		$sql = 'SELECT resultat, resultatExposant, resultatUnite, exposantUnite FROM resultatsattendus WHERE idSujet=:idSujet AND idQuestion=:idQuestion';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idSujet', $idSujet);
+		$requete->bindValue(':idQuestion', $idQuestion);
+		$requete->execute();
+
+		$res = $requete->fetch(PDO::FETCH_OBJ);
+		$requete->closeCursor();
+
+		return new ResultatsAttendus($res);
+	}
 }

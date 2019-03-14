@@ -294,7 +294,7 @@ function annulerSaisie(i){ //a completer
         document.getElementById('saisieParametre'+i).value=null;
         document.getElementById('puissanceValeur'+i).value=null;
         document.getElementById('exposantValeur'+i).value=null;
-        document.getElementById('parametre'+i).options.length = 0;
+        document.getElementById('liste'+i).options.length = 0;
         document.getElementById('boutonUnique'+i).disabled = false ;
         document.getElementById('boutonIntervalle'+i).disabled = false ;
         document.getElementById('boutonUnique'+i).style.backgroundColor = "#333";
@@ -366,7 +366,7 @@ for (var i = 0; i <= compteur; i++) {
     var listeUnique = document.getElementById('parametre'+i);
     var listeIntervalle = document.getElementById('liste'+i);
 
-    if(listeUnique.options.length > 0 ) {
+    if(listeUnique.options.length != null || listeUnique.options.length > 0 ) {
         var point = new Array();
         for (var j = 0; j < listeUnique.options.length ; j++) {
             point.push(listeUnique.options[j].value);
@@ -405,5 +405,5 @@ function desactiverFormulaire() {
     if(supprimer.options.selectedIndex != 0){
       ajouter.disabled = true;
     }
-    
+
 }
