@@ -12,7 +12,8 @@ if(isset($_GET['id'])){
         <div class="modifierNbEssais">
             <form method="post" action="index.php?page=6?&id=1">
 
-                <p>Choisir le nombre d'essai à ajouter pour l'étudiant : </p> <input type="number" name="nbEssaiRealise" min=1 step="1" value=1>
+                <p>Choisir le nombre d'essai à ajouter pour l'étudiant : </p>
+                <input type="number" name="nbEssaiRealise" min=1 step="1" value=1 onkeydown="return event.keyCode !== 69">
                 <input type="submit" value="Valider">
             </form>
         </div>

@@ -72,7 +72,7 @@ if(!$listePromo) { ?>
                     </div>
                     <div class="col-12 form-group">
                         <label for="nbEssai">Nombre d'essais :</label>
-                        <input class="form-control" id="nbEssai" name="nbEssai" type="number" placeholder="" min="1" step="1" required>
+                        <input class="form-control" id="nbEssai" name="nbEssai" type="number" placeholder="" min="1" step="1" onkeydown="return event.keyCode !== 69" required>
                     </div>
                 </div>
             </div>
@@ -168,11 +168,11 @@ if(!$listePromo) { ?>
                                 <input type="text" id="intituleQuestion0" name="intituleQuestion0" class="form-control intituleQuestion" placeholder="Intitulé" required>
                             </div>
                             <div class="col-4 col-md-2">
-                                <input type="number" id="bareme0" name="bareme0" class="form-control bareme" placeholder="Barème" step="0.25" min="0.25" max="20" required>
+                                <input type="number" id="bareme0" name="bareme0" class="form-control bareme" placeholder="Barème" step="0.25" min="0.25" max="20" onkeydown="return event.keyCode !== 69" required>
                             </div>
                             <div class="col-6 col-md-3">
                                 <div class="custom-control">
-                                    <input type="number" class="form-control bareme" id="zoneTolerance0" name="zoneTolerance0" min=0 max=100 step="0.5" placeholder="% de tolérance" required>
+                                    <input type="number" class="form-control bareme" id="zoneTolerance0" name="zoneTolerance0" min=0 max=100 step="0.5" placeholder="% de tolérance" onkeydown="return event.keyCode !== 69" required>
                                 </div>
                             </div>
                         </div>
@@ -190,11 +190,11 @@ if(!$listePromo) { ?>
                                     <input disabled="disabled" type="text" id="intituleQuestion" name="intituleQuestion" class="form-control intituleQuestion" placeholder="Intitulé">
                                 </div>
                                 <div class="col-4 col-md-2">
-                                    <input disabled="disabled" type="number" id="bareme" name="bareme" class="form-control bareme" placeholder="Barème" step="0.25" min="0.25" max="20">
+                                    <input disabled="disabled" type="number" id="bareme" name="bareme" class="form-control bareme" placeholder="Barème" step="0.25" min="0.25" max="20" onkeydown="return event.keyCode !== 69">
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <div class="custom-control">
-                                        <input type="number" class="form-control bareme" id="zoneTolerance" placeholder="% de tolérance"  min=0 max=100 step="0.5">
+                                        <input type="number" class="form-control bareme" id="zoneTolerance" placeholder="% de tolérance"  min=0 max=100 step="0.5" onkeydown="return event.keyCode !== 69">
                                     </div>
                                 </div>
 
@@ -300,7 +300,7 @@ if(!$listePromo) { ?>
                                     </div>
                                     <div class="col-5 form-group divPuissanceResult d-flex">
                                         <span id="puissanceValeur">x10</span>
-                                        <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
+                                        <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" onkeydown="return event.keyCode !== 69" required>
 
                                     </div>
 
@@ -367,24 +367,24 @@ if(!$listePromo) { ?>
                                         <label for="">Nouvel intervalle :</label>
                                     </div>
                                     <div class="col-7">
-                                        <input class="form-control" id="<?php echo 'saisieValeurMinimale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur minimale">
+                                        <input class="form-control" id="<?php echo 'saisieValeurMinimale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur minimale" onkeydown="return event.keyCode !== 69">
                                     </div>
                                     <div class="col-5 form-group divPuissanceResult d-flex">
                                         <span id="puissanceValeur">x10</span>
-                                        <input id=<?php echo "puissanceValeurIntervalle".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
+                                        <input id=<?php echo "puissanceValeurIntervalle".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" onkeydown="return event.keyCode !== 69" required>
                                     </div>
 
                                     <div class="col-7">
-                                        <input class="form-control" id="<?php echo 'saisieValeurMaximale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur maximale">
+                                        <input class="form-control" id="<?php echo 'saisieValeurMaximale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur maximale" onkeydown="return event.keyCode !== 69">
                                     </div>
                                     <div class="col-5 form-group divPuissanceResult d-flex">
                                         <span id="puissanceValeur">x10</span>
-                                        <input id=<?php echo "puissanceValeurIntervalle2".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" required>
+                                        <input id=<?php echo "puissanceValeurIntervalle2".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" onkeydown="return event.keyCode !== 69" required>
 
                                     </div>
 
                                     <div class="col-12">
-                                        <input class="form-control" id="<?php echo 'pas'.$compteur ?>" type="number" min="0.0001" step="0.0001" placeholder="Pas">
+                                        <input class="form-control" id="<?php echo 'pas'.$compteur ?>" type="number" min="0.0001" step="0.0001" placeholder="Pas" onkeydown="return event.keyCode !== 69">
                                     </div>
                                 </div>
 

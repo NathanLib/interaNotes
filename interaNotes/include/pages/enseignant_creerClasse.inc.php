@@ -18,7 +18,7 @@
                         <label>Année de la promotion :</label>
                     </div>
                     <div class="col-8 inputYearClass">
-                        <input type="number" name="annee" value="" min="2018" placeholder="20XX" required>
+                        <input type="number" name="annee" value="" min="2018" placeholder="20XX" onkeydown="return event.keyCode !== 69" required>
                     </div>
                 </div>
 
