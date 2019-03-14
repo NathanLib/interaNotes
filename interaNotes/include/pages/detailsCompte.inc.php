@@ -7,7 +7,7 @@ $eleveManager = new EleveManager($pdo);
 
 if (isset($_SESSION['eleve'])){
    $personne = $personneManager->getPersonneByLogin($_SESSION['eleve']);
-   $eleve = $eleveManager->getEleveById($personne->getIdPersonne());
+   $eleve = $eleveManager->getEleve($personne);
 
    $cheminImage = "image/student.png";
 

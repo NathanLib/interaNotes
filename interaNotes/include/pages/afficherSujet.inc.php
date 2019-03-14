@@ -20,7 +20,7 @@ if(isset($_GET['idSujet'])){
         $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
         $examenSujet = $examenManager->getExamen($sujet->getIdExamenOfSujet());
         $personneEleve = $personneManager->getPersonneById($idEleve);
-        $eleve = $eleveManager->getEleveById($personneEleve->getIdPersonne());
+        $eleve = $eleveManager->getEleve($personneEleve);
         $valeurs = $valeurManager->getValeursSujet($idSujet);
 
         $dateDepot = $examenSujet->getDateDepotExamen();
