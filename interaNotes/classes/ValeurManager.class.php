@@ -12,7 +12,6 @@ class ValeurManager{
 
     $requete = $this->db->prepare($sql);
 		$requete->bindValue(':id', $idPoint);
-		/*$requete->bindValue(':id', $idPoint->getIdPoint());*/
 		$requete->execute();
 
 		while($valeur = $requete->fetch(PDO::FETCH_OBJ)){
@@ -61,7 +60,6 @@ class ValeurManager{
 
     $requete = $this->db->prepare($sql);
 		$requete->bindValue(':id', $idValeur);
-		/*$requete->bindValue(':id', $idPoint->getIdPoint());*/
 		$requete->execute();
 
 		$idPoint = $requete->fetch(PDO::FETCH_OBJ);
@@ -77,7 +75,6 @@ class ValeurManager{
 
     $requete = $this->db->prepare($sql);
 		$requete->bindValue(':id', $idValeur);
-		/*$requete->bindValue(':id', $idPoint->getIdPoint());*/
 		$requete->execute();
 
 		$nb = $requete->fetch(PDO::FETCH_OBJ);
@@ -92,7 +89,6 @@ class ValeurManager{
 
     $requete = $this->db->prepare($sql);
 		$requete->bindValue(':id', $idValeurDependante);
-		/*$requete->bindValue(':id', $idPoint->getIdPoint());*/
 		$requete->execute();
 
 		while($valeur = $requete->fetch(PDO::FETCH_OBJ)){

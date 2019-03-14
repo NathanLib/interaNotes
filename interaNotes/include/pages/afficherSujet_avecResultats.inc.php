@@ -10,7 +10,7 @@ $idSujet = $_GET['idSujet'];
 
 if(isset($idSujet)) {
 
-	if($sujetManager->exists($idSujet)){
+	if($sujetManager->sujetEstExistant($idSujet)){
 
 		$personneManager = new PersonneManager($db);
 		$personne = $personneManager->getNomPrenomParSujet($idSujet);
@@ -136,7 +136,7 @@ if(isset($idSujet)) {
 							<th scope="col">Exposant du résultat</th>
 							<th scope="col">Unité</th>
 							<th scope="col">Exposant de l'unité</th>
-							<th scope="col" <?php if (!$examenSujet->estFini()){ ?> 
+							<th scope="col" <?php if (!$examenSujet->estFini()){ ?>
 								style="border-radius: 0 20px 0 0;"<?php }?>>
 							Justification</th>
 

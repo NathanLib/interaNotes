@@ -95,7 +95,7 @@ class SujetManager{
 		return $sujet->maxId +1;
 	}
 
-	public function exists($idSujet){
+	public function sujetEstExistant($idSujet){
 		$sql = 'SELECT idSujet FROM sujet WHERE idSujet=:idSujet';
 
 		$requete = $this->db->prepare($sql);

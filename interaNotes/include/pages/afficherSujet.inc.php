@@ -5,7 +5,7 @@ if(isset($_GET['idSujet'])){
     $pdo = new Mypdo();
     $sujetManager = new SujetManager($pdo);
 
-    if($sujetManager->exists($idSujet)){
+    if($sujetManager->sujetEstExistant($idSujet)){
         $examenManager = new ExamenManager($pdo);
         $enonceManager = new EnonceManager($pdo);
         $questionManager = new QuestionManager($pdo);
