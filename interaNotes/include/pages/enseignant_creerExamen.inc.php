@@ -367,7 +367,7 @@ if(!$listePromo) { ?>
                                         <label for="">Nouvel intervalle :</label>
                                     </div>
                                     <div class="col-7">
-                                        <input class="form-control" id="<?php echo 'saisieValeurMinimale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur manimale">
+                                        <input class="form-control" id="<?php echo 'saisieValeurMinimale'.$compteur ?>" type="number" step="0.0001" placeholder="Valeur minimale">
                                     </div>
                                     <div class="col-5 form-group divPuissanceResult d-flex">
                                         <span id="puissanceValeur">x10</span>
