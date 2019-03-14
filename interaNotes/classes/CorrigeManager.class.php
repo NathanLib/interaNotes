@@ -6,26 +6,6 @@ class CorrigeManager {
 		$this->db = $db;
 	}
 
-	private function getSujetValeur($idSujet){
-
-		$sql = 'SELECT T.idSujet, T.idValeur, v.valeur, v.exposantValeur, v.uniteExposant FROM (
-		SELECT idSujet, idValeur FROM exercicegenere
-		WHERE idSujet=:idSujet)T
-		INNER JOIN valeurs v ON (T.idValeur = v.idValeur)';
-
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idSujet', $idSujet);
-		$requete->execute();
-
-		while($valeur = $requete->fetch(PDO::FETCH_ASSOC)){
-			$valeursSujet[] = $valeur;
-		}
-
-		$requete->closeCursor();
-
-		return $valeursSujet;
-	}
-
 	public function calculerCorrection($idSujet,$isTest){
 
 		$tableauPoint = $this->getSujetValeur($idSujet); //NE PAS TOUCHER
@@ -85,7 +65,6 @@ class CorrigeManager {
 	public function importerCorrection($resultatsattendus){
 		$sql = 'INSERT INTO resultatsattendus(idSujet,idQuestion,resultat,resultatExposant,resultatUnite,exposantUnite) VALUES (:idSujet,:idQuestion,:resultat,:resultatExposant,:resultatUnite,:exposantUnite)';
 
-
 		foreach ($resultatsattendus as $reponseQuestion => $value) { // a optimiser
 			$requete = $this->db->prepare($sql);
 			$requete->bindValue(':idSujet', $value['idSujet']);
@@ -96,8 +75,26 @@ class CorrigeManager {
 			$requete->bindValue(':exposantUnite', $value['exposantUnite']);
 			$requete->execute();
 		}
+	}
 
+	private function getSujetValeur($idSujet){
 
+		$sql = 'SELECT T.idSujet, T.idValeur, v.valeur, v.exposantValeur, v.uniteExposant FROM (
+		SELECT idSujet, idValeur FROM exercicegenere
+		WHERE idSujet=:idSujet)T
+		INNER JOIN valeurs v ON (T.idValeur = v.idValeur)';
+
+		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idSujet', $idSujet);
+		$requete->execute();
+
+		while($valeur = $requete->fetch(PDO::FETCH_ASSOC)){
+			$valeursSujet[] = $valeur;
+		}
+
+		$requete->closeCursor();
+
+		return $valeursSujet;
 	}
 
 

@@ -76,11 +76,11 @@
 		include_once('pages/eleve_saisieReponses.inc.php');
 		break;
 
-		// WARNING: PARTIE TEST
-
 		case 22:
-		include_once('pages/test_generationSujets.inc.php');
+		include_once('pages/enseignant_genererSujets.inc.php');
 		break;
+
+		// WARNING: PARTIE TEST
 
 		case 28:
 		include_once('pages/test_attributionDesSujets.inc.php');

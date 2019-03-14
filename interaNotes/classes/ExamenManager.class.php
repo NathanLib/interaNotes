@@ -8,7 +8,7 @@ class ExamenManager{
 
 	public function getAllExamens(){
 
-		$sql = 'SELECT idExamen, dateDepot, anneeScolaire, titreExamen, consigneExamen  FROM examen e
+		$sql = 'SELECT idExamen, dateDepot, anneeScolaire, titreExamen, consigneExamen FROM examen e
 		ORDER BY e.dateDepot DESC';
 
 		$requete = $this->db->prepare($sql);
@@ -72,28 +72,6 @@ class ExamenManager{
 		return new Examen($examen);
 	}
 
-	public function getIdExamenEnCours(){ //WARNING : est inutile ?
-
-		$sql = 'SELECT DISTINCT s.idExamen FROM sujet s
-		INNER JOIN examen e ON (e.idExamen = s.idExamen)
-		WHERE s.idSujet IN (select idSujet FROM exerciceattribue) AND e.dateDepot > NOW()
-		ORDER BY e.dateDepot ASC
-		LIMIT 1';
-
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
-
-		$examen = $requete->fetch(PDO::FETCH_OBJ);
-
-		$requete->closeCursor();
-
-		if(isset($examen->idExamen)){
-			return $examen->idExamen;
-		}
-
-		return false;
-	}
-
 	public function getDateLimitebySujet($idSujet){
 		$sql = 'SELECT dateDepot FROM examen e JOIN sujet s ON e.idExamen=s.idExamen AND s.idSujet=:idSujet ';
 
@@ -145,7 +123,7 @@ class ExamenManager{
 
 		$i = 0;
 		foreach ($questions as $key => $value) {
-      
+
 			if(!strpos($key,'catia') && !strpos($key,'idImage'.$i)){
 				switch ($key) {
 					case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
@@ -293,7 +271,7 @@ class ExamenManager{
 		return $nbEssaiPossible - $res->nbEssaiUtilise;
 	}
 
-	public function addOneTry($idSujet,$idExamen) {
+	public function ajouterEssaiPourUnSujet($idSujet,$idExamen) {
 		$sql = "
 		UPDATE sujet
 		SET nbEssaiRealise = nbEssaiRealise + 1
@@ -307,7 +285,7 @@ class ExamenManager{
 
 	}
 
-	public function updateTries($nbEssaieRealise,$idSujet,$idExamen) {
+	public function updateNombreEssais($nbEssaieRealise,$idSujet,$idExamen) {
 		$sql = "
 		UPDATE sujet
 		SET nbEssaiRealise = nbEssaiRealise - :nbEssaiRealise

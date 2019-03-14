@@ -44,7 +44,9 @@ class NoteManager{
 		$requete->bindValue(':idEleve', $idEleve);
 		$requete->bindValue(':idSujet', $idSujet);
 		$requete->bindValue(':note', $note);
-		$requete->execute();
+		$estValide = $requete->execute();
+
+		return $estValide;
 	}
 
 	public function updateNote($idSujet, $idEleve, $note){
@@ -53,7 +55,9 @@ class NoteManager{
 		$requete->bindValue(':idEleve', $idEleve);
 		$requete->bindValue(':idSujet', $idSujet);
 		$requete->bindValue(':note', $note);
-		$requete->execute();
+		$estValide = $requete->execute();
+
+		return $estValide;
 	}
 
 	public function noteExist($idSujet, $idEleve){

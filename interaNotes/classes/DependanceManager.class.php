@@ -13,21 +13,8 @@ class DependanceManager{
 		$requete = $this->db->prepare($sql);
 		$requete->execute();
 
-    $dependance = $requete->fetchAll(PDO::FETCH_KEY_PAIR);
-
-		$requete->closeCursor();
-		return $dependance;
-	}
-
-	public function getAllDependances2(){
-
-		$sql = 'SELECT idValeur, idValeurDependante FROM dependances';
-
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
-
 		while($dependance = $requete->fetch(PDO::FETCH_OBJ)){
-			$listeDependances[] = array($dependance->idValeur, $dependance->idValeurDependante);
+			$listeDependances[] = new Dependance($dependance);
 		}
 
 		$requete->closeCursor();

@@ -47,7 +47,6 @@ class ImageManager{
     $requete->closeCursor();
 
     $sql = "DELETE FROM `images` WHERE `images`.`idImage` = :idImage;";
-
     $requete = $this->db->prepare($sql);
     $requete->bindValue(':idImage', $idImage);
     $requete->execute();

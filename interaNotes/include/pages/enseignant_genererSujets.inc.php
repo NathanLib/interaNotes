@@ -7,18 +7,18 @@ $pdo = new Mypdo();
   <div class="genererSujet">
     <?php
 
-    $dependanceManager = new DependanceManager($pdo);
-    $listeDependances = $dependanceManager->getAllDependances2();
-
     $sujetManager = new SujetManager($pdo);
     $idPremierSujet = $sujetManager->getIdSujetPossible();
 
-    $generationManager = new GenerationManager2($pdo);
-    $listeExerciceGenere = $generationManager->genererExerciceFusee($listeDependances, $idPremierSujet);
+    $examenManager = new ExamenManager($pdo);
+    $examen = $examenManager->getExamen(1);
 
-    //echo "<pre>";
-    //var_dump($listeExerciceGenere);
-    //echo "</pre>";
+    $generationManager = new GenerationManager($pdo);
+    $listeExercicesGeneres = $generationManager->genererExercice($examen, $idPremierSujet);
+
+    echo "<pre>";
+    var_dump(count($listeExercicesGeneres));
+    echo "</pre>";
 
 
     //Exportation dans la base de données

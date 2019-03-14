@@ -3,75 +3,78 @@ class GenerationManager{
 
   private $db;
 
+  private $constructionSujet;
+  private $idSujet;
+
+  private $listeExercicesGeneres;
+  private $listeDesEnonces;
+
   public function __construct($db){
 		$this->db = $db;
 	}
 
-	public function genererExerciceFusee($listeDependances, $idSujet){
+  //WARNING : faire var pour nbPoints
+  public function genererExercice($examen, $idSujetDepart){
+    $pointManager = new PointManager($this->db);
     $valeurManager = new ValeurManager($this->db);
 
-    $listeValeurs_points_nbMoteurs = $valeurManager->getAllValeursOfPoints(1);
-    $listeValeurs_points_nbPersonnes = $valeurManager->getAllValeursOfPoints(3);
-    $listeValeurs_points_destinationPlanete = $valeurManager->getAllValeursOfPoints(4);
-    $listeValeurs_points_consoCarbu = $valeurManager->getAllValeursOfPoints(6);
-    $listeValeurs_points_consoEau = $valeurManager->getAllValeursOfPoints(7);
-    $listeValeurs_points_consoNourritures = $valeurManager->getAllValeursOfPoints(8);
-    $listeValeurs_points_consoO2 = $valeurManager->getAllValeursOfPoints(9);
+    $listeDesPoints = $pointManager->getAllPointsOfExamens($examen->getIdExamen());
+    $this->idSujet = $idSujetDepart;
 
-    foreach ($listeValeurs_points_nbMoteurs as $nbMoteurs) {
-      foreach ($listeValeurs_points_nbPersonnes as $personnes){
-        foreach ($listeValeurs_points_destinationPlanete as $planete){
-          foreach ($listeValeurs_points_consoCarbu as $consoCarbu){
-            foreach ($listeValeurs_points_consoEau as $consoEau){
-              foreach ($listeValeurs_points_consoNourritures as $consoNourritures){
-                foreach ($listeValeurs_points_consoO2 as $consoO2){
-
-                  //Les dépendances possibles
-                  $listeValeurs_points_vitesse = array_keys($listeDependances,$nbMoteurs->getIdValeur());
-                  $listeValeurs_points_distanceDestination = array_keys($listeDependances,$planete->getIdValeur());
-
-                  foreach ($listeValeurs_points_vitesse as $vitesse) {
-                    foreach ($listeValeurs_points_distanceDestination as $distance) {
-
-                      //Partie création énoncé
-                      $valeurVitesse = $valeurManager->getValeur($vitesse);
-                      $valeurDistance = $valeurManager->getValeur($distance);
-
-                      $enonceSujet ="En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de ".$planete->getValeur()."qui se situe à ".$valeurDistance." Kms de notre chère Terre !<br><br>Nous savons que la fusée possède ".$nbMoteurs->getValeur()." moteur(s), la fusée peut aller à une vitesse de ".$valeurVitesse." Km/H et chaque moteur a une consommation de carburant qui vaut ".$consoCarbu->getValeur()." Tonnes/1000 Kms !<br><br>A bord de cette fusée, l'équipage est constitué de ".$personnes->getValeur()." personnes et chaque personne consomme ".$consoNourritures->getValeur()." Kgs de nourriture, ".$consoEau->getValeur()." L d'eau et ".$consoO2->getValeur()." L d'O² par jour.";
-
-                      //Partie exportation des données
-                      $listeValeurs[] = new ExerciceGenere($idSujet, $nbMoteurs->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($idSujet, $vitesse);
-                      $listeValeurs[] = new ExerciceGenere($idSujet, $personnes->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($idSujet, $planete->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($idSujet, $distance);
-                      $listeValeurs[] = new ExerciceGenere($idSujet, $consoCarbu->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($idSujet, $consoEau->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($idSujet, $consoNourritures->getIdValeur());
-                      $listeValeurs[] = new ExerciceGenere($idSujet, $consoO2->getIdValeur());
-
-                      $listeEnonces[] = new Enonce(array('idEnonce'=>$idSujet,'titre'=>"Simulation d'une fusée",'consigne'=>$enonceSujet));
-
-                      $listeSujets[] = new Sujet(array('idSujet'=>$idSujet,'idEnonce'=>$idSujet,'semestre'=>1, 'idExamen'=>1));
-
-                      $idSujet++;
-                    }
-
-
-                  }
-
-                }
-              }
-            }
-          }
-        }
-      }
+    foreach ($listeDesPoints as $index => $point) {
+      $listeValeursDesPoints[$index] = $valeurManager->getAllValeursOfPoints($listeDesPoints[$index]->getIdPoint());
     }
 
-    $tableauSujets['enonces'] = $listeEnonces;
-    $tableauSujets['sujets'] = $listeSujets;
-    $tableauSujets['exerciceGenere'] = $listeValeurs;
-    return $tableauSujets;
+    $listeValeursTemporaires = array();
+    $this->genererSujetAvecNouveauParametre(count($listeDesPoints) -1, 0, $listeValeursDesPoints, $listeValeursTemporaires);
+
+    $this->extractionDesDonnees($examen, $listeDesPoints);
+    return $this->constructionSujet;
+  }
+
+  /*Fonction permettant d'attribuer à chaque point des sujets une valeurs
+  * Précondition : Une variable globale doit être définie : $listeValeursTemporaires
+  *       Elle va permettre de stocker les informations nécessaires entre les différents appels récursifs
+  */
+  private function genererSujetAvecNouveauParametre($nbEtapesTotale, $etapeActuelle, $listeDesPoints, $listeValeursTemporaires){
+    if($nbEtapesTotale === $etapeActuelle){
+
+      foreach ($listeDesPoints[$etapeActuelle] as $point) {
+        $listeValeursTemporaires[$etapeActuelle] = $point;
+
+        foreach ($listeValeursTemporaires as $valeurPoint) {
+          $this->constructionSujet[$this->idSujet][$valeurPoint->getIdPointOfValeur()] = $valeurPoint;
+        }
+
+        $this->idSujet++;
+      }
+
+    } else {
+      foreach ($listeDesPoints[$etapeActuelle] as $point) {
+        $listeValeursTemporaires[$etapeActuelle] = $point;
+        $this->genererSujetAvecNouveauParametre($nbEtapesTotale, $etapeActuelle +1, $listeDesPoints, $listeValeursTemporaires);
+      }
+    }
+  }
+
+  private function extractionDesDonnees($examen, $listeDesPoints){
+
+    foreach ($listeDesPoints as $point) {
+      $nomDesPoints[$point->getIdPoint()] = "$".$point->getNomPoint()."$";
+    }
+
+    $valeurDesPointsDuSujet = array();
+    $enonceExamen = $examen->getConsigneExamen();
+
+    foreach ($this->constructionSujet as $idSujet => $point) {
+
+      foreach($point as $valeur){
+        $this->listeExercicesGeneres[] = new ExerciceGenere($idSujet, $valeur->getIdValeur());
+        $valeurDesPointsDuSujet[$valeur->getIdPointOfValeur()] = $valeur->getValeur();
+      }
+
+      $this->listeDesEnonces[] = str_replace($nomDesPoints, $valeurDesPointsDuSujet, $enonceExamen);
+    }
   }
 
 }

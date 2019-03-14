@@ -20,13 +20,13 @@ if(isset($_GET['idSujet'])){
         $enonceSujet = $enonceManager->getEnonce($sujet->getIdEnonce());
         $examenSujet = $examenManager->getExamen($sujet->getIdExamenOfSujet());
         $personneEleve = $personneManager->getPersonneById($idEleve);
-        $eleve = $eleveManager->getEleve($personneEleve);
+        $eleve = $eleveManager->getEleveById($personneEleve->getIdPersonne());
         $valeurs = $valeurManager->getValeursSujet($idSujet);
 
         $dateDepot = $examenSujet->getDateDepotExamen();
         $titre = $enonceSujet->getTitreEnonce();
         $enonce = $enonceSujet->getConsigneEnonce();
-        $question = $questionManager->getAllQuestion($sujet->getIdExamenOfSujet(),$idSujet);
+        $question = $questionManager->getAllQuestionOfSujet($sujet->getIdExamenOfSujet(),$idSujet);
         $image1 = "image/examen".$_SESSION['examen']->getIdExamen()."/sujet".$idSujet."/FuséeMoteur".$valeurs[0]->getValeur().".jpg";
         $image2 = "image/examen".$_SESSION['examen']->getIdExamen()."/sujet".$idSujet."/Astronaute".$valeurs[2]->getValeur().".jpg"; ?>
 

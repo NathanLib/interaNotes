@@ -18,7 +18,7 @@ if(isset($_GET['id'])){
             </form>
         </div>
     <?php } else {
-        $examenManager->updateTries($_POST['nbEssaiRealise'],$_GET['id'],$_SESSION['examen']->getIdExamen())
+        $examenManager->updateNombreEssais($_POST['nbEssaiRealise'],$_GET['id'],$_SESSION['examen']->getIdExamen())
         ?>
         <div class="msgConfirmTitre">
             <h3>Message de confirmation</h3>

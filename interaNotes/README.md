@@ -1,7 +1,7 @@
 # Données nécessaire à l'administration de l'application
 
 ## Location des fichiers
-Adresse : 164.81.120.31/application/interaNotes
+Adresse : 164.81.120.31/application/interaNotes  
 Accès au fichiers du site : /var/www/html/application
 
 ## Configuration

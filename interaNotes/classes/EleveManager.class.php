@@ -19,12 +19,12 @@ class EleveManager{
 		return $res->idEleve;
 	}
 
-	public function getEleve($personne){
+	public function getEleveById($id){
 
 		$sql = 'SELECT annee, nomPromo FROM eleve WHERE idEleve = :id';
 
 		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':id', $personne->getIdPersonne());
+		$requete->bindValue(':id', $id);
 		$requete->execute();
 
 		$eleve = $requete->fetch(PDO::FETCH_OBJ);

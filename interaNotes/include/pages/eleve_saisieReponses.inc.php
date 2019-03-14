@@ -84,7 +84,7 @@ if(!$idSujet){
 
                 <div class="col-12">
                     <?php
-                    $listeQuestions = $questionManager->getAllQuestion($sujet->getIdExamenOfSujet(),$idSujet);
+                    $listeQuestions = $questionManager->getAllQuestionOfSujet($sujet->getIdExamenOfSujet(),$idSujet);
                     foreach ($listeQuestions as $question) { ?>
 
                       <div class="row">
@@ -210,7 +210,7 @@ if(!$idSujet){
             $reponseEleveManager->importSaisie($reponseObj);
         }
 
-        $questions = $questionManager->getAllQuestion($sujet->getIdExamenOfSujet(),$idSujet);
+        $questions = $questionManager->getAllQuestionOfSujet($sujet->getIdExamenOfSujet(),$idSujet);
         $noteTotal = 0;
 
         foreach ($questions as $question) {
@@ -229,7 +229,7 @@ if(!$idSujet){
         }
 
 
-        $examenManager->addOneTry($idSujet,$sujet->getIdExamenOfSujet());
+        $examenManager->ajouterEssaiPourUnSujet($idSujet,$sujet->getIdExamenOfSujet());
         ?>
 
         <div class="msgConfirmTitre">

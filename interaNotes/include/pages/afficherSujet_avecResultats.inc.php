@@ -18,7 +18,7 @@ if(isset($idSujet)) {
 		$sujet = $sujetManager->getSujet($idSujet);
 		$examenSujet = $examenManager->getExamen($sujet->getIdExamenOfSujet());
 
-		$questions = $questionManager->getAllQuestion($sujet->getIdExamenOfSujet(),$idSujet);
+		$questions = $questionManager->getAllQuestionOfSujet($sujet->getIdExamenOfSujet(),$idSujet);
 
 		$listeReponses = $reponseEleveManager->getAllReponseEleve($idSujet);
 
