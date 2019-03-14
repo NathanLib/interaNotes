@@ -7,7 +7,7 @@ class QuestionManager{
 		$this->db = $db;
 	}
 
-  public function getAllQuestion($idExamen, $idSujet){
+  public function getAllQuestionOfSujet($idExamen, $idSujet){
     $sql = 'SELECT q.idQuestion, intituleQuestion, resultat, exposantUnite, resultatUnite, baremeQuestion , resultatExposant, zoneTolerance FROM resultatsattendus r
     INNER JOIN Question q ON (q.idQuestion=r.idQuestion)
     WHERE idSujet=:idSujet AND idExamen=:idExamen';
@@ -25,6 +25,15 @@ class QuestionManager{
     return $listeQuestions;
   }
 
-  
+  public function getNbQuestionsOfSujet($idSujet){
+    $sql = 'SELECT COUNT(idQuestion) as nbQuestion FROM question q JOIN sujet s ON s.idExamen=q.idExamen WHERE idsujet=:idSujet ';
 
+  	$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idSujet', $idSujet);
+		$requete->execute();
+
+    $res = $requete->fetch(PDO::FETCH_OBJ);
+
+    return $res->nbQuestion;
+  }
 }

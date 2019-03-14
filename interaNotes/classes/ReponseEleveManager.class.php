@@ -26,21 +26,14 @@ class ReponseEleveManager{
 
 	public function getAllReponseEleve($idSujet){
 
-    $sql = 'SELECT COUNT(idQuestion) as nbQuestion FROM question q JOIN sujet s ON s.idExamen=q.idExamen WHERE idsujet=:idSujet ';
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idSujet', $idSujet);
+    $questionManager = new QuestionManager($this->db);
+		$nbQuestions = $questionManager->getNbQuestionsOfSujet($idSujet);
 
-		$requete->execute();
-
-    $res = $requete->fetch(PDO::FETCH_OBJ);
-		$nbQuestion = $res->nbQuestion;
-
-		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS*/
-		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT :nbQuestion ';
+		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT :nbQuestion';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
-		$requete->bindValue(':nbQuestion',(int)$nbQuestion, PDO::PARAM_INT);
+		$requete->bindValue(':nbQuestion',(int)$nbQuestions, PDO::PARAM_INT);
 
 		$requete->execute();
 
@@ -67,7 +60,6 @@ class ReponseEleveManager{
 			$precision = ($resultatEleve-$resultatAttendu) / $resultatAttendu * 100;
 			$precision = abs(100 - abs($precision));
 
-			//WARNING Mettre 0 sur le pourcentage est négatif ? cad l'élève s'est trompé de signe
 			return $precision;
 		} else {
 			return 0;
@@ -91,8 +83,9 @@ class ReponseEleveManager{
 		return $attenduObj;
 	}
 
+	/*WARNING : prise en compte du nb de questions ?*/
 	public function getReponseEleveByIdQuestion($idQuestion, $idSujet){
-		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS*/
+
 		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idQuestion=:idQuestion AND idSujet=:idSujet ORDER BY dateResult DESC LIMIT 1';
 
 		$requete = $this->db->prepare($sql);
@@ -108,13 +101,16 @@ class ReponseEleveManager{
 		}
 		return false;
 	}
-	public function getDernièreReponsesEleve($idSujet){
-		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS*/
 
-		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT 5';
+	public function getDernièreReponsesEleve($idSujet){
+		$questionManager = new QuestionManager($this->db);
+		$nbQuestions = $questionManager->getNbQuestionsOfSujet($idSujet);
+
+		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT :nbQuestion';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idSujet', $idSujet);
+		$requete->bindValue(':nbQuestion',(int)$nbQuestions, PDO::PARAM_INT);
 		$requete->execute();
 
 		while($res = $requete->fetch(PDO::FETCH_OBJ)){
