@@ -2,7 +2,7 @@
 
 - Dézipper le fichier 'sendmail.zip' dans "C:\wamp64\serveur_mail"
 - Modifier le fichier 'sendmail.ini' pour chaque ligne précisée ci-dessous :
-> Si vous voulez, j'ai fais un mail pour Intera Notes :  
+> Le mail à utiliser pour Intera Notes :  
 > Mail : developpement_web@laposte.net | Mot de passe : @developpementWeb87
 
 ```shell
@@ -77,6 +77,7 @@ password       passwordUser
 # A freemail service
 account        freemail
 host           smtp.freemail.example
+port           587
 from           username@gmail.com
 user           username
 password       passwordUser
