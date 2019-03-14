@@ -17,7 +17,6 @@ if(empty($_POST['mdp'])) { ?>
                 </div>
             </div>
 
-            <!--<form action="#" method="post">-->
             <form action="index.php?page=0" method="post">
                 <div class="row">
                     <div class="col-12">
@@ -63,7 +62,6 @@ if(empty($_POST['mdp'])) { ?>
                     </div>
                 </div>
 
-                <!--<form action="#" method="post">-->
                 <form action="index.php?page=0" method="post">
                     <div class="messageErreurConnexion">
                         <img src="image/erreur.png" alt="Erreur" title="Erreur connexion" />

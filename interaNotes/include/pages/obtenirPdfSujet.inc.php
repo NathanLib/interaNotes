@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../../classes/pdf.class.php');
+require('../../classes/PDF.class.php');
 
 $consigne="Selon les paramètres énoncés précédemment, veuillez indiquer les quantités nécessaires d'O², de carburant, de nourriture et d'eau pour que la fusée Ariane 5 atteigne sa destination.";
 

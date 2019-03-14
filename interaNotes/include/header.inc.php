@@ -40,11 +40,11 @@
             <ul class="navbar-nav">
                 <?php if (isset($_SESSION['enseignant'])) {?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=1">Accueil enseignant</a>
+                        <a class="nav-link" href="index.php?page=1">Accueil</a>
                     </li>
                 <?php } elseif (isset($_SESSION['eleve'])) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=10">Accueil étudiant</a>
+                        <a class="nav-link" href="index.php?page=10">Accueil</a>
                     </li>
                 <?php } if(isset($_SESSION['enseignant']) || isset($_SESSION['eleve'])) {?>
                     <li class="nav-item">
