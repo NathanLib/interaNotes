@@ -4,7 +4,7 @@ $correctionManager = new CorrigeManager($db);
 $reponsesAttendusManager = new ResultatsAttendusManager($db);
 
 
-$idExamen = $_SESSION['examen']->getIdExamen(); //WARNING : utiliser la var de session
+$idExamen = $_SESSION['examen']->getIdExamen();
 
 $listeSujet = $reponsesAttendusManager->getlisteDesSujets($idExamen);
 foreach ($listeSujet as $idSujet) {

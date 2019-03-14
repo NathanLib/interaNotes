@@ -73,7 +73,7 @@ class CorrigeManager {
 		$resultatsattendus[3] = array('idSujet'=>$idSujet, 'idQuestion' => 4, 'resultat' => $qteEau, 'resultatExposant' =>0, 'resultatUnite' => "g", 'exposantUnite' => 12);
 		$resultatsattendus[4] = array('idSujet'=>$idSujet, 'idQuestion' => 5, 'resultat' => $qteNourriture, 'resultatExposant' =>0, 'resultatUnite' => "g", 'exposantUnite' => 3);
 
-		if($isTest)
+		if(!$isTest)
 				$this->importerCorrection($resultatsattendus);
 
 	}
