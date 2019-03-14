@@ -854,6 +854,7 @@ span#text_info, p#text_info {
 }
 .mesParametresSaisie {
     margin: auto;
+    width: 100%;
 }
 .mesParametresSaisie .form-wrapper {
     max-width: 50% !important;
