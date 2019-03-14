@@ -2,7 +2,7 @@
 class Valeur{
 	private $idValeur;
 	private $idPoint;
-  private $valeur;
+	private $valeur;
 	private $exposantValeur;
 	private $uniteValeur;
 	private $uniteExposant;
@@ -18,28 +18,28 @@ class Valeur{
 
 			switch($attribut){
 				case 'idValeur' :
-					$this->setIdValeur($valeur);
-					break;
+				$this->setIdValeur($valeur);
+				break;
 
 				case 'idPoint' :
-					$this->setIdPointOfValeur($valeur);
-					break;
+				$this->setIdPointOfValeur($valeur);
+				break;
 
-        case 'valeur' :
-					$this->setValeur($valeur);
-					break;
+				case 'valeur' :
+				$this->setValeur($valeur);
+				break;
 
 				case 'exposantValeur' :
-					$this->setExposantValeur($valeur);
-					break;
+				$this->setExposantValeur($valeur);
+				break;
 
 				case 'uniteValeur' :
-					$this->setUniteValeur($valeur);
-					break;
+				$this->setUniteValeur($valeur);
+				break;
 
 				case 'uniteExposant' :
-					$this->setUniteExposant($valeur);
-					break;
+				$this->setUniteExposant($valeur);
+				break;
 			}
 		}
 	}
@@ -59,12 +59,12 @@ class Valeur{
 	}
 
 	public function setIdPointOfValeur($idPoint){
-    if(is_numeric($idPoint)){
-		    $this->idPoint = $idPoint;
-    }
+		if(is_numeric($idPoint)){
+			$this->idPoint = $idPoint;
+		}
 	}
 
-  public function getValeur(){
+	public function getValeur(){
 		return $this->valeur;
 	}
 

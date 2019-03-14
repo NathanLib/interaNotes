@@ -25,7 +25,9 @@ class ReponseEleveManager{
 	}
 
 	public function getAllReponseEleve($idSujet){
-		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS*/
+		/*ATTENTION FAIRE PASSER EN PARAMETRE LE NOMBRE DE QUESTIONS
+		WARNING
+		*/
 		$sql = 'SELECT dateResult,resultat,idQuestion,exposantUnite,resultatUnite,precisionReponse,justification,resultatExposant FROM resultatseleves WHERE idSujet=:idSujet ORDER BY dateResult DESC LIMIT 5';
 
 		$requete = $this->db->prepare($sql);
@@ -73,7 +75,7 @@ class ReponseEleveManager{
 
 		$res = $requete->fetch(PDO::FETCH_OBJ);
 
-		$attenduObj = new Question($res);
+		$attenduObj = new ResultatsAttendus($res);
 
 		$requete->closeCursor();
 		return $attenduObj;

@@ -2,7 +2,7 @@
 class Examen{
 	private $idExamen;
 	private $dateDepot;
-  private $anneeScolaire;
+	private $anneeScolaire;
 	private $titreExamen;
 	private $consigneExamen;
 	private $nbEssaiPossible;
@@ -18,28 +18,28 @@ class Examen{
 
 			switch($attribut){
 				case 'idExamen' :
-					$this->setIdExamen($valeur);
-					break;
+				$this->setIdExamen($valeur);
+				break;
 
 				case 'dateDepot' :
-					$this->setDateDepotExamen($valeur);
-					break;
+				$this->setDateDepotExamen($valeur);
+				break;
 
-        case 'anneeScolaire' :
-					$this->setAnneeScolaireExamen($valeur);
-					break;
+				case 'anneeScolaire' :
+				$this->setAnneeScolaireExamen($valeur);
+				break;
 
 				case 'titreExamen' :
-					$this->setTitreExamen($valeur);
-					break;
+				$this->setTitreExamen($valeur);
+				break;
 
 				case 'consigneExamen' :
-					$this->setConsigneExamen($valeur);
-					break;
+				$this->setConsigneExamen($valeur);
+				break;
 
-				case 'enonceExamen' :
-					$this->setConsigneExamen($valeur);
-					break;
+				case 'nbEssaiPossible' :
+				$this->setNbEssaiPossible($valeur);
+				break;
 			}
 		}
 	}
@@ -62,12 +62,12 @@ class Examen{
 		$this->dateDepot = $date;
 	}
 
-  public function getAnneeScolaireExamen(){
+	public function getAnneeScolaireExamen(){
 		return $this->anneeScolaire;
 	}
 
 	public function setAnneeScolaireExamen($anneeScolaire){
-    if(is_numeric($anneeScolaire)){
+		if(is_numeric($anneeScolaire)){
 			$this->anneeScolaire = $anneeScolaire;
 		}
 	}
@@ -86,6 +86,14 @@ class Examen{
 
 	public function setConsigneExamen($consigneExamen){
 		$this->consigneExamen = $consigneExamen;
+	}
+
+	public function getNbEssaiPossible(){
+		return $this->nbEssaiPossible;
+	}
+
+	public function setNbEssaiPossible($nbEssaiPossible){
+		$this->nbEssaiPossible = $nbEssaiPossible;
 	}
 
 	public function getStatut($estAttribue){
