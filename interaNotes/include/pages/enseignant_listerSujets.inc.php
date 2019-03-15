@@ -64,7 +64,14 @@ if(isset($_GET['id'])){
           <?php }
       }
       ?>
-       <a href="index.php?page=7"><input type="button" value="Test Correction" ></a>
+
+      <hr>
+
+       <div class="btnTestCorrection d-flex col-12 justify-content-center">
+           <a href="index.php?page=7">
+               <input id="btn_testCorrection" type="button" value="Test Correction" >
+           </a>
+       </div>
   </div>
 <?php }else{
   header('Location: index.php?page=5');

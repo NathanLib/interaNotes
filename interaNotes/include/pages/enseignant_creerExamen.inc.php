@@ -460,7 +460,10 @@ if(!$listePromo) { ?>
 
 <?php    } else { ?>
 
-    <p>L'examen a été créé !</p>
+    <div class="msgConfirmTitre">
+        <h3>Succès</h3>
+        <p>L'examen a été correctement créé !</p>
+    </div>
     <?php
 
     $examenManager = new ExamenManager($db);
