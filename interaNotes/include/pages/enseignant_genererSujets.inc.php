@@ -17,7 +17,8 @@ $pdo = new Mypdo();
     $listeExercicesGeneres = $generationManager->genererExercice($examen, $idPremierSujet);
 
     echo "<pre>";
-    var_dump(count($listeExercicesGeneres));
+    //var_dump(count($listeExercicesGeneres));
+    var_dump($listeExercicesGeneres['enonces']);
     echo "</pre>";
 
 

@@ -8,6 +8,7 @@ class GenerationManager{
 
   private $listeExercicesGeneres;
   private $listeDesEnonces;
+  private $listeDesSujets;
 
   public function __construct($db){
 		$this->db = $db;
@@ -29,7 +30,12 @@ class GenerationManager{
     $this->genererSujetAvecNouveauParametre(count($listeDesPoints) -1, 0, $listeValeursDesPoints, $listeValeursTemporaires);
 
     $this->extractionDesDonnees($examen, $listeDesPoints);
-    return $this->constructionSujet;
+
+    //Gestion des données extraites
+    $tableauSujets['enonces'] = $this->listeDesEnonces;
+    $tableauSujets['sujets'] = $this->listeDesSujets;
+    $tableauSujets['exerciceGenere'] = $this->listeExercicesGeneres;
+    return $tableauSujets;
   }
 
   /*Fonction permettant d'attribuer à chaque point des sujets une valeurs
@@ -65,6 +71,7 @@ class GenerationManager{
 
     $valeurDesPointsDuSujet = array();
     $enonceExamen = $examen->getConsigneExamen();
+    $titreExamen = $examen->getTitreExamen();
 
     foreach ($this->constructionSujet as $idSujet => $point) {
 
@@ -73,7 +80,8 @@ class GenerationManager{
         $valeurDesPointsDuSujet[$valeur->getIdPointOfValeur()] = $valeur->getValeur();
       }
 
-      $this->listeDesEnonces[] = str_replace($nomDesPoints, $valeurDesPointsDuSujet, $enonceExamen);
+      $enonceSujet = str_replace($nomDesPoints, $valeurDesPointsDuSujet, $enonceExamen);
+      $this->listeDesEnonces[] = new Enonce(array('idEnonce'=>$idSujet,'titre'=>$titreExamen,'consigne'=>$enonceSujet));
     }
   }
 
