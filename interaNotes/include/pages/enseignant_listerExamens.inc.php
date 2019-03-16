@@ -19,10 +19,11 @@ if (!$listeExamens){ ?>
         <hr style="width:80%">
 
         <?php
+        
         foreach ($listeExamens as $compteur=>$examen) {
             $examenEstAttribue = in_array($examen->getIdExamen(), $listeExamensAttribues);
             $statutExamen = $examen->getStatut($examenEstAttribue);?>
-          
+
             <div class="row text-center">
                 <!-- Numero examen -->
                 <div class="col-6 col-sm-3 col-lg-3">

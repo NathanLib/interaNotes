@@ -44,7 +44,7 @@ class ExamenManager{
 		if(isset($listeIdExamens)){
 			return $listeIdExamens;
 		}
-		return false;
+		return array();
 	}
 
 	public function examenEstAttribue($listeExamensObjets, $idExamen){
