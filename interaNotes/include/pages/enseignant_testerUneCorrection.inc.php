@@ -1,3 +1,5 @@
+<h3> Page de test pour la correction </h3>
+
 <?php
 $db = new Mypdo();
 $correctionManager = new CorrigeManager($db);
