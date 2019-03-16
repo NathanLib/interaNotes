@@ -117,7 +117,7 @@ class SujetManager{
 		$args = array_fill(0, count($sujetsTableaux[0]), '?');
 
 		$this->db->beginTransaction();
-		$sql = "INSERT INTO sujet(idSujet, idEnonce, semestre, idExamen) VALUES (".implode(',', $args).")";
+		$sql = "INSERT INTO sujet(idSujet, idEnonce, semestre, idExamen, nbEssaiRealise) VALUES (".implode(',', $args).")";
 		$requete = $this->db->prepare($sql);
 
 		foreach ($sujetsTableaux as $row)
@@ -132,7 +132,7 @@ class SujetManager{
 
 	private function preparationRequeteTableauSujets($sujetsObjets){
 		foreach ($sujetsObjets as $sujet) {
-      $sujetsTableaux[] = array($sujet->getIdSujet(), $sujet->getIdEnonce(), $sujet->getSemestreOfSujet(), $sujet->getIdExamenOfSujet());
+      $sujetsTableaux[] = array($sujet->getIdSujet(), $sujet->getIdEnonce(), $sujet->getSemestreOfSujet(), $sujet->getIdExamenOfSujet(), $sujet->getNbEssaiRealise());
     }
 
 		return $sujetsTableaux;

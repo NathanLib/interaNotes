@@ -16,28 +16,26 @@ $pdo = new Mypdo();
     $generationManager = new GenerationManager($pdo);
     $listeExercicesGeneres = $generationManager->genererExercice($examen, $idPremierSujet);
 
-    echo "<pre>";
+    /*echo "<pre>";
     //var_dump(count($listeExercicesGeneres));
     var_dump($listeExercicesGeneres['enonces']);
-    echo "</pre>";
+    echo "</pre>";*/
 
 
     //Exportation dans la base de données
-    /*$enonceManager = new EnonceManager($pdo);
-    $resultatTabEnonces = $enonceManager->insererTableauEnonces($listeExerciceGenere['enonces']);
+    $enonceManager = new EnonceManager($pdo);
+    $resultatTabEnonces = $enonceManager->insererTableauEnonces($listeExercicesGeneres['enonces']);
 
     $sujetManager = new SujetManager($pdo);
-    $resultatTabSujets = $sujetManager->insererTableauSujets($listeExerciceGenere['sujets']);
+    $resultatTabSujets = $sujetManager->insererTableauSujets($listeExercicesGeneres['sujets']);
 
     $exerciceGenereManager = new ExerciceGenereManager($pdo);
-    $resultatTabExercices = $exerciceGenereManager->insererTableauExercices($listeExerciceGenere['exerciceGenere']);
+    $resultatTabExercices = $exerciceGenereManager->insererTableauExercices($listeExercicesGeneres['exerciceGeneres']);
 
-    $retour = $resultatTabEnonces*$resultatTabSujets*$resultatTabExercices;*/
-    /*echo "<pre>";var_dump($listeExerciceGenere['exerciceGenere']);echo "</pre>";*/
-    $retour = false;
+    $retour = $resultatTabEnonces*$resultatTabSujets*$resultatTabExercices;
 
     if($retour){
-      $nbSujets = count($listeExerciceGenere['sujets']);
+      $nbSujets = count($listeExercicesGeneres['sujets']);
       echo "<p style='text-align:center;font-weight:bold; margin:10% 0;'><img class='icone' src='image/valid.png' alt='Validation génération'> ".$nbSujets." sujets ont été générés";
 
     }else{

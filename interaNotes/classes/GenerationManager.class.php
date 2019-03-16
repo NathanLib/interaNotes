@@ -34,7 +34,7 @@ class GenerationManager{
     //Gestion des données extraites
     $tableauSujets['enonces'] = $this->listeDesEnonces;
     $tableauSujets['sujets'] = $this->listeDesSujets;
-    $tableauSujets['exerciceGenere'] = $this->listeExercicesGeneres;
+    $tableauSujets['exerciceGeneres'] = $this->listeExercicesGeneres;
     return $tableauSujets;
   }
 
@@ -72,6 +72,7 @@ class GenerationManager{
     $valeurDesPointsDuSujet = array();
     $enonceExamen = $examen->getConsigneExamen();
     $titreExamen = $examen->getTitreExamen();
+    $idExamen = $examen->getIdExamen();
 
     foreach ($this->constructionSujet as $idSujet => $point) {
 
@@ -82,6 +83,8 @@ class GenerationManager{
 
       $enonceSujet = str_replace($nomDesPoints, $valeurDesPointsDuSujet, $enonceExamen);
       $this->listeDesEnonces[] = new Enonce(array('idEnonce'=>$idSujet,'titre'=>$titreExamen,'consigne'=>$enonceSujet));
+
+      $this->listeDesSujets[] = new Sujet(array('idSujet'=>$idSujet,'idEnonce'=>$idSujet,'semestre'=>1, 'idExamen'=>$idExamen, 'nbEssaiRealise'=>0));
     }
   }
 

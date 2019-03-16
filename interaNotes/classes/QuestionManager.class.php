@@ -9,7 +9,7 @@ class QuestionManager{
 
   public function getAllQuestionOfSujet($idExamen, $idSujet){
     $sql = 'SELECT q.idQuestion, intituleQuestion, resultat, exposantUnite, resultatUnite, baremeQuestion , resultatExposant, zoneTolerance FROM resultatsattendus r
-    INNER JOIN Question q ON (q.idQuestion=r.idQuestion)
+    INNER JOIN question q ON (q.idQuestion=r.idQuestion)
     WHERE idSujet=:idSujet AND idExamen=:idExamen';
 
     $requete = $this->db->prepare($sql);
