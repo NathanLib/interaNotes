@@ -40,7 +40,7 @@
 		break;
 
 		case 7:
-		include_once('pages/test_Correction.inc.php');
+		include_once('pages/enseignant_testerUneCorrection.inc.php');
 		break;
 
 		case 8:
