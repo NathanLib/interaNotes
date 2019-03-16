@@ -42,6 +42,8 @@ $pdo = new Mypdo();
       echo "<p style='text-align:center;font-weight:bold; margin:10% 0;'><img class='icone' src='image/erreur.png' alt='Erreur génération'>Erreur interne lors de la génération";
     }
 
+    unset($_SESSION['idExamenCree']);
+
      ?>
   </div>
 </div>
