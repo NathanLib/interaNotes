@@ -6,7 +6,7 @@ class ResultatsAttendusManager {
 		$this->db = $db;
 	}
 
-	public function getlisteDesSujets($idExamen){
+	public function getListeDesSujets($idExamen){
 		$sql = 'SELECT idSujet FROM sujet s WHERE s.idExamen = :id';
 
 		$requete = $this->db->prepare($sql);
@@ -19,7 +19,11 @@ class ResultatsAttendusManager {
 
 		$requete->closeCursor();
 
-		return $listeIdSujets;
+		if(isset($listeIdSujets)){
+			return $listeIdSujets;
+		}
+
+		return false;
 	}
 
 	public function insererTableauCorrection($resultatsAttendus) {

@@ -458,13 +458,7 @@ if(!$listePromo) { ?>
 </form>
 
 
-<?php    } else { ?>
-
-    <div class="msgConfirmTitre">
-        <h3>Succès</h3>
-        <p>L'examen a été correctement créé !</p>
-    </div>
-    <?php
+<?php    } else {
 
     $examenManager = new ExamenManager($db);
 
@@ -541,5 +535,16 @@ if(!$listePromo) { ?>
             <?php
         }
     }
-}
+
+    ?>
+    <div class="msgConfirmTitre">
+        <h3>Succès</h3>
+        <p>L'examen a été créé avec succès !</p>
+        <p>Veuillez patienter pendant que les sujets sont générés</p>
+    </div>
+
+<?php
+  $_SESSION['idExamenCree'] = $examenManager->getLastExamenCree();
+  //header('Location: index.php?page=22');
+  }
 } ?>

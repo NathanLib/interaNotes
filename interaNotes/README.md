@@ -14,7 +14,8 @@ Modules de maths :
 
 # Jeu d'essai (aide à la création d'examens)
 Texte d'exam :
-La course se déroulant sur le circuit $circuit$, d'une distance de $kms$ kms aura le 12/04/2019 accueillera les ecuries $ecuries$.
-Une moto consomme $litreEssence$ Litres au 100 km/h
+La course se déroulera sur le circuit $circuit$, d'une distance de $kms$ kms, à la date du 12/04/2019.
+Elle accueillera notamment le célèbre Valentino Rossi.
+Une moto consomme $litreEssence$ Litres au 100 km/h.
 
-Combien de litres de carburant aura besoin Dani Pedrosa pour terminer sa course ?
+Combien de litres de carburant aura besoin Valentino Rossi pour terminer sa course ?

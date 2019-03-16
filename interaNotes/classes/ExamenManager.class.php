@@ -160,7 +160,7 @@ class ExamenManager{
 			}
 
 		}
-    var_dump($listeQuestions);
+
 		$idExamen = $this->db->lastInsertId();
 		$i = 1;
 
@@ -182,8 +182,12 @@ class ExamenManager{
 	}
 
 	public function creerPoint($listePoints) {
+		echo "<pre>";
+		var_dump($listePoints);
+		echo "</pre>";
+		$pointManager = new PointManager($this->db);
 
-		$i = 1;
+		$i = $pointManager->getIdPointMaximal();
 		$idExamen = $this->getLastExamenCree();
 
 		foreach ($listePoints as $key => $value) {

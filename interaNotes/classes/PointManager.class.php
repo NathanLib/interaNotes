@@ -63,4 +63,20 @@ class PointManager{
 
 		return $image->cheminImage;
 	}
+
+	public function getIdPointMaximal(){
+		$sql = 'SELECT max(idPoint) as maxId FROM points';
+
+		$requete = $this->db->prepare($sql);
+		$requete->execute();
+
+		$point = $requete->fetch(PDO::FETCH_OBJ);
+
+		$requete->closeCursor();
+
+		if($point->maxId == null){
+			return 1;
+		}
+		return $point->maxId +1;
+	}
 }

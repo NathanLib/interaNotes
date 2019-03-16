@@ -75,7 +75,7 @@ if(isset($_GET['idSujet'])){
             </div>
 
             <div>
-                <ul style="list-style-type:hiragana-iroha">
+                <ul style="list-style-type:disc">
                     <?php
                     foreach ($valeurs as $val) {
                         $idPoint = $val->getIdPointOfValeur();

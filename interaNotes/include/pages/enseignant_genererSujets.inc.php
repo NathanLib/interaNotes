@@ -11,7 +11,7 @@ $pdo = new Mypdo();
     $idPremierSujet = $sujetManager->getIdSujetPossible();
 
     $examenManager = new ExamenManager($pdo);
-    $examen = $examenManager->getExamen(1);
+    $examen = $examenManager->getExamen($_SESSION['idExamenCree']);
 
     $generationManager = new GenerationManager($pdo);
     $listeExercicesGeneres = $generationManager->genererExercice($examen, $idPremierSujet);
