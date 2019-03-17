@@ -87,15 +87,15 @@ $retour = mail($mail,$sujet,$message,$header);
 
 //======Vérification de l'envoi
 if($retour){?>
-  <div class="msgErrorMailCompte">
-    <h3>Poser une question</h3>
-    <p>La question a bien été envoyée à votre professeur !</p>
+  <div class="msgConfirmTitre">
+    <h3>Message de confirmation</h3>
+    <p>Votre question a bien été envoyée à votre professeur !</p>
   </div>
 
 <?php
 }else{ ?>
 
-  <div class="msgErrorMailCompte">
+  <div class="msgErrorTitre">
     <h3>Echec de l'envoi</h3>
     <p>Un problème est survenu lors de l'envoi du mail, veuillez réessayer dans quelques minutes !</p>
   </div>
