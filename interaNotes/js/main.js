@@ -366,7 +366,7 @@ for (var i = 0; i <= compteur; i++) {
     var listeUnique = document.getElementById('parametre'+i);
     var listeIntervalle = document.getElementById('liste'+i);
 
-    if(listeUnique.options.length != null || listeUnique.options.length > 0 ) {
+    if(listeUnique != null && listeUnique.options.length > 0 ) {
         var point = new Array();
         for (var j = 0; j < listeUnique.options.length ; j++) {
             point.push(listeUnique.options[j].value);
@@ -376,7 +376,7 @@ for (var i = 0; i <= compteur; i++) {
 
             document.cookie = string;
         }
-    } else {
+    } else if(listeIntervalle != null) {
 
         var point = new Array();
         for (var j = 0; j < listeIntervalle.options.length ; j++) {

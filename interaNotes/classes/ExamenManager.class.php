@@ -182,9 +182,6 @@ class ExamenManager{
 	}
 
 	public function creerPoint($listePoints) {
-		echo "<pre>";
-		var_dump($listePoints);
-		echo "</pre>";
 		$pointManager = new PointManager($this->db);
 
 		$i = $pointManager->getIdPointMaximal();
