@@ -202,8 +202,9 @@ class ExamenManager{
 
 			foreach ($value as $clé => $valeur) {
 
-				if(isset($valeur['valeur'])){
-					if (isset($valeur[0])) {
+				if(isset($valeur['valeur']) || is_array($valeur) ){
+					if (is_array($valeur)) {
+
 						$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
 
 						foreach ($valeur as $key => $valeurPoint) {
@@ -219,6 +220,7 @@ class ExamenManager{
 							$requete->execute();
 						}
 					} else {
+
 						$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
 
 						$requete = $this->db->prepare($sql);

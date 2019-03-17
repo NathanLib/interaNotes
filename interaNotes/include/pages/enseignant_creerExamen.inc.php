@@ -300,7 +300,7 @@ if(!$listePromo) { ?>
                                     </div>
                                     <div class="col-5 form-group divPuissanceResult d-flex">
                                         <span id="puissanceValeur">x10</span>
-                                        <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" onkeydown="return event.keyCode !== 69" required>
+                                        <input id=<?php echo "puissanceValeur".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" onkeydown="return event.keyCode !== 69">
 
                                     </div>
 
@@ -308,7 +308,7 @@ if(!$listePromo) { ?>
 
                                 <div class="form-group">
                                     <label for="uniteAnswer">Unité de la valeur :</label>
-                                    <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                    <select class="form-control" id=<?php echo "uniteValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat">
                                         <?php
                                         $listeUnites = Unites::getConstants();
                                         foreach ($listeUnites as $unite => $abreviation) { ?>
@@ -321,7 +321,7 @@ if(!$listePromo) { ?>
 
                                 <div class="form-group">
                                     <label for="exposantAnswer">Exposant de l'unité :</label>
-                                    <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                    <select class="form-control" id=<?php echo "exposantValeur".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" >
                                         <?php
                                         $listeExposants = Exposants::getConstants();
                                         $defautExposant = Exposants::getExposantParDefaut();
@@ -371,7 +371,7 @@ if(!$listePromo) { ?>
                                     </div>
                                     <div class="col-5 form-group divPuissanceResult d-flex">
                                         <span id="puissanceValeur">x10</span>
-                                        <input id=<?php echo "puissanceValeurIntervalle".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" onkeydown="return event.keyCode !== 69" required>
+                                        <input id=<?php echo "puissanceValeurIntervalle".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" onkeydown="return event.keyCode !== 69" >
                                     </div>
 
                                     <div class="col-7">
@@ -379,7 +379,7 @@ if(!$listePromo) { ?>
                                     </div>
                                     <div class="col-5 form-group divPuissanceResult d-flex">
                                         <span id="puissanceValeur">x10</span>
-                                        <input id=<?php echo "puissanceValeurIntervalle2".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" onkeydown="return event.keyCode !== 69" required>
+                                        <input id=<?php echo "puissanceValeurIntervalle2".$compteur; ?> class="form-control saisiePuissanceResult" type="number" value="0" step="1" onkeydown="return event.keyCode !== 69" >
 
                                     </div>
 
@@ -390,7 +390,7 @@ if(!$listePromo) { ?>
 
                                 <div class="form-group" style="margin-top:15px">
                                     <label for="uniteAnswer">Unité de la valeur :</label>
-                                    <select class="form-control" id=<?php echo "uniteValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" required>
+                                    <select class="form-control" id=<?php echo "uniteValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'unité du résultat" >
                                         <?php
                                         $listeUnites = Unites::getConstants();
 
@@ -404,7 +404,7 @@ if(!$listePromo) { ?>
 
                                 <div class="form-group">
                                     <label for="exposantAnswer">Exposant de l'unité :</label>
-                                    <select class="form-control" id=<?php echo "exposantValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" required>
+                                    <select class="form-control" id=<?php echo "exposantValeurIntervalle".$compteur ;?> type="text" placeholder="Sélectionnez l'exposant de l'unité" >
                                         <?php
                                         $listeExposants = Exposants::getConstants();
                                         $defautExposant = Exposants::getExposantParDefaut();
