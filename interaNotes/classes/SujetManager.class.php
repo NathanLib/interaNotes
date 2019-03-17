@@ -63,7 +63,7 @@ class SujetManager{
 		$sql = 'SELECT s.idSujet FROM sujet s
 		INNER JOIN exerciceattribue e ON(e.idSujet=s.idSujet)
 		INNER JOIN personne p ON(p.idPersonne=e.idEleve)
-		WHERE p.login=:login';
+		WHERE p.login=:login ORDER BY s.idSujet DESC'; 
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':login', $login);

@@ -27,8 +27,8 @@ if(isset($_GET['idSujet'])){
         $titre = $enonceSujet->getTitreEnonce();
         $enonce = $enonceSujet->getConsigneEnonce();
         $question = $questionManager->getAllQuestionOfSujet($sujet->getIdExamenOfSujet(),$idSujet);
-        $image1 = "image/examen".$_SESSION['examen']->getIdExamen()."/sujet".$idSujet."/FuséeMoteur".$valeurs[0]->getValeur().".jpg";
-        $image2 = "image/examen".$_SESSION['examen']->getIdExamen()."/sujet".$idSujet."/Astronaute".$valeurs[2]->getValeur().".jpg"; ?>
+        $image1 = "image/examen".$_SESSION['examen']->getIdExamen()."/sujet".$idSujet."/1_".$valeurs[0]->getValeur().".jpg";
+        $image2 = "image/examen".$_SESSION['examen']->getIdExamen()."/sujet".$idSujet."/2_".$valeurs[2]->getValeur().".jpg"; ?>
 
         <div class="row w-100 d-flex justify-content-center headAfficherSujet">
             <div class="col-12 col-md-4">
@@ -171,7 +171,7 @@ if(isset($_GET['idSujet'])){
                             <div class="col-12 col-md-3 d-flex justify-content-center">
                                 <div class="">
                                     <?php
-                                    $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $dateDepot, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2);
+                                    $_SESSION['sujet'] = $arrayName = array('idSujet' => $idSujet,'titre' => $titre, 'date' => $dateDepot, 'enonce' => $enonce,'image1' => $image1, 'image2' => $image2, 'questions' => $question);
                                     ?>
                                     <a href="include/pages/obtenirPdfSujet.inc.php" target="_blank">
                                         <input type=button value="Télécharger"></input>

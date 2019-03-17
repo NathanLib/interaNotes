@@ -65,8 +65,8 @@ class PDF extends FPDF
      function AddImages($image1,$image2){
         $this->SetFont('Arial','BU',12);
         $this->Cell(25,10,"Images : ",0,0);
-        $this->Image('../../'.$image1,50,$this->y+20,30);
-        $this->Image('../../'.$image2,125,$this->y+20,30);
+        $this->Image('../../'.$image1,50,$this->y,30);
+        $this->Image('../../'.$image2,125,$this->y,30);
     }
 
 

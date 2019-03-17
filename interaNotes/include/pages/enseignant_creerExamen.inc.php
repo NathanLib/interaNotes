@@ -545,6 +545,6 @@ if(!$listePromo) { ?>
 
 <?php
   $_SESSION['idExamenCree'] = $examenManager->getLastExamenCree();
-  //header('Location: index.php?page=22');
+  header('Location: index.php?page=22');
   }
 } ?>
