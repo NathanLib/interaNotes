@@ -59,7 +59,7 @@ if(!$listePromo) { ?>
                         <input class="form-control" id="nameExam" name="nameExam" type="text" placeholder="" maxlength="50" required>
                     </div>
 
-                    <div class="col-12 form-group" >
+                    <div class="col-12 form-group" hidden>
                         <label for="">Numéro du semestre :</label><br>
                         <div class="custom-control custom-radio custom-control-inline firstCheckBoxSemester">
                             <input type="radio" class="custom-control-input" id="customRadio" name="numSemestre" value="1" checked>
