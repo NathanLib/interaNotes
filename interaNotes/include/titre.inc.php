@@ -15,7 +15,7 @@
 		// WARNING: PARTIE ENSEIGNANT
 
 		case 1:
-		$_SESSION['titre'] = "Accueil";
+		$_SESSION['titre'] = "";
 		break;
 
 		case 2:
@@ -34,9 +34,21 @@
 		$_SESSION['titre'] = "Lister mes examens";
 		break;
 
+		case 6:
+		$_SESSION['titre'] = "Ajouter des essais";
+		break;
+
+		case 7:
+		$_SESSION['titre'] = "Tester une correction";
+		break;
+
+		case 8:
+		$_SESSION['titre'] = "Mes images";
+		break;
+
 		// WARNING: PARTIE ELEVE
 		case 10:
-		$_SESSION['titre'] = "Accueil";
+		$_SESSION['titre'] = "";
 		break;
 
 		case 12:
@@ -57,16 +69,6 @@
 
 		case 19:
 		$_SESSION['titre'] = "Saisir mes réponses";
-		break;
-
-		// WARNING: PARTIE TEST
-
-		case 22:
-		$_SESSION['titre'] = "Test - Génération de sujets";
-		break;
-
-		case 27:
-		$_SESSION['titre'] = "Test - Correction";
 		break;
 
 		// WARNING : Pages communes
