@@ -127,35 +127,35 @@ class ExamenManager{
 			if(!strpos($key,'catia') && !strpos($key,'idImage'.$i)){
 				switch ($key) {
 					case 'intituleQuestion'.$tableauNumeroQuestion[$i]:
-						$question['intituleQuestion'] = $value;
-						break;
+					$question['intituleQuestion'] = $value;
+					break;
 
 					case 'bareme'.$tableauNumeroQuestion[$i]:
-						$question['bareme'] = $value;
-						break;
+					$question['bareme'] = $value;
+					break;
 
 					case 'zoneTolerance'.$tableauNumeroQuestion[$i]:
-						$question['zoneTolerance'] = $value;
-						$listeQuestions[]=$question;
-						if(sizeof($tableauNumeroQuestion) != $i+1){
-							$i++;
-						}
-						$question['intituleQuestion']=null;
-						$question['bareme']=null;
-						$question['zoneTolerance']=null;
-						break;
+					$question['zoneTolerance'] = $value;
+					$listeQuestions[]=$question;
+					if(sizeof($tableauNumeroQuestion) != $i+1){
+						$i++;
+					}
+					$question['intituleQuestion']=null;
+					$question['bareme']=null;
+					$question['zoneTolerance']=null;
+					break;
 
-		/*			case 'catia'.$tableauNumeroQuestion[$i]:
-						break;
+					/*			case 'catia'.$tableauNumeroQuestion[$i]:
+					break;
 
 					case 'symbole'.$tableauNumeroQuestion[$i]:
-						break;
+					break;
 
 					case 'formule'.$tableauNumeroQuestion[$i]:
-						break; */
+					break; */
 
 					default:
-						break;
+					break;
 				}
 			}
 
@@ -200,14 +200,15 @@ class ExamenManager{
 
 			$requete->execute();
 
-			foreach ($value as $clé => $valeur) {
+			foreach ($value as $clé => $valeur) {  //pour chaque point
 
-				if(isset($valeur['valeur']) || is_array($valeur) ){
-					if (is_array($valeur)) {
+				if(is_array($valeur) ){ //Verification pour ne pas avoir catia ou les id Images
 
-						$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
-
+					if (isset($valeur[0])) {
 						foreach ($valeur as $key => $valeurPoint) {
+
+
+							$sql = 'INSERT INTO valeurs(idPoint,valeur,exposantValeur,uniteValeur,uniteExposant) VALUES (:idPoint,:valeur,:exposantValeur,:uniteValeur,:uniteExposant)';
 
 							$requete = $this->db->prepare($sql);
 
@@ -218,6 +219,7 @@ class ExamenManager{
 							$requete->bindValue(':uniteExposant',$valeurPoint['uniteExposant']);
 
 							$requete->execute();
+
 						}
 					} else {
 
@@ -237,69 +239,67 @@ class ExamenManager{
 			}
 			$i++;
 		}
-
-
-
 	}
 
-	public function getLastExamenCree(){
-		$sql = 'SELECT COUNT(idExamen) as nbExam FROM examen ';
 
-		$requete = $this->db->prepare($sql);
-		$requete->execute();
+public function getLastExamenCree(){
+	$sql = 'SELECT COUNT(idExamen) as nbExam FROM examen ';
 
-		$res = $requete->fetch(PDO::FETCH_OBJ);
+	$requete = $this->db->prepare($sql);
+	$requete->execute();
 
-		return($res->nbExam);
-	}
+	$res = $requete->fetch(PDO::FETCH_OBJ);
 
-	public function getNbEssaiRestant($idSujet,$idExamen) {
-		$sql = 'SELECT nbEssaiPossible FROM examen WHERE idExamen=:idExamen ';
+	return($res->nbExam);
+}
 
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idExamen',$idExamen);
+public function getNbEssaiRestant($idSujet,$idExamen) {
+	$sql = 'SELECT nbEssaiPossible FROM examen WHERE idExamen=:idExamen ';
 
-		$requete->execute();
-		$res = $requete->fetch(PDO::FETCH_OBJ);
-		$nbEssaiPossible = $res->nbEssaiPossible;
+	$requete = $this->db->prepare($sql);
+	$requete->bindValue(':idExamen',$idExamen);
 
-		$sql = 'SELECT nbEssaiRealise as nbEssaiUtilise FROM `sujet` WHERE idSujet=:idSujet';
+	$requete->execute();
+	$res = $requete->fetch(PDO::FETCH_OBJ);
+	$nbEssaiPossible = $res->nbEssaiPossible;
 
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idSujet',$idSujet);
+	$sql = 'SELECT nbEssaiRealise as nbEssaiUtilise FROM `sujet` WHERE idSujet=:idSujet';
 
-		$requete->execute();
-		$res = $requete->fetch(PDO::FETCH_OBJ);
+	$requete = $this->db->prepare($sql);
+	$requete->bindValue(':idSujet',$idSujet);
 
-		return $nbEssaiPossible - $res->nbEssaiUtilise;
-	}
+	$requete->execute();
+	$res = $requete->fetch(PDO::FETCH_OBJ);
 
-	public function ajouterEssaiPourUnSujet($idSujet,$idExamen) {
-		$sql = "
-		UPDATE sujet
-		SET nbEssaiRealise = nbEssaiRealise + 1
-		WHERE idSujet = :idSujet AND idExamen = :idExamen";
+	return $nbEssaiPossible - $res->nbEssaiUtilise;
+}
 
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':idExamen',$idExamen);
-		$requete->bindValue(':idSujet',$idSujet);
+public function ajouterEssaiPourUnSujet($idSujet,$idExamen) {
+	$sql = "
+	UPDATE sujet
+	SET nbEssaiRealise = nbEssaiRealise + 1
+	WHERE idSujet = :idSujet AND idExamen = :idExamen";
 
-		$requete->execute();
+	$requete = $this->db->prepare($sql);
+	$requete->bindValue(':idExamen',$idExamen);
+	$requete->bindValue(':idSujet',$idSujet);
 
-	}
+	$requete->execute();
 
-	public function updateNombreEssais($nbEssaieRealise,$idSujet,$idExamen) {
-		$sql = "
-		UPDATE sujet
-		SET nbEssaiRealise = nbEssaiRealise - :nbEssaiRealise
-		WHERE idSujet = :idSujet AND idExamen = :idExamen";
+}
 
-		$requete = $this->db->prepare($sql);
-		$requete->bindValue(':nbEssaiRealise',$nbEssaieRealise);
-		$requete->bindValue(':idExamen',$idExamen);
-		$requete->bindValue(':idSujet',$idSujet);
+public function updateNombreEssais($nbEssaieRealise,$idSujet,$idExamen) {
+	$sql = "
+	UPDATE sujet
+	SET nbEssaiRealise = nbEssaiRealise - :nbEssaiRealise
+	WHERE idSujet = :idSujet AND idExamen = :idExamen";
 
-		$requete->execute();
+	$requete = $this->db->prepare($sql);
+	$requete->bindValue(':nbEssaiRealise',$nbEssaieRealise);
+	$requete->bindValue(':idExamen',$idExamen);
+	$requete->bindValue(':idSujet',$idSujet);
 
-	}
+	$requete->execute();
+
+}
 }
