@@ -1,4 +1,7 @@
-<h3>Page de test pour la correction des sujets</h3>
+<div class="headTestCorrectionSujet">
+	<h3>Page de test pour la correction des sujets</h3>
+	<hr>
+</div>
 
 <?php
 $db = new Mypdo();

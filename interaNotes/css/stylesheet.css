@@ -459,6 +459,11 @@ div.subjectTitle {
     margin-left: 15px;
 }
 
+.headTestCorrectionSujet {
+    text-align: center;
+    margin-top: 1rem;
+}
+
 
 /* page eleve saisie réponse */
 .percentAnswer {
@@ -641,6 +646,9 @@ span#text_info, p#text_info {
 /* Autres pages */
 .tableNotesEleve {
     margin: 50px 20px;
+}
+.tictacHaut img#mesImagesTicTac {
+    width: 60% !important;
 }
 .boutonVoirCorrection {
     color: white;
