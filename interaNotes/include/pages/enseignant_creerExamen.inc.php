@@ -525,19 +525,6 @@ if(!$listePromo) { ?>
     unset($_SESSION['semestre']);
     unset($_SESSION['nbEssaiPossible']);
 
-    foreach($_COOKIE as $key => $value) {
-        if($key != "PHPSESSID") { ?>
-            <script type="text/javascript">
-            function delete_cookie(name) {
-                document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            }
-
-            delete_cookie(<?php echo '"'.$key.'"'; ?>);
-            </script>
-            <?php
-        }
-    }
-
     ?>
     <div class="msgConfirmTitre">
         <h3>Succès</h3>
