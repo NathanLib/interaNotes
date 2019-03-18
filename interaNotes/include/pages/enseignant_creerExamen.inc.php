@@ -470,7 +470,9 @@ if(!$listePromo) { ?>
 
     foreach($_COOKIE as $key=>$value) {
         if($key != "PHPSESSID" && $key != null){
+          if(strpos($key, "point") !== false){
             $points[$key]=$value;
+          }
         }
     }
 
