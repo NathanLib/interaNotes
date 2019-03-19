@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION['objet'])){
   //WARNING:mettre l'email du prof concerné
-$mail = "jeremy.lorthioir@etu.unilim.fr"; // Déclaration de l'adresse de destination.
+$mail = "charlie.leger@etu.unilim.fr"; // Déclaration de l'adresse de destination.
 $mailEtudiant = $_SESSION['mail'];
 $sujet = "Vous avez recu une nouvelle question !"; // Déclaration du sujet du mail.
 $contenu= $_SESSION['contenu']; // Déclaration de l'objet du mail.
@@ -36,6 +36,7 @@ $message_html ="
       <h1 align='center' style='color:white; background-color:#333333; border-radius:25px 25px 0 0; margin-bottom:0;'>Intera Notes</h1>
     <div style='border:solid black 1px; padding:0 10px 3%;'>
       <h2 align='center' >Vous avez recu une nouvelle question de <b>".$prenom." ".$nom."</b></h2>
+      <h2 align='center' style='font-weight: normal; '>Adresse email : <i>".$mailEtudiant."</i></h2>
       <h3>".$objet."</h3>
       <p style='padding: 0 5% 0 5%; text-align:justify;'>".$contenu."</b></p>
       </br>
