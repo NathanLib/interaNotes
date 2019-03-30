@@ -24,11 +24,14 @@ CREATE TABLE eleve (
 
 CREATE TABLE examen (
   idExamen INT NOT NULL AUTO_INCREMENT,
+  idEnseignant INT NOT NULL,
   titreExamen VARCHAR(50) NOT NULL,
   consigneExamen TEXT NOT NULL,
   nbEssaiPossible INT NOT NULL,
   dateDepot DATETIME NOT NULL,
+  semestre TINYINT(1) NOT NULL,
   anneeScolaire INT(4) NOT NULL,
+  FOREIGN KEY (idEnseignant) REFERENCES enseignant(idEnseignant),
   PRIMARY KEY (idExamen)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -52,7 +55,6 @@ CREATE TABLE enonce (
 CREATE TABLE sujet (
   idSujet INT NOT NULL AUTO_INCREMENT,
   idEnonce INT NOT NULL,
-  semestre TINYINT(1) NOT NULL,
   idExamen INT NOT NULL,
   nbEssaiRealise INT NOT NULL,
   FOREIGN KEY (idEnonce) REFERENCES enonce(idEnonce),

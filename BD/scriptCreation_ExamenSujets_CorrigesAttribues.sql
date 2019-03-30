@@ -126,12 +126,16 @@ DROP TABLE IF EXISTS `examen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `examen` (
   `idExamen` int(11) NOT NULL AUTO_INCREMENT,
+  `idEnseignant` int(11) NOT NULL,
   `titreExamen` varchar(50) NOT NULL,
   `consigneExamen` text NOT NULL,
   `nbEssaiPossible` int(11) NOT NULL,
   `dateDepot` datetime NOT NULL,
+  `semestre` tinyint(1) NOT NULL,
   `anneeScolaire` int(4) NOT NULL,
-  PRIMARY KEY (`idExamen`)
+  PRIMARY KEY (`idExamen`),
+  KEY `idEnseignant` (`idEnseignant`),
+  CONSTRAINT `examen_ibfk_1` FOREIGN KEY (`idEnseignant`) REFERENCES `enseignant` (`idEnseignant`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -141,7 +145,7 @@ CREATE TABLE `examen` (
 
 LOCK TABLES `examen` WRITE;
 /*!40000 ALTER TABLE `examen` DISABLE KEYS */;
-INSERT INTO `examen` VALUES (1,'Simulation d\'une fusée','En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de $destinationPlanète$ qui se situe à $distanceDestination$ Kms de notre chère Terre !<br><br>Nous savons que la fusée possède $nbMoteur$ moteur(s), la fusée peut aller à une vitesse de $vitesse$ Km/H et chaque moteur a une consommation de carburant qui vaut $consoCarburantParMoteurs$ Tonnes/1000 Kms !<br><br>A bord de cette fusée, l\'équipage est constitué de $nbPersonne$ personnes et chaque personne consomme $consoNourrituresParPersonneParJour$ Kgs de nourriture, $consoEauParPersonnesParJour$ L d\'eau et $consoO2ParPersonnesParJour$ L d\'O² par jour.',5,'2019-01-30 00:00:00',2018);
+INSERT INTO `examen` VALUES (1,2,'Simulation d\'une fusée','En 2016, la fusée Ariane 5 a décollé du Centre Spatial Guyanais en direction de $destinationPlanète$ qui se situe à $distanceDestination$ Kms de notre chère Terre !<br><br>Nous savons que la fusée possède $nbMoteur$ moteur(s), la fusée peut aller à une vitesse de $vitesse$ Km/H et chaque moteur a une consommation de carburant qui vaut $consoCarburantParMoteurs$ Tonnes/1000 Kms !<br><br>A bord de cette fusée, l\'équipage est constitué de $nbPersonne$ personnes et chaque personne consomme $consoNourrituresParPersonneParJour$ Kgs de nourriture, $consoEauParPersonnesParJour$ L d\'eau et $consoO2ParPersonnesParJour$ L d\'O² par jour.',5,'2019-01-30 00:00:00',1,2018);
 /*!40000 ALTER TABLE `examen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -415,7 +419,6 @@ DROP TABLE IF EXISTS `sujet`;
 CREATE TABLE `sujet` (
   `idSujet` int(11) NOT NULL AUTO_INCREMENT,
   `idEnonce` int(11) NOT NULL,
-  `semestre` tinyint(1) NOT NULL,
   `idExamen` int(11) NOT NULL,
   `nbEssaiRealise` int(11) NOT NULL,
   PRIMARY KEY (`idSujet`,`idEnonce`),
@@ -432,7 +435,7 @@ CREATE TABLE `sujet` (
 
 LOCK TABLES `sujet` WRITE;
 /*!40000 ALTER TABLE `sujet` DISABLE KEYS */;
-INSERT INTO `sujet` VALUES (1,1,1,1,0),(2,2,1,1,0);
+INSERT INTO `sujet` VALUES (1,1,1,0),(2,2,1,0);
 /*!40000 ALTER TABLE `sujet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -475,4 +478,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-10 16:59:16
+-- Dump completed on 2019-03-30 15:50:37

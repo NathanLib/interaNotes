@@ -8,7 +8,7 @@ class ExamenManager{
 
 	public function getAllExamens(){
 
-		$sql = 'SELECT idExamen, dateDepot, anneeScolaire, titreExamen, consigneExamen FROM examen e
+		$sql = 'SELECT idExamen, idEnseignant, dateDepot, anneeScolaire, titreExamen, consigneExamen, semestre FROM examen e
 		ORDER BY e.dateDepot DESC';
 
 		$requete = $this->db->prepare($sql);
@@ -59,7 +59,7 @@ class ExamenManager{
 
 	public function getExamen($idExamen){
 
-		$sql = 'SELECT idExamen, dateDepot, anneeScolaire, titreExamen, consigneExamen FROM examen e
+		$sql = 'SELECT idExamen, idEnseignant, dateDepot, anneeScolaire, titreExamen, consigneExamen, semestre FROM examen e
 		WHERE e.idExamen=:idExamen';
 
 		$requete = $this->db->prepare($sql);
@@ -94,15 +94,17 @@ class ExamenManager{
 
 	}
 
-	public function creerExamen($dateLimite,$anneeScolaire,$titreExamen,$consigneExamen,$nbEssaiPossible) {
-		$sql = 'INSERT INTO examen(dateDepot,anneeScolaire,titreExamen,consigneExamen,nbEssaiPossible) VALUES (:dateDepot,:anneeScolaire,:titreExamen,:consigneExamen,:nbEssaiPossible)';
+	public function creerExamen($idEnseignant, $dateLimite,$anneeScolaire,$titreExamen,$consigneExamen,$nbEssaiPossible, $semestre) {
+		$sql = 'INSERT INTO examen(idEnseignant, dateDepot,anneeScolaire,titreExamen,consigneExamen,nbEssaiPossible, semestre) VALUES (:idEnseignant, :dateDepot,:anneeScolaire,:titreExamen,:consigneExamen,:nbEssaiPossible, :semestre)';
 
 		$requete = $this->db->prepare($sql);
+		$requete->bindValue(':idEnseignant',$idEnseignant);
 		$requete->bindValue(':dateDepot',$dateLimite);
 		$requete->bindValue(':anneeScolaire',$anneeScolaire);
 		$requete->bindValue(':titreExamen',$titreExamen);
 		$requete->bindValue(':consigneExamen',$consigneExamen);
 		$requete->bindValue(':nbEssaiPossible',$nbEssaiPossible);
+		$requete->bindValue(':semestre',$semestre);
 
 		$requete->execute();
 

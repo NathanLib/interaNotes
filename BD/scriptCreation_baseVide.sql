@@ -122,12 +122,16 @@ DROP TABLE IF EXISTS `examen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `examen` (
   `idExamen` int(11) NOT NULL AUTO_INCREMENT,
+  `idEnseignant` int(11) NOT NULL,
   `titreExamen` varchar(50) NOT NULL,
   `consigneExamen` text NOT NULL,
   `nbEssaiPossible` int(11) NOT NULL,
   `dateDepot` datetime NOT NULL,
+  `semestre` tinyint(1) NOT NULL,
   `anneeScolaire` int(4) NOT NULL,
-  PRIMARY KEY (`idExamen`)
+  PRIMARY KEY (`idExamen`),
+  KEY `idEnseignant` (`idEnseignant`),
+  CONSTRAINT `examen_ibfk_1` FOREIGN KEY (`idEnseignant`) REFERENCES `enseignant` (`idEnseignant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -403,7 +407,6 @@ DROP TABLE IF EXISTS `sujet`;
 CREATE TABLE `sujet` (
   `idSujet` int(11) NOT NULL AUTO_INCREMENT,
   `idEnonce` int(11) NOT NULL,
-  `semestre` tinyint(1) NOT NULL,
   `idExamen` int(11) NOT NULL,
   `nbEssaiRealise` int(11) NOT NULL,
   PRIMARY KEY (`idSujet`,`idEnonce`),
@@ -461,4 +464,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-10 16:56:50
+-- Dump completed on 2019-03-30 15:45:23

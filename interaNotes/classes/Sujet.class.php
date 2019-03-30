@@ -2,7 +2,6 @@
 class Sujet {
 	private $idSujet;
 	private $idEnonce;
-	private $semestre;
 	private $idExamen;
 	private $nbEssaiRealise;
 
@@ -23,10 +22,6 @@ class Sujet {
 
 				case 'idEnonce' :
 				$this->setIdEnonce($valeur);
-				break;
-
-				case 'semestre' :
-				$this->setSemestre($valeur);
 				break;
 
 				case 'idExamen' :
@@ -56,16 +51,6 @@ class Sujet {
 
 	public function setIdEnonce($idEnonce){
 		$this->idEnonce = $idEnonce;
-	}
-
-	public function getSemestreOfSujet(){
-		return $this->semestre;
-	}
-
-	public function setSemestre($semestre){
-		if(is_numeric($semestre)){
-			$this->semestre = $semestre;
-		}
 	}
 
 	public function getIdExamenOfSujet(){

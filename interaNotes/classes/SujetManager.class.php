@@ -8,7 +8,7 @@ class SujetManager{
 
 	public function getAllSujetsOfExamen($idExamen){
 
-		$sql = 'SELECT idSujet, idEnonce, semestre, idExamen FROM sujet s WHERE idExamen=:idExamen ';
+		$sql = 'SELECT idSujet, idEnonce, idExamen FROM sujet s WHERE idExamen=:idExamen ';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idExamen',$idExamen);
@@ -25,7 +25,7 @@ class SujetManager{
 
 	public function getAllSujetsOfExamenAttribues($idExamen){
 
-		$sql = 'SELECT e.idSujet, idEnonce, semestre, idExamen FROM sujet s INNER JOIN exerciceattribue e ON s.idSujet=e.idSujet WHERE idExamen=:idExamen ';
+		$sql = 'SELECT e.idSujet, idEnonce, idExamen FROM sujet s INNER JOIN exerciceattribue e ON s.idSujet=e.idSujet WHERE idExamen=:idExamen ';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':idExamen',$idExamen);
@@ -45,7 +45,7 @@ class SujetManager{
 
 	public function getSujet($idSujet){
 
-		$sql = 'SELECT idSujet, idEnonce, semestre, idExamen FROM sujet s
+		$sql = 'SELECT idSujet, idEnonce, idExamen FROM sujet s
 		WHERE s.idSujet=:idSujet';
 
 		$requete = $this->db->prepare($sql);
@@ -63,7 +63,7 @@ class SujetManager{
 		$sql = 'SELECT s.idSujet FROM sujet s
 		INNER JOIN exerciceattribue e ON(e.idSujet=s.idSujet)
 		INNER JOIN personne p ON(p.idPersonne=e.idEleve)
-		WHERE p.login=:login ORDER BY s.idSujet DESC'; 
+		WHERE p.login=:login ORDER BY s.idSujet DESC';
 
 		$requete = $this->db->prepare($sql);
 		$requete->bindValue(':login', $login);
@@ -117,7 +117,7 @@ class SujetManager{
 		$args = array_fill(0, count($sujetsTableaux[0]), '?');
 
 		$this->db->beginTransaction();
-		$sql = "INSERT INTO sujet(idSujet, idEnonce, semestre, idExamen, nbEssaiRealise) VALUES (".implode(',', $args).")";
+		$sql = "INSERT INTO sujet(idSujet, idEnonce, idExamen, nbEssaiRealise) VALUES (".implode(',', $args).")";
 		$requete = $this->db->prepare($sql);
 
 		foreach ($sujetsTableaux as $row)
@@ -132,7 +132,7 @@ class SujetManager{
 
 	private function preparationRequeteTableauSujets($sujetsObjets){
 		foreach ($sujetsObjets as $sujet) {
-      $sujetsTableaux[] = array($sujet->getIdSujet(), $sujet->getIdEnonce(), $sujet->getSemestreOfSujet(), $sujet->getIdExamenOfSujet(), $sujet->getNbEssaiRealise());
+      $sujetsTableaux[] = array($sujet->getIdSujet(), $sujet->getIdEnonce(), $sujet->getIdExamenOfSujet(), $sujet->getNbEssaiRealise());
     }
 
 		return $sujetsTableaux;

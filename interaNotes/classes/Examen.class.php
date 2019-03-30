@@ -1,11 +1,13 @@
 <?php
 class Examen{
 	private $idExamen;
+	private $idEnseignant;
 	private $dateDepot;
 	private $anneeScolaire;
 	private $titreExamen;
 	private $consigneExamen;
 	private $nbEssaiPossible;
+	private $semestre;
 
 	public function __construct($valeurs){
 		if(!empty($valeurs)){
@@ -19,6 +21,10 @@ class Examen{
 			switch($attribut){
 				case 'idExamen' :
 				$this->setIdExamen($valeur);
+				break;
+
+				case 'idEnseignant' :
+				$this->setIdEnseignant($valeur);
 				break;
 
 				case 'dateDepot' :
@@ -40,6 +46,10 @@ class Examen{
 				case 'nbEssaiPossible' :
 				$this->setNbEssaiPossible($valeur);
 				break;
+
+				case 'semestre' :
+				$this->setSemestreExamen($valeur);
+				break;
 			}
 		}
 	}
@@ -51,6 +61,16 @@ class Examen{
 	public function setIdExamen($id){
 		if(is_numeric($id)){
 			$this->idExamen = $id;
+		}
+	}
+
+	public function getIdEnseignant(){
+		return $this->idExamen;
+	}
+
+	public function setIdEnseignant($idEnseignant){
+		if(is_numeric($idEnseignant)){
+			$this->idEnseignant = $idEnseignant;
 		}
 	}
 
@@ -94,6 +114,14 @@ class Examen{
 
 	public function setNbEssaiPossible($nbEssaiPossible){
 		$this->nbEssaiPossible = $nbEssaiPossible;
+	}
+
+	public function getSemestreExamen(){
+		return $this->semestre;
+	}
+
+	public function setSemestreExamen($semestre){
+		$this->semestre = $semestre;
 	}
 
 	public function getStatut($estAttribue){

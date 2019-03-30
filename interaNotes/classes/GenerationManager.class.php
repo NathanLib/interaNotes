@@ -84,7 +84,7 @@ class GenerationManager{
       $enonceSujet = str_replace($nomDesPoints, $valeurDesPointsDuSujet, $enonceExamen);
       $this->listeDesEnonces[] = new Enonce(array('idEnonce'=>$idSujet,'titre'=>$titreExamen,'consigne'=>$enonceSujet));
 
-      $this->listeDesSujets[] = new Sujet(array('idSujet'=>$idSujet,'idEnonce'=>$idSujet,'semestre'=>1, 'idExamen'=>$idExamen, 'nbEssaiRealise'=>0));
+      $this->listeDesSujets[] = new Sujet(array('idSujet'=>$idSujet,'idEnonce'=>$idSujet, 'idExamen'=>$idExamen, 'nbEssaiRealise'=>0));
     }
   }
 

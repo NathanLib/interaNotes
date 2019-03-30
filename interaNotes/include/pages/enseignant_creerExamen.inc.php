@@ -59,7 +59,7 @@ if(!$listePromo) { ?>
                         <input class="form-control" id="nameExam" name="nameExam" type="text" placeholder="" maxlength="50" required>
                     </div>
 
-                    <div class="col-12 form-group" hidden>
+                    <div class="col-12 form-group">
                         <label for="">Numéro du semestre :</label><br>
                         <div class="custom-control custom-radio custom-control-inline firstCheckBoxSemester">
                             <input type="radio" class="custom-control-input" id="customRadio" name="numSemestre" value="1" checked>
@@ -459,10 +459,11 @@ if(!$listePromo) { ?>
 
 
 <?php    } else {
-
+    $personneManager = new PersonneManager($db);
     $examenManager = new ExamenManager($db);
 
-    $examenManager->creerExamen($_SESSION['dateLimite'],$_SESSION['nomPromotion'],$_SESSION['titreExamen'],$_SESSION['texteEnonce'],$_SESSION['nbEssaiPossible']);
+    $enseignant = $personneManager->getPersonneByLogin($_SESSION['enseignant']);
+    $examenManager->creerExamen($enseignant->getIdPersonne(), $_SESSION['dateLimite'],$_SESSION['nomPromotion'],$_SESSION['titreExamen'],$_SESSION['texteEnonce'],$_SESSION['nbEssaiPossible'],$_SESSION['semestre']);
 
     $idExamen = $db->lastInsertId();
     $questions = $_POST;
