@@ -1,7 +1,17 @@
 <?php
 if(isset($_SESSION['objet'])){
-  //WARNING:mettre l'email du prof concerné
-$mail = "charlie.leger@etu.unilim.fr"; // Déclaration de l'adresse de destination.
+
+//On récupère le mail de l'enseignant responsable de l'examen
+$pdo = new Mypdo();
+$examenManager = new ExamenManager($pdo);
+$personneManager = new PersonneManager($pdo);
+
+$examen = $_SESSION['examen'];
+$idEnseignant = $examen->getIdEnseignant();
+$enseignant = $personneManager->getPersonneById($idEnseignant);
+
+//Création du mail
+$mail = $enseignant->getMailPersonne(); // Déclaration de l'adresse de destination.
 $mailEtudiant = $_SESSION['mail'];
 $sujet = "Vous avez recu une nouvelle question !"; // Déclaration du sujet du mail.
 $contenu= $_SESSION['contenu']; // Déclaration de l'objet du mail.

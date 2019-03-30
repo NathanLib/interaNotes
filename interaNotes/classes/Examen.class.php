@@ -65,7 +65,7 @@ class Examen{
 	}
 
 	public function getIdEnseignant(){
-		return $this->idExamen;
+		return $this->idEnseignant;
 	}
 
 	public function setIdEnseignant($idEnseignant){
